@@ -77,7 +77,7 @@ REQUISITOS FUNCIONAIS:
 <br><br><br>
 
 <strong>
-🆙 1º Sprint:
+☑️ 1º Sprint:
 </strong>
 <br><br>
 
