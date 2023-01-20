@@ -53,7 +53,7 @@ async function main() {
 }
 
 app.get("/tasks/:month/monthTasks", async (req, res) => {
-  const month = req.params.month;
+  const month = Number(req.params.month);
 
   const monthTasks = await prisma.tasks.findMany({
     select: {
@@ -66,7 +66,7 @@ app.get("/tasks/:month/monthTasks", async (req, res) => {
 
     },  
     where: {
-        month
+        limitMonth: month
     },
     orderBy: {
       createdAt: "desc",
@@ -78,7 +78,7 @@ app.get("/tasks/:month/monthTasks", async (req, res) => {
         ...tasks,
         title: tasks.title,
         description: tasks.description,
-        date: tasks.date.getMonth(),
+        date: tasks.date,
         done: tasks.done,
         createdAt: tasks.createdAt.toISOString(),
         updatedAt: tasks.updatedAt.toISOString(),

@@ -83,4 +83,6 @@ REQUISITOS FUNCIONAIS:
 
 - Criar tarefa;
 - Listar todas as tarefas;
+- Listar tarefas pelo Mês;
+- Listar tarefas pelo dia;
 - Deletar tarefa(s).
