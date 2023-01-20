@@ -1,4 +1,3 @@
-
 import express from "express";
 import cors from "cors";
 import { PrismaClient } from "@prisma/client";
@@ -13,16 +12,16 @@ interface ITask {
   limitDay: number;
   limitMonth: number;
   limitYear: number;
-  date: string
+  date: string;
 }
 
 app.use(express.json());
 app.use(cors());
 
-
 async function main() {
   app.post("/create", async (req, res) => {
-    const completDate = req.body.limitDay + "/" + req.body.limitMonth + "/" + req.body.limitYear;
+    const completDate =
+      req.body.limitDay + "/" + req.body.limitMonth + "/" + req.body.limitYear;
     const tasks: ITask = await prisma.tasks.create({
       data: {
         title: req.body.title,
@@ -30,8 +29,8 @@ async function main() {
         limitDay: req.body.limitDay,
         limitMonth: req.body.limitMonth,
         limitYear: req.body.limitYear,
-        date: completDate
-      }
+        date: completDate,
+      },
     });
     return res.status(201).json(tasks);
   });
@@ -58,15 +57,14 @@ app.get("/tasks/:month/monthTasks", async (req, res) => {
   const monthTasks = await prisma.tasks.findMany({
     select: {
       title: true,
-      description: true,     
+      description: true,
       date: true,
       done: true,
       createdAt: true,
       updatedAt: true,
-
-    },  
+    },
     where: {
-        limitMonth: month
+      limitMonth: month,
     },
     orderBy: {
       createdAt: "desc",
@@ -86,6 +84,51 @@ app.get("/tasks/:month/monthTasks", async (req, res) => {
     })
   );
 });
+
+app.get("/tasks/:day/dayTasks", async (req, res) => {
+  const day = Number(req.params.day);
+
+  const dayTasks = await prisma.tasks.findMany({
+    select: {
+      title: true,
+      description: true,
+      date: true,
+      done: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+    where: {
+      limitDay: day,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+  return res.json(
+    dayTasks.map((tasks) => {
+      return {
+        ...tasks,
+        title: tasks.title,
+        description: tasks.description,
+        date: tasks.date,
+        done: tasks.done,
+        createdAt: tasks.createdAt.toISOString(),
+        updatedAt: tasks.updatedAt.toISOString(),
+      };
+    })
+  );
+});
+
+app.delete("/tasks/:id", async (req, res) => {
+  const id = req.params.id;
+  const tasks = await prisma.tasks.delete({
+    where: {
+      id: id,
+    },
+  });
+  return res.json(tasks);
+});
+
 
 main()
   .then(async () => {
