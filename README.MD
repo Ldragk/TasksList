@@ -81,11 +81,11 @@ REQUISITOS FUNCIONAIS:
 <table width="100%" align="center">
       <caption align="center"> <h1>Scrum Board</h1> </caption>	         
        <thead>                      
-               <th cellspacing="2" style="text-align:center" colspan="1">☑️ 1º Sprint</th>       
+               <th width="30%" style="text-align:center" colspan="1">☑️ 1º Sprint</th>       
                <th></th>         
-               <th cellspacing="2" style="text-align:center" colspan="2">2º Sprint</th>  
+               <th width="30%" style="text-align:center" colspan="2">2º Sprint</th>  
                <th></th> 
-               <th cellspacing="2" style="text-align:center" colspan="3">3º Sprint</th>    
+               <th width="30%" style="text-align:center" colspan="3">3º Sprint</th>    
        </thead>
        <tbody>          
            <tr>                           
