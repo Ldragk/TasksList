@@ -85,56 +85,56 @@ Consultar tarefas deletadas
                <th style="text-align:center" colspan="1">☑️ 1º Sprint</th>       
                <th></th>   
                <th></th>              
-               <th style="text-align:center" colspan="2">2º Sprint</th>  
+               <th style="text-align:center" colspan="1">2º Sprint</th>  
                <th></th>   
                <th></th>  
-               <th style="text-align:center" colspan="3">3º Sprint</th>    
+               <th style="text-align:center" colspan="1">3º Sprint</th>    
        </thead>
        <tbody>          
            <tr>                           
                 <td colspan="1">✔️ Criar tarefa</th>  
                 <td></th>  
                  <td></th>                
-                <td colspan="2">Salvar tarefas deletadas</th>  
+                <td colspan="1">Salvar tarefas deletadas</th>  
                 <td></th>  
                  <td></th>  
-                 <td colspan="3">Editar tarefa já criada</td>
+                 <td colspan="1">Editar tarefa já criada</td>
            </tr>
            <tr>             
                  <td colspan="1">✔️ Listar todas as tarefas.</th> 
                   <td></th>  
                    <td></th>    
-                  <td colspan="2">Consultar tarefas deletadas</th>
+                  <td colspan="1">Consultar tarefas deletadas</th>
                   <td></th>  
                  <td></th>  
-                 <td colspan="3">Consultar tarefas deletadas</td>
+                 <td colspan="1">Consultar tarefas deletadas</td>
            </tr>
            <tr>             
                 <td colspan="1">✔️ Listar tarefas pelo mês.</th> 
                  <td></th>  
                   <td></th>  
-                 <td colspan="2">Marcar ou desmarcar tarefas feitas</th>
+                 <td colspan="1">Marcar ou desmarcar tarefas feitas</th>
                  <td></th>  
                  <td></th>  
-                 <td colspan="3">Ser notificado de tarefas próximas da data limite</td>
+                 <td colspan="1">Ser notificado de tarefas próximas da data limite</td>
            </tr>           
            <tr>             
                  <td colspan="1">✔️ Listar tarefas pelo dia.</th> 
                   <td></th>  
                    <td></th>     
-                  <td colspan="2">Consultar tarefas feitas</th>
+                  <td colspan="1">Consultar tarefas feitas</th>
                   <td></th>  
                  <td></th>  
-                 <td colspan="3"></td>
+                 <td colspan="1"></td>
            </tr>
            <tr>             
                  <td colspan="1">✔️ Deletar tarefa(s).</th> 
                   <td></th>  
                    <td></th>  
-                  <td colspan="2">Consultar tarefas não feitas</th>
+                  <td colspan="1">Consultar tarefas não feitas</th>
                   <td></th>  
                  <td></th>  
-                 <td colspan="3"></td>
+                 <td colspan="1"></td>
            </tr>
        </tbody>
 
