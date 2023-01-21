@@ -77,7 +77,7 @@ REQUISITOS FUNCIONAIS:
 
 </div>
 
-<br><br><br>
+<br><br>
 
 <table width="100%" align="center">
       <caption> <h1 align="center">Scrum Board</h1> </caption>	         
