@@ -46,7 +46,9 @@ HISTORIAS:
 - Eu como usuário quero ver todas as tarefas não feitas;
 - Eu como usuário quero ver todas as tarefas atrasadas;
 - Eu como usuário quero ser notificado das tarefas antes
-  da data limite.
+  da data limite;
+- Eu como usuário quero poder fazer login e acessar minhas 
+tarefas em qualquer aparelho.
 
 <br><br><br>
 
@@ -67,7 +69,8 @@ REQUISITOS FUNCIONAIS:
 - Consultar tarefas não feitas;
 - Editar tarefa já criada;
 - Consultar tarefas atrasadas;
-- Ser notificado de tarefas próximas da data limite.
+- Ser notificado de tarefas próximas da data limite;
+- Criar sistema de login e usuários.
 
 <br><br><br>
 
@@ -115,14 +118,14 @@ REQUISITOS FUNCIONAIS:
                   <td></th>    
                   <td colspan="2">Consultar tarefas feitas</th>
                   <td></th> 
-                 <td colspan="3"></td>
+                 <td colspan="3">Construir o Front-end</td>
            </tr>
            <tr>             
                  <td colspan="1">✔️ Deletar tarefa(s).</th> 
                   <td></th>  
                   <td colspan="2">Consultar tarefas não feitas</th>
                   <td></th>  
-                 <td colspan="3"></td>
+                 <td colspan="3">Construir sistema de login</td>
            </tr>
        </tbody>
 
