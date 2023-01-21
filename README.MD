@@ -38,6 +38,8 @@ HISTORIAS:
 
 - Eu como usuário quero criar uma tarefa;
 - Eu como usuário quero estabelecer o título, descrição e data limite da tarefa;
+- Eu como usuário quedo deletar uma ou mais tarefas;
+- Eu como usuário quero poder consultar tarefas deletadas;
 - Eu como usuário quero marcar uma tarefa como feita;
 - Eu como usuário quero desmarcar uma tarefa marcada como feita;
 - Eu como usuário quero ver todas as tarefas feitas;
@@ -57,32 +59,95 @@ REQUISITOS FUNCIONAIS:
 - Listar todas as tarefas;
 - Listar tarefas do mês;
 - Listar tarefas do dia;
-- Editar tarefa já criada;
 - Deletar tarefas;
-- Marcar tarefas como feitas;
-- Marcar tarefa como não feita;
+- Salvar tarefas deletadas;
+- Consultar tarefas deletadas;
+- Marcar ou desmarcar tarefas como feitas;
 - Consultar tarefas feitas;
 - Consultar tarefas não feitas;
+- Editar tarefa já criada;
 - Consultar tarefas atrasadas;
 - Ser notificado de tarefas próximas da data limite.
 
 <br><br><br>
 
 <div align="center">
-
+Consultar tarefas deletadas
 ## SPRINTS
 
 </div>
 
 <br><br><br>
 
-<strong>
-☑️ 1º Sprint:
-</strong>
-<br><br>
+<table  align="center">
+      <caption> Scrum Board </caption>	         
+       <thead>                      
+               <th style="text-align:center" colspan="1">☑️ 1º Sprint</th>       
+               <th></th>   
+               <th></th>  
+               <th></th>                  
+               <th style="text-align:center" colspan="2">2º Sprint</th>  
+               <th></th>   
+               <th></th>  
+               <th></th>        
+               <th style="text-align:center" colspan="3">3º Sprint</th>    
+       </thead>
+       <tbody>          
+           <tr>                           
+                <td colspan="1">✔️ Criar tarefa</th>  
+                <td></th>  
+                 <td></th>  
+                 <td></th>  
+                <td colspan="2">Salvar tarefas deletadas</th>  
+                <td></th>  
+                 <td></th>  
+                 <td></th>  
+                 <td colspan="3">Editar tarefa já criada</td>
+           </tr>
+           <tr>             
+                 <td colspan="1">✔️ Listar todas as tarefas.</th> 
+                  <td></th>  
+                   <td></th>   
+                   <td></th>    
+                  <td colspan="2">Consultar tarefas deletadas</th>
+                  <td></th>  
+                 <td></th>  
+                 <td></th>  
+                 <td colspan="3">Consultar tarefas deletadas</td>
+           </tr>
+           <tr>             
+                <td colspan="1">✔️ Listar tarefas pelo mês.</th> 
+                 <td></th>  
+                  <td></th>     
+                  <td></th>  
+                 <td colspan="2">Marcar ou desmarcar tarefas feitas</th>
+                 <td></th>  
+                 <td></th>  
+                 <td></th>  
+                 <td colspan="3">Ser notificado de tarefas próximas da data limite</td>
+           </tr>           
+           <tr>             
+                 <td colspan="1">✔️ Listar tarefas pelo dia.</th> 
+                  <td></th>  
+                   <td></th>    
+                   <td></th>     
+                  <td colspan="2">Consultar tarefas feitas</th>
+                  <td></th>  
+                 <td></th>  
+                 <td></th>  
+                 <td colspan="3"></td>
+           </tr>
+           <tr>             
+                 <td colspan="1">✔️ Deletar tarefa(s).</th> 
+                  <td></th>  
+                   <td></th>  
+                   <td></th>  
+                  <td colspan="2">Consultar tarefas não feitas</th>
+                  <td></th>  
+                 <td></th>  
+                 <td></th>  
+                 <td colspan="3"></td>
+           </tr>
+       </tbody>
 
-- Criar tarefa;
-- Listar todas as tarefas;
-- Listar tarefas pelo Mês;
-- Listar tarefas pelo dia;
-- Deletar tarefa(s).
+</table>
