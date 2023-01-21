@@ -72,21 +72,20 @@ REQUISITOS FUNCIONAIS:
 <br><br><br>
 
 <div align="center">
-Consultar tarefas deletadas
 ## SPRINTS
 
 </div>
 
 <br><br><br>
 
-<table  align="center">
-      <caption> Scrum Board </caption>	         
+<table width="100%" align="center">
+      <caption align="center"> <h1>Scrum Board</h1> </caption>	         
        <thead>                      
-               <th style="text-align:center" colspan="1">☑️ 1º Sprint</th>       
+               <th cellspacing="2" style="text-align:center" colspan="1">☑️ 1º Sprint</th>       
                <th></th>         
-               <th style="text-align:center" colspan="2">2º Sprint</th>  
+               <th cellspacing="2" style="text-align:center" colspan="2">2º Sprint</th>  
                <th></th> 
-               <th style="text-align:center" colspan="3">3º Sprint</th>    
+               <th cellspacing="2" style="text-align:center" colspan="3">3º Sprint</th>    
        </thead>
        <tbody>          
            <tr>                           
