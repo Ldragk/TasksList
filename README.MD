@@ -80,7 +80,7 @@ REQUISITOS FUNCIONAIS:
 <br><br><br>
 
 <table width="100%" align="center">
-      <caption style="text-align:center"> <h1>Scrum Board</h1> </caption>	         
+      <caption> <h1 align="center">Scrum Board</h1> </caption>	         
        <thead>                      
                <th width="32%" style="text-align:center" colspan="1">✔️ 1º Sprint</th>       
                <th></th>         
