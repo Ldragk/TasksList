@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { PrismaClient } from "@prisma/client";
+import 
 
 const prisma = new PrismaClient();
 
@@ -125,6 +126,16 @@ app.get("/tasks/:day/dayTasks", async (req, res) => {
 app.delete("/tasks/:id", async (req, res) => {
   const id = req.params.id;
   const tasks = await prisma.tasks.delete({
+    where: {
+      id: id,
+    },
+  });
+  return res.json(tasks);
+});
+
+app.delete("/tasks/:id", async (req, res) => {
+  const id = req.params.id;
+  const tasks = await prisma.tasks.deleteMany({
     where: {
       id: id,
     },

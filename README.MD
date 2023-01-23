@@ -144,22 +144,22 @@ REQUISITOS FUNCIONAIS:
            <tr>                           
                 <td colspan="1">Criar sistema de login e usuários </th>  
                 <td></th>          
-                <td colspan="2">Organizar estrutura do projeto</th>  
+                <td colspan="2">Aprimorar qualidade do projeto:</th>  
                 <!-- <td></th> 
                  <td colspan="3">Editar tarefa já criada</td> -->
            </tr>
            <tr>             
                  <td colspan="1">Construir a Interface do usuário Front-end</th> 
                   <td></th>  
-                  <td colspan="2">Aplicar princípios de Engenharia de Software</th>
+                  <td colspan="2">Organizar estrutura do projeto</th>
                   <!-- <td></th> 
                  <td colspan="3">Consultar tarefas deletadas</td> -->
            </tr>
            <tr>             
                 <td colspan="1">Conectando Frond-end com Back-end do sistema de login</th> 
-                 <!-- <td></th>  
-                 <td colspan="2"></th>
-                 <td></th> 
+                 <td></th>  
+                 <td colspan="2">Aplicar princípios de Engenharia de Software</th>
+                 <!-- <td></th> 
                  <td colspan="3"></td> -->
            </tr>           
            <!-- <tr>              -->
