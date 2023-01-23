@@ -125,7 +125,56 @@ REQUISITOS FUNCIONAIS:
                   <td></th>  
                   <td colspan="2">Consultar tarefas não feitas</th>
                   <td></th>  
-                 <td colspan="3">Construir sistema de login</td>
+                 <td colspan="3">Conectando Frond-end com Back-end</td>
+           </tr>
+       </tbody>
+
+</table>
+
+
+<table width="32%" align="center">          
+       <thead>                      
+               <th width="32%" style="text-align:center" colspan="1">4º Sprint</th>       
+               <!-- <th></th>         
+               <th width="32%" style="text-align:center" colspan="2">2º Sprint</th>  
+               <th></th> 
+               <th width="32%" style="text-align:center" colspan="3">3º Sprint</th>     -->
+       </thead>
+       <tbody>          
+           <tr>                           
+                <td colspan="1">Criar sistema de login e usuários </th>  
+                <!-- <td></th>           -->
+                <!-- <td colspan="2">Salvar tarefas deletadas</th>  
+                <td></th> 
+                 <td colspan="3">Editar tarefa já criada</td> -->
+           </tr>
+           <tr>             
+                 <td colspan="1">Construir a Interface do usuário Front-end</th> 
+                  <!-- <td></th>  
+                  <td colspan="2">Consultar tarefas deletadas</th>
+                  <td></th> 
+                 <td colspan="3">Consultar tarefas deletadas</td> -->
+           </tr>
+           <tr>             
+                <td colspan="1">Conectando Frond-end com Back-end do sistema de login</th> 
+                 <!-- <td></th>  
+                 <td colspan="2">Marcar ou desmarcar tarefas feitas</th>
+                 <td></th> 
+                 <td colspan="3">Ser notificado de tarefas próximas da data limite</td> -->
+           </tr>           
+           <tr>             
+                 <!-- <td colspan="1">✔️ Listar tarefas pelo dia.</th>  -->
+                  <!-- <td></th>    
+                  <td colspan="2">Consultar tarefas feitas</th>
+                  <td></th> 
+                 <td colspan="3">Construir o Front-end</td> -->
+           </tr>
+           <tr>             
+                 <!-- <td colspan="1">✔️ Deletar tarefa(s).</th>  -->
+                  <!-- <td></th>  
+                  <td colspan="2">Consultar tarefas não feitas</th>
+                  <td></th>  
+                 <td colspan="3">Conectando Frond-end com Back-end</td> -->
            </tr>
        </tbody>
 
