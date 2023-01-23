@@ -162,20 +162,20 @@ REQUISITOS FUNCIONAIS:
                  <td></th> 
                  <td colspan="3">Ser notificado de tarefas próximas da data limite</td> -->
            </tr>           
-           <tr>             
+           <!-- <tr>              -->
                  <!-- <td colspan="1">✔️ Listar tarefas pelo dia.</th>  -->
                   <!-- <td></th>    
                   <td colspan="2">Consultar tarefas feitas</th>
                   <td></th> 
                  <td colspan="3">Construir o Front-end</td> -->
-           </tr>
-           <tr>             
+           <!-- </tr> -->
+           <!-- <tr>              -->
                  <!-- <td colspan="1">✔️ Deletar tarefa(s).</th>  -->
                   <!-- <td></th>  
                   <td colspan="2">Consultar tarefas não feitas</th>
                   <td></th>  
                  <td colspan="3">Conectando Frond-end com Back-end</td> -->
-           </tr>
+           <!-- </tr> -->
        </tbody>
 
 </table>
