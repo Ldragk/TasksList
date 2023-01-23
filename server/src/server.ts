@@ -119,6 +119,9 @@ app.get("/tasks/:day/dayTasks", async (req, res) => {
   );
 });
 
+
+
+
 app.delete("/tasks/:id", async (req, res) => {
   const id = req.params.id;
   const tasks = await prisma.tasks.delete({
@@ -128,6 +131,17 @@ app.delete("/tasks/:id", async (req, res) => {
   });
   return res.json(tasks);
 });
+
+app.delete("/tasks/:limitMonth", async (req, res) => {
+  const limitMonth = req.params.limitMonth;
+  const tasks = await prisma.tasks.deleteMany({
+    where: {
+      limitMonth: Number(limitMonth),
+    },
+  });
+  return res.json(tasks);
+});
+
 
 
 main()

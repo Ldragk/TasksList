@@ -132,27 +132,27 @@ REQUISITOS FUNCIONAIS:
 </table>
 
 
-<table width="32%" align="center">          
+<table width="65%" align="center">          
        <thead>                      
-               <th width="32%" style="text-align:center" colspan="1">4º Sprint</th>       
-               <!-- <th></th>         
-               <th width="32%" style="text-align:center" colspan="2">2º Sprint</th>  
-               <th></th> 
+               <th width="49%" style="text-align:center" colspan="1">4º Sprint</th>       
+               <th></th>         
+               <th width="49%" style="text-align:center" colspan="2">5º Sprint</th>  
+               <!-- <th></th> 
                <th width="32%" style="text-align:center" colspan="3">3º Sprint</th>     -->
        </thead>
        <tbody>          
            <tr>                           
                 <td colspan="1">Criar sistema de login e usuários </th>  
-                <!-- <td></th>           -->
-                <!-- <td colspan="2">Salvar tarefas deletadas</th>  
-                <td></th> 
+                <td></th>          
+                <td colspan="2">Organizar projeto</th>  
+                <!-- <td></th> 
                  <td colspan="3">Editar tarefa já criada</td> -->
            </tr>
            <tr>             
                  <td colspan="1">Construir a Interface do usuário Front-end</th> 
-                  <!-- <td></th>  
-                  <td colspan="2">Consultar tarefas deletadas</th>
-                  <td></th> 
+                  <td></th>  
+                  <td colspan="2">Aplicar conceitos de Engenharia de Software</th>
+                  <!-- <td></th> 
                  <td colspan="3">Consultar tarefas deletadas</td> -->
            </tr>
            <tr>             
