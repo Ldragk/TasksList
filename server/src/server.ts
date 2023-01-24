@@ -1,7 +1,8 @@
-import express from "express";
+import express, { Application } from "express";
 import cors from "cors";
-import { PrismaClient } from "@prisma/client";
-import 
+import { Prisma, PrismaClient } from "@prisma/client";
+import bodyParser from "body-parser";
+import { HttpStatusCode } from "axios";
 
 const prisma = new PrismaClient();
 
@@ -120,22 +121,13 @@ app.get("/tasks/:day/dayTasks", async (req, res) => {
   );
 });
 
-
+// Para deletar tudo
+const deletePosts = prisma.tasks.deleteMany()
 
 
 app.delete("/tasks/:id", async (req, res) => {
   const id = req.params.id;
   const tasks = await prisma.tasks.delete({
-    where: {
-      id: id,
-    },
-  });
-  return res.json(tasks);
-});
-
-app.delete("/tasks/:id", async (req, res) => {
-  const id = req.params.id;
-  const tasks = await prisma.tasks.deleteMany({
     where: {
       id: id,
     },
@@ -152,8 +144,6 @@ app.delete("/tasks/:limitMonth", async (req, res) => {
   });
   return res.json(tasks);
 });
-
-
 
 main()
   .then(async () => {
