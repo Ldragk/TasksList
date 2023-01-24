@@ -121,7 +121,7 @@ REQUISITOS FUNCIONAIS:
                  <td colspan="3">Construir o Front-end</td>
            </tr>
            <tr>             
-                 <td colspan="1">Deletar tarefa(s)</th> 
+                 <td colspan="1">✔️ Deletar tarefa(s)</th> 
                   <td></th>  
                   <td colspan="2">Consultar tarefas não feitas</th>
                   <td></th>  
