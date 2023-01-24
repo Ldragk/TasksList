@@ -122,28 +122,36 @@ app.get("/tasks/:day/dayTasks", async (req, res) => {
 });
 
 // Para deletar tudo
-const deletePosts = prisma.tasks.deleteMany()
+const deletePosts = prisma.tasks.deleteMany();
 
-
-app.delete("/tasks/:id", async (req, res) => {
-  const id = req.params.id;
-  const tasks = await prisma.tasks.delete({
-    where: {
-      id: id,
-    },
-  });
-  return res.json(tasks);
-});
-
-app.delete("/tasks/:limitMonth", async (req, res) => {
-  const limitMonth = req.params.limitMonth;
+const deteletedByTitle = async (
+  req: { params: { deleted: string } },
+  res: { json: (arg0: Prisma.BatchPayload) => any },
+  next: any
+) => {
+  const titleDeleted = req.params.deleted;
   const tasks = await prisma.tasks.deleteMany({
     where: {
-      limitMonth: Number(limitMonth),
+      title: titleDeleted,
     },
   });
-  return res.json(tasks);
-});
+  return titleDeleted ? res.json(tasks) : next();
+};
+
+const deletedByLimitMonth: any = async (
+  req: { params: { deleted: number } },
+  res: { json: (arg0: Prisma.BatchPayload) => any; send: (arg0: string) => any }
+) => {
+  const limitMonthDeleted = req.params.deleted;
+  const tasks = await prisma.tasks.deleteMany({
+    where: {
+      limitMonth: limitMonthDeleted,
+    },
+  });
+  return limitMonthDeleted ? res.json(tasks) : res.send("Não encontrado");
+};
+
+app.delete("/tasks/:deleted", deteletedByTitle, deletedByLimitMonth);
 
 main()
   .then(async () => {
