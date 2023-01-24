@@ -132,7 +132,7 @@ REQUISITOS FUNCIONAIS:
 </table>
 
 
-<table width="66%" align="left">          
+<table width="66%" align="center">          
        <thead>                      
                <th width="49%" style="text-align:center" colspan="1">4º Sprint</th>       
                <th></th>         
