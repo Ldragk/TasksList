@@ -132,11 +132,11 @@ REQUISITOS FUNCIONAIS:
 </table>
 
 
-<table width="64%" align="left">          
+<table width="68%" align="left">          
        <thead>                      
-               <th width="49%" style="text-align:center" colspan="1">4º Sprint</th>       
+               <th width="32%" style="text-align:center" colspan="1">4º Sprint</th>       
                <th></th>         
-               <th width="49%" style="text-align:center" colspan="2">5º Sprint</th>  
+               <th width="32%" style="text-align:center" colspan="2">5º Sprint</th>  
                <!-- <th></th> 
                <th width="32%" style="text-align:center" colspan="3">3º Sprint</th>     -->
        </thead>
