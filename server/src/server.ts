@@ -3,12 +3,20 @@ import cors from "cors";
 import { Prisma, PrismaClient } from "@prisma/client";
 import bodyParser from "body-parser";
 import { HttpStatusCode } from "axios";
+import {
+  deletedAllTasks,
+  DeletedAllTrashTasks,
+  deletedTask,
+  deletedTrashTask,
+  getAllDetetedTasks,
+  postDeletedTask,
+} from "./Delete";
 
 const prisma = new PrismaClient();
 
 const app = express();
 
-interface ITask {
+export interface ITask {
   title: string;
   description: string;
   limitDay: number;
@@ -121,22 +129,15 @@ app.get("/tasks/:day/dayTasks", async (req, res) => {
   );
 });
 
-// Para deletar tudo
-const deletePosts = prisma.tasks.deleteMany();
+app.get("/getdeletedTasks/all", getAllDetetedTasks);
+app.post("/tasks/:deleted", postDeletedTask);
+app.delete("/deleteAllTasks", deletedAllTasks);
+app.delete("/trashDelete/:trashDelete", deletedTask);
 
-const deteletedById = async (
-  req: { params: { deleted: string } },
-  res: { json: (arg0: Prisma.BatchPayload) => any }
-) => {
-  const idDeleted = req.params.deleted;
-  const deleteTasks = await prisma.tasks.deleteMany({
-    where: {
-      id: idDeleted,
-    },
-  });
-  res.json(deleteTasks);
-};
-app.delete("/tasks/:deleted", deteletedById);
+
+// Trash
+app.delete("/trashDelete/:trashDelete", deletedTrashTask);
+app.delete("/deleteAllTrashTasks", DeletedAllTrashTasks);
 
 main()
   .then(async () => {

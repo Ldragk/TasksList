@@ -12,21 +12,27 @@ datasource db {
 }
 
 model tasks {
-  id           String       @id @default(uuid())
-  title        String
-  description  String
-  limitDay     Int
-  limitMonth   Int
-  limitYear    Int
-  date         String
-  done         Boolean      @default(false)
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime     @updatedAt
-
-  
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  limitDay    Int
+  limitMonth  Int
+  limitYear   Int
+  date        String
+  done        Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
-// model deletedTasks {
-  
-  
-// }
+model deletedTasks {
+  id          String   @id 
+  title       String
+  description String
+  limitDay    Int
+  limitMonth  Int
+  limitYear   Int
+  date        String
+  done        Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

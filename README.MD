@@ -8,7 +8,7 @@
 
 Projeto para praticar a utilização de Node.js com Express e Prisma Studio.
 
-O objetivo é construir uma API para criar e manipular tarefas por meio de rotas utilizando os verbos http e banco de dados, com uma interface front-end básica para interação do usuário.
+O projeto trata-se de uma API para criar e manipular tarefas por meio de rotas utilizando os verbos http e banco de dados, com uma interface front-end básica para interação do usuário.
 
 </div>
 
@@ -95,16 +95,16 @@ REQUISITOS FUNCIONAIS:
            <tr>                           
                 <td colspan="1">✔️ Criar tarefa</th>  
                 <td></th>          
-                <td colspan="2">Salvar tarefas deletadas</th>  
+                <td colspan="2">✔️ Salvar tarefas deletadas</th>  
                 <td></th> 
                  <td colspan="3">Editar tarefa já criada</td>
            </tr>
            <tr>             
                  <td colspan="1">✔️ Listar todas as tarefas</th> 
                   <td></th>  
-                  <td colspan="2">Consultar tarefas deletadas</th>
+                  <td colspan="2">✔️ Consultar tarefas deletadas</th>
                   <td></th> 
-                 <td colspan="3">Consultar tarefas deletadas</td>
+                 <td colspan="3">Consultar tarefas atrasadas</td>
            </tr>
            <tr>             
                 <td colspan="1">✔️ Listar tarefas pelo mê</th> 
