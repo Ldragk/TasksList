@@ -1,19 +1,11 @@
-import express, { Application } from "express";
+import express, { Application, Router } from "express";
 import cors from "cors";
-import { Prisma, PrismaClient } from "@prisma/client";
-import bodyParser from "body-parser";
-import { HttpStatusCode } from "axios";
-import {
-  deletedAllTasks,
-  DeletedAllTrashTasks,
-  deletedTask,
-  deletedTrashTask,
-  getAllDetetedTasks,
-  postDeletedTask,
-} from "./Delete";
+import { PrismaClient } from "@prisma/client";
+import { Delete, DeleteTask } from "./controllers/DeleteTask";
+import { TrashDelete } from "./controllers/TrashDelete";
+import { TrashTasks } from "./controllers/TrashTasks";
 
 const prisma = new PrismaClient();
-
 const app = express();
 
 export interface ITask {
@@ -129,12 +121,20 @@ app.get("/tasks/:day/dayTasks", async (req, res) => {
   );
 });
 
-app.get("/getdeletedTasks/all", getAllDetetedTasks);
-app.post("/tasks/:deleted", postDeletedTask);
-app.delete("/deleteAllTasks", deletedAllTasks);
-app.delete("/trashDelete/:trashDelete", deletedTask);
-app.delete("/trashDelete/:trashDelete", deletedTrashTask);
-app.delete("/deleteAllTrashTasks", DeletedAllTrashTasks);
+const DeleteTaskControllers: any = new DeleteTask();
+const TrashTasksControllers: any = new TrashTasks();
+const TrashDeleteControllers: any = new TrashDelete();
+
+
+
+app.delete("/deleteAllTasks", DeleteTaskControllers.deletedAllTasks);
+app.delete("/trashDelete/:trashDelete", DeleteTaskControllers.deletedTask);
+
+app.get("/getdeletedTasks/all", TrashTasksControllers.getAllDetetedTasks);
+app.post("/tasks/:deleted", TrashTasksControllers.postDeletedTask);
+
+app.delete("/trashDelete/:trashDelete", TrashDeleteControllers.deletedTrashTask);
+app.delete("/deleteAllTrashTasks", TrashDeleteControllers.deletedAllTrashTasks);
 
 main()
   .then(async () => {
