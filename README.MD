@@ -10,9 +10,9 @@ Projeto para praticar a utilização de Node.js com Express e Prisma Studio.
 
 Estou construindo e planejando esse projeto do zero e sozinho. Tem o objetivo de consolidar meus conhecimentos principalmente no Back-end e conceitos de Engenharia de Software.
 
-Trata-se de uma API para criar e manipular tarefas por meio de rotas utilizando os verbos http e banco de dados, com uma interface front-end básica para interação do usuário. 
+Trata-se de uma API para criar e manipular tarefas por meio de rotas utilizando os verbos http e banco de dados, com uma interface front-end básica para interação do usuário.
 
-🔹 Sujeito a alterações e a acrescimentos de funções e requisitos, durante o decorrer de sua construção.
+🔹 Pretendo fazer muitas alterações e a acrescimentos de funções e requisitos, durante o decorrer de sua construção.
 
 </div>
 
