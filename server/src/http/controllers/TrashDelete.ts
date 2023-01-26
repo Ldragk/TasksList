@@ -1,4 +1,5 @@
 import { deletedTasks, Prisma, PrismaClient } from "@prisma/client";
+
 const prisma = new PrismaClient();
 
 export class TrashDelete {

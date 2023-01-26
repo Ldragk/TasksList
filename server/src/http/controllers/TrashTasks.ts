@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { ITask } from "../Server";
+
 const prisma = new PrismaClient();
 
 

@@ -1,5 +1,5 @@
-import { deletedTasks, Prisma, PrismaClient, tasks } from "@prisma/client";
-import { ITask } from "../Server";
+import { Prisma, PrismaClient, tasks } from "@prisma/client";
+
 const prisma = new PrismaClient();
 
 export class DeleteTask {
