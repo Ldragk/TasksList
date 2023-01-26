@@ -22,7 +22,7 @@ Trata-se de uma API para criar e manipular tarefas por meio de rotas utilizando 
 
 </div>
 
-<table width="60%" align="center">
+<table width="350px" align="center">
       <caption> <h1 align="center">Tecnologias</h1> </caption>	         
        <thead>                      
                <th width="49%" style="text-align:center" colspan="1">Back-end</th>       
