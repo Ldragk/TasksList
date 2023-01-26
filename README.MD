@@ -215,4 +215,4 @@ REQUISITOS FUNCIONAIS:
 
 </table>
 
-🔹o 5º sprint é aplicado parcialmente durante a construção do projeto, sendo no 5º sprint o monto de concentração exclusiva nesses pontos para maximiza-los.
+🔹O 5º sprint é aplicado parcialmente durante a construção do projeto, sendo no 5º sprint o monto de concentração exclusiva nesses pontos para maximiza-los.
