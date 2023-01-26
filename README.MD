@@ -12,7 +12,7 @@ Estou construindo e planejando esse projeto do zero e sozinho. Tem o objetivo de
 
 Trata-se de uma API para criar e manipular tarefas por meio de rotas utilizando os verbos http e banco de dados, com uma interface front-end básica para interação do usuário.
 
-🔹 Pretendo fazer muitas alterações e a acrescimentos de funções e requisitos, durante o decorrer de sua construção.
+🔹 Pretendo fazer muitas alterações e a acrescimentos de funções e requisitos, durante a construção do projeto.
 
 </div>
 
