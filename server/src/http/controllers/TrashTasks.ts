@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { ITask } from "../Server";
+import { ITask } from "./ManageTasks";
 
 const prisma = new PrismaClient();
 
@@ -36,10 +36,10 @@ export class TrashTasks {
       };
 
       postDeletedTask = async (
-        req: { params: { deleted: string } },
+        req: { params: { id: string } },
         res: { json: (arg0: ITask) => void }
       ) => {
-        const idDeleted = req.params.deleted;
+        const idDeleted = req.params.id;
         const tasks = await prisma.tasks.findUnique({
           where: {
             id: idDeleted,

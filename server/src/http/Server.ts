@@ -1,4 +1,4 @@
-import express, { Application, Router } from "express";
+import express from "express";
 import cors from "cors";
 import { PrismaClient } from "@prisma/client";
 import { DeleteTask } from "./controllers/DeleteTask";
@@ -24,18 +24,15 @@ async function main() {
 
   const DeleteTaskControllers: any = new DeleteTask();
   app.delete("/deleteAllTasks", DeleteTaskControllers.deletedAllTasks);
-  app.delete("/trashDelete/:trashDelete", DeleteTaskControllers.deletedTask);
+  app.delete("/trashDelete/:id", DeleteTaskControllers.deletedTask);
 
   const TrashTasksControllers: any = new TrashTasks();
   app.get("/getdeletedTasks/all", TrashTasksControllers.getAllDetetedTasks);
-  app.post("/tasks/:deleted", TrashTasksControllers.postDeletedTask);
+  app.post("/tasks/:id", TrashTasksControllers.postDeletedTask);
 
   const TrashDeleteControllers: any = new TrashDelete();
-  app.delete("/trashDelete/:deleted", TrashDeleteControllers.deletedTrashTask);
-  app.delete(
-    "/deleteAllTrashTasks",
-    TrashDeleteControllers.deletedAllTrashTasks
-  );
+  app.delete("tasks/trashDelete/:id", TrashDeleteControllers.deletedTrashTask);
+  app.delete("tasks/deleteAllTrash", TrashDeleteControllers.deletedAllTrashTasks);
 
   main()
     .then(async () => {

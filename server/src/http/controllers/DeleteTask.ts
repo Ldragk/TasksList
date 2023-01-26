@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 
 export class DeleteTask {
   deletedTask = async (
-    req: { params: { trashDelete: string } },
+    req: { params: { id: string } },
     res: {
       json: (arg0: {
         id: string;
@@ -17,7 +17,7 @@ export class DeleteTask {
       }) => Response;
     }
   ) => {
-    const idDeleted: string = req.params.trashDelete;
+    const idDeleted: string = req.params.id;
     const deleteTask: tasks = await prisma.tasks.delete({
       where: {
         id: idDeleted,
