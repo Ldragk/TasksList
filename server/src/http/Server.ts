@@ -1,7 +1,7 @@
 import express, { Application, Router } from "express";
 import cors from "cors";
 import { PrismaClient } from "@prisma/client";
-import { Delete, DeleteTask } from "./controllers/DeleteTask";
+import { DeleteTask } from "./controllers/DeleteTask";
 import { TrashDelete } from "./controllers/TrashDelete";
 import { TrashTasks } from "./controllers/TrashTasks";
 
