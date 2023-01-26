@@ -23,16 +23,16 @@ async function main() {
   app.get("/tasks/:day/dayTasks", ConsultTaskController.consultTasksDay);
 
   const DeleteTaskControllers: any = new DeleteTask();
-  app.delete("/deleteAllTasks", DeleteTaskControllers.deletedAllTasks);
-  app.delete("/trashDelete/:id", DeleteTaskControllers.deletedTask);
+  app.delete("/delete/all", DeleteTaskControllers.deletedAllTasks);
+  app.delete("tasks/delete/:id", DeleteTaskControllers.deletedTask);
 
   const TrashTasksControllers: any = new TrashTasks();
-  app.get("/getdeletedTasks/all", TrashTasksControllers.getAllDetetedTasks);
-  app.post("/tasks/:id", TrashTasksControllers.postDeletedTask);
+  app.post("/tasks/trash/save/:id", TrashTasksControllers.postDeletedTask);
+  app.get("tasks/trash/all", TrashTasksControllers.getAllDetetedTasks);
 
   const TrashDeleteControllers: any = new TrashDelete();
-  app.delete("tasks/trashDelete/:id", TrashDeleteControllers.deletedTrashTask);
-  app.delete("tasks/deleteAllTrash", TrashDeleteControllers.deletedAllTrashTasks);
+  app.delete("tasks/delete/trash/:id", TrashDeleteControllers.deletedTrashTask);
+  app.delete("tasks/delete/trash/all", TrashDeleteControllers.deletedAllTrashTasks);
 
   main()
     .then(async () => {
