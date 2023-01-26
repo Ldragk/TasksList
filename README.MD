@@ -8,19 +8,55 @@
 
 Projeto para praticar a utilização de Node.js com Express e Prisma Studio.
 
-O projeto trata-se de uma API para criar e manipular tarefas por meio de rotas utilizando os verbos http e banco de dados, com uma interface front-end básica para interação do usuário.
+Estou construindo e planejando esse projeto do zero e sozinho. Tem o objetivo de consolidar meus conhecimentos principalmente no Back-end e conceitos de Engenharia de Software.
+
+Trata-se de uma API para criar e manipular tarefas por meio de rotas utilizando os verbos http e banco de dados, com uma interface front-end básica para interação do usuário. 
+
+🔹 Sujeito a alterações e a acrescimentos de funções e requisitos, durante o decorrer de sua construção.
 
 </div>
 
 <br><br>
 
-## Tecnologias
+<div align="center">
 
-- TypeScript
-- Node.js
-- Express
-- SQLite
-- Prisma Studio
+</div>
+
+<table width="40%" align="center">
+      <caption> <h1 align="center">Tecnologias</h1> </caption>	         
+       <thead>                      
+               <th width="49%" style="text-align:center" colspan="1">Back-end</th>       
+               <th></th>         
+               <th width="49%" style="text-align:center" colspan="2">Front-end</th>                
+       </thead>
+       <tbody align="center">          
+           <tr>                           
+                <td colspan="1">TypeScript</th>  
+                <td></th>          
+                <td colspan="2">React js</th>                 
+           </tr>
+           <tr>             
+                 <td colspan="1">Node js</th> 
+                  <td></th>  
+                  <td colspan="2">Vite js</th>                
+           </tr>           
+            <tr>             
+                 <td colspan="1">Express</th> 
+                  <td></th>  
+                  <td colspan="2">TailWind</th>                
+           </tr>           
+            <tr>             
+                 <td colspan="1">SQLite</th> 
+                  <td></th>  
+                  <td colspan="2">TypeScript</th>                
+           </tr>           
+            <tr>             
+                 <td colspan="1">Prisma Studio</th> 
+                  <td></th>  
+                  <td colspan="2"></th>                
+           </tr>           
+       </tbody>
+</table>
 
 <br><br>
 
@@ -47,8 +83,8 @@ HISTORIAS:
 - Eu como usuário quero ver todas as tarefas atrasadas;
 - Eu como usuário quero ser notificado das tarefas antes
   da data limite;
-- Eu como usuário quero poder fazer login e acessar minhas 
-tarefas em qualquer aparelho.
+- Eu como usuário quero poder fazer login e acessar minhas
+  tarefas em qualquer aparelho.
 
 <br><br><br>
 
@@ -131,51 +167,52 @@ REQUISITOS FUNCIONAIS:
 
 </table>
 
-
 <table width="66%" align="center">          
        <thead>                      
-               <th width="49%" style="text-align:center" colspan="1">4º Sprint</th>       
+               <th width="49%" style="text-align:center" colspan="4">4º Sprint</th>       
                <th></th>         
-               <th width="49%" style="text-align:center" colspan="2">5º Sprint</th>  
+               <th width="49%" style="text-align:center" colspan="4">5º Sprint</th>  
                <!-- <th></th> 
-               <th width="32%" style="text-align:center" colspan="3">3º Sprint</th>     -->
+               <th width="32%" style="text-align:center" colspan="6">6º Sprint</th>     -->
        </thead>
        <tbody>          
            <tr>                           
-                <td colspan="1">Criar sistema de login e usuários </th>  
+                <td colspan="4">Criar sistema de login e usuários </th>  
                 <td></th>          
-                <td colspan="2">Aprimorar qualidade do projeto:</th>  
+                <td colspan="5">Aprimorar qualidade do projeto:</th>  
                 <!-- <td></th> 
-                 <td colspan="3">Editar tarefa já criada</td> -->
+                 <td colspan="6">Editar tarefa já criada</td> -->
            </tr>
            <tr>             
-                 <td colspan="1">Construir a Interface do usuário Front-end</th> 
+                 <td colspan="4">Construir a Interface do usuário Front-end</th> 
                   <td></th>  
-                  <td colspan="2">Organizar estrutura do projeto</th>
+                  <td colspan="5">Organizar estrutura do projeto</th>
                   <!-- <td></th> 
-                 <td colspan="3">Consultar tarefas deletadas</td> -->
+                 <td colspan="6">Consultar tarefas deletadas</td> -->
            </tr>
            <tr>             
-                <td colspan="1">Conectando Frond-end com Back-end do sistema de login</th> 
+                <td colspan="4">Conectando Frond-end com Back-end do sistema de login</th> 
                  <td></th>  
-                 <td colspan="2">Aplicar princípios de Engenharia de Software</th>
+                 <td colspan="5">Aplicar princípios de Engenharia de Software</th>
                  <!-- <td></th> 
-                 <td colspan="3"></td> -->
+                 <td colspan="6"></td> -->
            </tr>           
+           <tr>             
+                 <td colspan="4"></th> 
+                  <td></th>    
+                  <td colspan="5">Aplicar testes unitários</th>
+                  <!-- <td></th> 
+                 <td colspan="6"></td> -->
+           </tr>
            <!-- <tr>              -->
-                 <!-- <td colspan="1"></th>  -->
-                  <!-- <td></th>    
-                  <td colspan="2"></th>
-                  <td></th> 
-                 <td colspan="3"></td> -->
-           <!-- </tr> -->
-           <!-- <tr>              -->
-                 <!-- <td colspan="1"></th>  -->
+                 <!-- <td colspan="4"></th>  -->
                   <!-- <td></th>  
-                  <td colspan="2"></th>
+                  <td colspan="5"></th>
                   <td></th>  
-                 <td colspan="3"></td> -->
+                 <td colspan="6"></td> -->
            <!-- </tr> -->
        </tbody>
 
 </table>
+
+🔹o 5º sprint é aplicado parcialmente durante a construção do projeto, sendo no 5º sprint o monto de concentração exclusiva nesses pontos para maximiza-los.

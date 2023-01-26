@@ -133,9 +133,6 @@ app.get("/getdeletedTasks/all", getAllDetetedTasks);
 app.post("/tasks/:deleted", postDeletedTask);
 app.delete("/deleteAllTasks", deletedAllTasks);
 app.delete("/trashDelete/:trashDelete", deletedTask);
-
-
-// Trash
 app.delete("/trashDelete/:trashDelete", deletedTrashTask);
 app.delete("/deleteAllTrashTasks", DeletedAllTrashTasks);
 
