@@ -133,7 +133,7 @@ REQUISITOS FUNCIONAIS:
                 <td></th>          
                 <td colspan="2">✔️ Salvar tarefas deletadas</th>  
                 <td></th> 
-                 <td colspan="3">Editar tarefa já criada</td>
+                 <td colspan="3">✔️ Editar tarefa já criada</td>
            </tr>
            <tr>             
                  <td colspan="1">✔️ Listar todas as tarefas</th> 
