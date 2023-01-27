@@ -145,7 +145,7 @@ REQUISITOS FUNCIONAIS:
            <tr>             
                 <td colspan="1">✔️ Listar tarefas pelo mê</th> 
                  <td></th>  
-                 <td colspan="2">✔️ Marcar ou desmarcar tarefas feitas</th>
+                 <td colspan="2">✔️ Marcar ou desmarcar tarefas como feita</th>
                  <td></th> 
                  <td colspan="3">Ser notificado de tarefas próximas da data limite</td>
            </tr>           
