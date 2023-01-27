@@ -24,7 +24,7 @@ export class ManageTasks {
     },
     res: { json: (arg0: ITask) => any }
   ) => {
-    const JunctionofDateFragments =
+    const JunctionOfDateFragments =
       req.body.limitDay + "/" + req.body.limitMonth + "/" + req.body.limitYear;
     const tasks: ITask = await prisma.tasks.create({
       data: {
@@ -33,7 +33,7 @@ export class ManageTasks {
         limitDay: Number(req.body.limitDay),
         limitMonth: Number(req.body.limitMonth),
         limitYear: Number(req.body.limitYear),
-        date: JunctionofDateFragments,
+        date: JunctionOfDateFragments,
       },
     });
     return res.json(tasks);
@@ -55,4 +55,29 @@ export class ManageTasks {
     });
     return res.json(tasks);
   };
+
+  updateTasks = async (
+    req: {
+      body: ITask; params: { id: string } 
+},
+    res: { json: (arg0: ITask) => Response }
+  ) => {
+    const id: string = req.params.id;
+    const JunctionOfDateFragments =
+      req.body.limitDay + "/" + req.body.limitMonth + "/" + req.body.limitYear;
+    const tasks: ITask = await prisma.tasks.update({
+      where: {
+        id: id,
+      },
+      data: {
+        title: req.body.title,
+        description: req.body.description,
+        limitDay: Number(req.body.limitDay),
+        limitMonth: Number(req.body.limitMonth),
+        limitYear: Number(req.body.limitYear),
+        date: JunctionOfDateFragments,
+      },
+    });
+    return res.json(tasks);
+  }
 }

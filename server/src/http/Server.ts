@@ -17,6 +17,7 @@ async function main() {
   const ManageTasksController: any = new ManageTasks();
   app.post("/tasks/create", ManageTasksController.createTask);
   app.patch("/tasks/change/:id/:condition", ManageTasksController.changeCondition);
+  app.put("/tasks/fullChange/:id/", ManageTasksController.updateTasks);
 
   const ConsultTaskController: any = new ConsultTask();
   app.get("/tasks/all", ConsultTaskController.consultAllTasks);
