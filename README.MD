@@ -123,7 +123,7 @@ REQUISITOS FUNCIONAIS:
        <thead>                      
                <th width="32%" style="text-align:center" colspan="1">✔️ 1º Sprint</th>       
                <th></th>         
-               <th width="32%" style="text-align:center" colspan="2">2º Sprint</th>  
+               <th width="32%" style="text-align:center" colspan="2">✔️ 2º Sprint</th>  
                <th></th> 
                <th width="32%" style="text-align:center" colspan="3">3º Sprint</th>    
        </thead>
