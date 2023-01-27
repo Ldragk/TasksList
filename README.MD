@@ -143,7 +143,7 @@ REQUISITOS FUNCIONAIS:
                  <td colspan="3">Consultar tarefas atrasadas</td>
            </tr>
            <tr>             
-                <td colspan="1">✔️ Listar tarefas pelo mê</th> 
+                <td colspan="1">✔️ Listar tarefas pelo mês</th> 
                  <td></th>  
                  <td colspan="2">✔️ Marcar ou desmarcar tarefas como feita</th>
                  <td></th> 
