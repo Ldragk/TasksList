@@ -14,36 +14,39 @@ app.use(express.json());
 app.use(cors());
 
 async function main() {
-  const ManageTasksController = new ManageTasks();
+  const ManageTasksController: any = new ManageTasks();
   app.post("/tasks/create", ManageTasksController.createTask);
+  app.patch("/tasks/change/:id/:condition", ManageTasksController.changeCondition);
 
   const ConsultTaskController: any = new ConsultTask();
   app.get("/tasks/all", ConsultTaskController.consultAllTasks);
   app.get("/tasks/:month/monthTasks", ConsultTaskController.consultTasksMonth);
   app.get("/tasks/:day/dayTasks", ConsultTaskController.consultTasksDay);
 
-  const DeleteTaskControllers: any = new DeleteTask();
-  app.delete("/delete/all", DeleteTaskControllers.deletedAllTasks);
-  app.delete("tasks/delete/:id", DeleteTaskControllers.deletedTask);
+  const DeleteTaskController: any = new DeleteTask();
+  app.delete("/delete/all", DeleteTaskController.deletedAllTasks);
+  app.delete("tasks/delete/:id", DeleteTaskController.deletedTask);
 
-  const TrashTasksControllers: any = new TrashTasks();
-  app.post("/tasks/trash/save/:id", TrashTasksControllers.postDeletedTask);
-  app.get("tasks/trash/all", TrashTasksControllers.getAllDetetedTasks);
+  const TrashTasksController: any = new TrashTasks();
+  app.post("/tasks/trash/save/:id", TrashTasksController.postDeletedTask);
+  app.get("tasks/trash/all", TrashTasksController.getAllDetetedTasks);
 
-  const TrashDeleteControllers: any = new TrashDelete();
-  app.delete("tasks/delete/trash/:id", TrashDeleteControllers.deletedTrashTask);
-  app.delete("tasks/delete/trash/all", TrashDeleteControllers.deletedAllTrashTasks);
-
-  main()
-    .then(async () => {
-      await prisma.$disconnect();
-    })
-    .catch(async (e) => {
-      console.error(e);
-      await prisma.$disconnect();
-      process.exit(1);
-    });
+  const TrashDeleteController: any = new TrashDelete();
+  app.delete("tasks/delete/trash/:id", TrashDeleteController.deletedTrashTask);
+  app.delete(
+    "tasks/delete/trash/all",
+    TrashDeleteController.deletedAllTrashTasks
+  );
 
   const server: number = 3333;
   app.listen(server, () => console.log(`Server is running on port ${server}`));
 }
+main()
+  .then(async () => {
+    await prisma.$disconnect();
+  })
+  .catch(async (e) => {
+    console.error(e);
+    await prisma.$disconnect();
+    process.exit(1);
+  });

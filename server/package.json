@@ -2,10 +2,9 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "Server.js",
   "scripts": {
-    "start": "tsx src/server.ts",
-    "watch": "tsx watch src/server.ts"
+    "start": "tsx src/http/Server.ts"    
   },
   "author": "",
   "license": "ISC",

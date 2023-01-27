@@ -38,4 +38,21 @@ export class ManageTasks {
     });
     return res.json(tasks);
   };
+
+  changeCondition = async (
+    req: { params: { id: string, condition: string } },
+    res: { json: (arg0: ITask) => Response }
+  ) => {
+    const id: string = req.params.id;
+    const condition: boolean = Number(req.params.condition) === 1 ? true : false;    
+    const tasks: ITask = await prisma.tasks.update({
+      where: {
+        id: id,
+      },
+      data: {
+        done: condition,
+      },
+    });
+    return res.json(tasks);
+  };
 }
