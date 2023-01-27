@@ -42,8 +42,8 @@ export class ConsultTask {
           description: string;
           date: string;
           done: boolean;
-          createdAt: string;
-          updatedAt: string;
+          createdAt: Date;
+          updatedAt: Date;
         }[]
       ) => Response;
     }
@@ -62,23 +62,8 @@ export class ConsultTask {
       where: {
         limitMonth: month,
       },
-      orderBy: {
-        createdAt: "desc",
-      },
     });
-    return res.json(
-      monthTasks.map((tasks) => {
-        return {
-          ...tasks,
-          title: tasks.title,
-          description: tasks.description,
-          date: tasks.date,
-          done: tasks.done,
-          createdAt: tasks.createdAt.toISOString(),
-          updatedAt: tasks.updatedAt.toISOString(),
-        };
-      })
-    );
+    return res.json(monthTasks);
   };
 
   consultTasksDay = async (
@@ -90,8 +75,8 @@ export class ConsultTask {
           description: string;
           date: string;
           done: boolean;
-          createdAt: string;
-          updatedAt: string;
+          createdAt: Date;
+          updatedAt: Date;
         }[]
       ) => Response;
     }
@@ -114,18 +99,42 @@ export class ConsultTask {
         createdAt: "desc",
       },
     });
-    return res.json(
-      dayTasks.map((tasks) => {
-        return {
-          ...tasks,
-          title: tasks.title,
-          description: tasks.description,
-          date: tasks.date,
-          done: tasks.done,
-          createdAt: tasks.createdAt.toISOString(),
-          updatedAt: tasks.updatedAt.toISOString(),
-        };
-      })
-    );
+    return res.json(dayTasks);
+  };
+
+  contultDoneTasks = async (
+    req: { params: { condition: string } },
+    res: {
+      json: (
+        arg0: {
+          title: string;
+          description: string;
+          date: string;
+          done: boolean;
+          createdAt: Date;
+          updatedAt: Date;
+        }[]
+      ) => Response;
+    }
+  ) => {
+    const doneOrNot = Number(req.params.condition);
+    const condition: boolean = doneOrNot === 1 ? true : false;    
+    const doneTasks = await prisma.tasks.findMany({
+      select: {
+        title: true,
+        description: true,
+        date: true,
+        done: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+      where: {
+        done: condition,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+    return res.json(doneTasks);
   };
 }

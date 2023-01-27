@@ -22,6 +22,7 @@ async function main() {
   app.get("/tasks/all", ConsultTaskController.consultAllTasks);
   app.get("/tasks/:month/monthTasks", ConsultTaskController.consultTasksMonth);
   app.get("/tasks/:day/dayTasks", ConsultTaskController.consultTasksDay);
+  app.get("/tasks/doneTasks/:condition", ConsultTaskController.contultDoneTasks);
 
   const DeleteTaskController: any = new DeleteTask();
   app.delete("/delete/all", DeleteTaskController.deletedAllTasks);
@@ -33,13 +34,10 @@ async function main() {
 
   const TrashDeleteController: any = new TrashDelete();
   app.delete("tasks/delete/trash/:id", TrashDeleteController.deletedTrashTask);
-  app.delete(
-    "tasks/delete/trash/all",
-    TrashDeleteController.deletedAllTrashTasks
-  );
+  app.delete("tasks/delete/trash/all",TrashDeleteController.deletedAllTrashTasks);
 
-  const server: number = 3333;
-  app.listen(server, () => console.log(`Server is running on port ${server}`));
+  const Server: number = 3333;
+  app.listen(Server, () => console.log(`Server is running on port ${Server}`));
 }
 main()
   .then(async () => {
