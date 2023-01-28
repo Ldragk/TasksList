@@ -24,8 +24,8 @@ export class ManageTasks {
     },
     res: { json: (arg0: ITask) => any }
   ) => {
-    const JunctionOfDateFragments =
-      req.body.limitDay + "/" + req.body.limitMonth + "/" + req.body.limitYear;
+    const JunctionOfDateFragments = `${req.body.limitMonth}/${req.body.limitDay}/${req.body.limitYear}`;
+
     const tasks: ITask = await prisma.tasks.create({
       data: {
         title: req.body.title,
@@ -40,11 +40,12 @@ export class ManageTasks {
   };
 
   changeCondition = async (
-    req: { params: { id: string, condition: string } },
+    req: { params: { id: string; condition: string } },
     res: { json: (arg0: ITask) => Response }
   ) => {
     const id: string = req.params.id;
-    const condition: boolean = Number(req.params.condition) === 1 ? true : false;    
+    const condition: boolean =
+      Number(req.params.condition) === 1 ? true : false;
     const tasks: ITask = await prisma.tasks.update({
       where: {
         id: id,
@@ -58,13 +59,13 @@ export class ManageTasks {
 
   updateTasks = async (
     req: {
-      body: ITask; params: { id: string } 
-},
+      body: ITask;
+      params: { id: string };
+    },
     res: { json: (arg0: ITask) => Response }
   ) => {
     const id: string = req.params.id;
-    const JunctionOfDateFragments =
-      req.body.limitDay + "/" + req.body.limitMonth + "/" + req.body.limitYear;
+    const JunctionOfDateFragments = `${req.body.limitMonth}/${req.body.limitDay}/${req.body.limitYear}`;
     const tasks: ITask = await prisma.tasks.update({
       where: {
         id: id,
@@ -79,5 +80,5 @@ export class ManageTasks {
       },
     });
     return res.json(tasks);
-  }
+  };
 }

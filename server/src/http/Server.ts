@@ -23,19 +23,20 @@ async function main() {
   app.get("/tasks/all", ConsultTaskController.consultAllTasks);
   app.get("/tasks/:month/monthTasks", ConsultTaskController.consultTasksMonth);
   app.get("/tasks/:day/dayTasks", ConsultTaskController.consultTasksDay);
-  app.get("/tasks/doneTasks/:condition", ConsultTaskController.contultDoneTasks);
+  app.get("/tasks/done/:condition", ConsultTaskController.contultDoneTasks);
+  app.get("/tasks/delayed", ConsultTaskController.consultDelayedTasks);
 
   const DeleteTaskController: any = new DeleteTask();
-  app.delete("/delete/all", DeleteTaskController.deletedAllTasks);
-  app.delete("tasks/delete/:id", DeleteTaskController.deletedTask);
+  app.delete("/tasks/delete/all", DeleteTaskController.deletedAllTasks);
+  app.delete("/tasks/delete/:id", DeleteTaskController.deletedTask);
 
   const TrashTasksController: any = new TrashTasks();
-  app.post("/tasks/trash/save/:id", TrashTasksController.postDeletedTask);
-  app.get("tasks/trash/all", TrashTasksController.getAllDetetedTasks);
+  app.post("/tasks/trash/save/:id", TrashTasksController.createTrashTask);
+  app.get("tasks/trash/all", TrashTasksController.consultAllTrashTasks);
 
   const TrashDeleteController: any = new TrashDelete();
-  app.delete("tasks/delete/trash/:id", TrashDeleteController.deletedTrashTask);
-  app.delete("tasks/delete/trash/all",TrashDeleteController.deletedAllTrashTasks);
+  app.delete("/tasks/delete/trash/:id", TrashDeleteController.deletedTrashTask);
+  app.delete("/tasks/delete/trash/all",TrashDeleteController.deletedAllTrashTasks);
 
   const Server: number = 3333;
   app.listen(Server, () => console.log(`Server is running on port ${Server}`));

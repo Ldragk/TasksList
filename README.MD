@@ -140,7 +140,7 @@ REQUISITOS FUNCIONAIS:
                   <td></th>  
                   <td colspan="2">✔️ Consultar tarefas deletadas.</th>
                   <td></th> 
-                 <td colspan="3">Consultar tarefas atrasadas.</td>
+                 <td colspan="3">✔️ Consultar tarefas atrasadas.</td>
            </tr>
            <tr>             
                 <td colspan="1">✔️ Listar tarefas pelo mês.</th> 

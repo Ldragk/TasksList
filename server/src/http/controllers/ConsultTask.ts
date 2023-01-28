@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import axios from "axios";
 
 const prisma = new PrismaClient();
 
@@ -11,7 +12,7 @@ export class ConsultTask {
           id: string;
           title: string;
           description: string;
-          date: string;
+
           done: boolean;
           createdAt: Date;
           updatedAt: Date;
@@ -24,10 +25,13 @@ export class ConsultTask {
         id: true,
         title: true,
         description: true,
-        date: true,
+
         done: true,
         createdAt: true,
         updatedAt: true,
+      },
+      orderBy: {
+        createdAt: "desc",
       },
     });
     return res.json(tasks);
@@ -40,7 +44,7 @@ export class ConsultTask {
         arg0: {
           title: string;
           description: string;
-          date: string;
+
           done: boolean;
           createdAt: Date;
           updatedAt: Date;
@@ -54,7 +58,7 @@ export class ConsultTask {
       select: {
         title: true,
         description: true,
-        date: true,
+
         done: true,
         createdAt: true,
         updatedAt: true,
@@ -73,7 +77,7 @@ export class ConsultTask {
         arg0: {
           title: string;
           description: string;
-          date: string;
+
           done: boolean;
           createdAt: Date;
           updatedAt: Date;
@@ -87,7 +91,7 @@ export class ConsultTask {
       select: {
         title: true,
         description: true,
-        date: true,
+
         done: true,
         createdAt: true,
         updatedAt: true,
@@ -109,7 +113,7 @@ export class ConsultTask {
         arg0: {
           title: string;
           description: string;
-          date: string;
+
           done: boolean;
           createdAt: Date;
           updatedAt: Date;
@@ -118,12 +122,12 @@ export class ConsultTask {
     }
   ) => {
     const doneOrNot = Number(req.params.condition);
-    const condition: boolean = doneOrNot === 1 ? true : false;    
+    const condition: boolean = doneOrNot === 1 ? true : false;
     const doneTasks = await prisma.tasks.findMany({
       select: {
         title: true,
         description: true,
-        date: true,
+
         done: true,
         createdAt: true,
         updatedAt: true,
@@ -136,5 +140,43 @@ export class ConsultTask {
       },
     });
     return res.json(doneTasks);
+  };
+
+  consultDelayedTasks = async (
+    req: Request,
+    res: {
+      send(arg0: string): unknown;
+      json: (
+        arg0: {
+          title: string;
+          description: string;
+          date: string;
+          done: boolean;
+          createdAt: Date;
+          updatedAt: Date;
+        }[]
+      ) => JSON;
+    }
+  ) => {
+    const delayedTasks = await prisma.tasks.findMany({
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        date: true,
+        done: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+      where: {
+        done: false,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+    return res.json(
+      delayedTasks.filter((task) => new Date(task.date) < new Date(Date.now()))
+    );
   };
 }
