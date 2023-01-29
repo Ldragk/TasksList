@@ -6,11 +6,11 @@
 
 # (Back-End)
 
-Projeto para praticar a utilização de Node.js com Express e Prisma Studio.
+--> Projeto para praticar a utilização de Node.js com Express e Prisma Studio.
 
 Estou construindo e planejando esse projeto do zero e sozinho. Tem o objetivo de consolidar meus conhecimentos principalmente no Back-end e conceitos de Engenharia de Software.
 
-Trata-se de uma API para criar e manipular tarefas por meio de rotas utilizando os verbos http e banco de dados, com uma interface front-end básica para interação do usuário.
+O projeto é uma API Rest para criar e manipular tarefas por meio de rotas utilizando os verbos http e banco de dados, com uma interface front-end básica para interação do usuário.
 
 🔹 Pretendo fazer muitas alterações e acrescimentos de funções e requisitos, durante a construção do projeto.
 
@@ -129,7 +129,7 @@ REQUISITOS FUNCIONAIS:
        </thead>
        <tbody>          
            <tr>                           
-                <td colspan="1">✔️ Criar tarefa.</th>  
+                <td colspan="1"><span style="color: red">✔️</span> Criar tarefa.</th>  
                 <td></th>          
                 <td colspan="2">✔️ Salvar tarefas deletadas.</th>  
                 <td></th> 
