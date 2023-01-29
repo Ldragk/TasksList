@@ -129,7 +129,7 @@ REQUISITOS FUNCIONAIS:
        </thead>
        <tbody>          
            <tr>                           
-                <td colspan="1"><span style="color: red">✔️</span> Criar tarefa.</th>  
+                <td colspan="1">✔️ Criar tarefa.</th>  
                 <td></th>          
                 <td colspan="2">✔️ Salvar tarefas deletadas.</th>  
                 <td></th> 
