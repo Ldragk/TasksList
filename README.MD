@@ -6,7 +6,7 @@
 
 # (Back-End)
 
---> Projeto para praticar a utilização de Node.js com Express e Prisma Studio.
+Projeto para praticar a utilização de Node.js com Express e Prisma Studio.
 
 Estou construindo e planejando esse projeto do zero e sozinho. Tem o objetivo de consolidar meus conhecimentos principalmente no Back-end e conceitos de Engenharia de Software.
 
