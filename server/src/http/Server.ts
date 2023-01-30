@@ -34,9 +34,9 @@ async function main() {
   app.post("/tasks/trash/save/:id", TrashTasksController.createTrashTask);
   app.get("tasks/trash/all", TrashTasksController.consultAllTrashTasks);
 
-  const TrashDeleteController: any = new TrashDelete();
-  app.delete("/tasks/delete/trash/:id", TrashDeleteController.deletedTrashTask);
-  app.delete("/tasks/delete/trash/all",TrashDeleteController.deletedAllTrashTasks);
+  const DeleteTrashController: any = new TrashDelete();
+  app.delete("/tasks/delete/trash/:id", DeleteTrashController.deletedTrashTask);
+  app.delete("/tasks/delete/trash/all",DeleteTrashController.deletedAllTrashTasks);
 
   const Server: number = 3333;
   app.listen(Server, () => console.log(`Server is running on port ${Server}`));

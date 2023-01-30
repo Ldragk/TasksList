@@ -55,6 +55,11 @@ O projeto é uma API Rest para criar e manipular tarefas por meio de rotas utili
                   <td></th>  
                   <td colspan="2"></th>                
            </tr>           
+             <tr>             
+                 <td colspan="1">Vitest</th> 
+                  <td></th>  
+                  <td colspan="2"></th>                
+           </tr>           
        </tbody>
 </table>
 
