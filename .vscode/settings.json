@@ -1,7 +1,0 @@
-{
-    "cSpell.language": "en,pt,pt-BR",
-    "[prisma]": {
-        "editor.formatOnSave": true,
-    },
-    "liveServer.settings.port": 5501,
-}
