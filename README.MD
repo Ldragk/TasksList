@@ -166,7 +166,7 @@ REQUISITOS FUNCIONAIS:
                   <td></th>  
                   <td colspan="2">✔️ Consultar tarefas não feitas.</th>
                   <td></th>  
-                 <td colspan="3">Construir e integrar Front-end com Back-end</td>
+                 <td colspan="3">Construir e integrar Front-end com Back-end.</td>
            </tr>
        </tbody>
 
