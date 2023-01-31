@@ -196,7 +196,7 @@ export class ConsultTask {
     }
   ) => {
     const daysInAdvanceForNotification: number = req.params.daysOfDelay;
-    const delayedTasks = await prisma.tasks.findMany({
+    const tasks = await prisma.tasks.findMany({
       select: {
         id: true,
         title: true,
@@ -219,21 +219,21 @@ export class ConsultTask {
     const getYear = new Date().getFullYear();
     let getDay = getDate;
 
-    if (getDate === Montj()) {
+    if (getDate === numberOfDaysInTheMonth()) {
       getDay = 0 + Number(daysInAdvanceForNotification);
       getMonth += 1;
-    } else if (getDate === (Montj() % getDate) + 1) {
-      getDay = (Montj() % getDay) + Number(daysInAdvanceForNotification);
+    } else if (getDate === (numberOfDaysInTheMonth() % getDate) + 1) {
+      getDay = (numberOfDaysInTheMonth() % getDay) + Number(daysInAdvanceForNotification);
 
-      if (getDay >= Montj()) {
-        getDay = (getDay % Montj()) + 1;
+      if (getDay >= numberOfDaysInTheMonth()) {
+        getDay = (getDay % numberOfDaysInTheMonth()) + 1;
         getMonth += 1;
       }
     } else {
       getDay += Number(daysInAdvanceForNotification);
 
-      if (getDay >= Montj()) {
-        getDay = getDay % Montj();
+      if (getDay >= numberOfDaysInTheMonth()) {
+        getDay = getDay % numberOfDaysInTheMonth();
         getMonth += 1;
       }
     }
@@ -241,11 +241,11 @@ export class ConsultTask {
     console.log(date);
    
 
-    return res.json(delayedTasks.filter((task) => date == task.date));
+    return res.json(tasks.filter((task) => date == task.date));
   };
 }
 
-function Montj() {
+function numberOfDaysInTheMonth() {
   let MonthDays: number = 31;
   const cathMonth: string = String(new Date()).split(" ")[1];
   if (
