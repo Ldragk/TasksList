@@ -1,5 +1,4 @@
 import { PrismaClient } from "@prisma/client";
-import axios from "axios";
 
 const prisma = new PrismaClient();
 
@@ -179,4 +178,85 @@ export class ConsultTask {
       delayedTasks.filter((task) => new Date(task.date) < new Date(Date.now()))
     );
   };
+
+  notificationOfTasksNearTheDeadline = async (
+    req: { params: { daysOfDelay: number } },
+    res: {
+      json: (
+        arg0: {
+          id: string;
+          title: string;
+          description: string;
+          done: boolean;
+          createdAt: Date;
+          updatedAt: Date;
+          date: string;
+        }[]
+      ) => JSON;
+    }
+  ) => {
+    const daysInAdvanceForNotification: number = req.params.daysOfDelay;
+    const delayedTasks = await prisma.tasks.findMany({
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        date: true,
+        done: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+      where: {
+        done: false,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    const getDate = new Date().getDate();
+    let getMonth = new Date().getMonth();
+    const getYear = new Date().getFullYear();
+    let getDay = getDate;
+
+    if (getDate === Montj()) {
+      getDay = 0 + Number(daysInAdvanceForNotification);
+      getMonth += 1;
+    } else if (getDate === (Montj() % getDate) + 1) {
+      getDay = (Montj() % getDay) + Number(daysInAdvanceForNotification);
+
+      if (getDay >= Montj()) {
+        getDay = (getDay % Montj()) + 1;
+        getMonth += 1;
+      }
+    } else {
+      getDay += Number(daysInAdvanceForNotification);
+
+      if (getDay >= Montj()) {
+        getDay = getDay % Montj();
+        getMonth += 1;
+      }
+    }
+    const date = `${getMonth + 1}/${getDay}/${getYear}`;
+    console.log(date);
+   
+
+    return res.json(delayedTasks.filter((task) => date == task.date));
+  };
+}
+
+function Montj() {
+  let MonthDays: number = 31;
+  const cathMonth: string = String(new Date()).split(" ")[1];
+  if (
+    cathMonth === "Apr" ||
+    cathMonth === "Jun" ||
+    cathMonth === "Sep" ||
+    cathMonth === "Nov"
+  ) {
+    MonthDays = 30;
+  } else if (cathMonth === "Feb") {
+    MonthDays = 28;
+  }
+  return MonthDays;
 }

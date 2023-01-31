@@ -25,6 +25,7 @@ async function main() {
   app.get("/tasks/:day/dayTasks", ConsultTaskController.consultTasksDay);
   app.get("/tasks/done/:condition", ConsultTaskController.contultDoneTasks);
   app.get("/tasks/delayed", ConsultTaskController.consultDelayedTasks);
+  app.get("/tasks/notifications/:daysOfDelay", ConsultTaskController.notificationOfTasksNearTheDeadline);
 
   const DeleteTaskController: any = new DeleteTask();
   app.delete("/tasks/delete/all", DeleteTaskController.deletedAllTasks);

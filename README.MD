@@ -159,14 +159,14 @@ REQUISITOS FUNCIONAIS:
                   <td></th>    
                   <td colspan="2">✔️ Consultar tarefas feitas.</th>
                   <td></th> 
-                 <td colspan="3">Construir o Front-end.</td>
+                 <td colspan="3">Aplicar testes unitários.</td>
            </tr>
            <tr>             
                  <td colspan="1">✔️ Deletar tarefa(s).</th> 
                   <td></th>  
                   <td colspan="2">✔️ Consultar tarefas não feitas.</th>
                   <td></th>  
-                 <td colspan="3">Conectando Frond-end com Back-end.</td>
+                 <td colspan="3">Construir e integrar Front-end com Back-end</td>
            </tr>
        </tbody>
 
@@ -182,28 +182,28 @@ REQUISITOS FUNCIONAIS:
        </thead>
        <tbody>          
            <tr>                           
-                <td colspan="4">Aplicar testes unitários.</th>  
+                <td colspan="4">Criar sistema de login e usuários.</th>  
                 <td></th>          
                 <td colspan="5">Aprimorar qualidade do projeto:</th>  
                 <!-- <td></th> 
                  <td colspan="6">Editar tarefa já criada</td> -->
            </tr>
            <tr>             
-                 <td colspan="4">Criar sistema de login e usuários.</th> 
+                 <td colspan="4">Construir a Interface do usuário Front-end.</th> 
                   <td></th>  
                   <td colspan="5">Organizar estrutura do projeto.</th>
                   <!-- <td></th> 
                  <td colspan="6">Consultar tarefas deletadas</td> -->
            </tr>
            <tr>             
-                <td colspan="4">Construir a Interface do usuário Front-end.</th> 
+                <td colspan="4">Integrar Frond-end com Back-end do sistema de login.</th> 
                  <td></th>  
                  <td colspan="5">Aplicar princípios de Engenharia de Software.</th>
                  <!-- <td></th> 
                  <td colspan="6"></td> -->
            </tr>           
            <tr>             
-                 <td colspan="4">Conectando Frond-end com Back-end do sistema de login.</th> 
+                 <td colspan="4"></th> 
                   <td></th>    
                   <td colspan="5"></th>
                   <!-- <td></th> 
