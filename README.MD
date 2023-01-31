@@ -159,7 +159,7 @@ REQUISITOS FUNCIONAIS:
                   <td></th>    
                   <td colspan="2">✔️ Consultar tarefas feitas.</th>
                   <td></th> 
-                 <td colspan="3">Aplicar testes unitários.</td>
+                 <td colspan="3">Aplicar validações e testes unitários.</td>
            </tr>
            <tr>             
                  <td colspan="1">✔️ Deletar tarefa(s).</th> 

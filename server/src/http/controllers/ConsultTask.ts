@@ -223,7 +223,9 @@ export class ConsultTask {
       getDay = 0 + Number(daysInAdvanceForNotification);
       getMonth += 1;
     } else if (getDate === (numberOfDaysInTheMonth() % getDate) + 1) {
-      getDay = (numberOfDaysInTheMonth() % getDay) + Number(daysInAdvanceForNotification);
+      getDay =
+        (numberOfDaysInTheMonth() % getDay) +
+        Number(daysInAdvanceForNotification);
 
       if (getDay >= numberOfDaysInTheMonth()) {
         getDay = (getDay % numberOfDaysInTheMonth()) + 1;
@@ -239,7 +241,6 @@ export class ConsultTask {
     }
     const date = `${getMonth + 1}/${getDay}/${getYear}`;
     console.log(date);
-   
 
     return res.json(tasks.filter((task) => date == task.date));
   };
