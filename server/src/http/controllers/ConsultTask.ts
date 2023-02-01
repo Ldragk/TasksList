@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { ISendNotification, NotificationOfTasksNearTheDeadline } from "../../use-cases/Check-notification";
 
 const prisma = new PrismaClient();
 
@@ -182,84 +183,65 @@ export class ConsultTask {
   notificationOfTasksNearTheDeadline = async (
     req: { params: { daysOfDelay: number } },
     res: {
-      json: (
-        arg0: {
-          id: string;
-          title: string;
-          description: string;
-          done: boolean;
-          createdAt: Date;
-          updatedAt: Date;
-          date: string;
-        }[]
-      ) => JSON;
+      json: (arg0: ISendNotification[]) => JSON;
     }
   ) => {
     const daysInAdvanceForNotification: number = req.params.daysOfDelay;
-    const tasks = await prisma.tasks.findMany({
-      select: {
-        id: true,
-        title: true,
-        description: true,
-        date: true,
-        done: true,
-        createdAt: true,
-        updatedAt: true,
-      },
-      where: {
-        done: false,
-      },
-      orderBy: {
-        createdAt: "desc",
-      },
-    });
 
-    const getDate = new Date().getDate();
-    let getMonth = new Date().getMonth();
-    const getYear = new Date().getFullYear();
-    let getDay = getDate;
-
-    if (getDate === numberOfDaysInTheMonth()) {
-      getDay = 0 + Number(daysInAdvanceForNotification);
-      getMonth += 1;
-    } else if (getDate === (numberOfDaysInTheMonth() % getDate) + 1) {
-      getDay =
-        (numberOfDaysInTheMonth() % getDay) +
-        Number(daysInAdvanceForNotification);
-
-      if (getDay >= numberOfDaysInTheMonth()) {
-        getDay = (getDay % numberOfDaysInTheMonth()) + 1;
-        getMonth += 1;
-      }
-    } else {
-      getDay += Number(daysInAdvanceForNotification);
-
-      if (getDay >= numberOfDaysInTheMonth()) {
-        getDay = getDay % numberOfDaysInTheMonth();
-        getMonth += 1;
-      }
-    }
-    const date = `${getMonth + 1}/${getDay}/${getYear}`;
-    console.log(date);
-
-    return res.json(tasks.filter((task) => date == task.date));
+    const notifications = new NotificationOfTasksNearTheDeadline(
+      daysInAdvanceForNotification
+    );
+    const teste = await notifications.sendNotification();    
+    return res.json(teste);
+   
   };
 }
 
-function numberOfDaysInTheMonth() {
-  let MonthDays: number = 31;
-  const cathMonth: string = String(new Date()).split(" ")[1];
-  if (
-    cathMonth === "Apr" ||
-    cathMonth === "Jun" ||
-    cathMonth === "Sep" ||
-    cathMonth === "Nov"
-  ) {
-    MonthDays = 30;
-  } else if (cathMonth === "Feb") {
-    MonthDays = 28;
-  }
-  return MonthDays;
-}
+// const tasks = await prisma.tasks.findMany({
+//   select: {
+//     id: true,
+//     title: true,
+//     description: true,
+//     date: true,
+//     done: true,
+//     createdAt: true,
+//     updatedAt: true,
+//   },
+//   where: {
+//     done: false,
+//   },
+//   orderBy: {
+//     createdAt: "desc",
+//   },
+// });
 
+// const getDate = new Date().getDate();
+// let getMonth = new Date().getMonth();
+// const getYear = new Date().getFullYear();
+// let getDay = getDate;
 
+// if (getDate === numberOfDaysInTheMonth()) {
+//   getDay = 0 + Number(daysInAdvanceForNotification);
+//   getMonth += 1;
+// } else if (getDate === (numberOfDaysInTheMonth() % getDate) + 1) {
+//   getDay =
+//     (numberOfDaysInTheMonth() % getDay) +
+//     Number(daysInAdvanceForNotification);
+
+//   if (getDay >= numberOfDaysInTheMonth()) {
+//     getDay = (getDay % numberOfDaysInTheMonth()) + 1;
+//     getMonth += 1;
+//   }
+// } else {
+//   getDay += Number(daysInAdvanceForNotification);
+
+//   if (getDay >= numberOfDaysInTheMonth()) {
+//     getDay = getDay % numberOfDaysInTheMonth();
+//     getMonth += 1;
+//   }
+// }
+// const date = `${getMonth + 1}/${getDay}/${getYear}`;
+// console.log(date);
+
+// return res.json(tasks.filter((task) => date == task.date));
+// };

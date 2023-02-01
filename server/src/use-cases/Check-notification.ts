@@ -1,93 +1,65 @@
 import { PrismaClient } from "@prisma/client";
+import { convertExcessDaysAtTheTurnOfTheMonth } from "./functions/convertExcessDaysAtTheTurnOfTheMonth";
+import { numberOfDaysInTheMonth } from "./functions/numberOfDaysInTheMonth";
 
 const prisma = new PrismaClient();
 
-interface ICheckNotification {
-    title: string;
-    limitData: string;
+export interface ISendNotification {
+  id: string;
+  title: string;
+  date: string;
+  done: boolean;
+  limitDay: number;
+  limitMonth: number;
+  limitYear: number;
 }
+[];
 
-export class Notification {
-  constructor(private readonly daysInAdvanceForNotification: number) {
+export class NotificationOfTasksNearTheDeadline {
+  constructor(private daysInAdvanceForNotification: number) {
+    this.daysInAdvanceForNotification = daysInAdvanceForNotification;
+  }
 
-  }  
-
-  async checkNotification( promise: Promise<ICheckNotification[]>): Promise<ICheckNotification[]> {
+  private async upcomingNotifications() {
     const tasks = await prisma.tasks.findMany({
-        select: {
-          id: true,
-          title: true,
-          description: true,
-          date: true,
-          done: true,
-          createdAt: true,
-          updatedAt: true,
-        },
-        where: {
-          done: false,
-        },
-        orderBy: {
-          createdAt: "desc",
-        },
-      });
-  
-      const getDate = new Date().getDate();
-      let getMonth = new Date().getMonth();
-      const getYear = new Date().getFullYear();
-      let getDay = getDate;
-  
-      if (getDate === numberOfDaysInTheMonth()) {
-        getDay = 0 + Number(daysInAdvanceForNotification);
-        getMonth += 1;
-      } else if (getDate === (numberOfDaysInTheMonth() % getDate) + 1) {
-        getDay =
-          (numberOfDaysInTheMonth() % getDay) +
-          Number(daysInAdvanceForNotification);
-  
-        if (getDay >= numberOfDaysInTheMonth()) {
-          getDay = (getDay % numberOfDaysInTheMonth()) + 1;
-          getMonth += 1;
-        }
-      } else {
-        getDay += Number(daysInAdvanceForNotification);
-  
-        if (getDay >= numberOfDaysInTheMonth()) {
-          getDay = getDay % numberOfDaysInTheMonth();
-          getMonth += 1;
-        }
-      }
-      const date = `${getMonth + 1}/${getDay}/${getYear}`;
-      console.log(date);
-  
-      return res.json(tasks.filter((task) => date == task.date));
-    };
+      select: {
+        id: true,
+        title: true,
+        date: true,
+        done: true,
+        limitDay: true,
+        limitMonth: true,
+        limitYear: true,
+      },
+      where: {
+        done: false,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
 
-
-    if (!notification) {
+    if (
+      !tasks.filter(
+        (task) =>
+          convertExcessDaysAtTheTurnOfTheMonth(
+            numberOfDaysInTheMonth(),
+            this.daysInAdvanceForNotification
+          ) == task.date
+      )
+    ) {
       throw new Error("Notification not found");
     }
-
-  
+    return tasks.filter(
+      (task) =>
+        convertExcessDaysAtTheTurnOfTheMonth(
+          numberOfDaysInTheMonth(),
+          this.daysInAdvanceForNotification
+        ) == task.date
+    );
   }
 
-
-
-
-function numberOfDaysInTheMonth() {
-    let MonthDays: number = 31;
-    const cathMonth: string = String(new Date()).split(" ")[1];
-    if (
-      cathMonth === "Apr" ||
-      cathMonth === "Jun" ||
-      cathMonth === "Sep" ||
-      cathMonth === "Nov"
-    ) {
-      MonthDays = 30;
-    } else if (cathMonth === "Feb") {
-      MonthDays = 28;
-    }
-    return MonthDays;
+  public async sendNotification(): Promise<ISendNotification[]> {
+    return await this.upcomingNotifications();
   }
-  
-  
-  
+}
