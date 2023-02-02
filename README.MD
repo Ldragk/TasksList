@@ -224,7 +224,7 @@ REQUISITOS FUNCIONAIS:
 
 <table width="80%" align="center">      
        <thead>                      
-            <th width="100%" align="left">Nota:</th>                               
+            <th width="100%" align="left"></th>                               
        </thead>    
        <tbody>
        <tr width="100%">                        
