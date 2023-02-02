@@ -1,5 +1,9 @@
-import { NotificationOfTasksNearTheDeadline } from "../../use-cases/queryCases/Check-notification";
-import { DelayedTasks } from "../../use-cases/queryCases/Delayed-tasks";
+import {
+  IParams,
+  ISendNotification,
+  NotificationOfTasksNearTheDeadline,
+} from "../../use-cases/queryCases/Check-notification";
+import { OverdueTasks } from "../../use-cases/queryCases/Overdue-tasks";
 import { QueryAllTasks } from "../../use-cases/queryCases/Query-all";
 import { QueryByTheFullDate } from "../../use-cases/queryCases/Query-full-date";
 import { QueryByTheMonth } from "../../use-cases/queryCases/Query-month";
@@ -12,10 +16,10 @@ export class QueryTask {
   tasksByTheMonth!: QueryByTheMonth;
   tasksByTheYear!: QueryByTheYear;
   tasksCondition!: TasksCondition;
-  delayedTasks!: DelayedTasks;
-  daysInAdvanceForNotification!: number;
+  overdueTasks!: OverdueTasks;
+  notificationsWithinThePeriod!: object;
   notifications!: NotificationOfTasksNearTheDeadline;
-  notificationsWithinTheNotificationPeriod!: object;
+  paramsNotification!: IParams;
 
   queryAllTasks = async (
     req: Request,
@@ -79,28 +83,29 @@ export class QueryTask {
     return res.json(await this.tasksCondition.doneOrNot());
   };
 
-  queryDelayedTasks = async (
+  queryOverdueTasks = async (
     req: Request,
     res: {
       json: (arg0: object[] | { message: string }) => JSON;
     }
   ) => {
-    this.delayedTasks = new DelayedTasks();
-    return res.json(await this.delayedTasks.consultDelayedTasks());
+    this.overdueTasks = new OverdueTasks();
+    return res.json(await this.overdueTasks.consultOverdueTasks());
   };
 
   notificationOfTasksNearTheDeadline = async (
-    req: { params: { daysOfDelay: number } },
+    req: { params: { daysOfDelay: string; type: string } },
     res: {
       json: (arg0: object) => JSON;
     }
   ) => {
-    this.daysInAdvanceForNotification = req.params.daysOfDelay;
-    this.notifications = new NotificationOfTasksNearTheDeadline(
-      this.daysInAdvanceForNotification
-    );
-    this.notificationsWithinTheNotificationPeriod =
+    this.notifications = new NotificationOfTasksNearTheDeadline({
+      notificationsWithinThePeriod: Number(req.params.daysOfDelay),
+      type: Number(req.params.type),
+    });    
+    
+    this.notificationsWithinThePeriod =
       await this.notifications.sendNotification();
-    return res.json(this.notificationsWithinTheNotificationPeriod);
+    return res.json(this.notificationsWithinThePeriod);
   };
 }

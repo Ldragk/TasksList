@@ -12,15 +12,27 @@ export interface ISendNotification {
   limitDay: number;
   limitMonth: number;
   limitYear: number;
-}[];
+}
+[];
+
+export interface IParams {
+  notificationsWithinThePeriod: number;
+  type: number;
+}
 
 export class NotificationOfTasksNearTheDeadline {
-  constructor(private daysInAdvanceForNotification: number) {
-    this.daysInAdvanceForNotification = daysInAdvanceForNotification;
+  private tasks!: ISendNotification[];
+  private params!: IParams;
+
+  constructor(params: IParams) {
+    this.params = {
+      notificationsWithinThePeriod: params.notificationsWithinThePeriod,
+      type: params.type,
+    };
   }
 
   private async upcomingNotifications(): Promise<ISendNotification[]> {
-    const tasks = await prisma.tasks.findMany({
+    this.tasks = await prisma.tasks.findMany({
       select: {
         id: true,
         title: true,
@@ -38,12 +50,30 @@ export class NotificationOfTasksNearTheDeadline {
       },
     });
 
-    return tasks.filter(
+    if (this.params.type === 1) {
+      return this.tasks.filter(
+        (task) =>
+          convertExcessDaysAtTheTurnOfTheMonth(
+            numberOfDaysInTheMonth(),
+            this.params.notificationsWithinThePeriod
+          ) === task.date
+      );
+    }
+    return this.tasks.filter(
       (task) =>
-        convertExcessDaysAtTheTurnOfTheMonth(
-          numberOfDaysInTheMonth(),
-          this.daysInAdvanceForNotification
-        ) == task.date
+        new Date(task.date) <=
+          new Date(
+            convertExcessDaysAtTheTurnOfTheMonth(
+              numberOfDaysInTheMonth(),
+              this.params.notificationsWithinThePeriod
+            )
+          ) &&
+        new Date(task.date) >=
+          new Date(
+            `${
+              new Date().getMonth() + 1
+            }/${new Date().getDate()}/${new Date().getFullYear()}`
+          )
     );
   }
 

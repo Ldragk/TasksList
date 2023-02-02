@@ -11,7 +11,7 @@ export class QueryAllTasks {
         id: true,
         title: true,
         description: true,
-
+        date: true,
         done: true,
         createdAt: true,
         updatedAt: true,

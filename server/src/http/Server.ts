@@ -21,12 +21,12 @@ async function main() {
 
   const QueryTaskController: any = new QueryTask();
   app.get("/tasks/all", QueryTaskController.queryAllTasks);
-  app.get("/tasks/day/:day/:month/:year", QueryTaskController.queryByTheFullDate);
+  app.get("/tasks/date/:day/:month/:year", QueryTaskController.queryByTheFullDate);
   app.get("/tasks/month/:month/:year", QueryTaskController.queryByTheMonth);  
   app.get("/tasks/year/:year", QueryTaskController.queryByTheYear);
   app.get("/tasks/done/:condition", QueryTaskController.queryDoneOrNotTasks);
-  app.get("/tasks/delayed", QueryTaskController.queryDelayedTasks);
-  app.get("/tasks/notifications/:daysOfDelay", QueryTaskController.notificationOfTasksNearTheDeadline);
+  app.get("/tasks/delayed", QueryTaskController.queryOverdueTasks);
+  app.get("/tasks/notifications/:daysOfDelay/:type", QueryTaskController.notificationOfTasksNearTheDeadline);
 
   const DeleteTaskController: any = new DeleteTask();
   app.delete("/tasks/delete/all", DeleteTaskController.deletedAllTasks);
