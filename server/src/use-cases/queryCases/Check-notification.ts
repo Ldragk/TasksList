@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
-import { convertExcessDaysAtTheTurnOfTheMonth } from "./functions/convertExcessDaysAtTheTurnOfTheMonth";
-import { numberOfDaysInTheMonth } from "./functions/numberOfDaysInTheMonth";
+import { convertExcessDaysAtTheTurnOfTheMonth } from "../functions/convertExcessDaysAtTheTurnOfTheMonth";
+import { numberOfDaysInTheMonth } from "../functions/numberOfDaysInTheMonth";
 
 const prisma = new PrismaClient();
 
@@ -12,15 +12,14 @@ export interface ISendNotification {
   limitDay: number;
   limitMonth: number;
   limitYear: number;
-}
-[];
+}[];
 
 export class NotificationOfTasksNearTheDeadline {
   constructor(private daysInAdvanceForNotification: number) {
     this.daysInAdvanceForNotification = daysInAdvanceForNotification;
   }
 
-  private async upcomingNotifications() {
+  private async upcomingNotifications(): Promise<ISendNotification[]> {
     const tasks = await prisma.tasks.findMany({
       select: {
         id: true,
@@ -39,17 +38,6 @@ export class NotificationOfTasksNearTheDeadline {
       },
     });
 
-    if (
-      !tasks.filter(
-        (task) =>
-          convertExcessDaysAtTheTurnOfTheMonth(
-            numberOfDaysInTheMonth(),
-            this.daysInAdvanceForNotification
-          ) == task.date
-      )
-    ) {
-      throw new Error("Notification not found");
-    }
     return tasks.filter(
       (task) =>
         convertExcessDaysAtTheTurnOfTheMonth(
@@ -59,7 +47,9 @@ export class NotificationOfTasksNearTheDeadline {
     );
   }
 
-  public async sendNotification(): Promise<ISendNotification[]> {
-    return await this.upcomingNotifications();
+  public async sendNotification(): Promise<object | ISendNotification[]> {
+    return (await this.upcomingNotifications()).length === 0
+      ? { message: "There are no tasks within the established time frame" }
+      : await this.upcomingNotifications();
   }
 }

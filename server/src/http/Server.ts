@@ -5,7 +5,7 @@ import { DeleteTask } from "./controllers/DeleteTask";
 import { TrashDelete } from "./controllers/TrashDelete";
 import { TrashTasks } from "./controllers/TrashTasks";
 import { ManageTasks } from "./controllers/ManageTasks";
-import { ConsultTask } from "./controllers/ConsultTask";
+import { QueryTask } from "./controllers/QueryTask";
 
 const prisma = new PrismaClient();
 const app = express();
@@ -19,13 +19,14 @@ async function main() {
   app.patch("/tasks/change/:id/:condition", ManageTasksController.changeCondition);
   app.put("/tasks/fullChange/:id/", ManageTasksController.updateTasks);
 
-  const ConsultTaskController: any = new ConsultTask();
-  app.get("/tasks/all", ConsultTaskController.consultAllTasks);
-  app.get("/tasks/:month/monthTasks", ConsultTaskController.consultTasksMonth);
-  app.get("/tasks/:day/dayTasks", ConsultTaskController.consultTasksDay);
-  app.get("/tasks/done/:condition", ConsultTaskController.contultDoneTasks);
-  app.get("/tasks/delayed", ConsultTaskController.consultDelayedTasks);
-  app.get("/tasks/notifications/:daysOfDelay", ConsultTaskController.notificationOfTasksNearTheDeadline);
+  const QueryTaskController: any = new QueryTask();
+  app.get("/tasks/all", QueryTaskController.queryAllTasks);
+  app.get("/tasks/day/:day/:month/:year", QueryTaskController.queryByTheFullDate);
+  app.get("/tasks/month/:month/:year", QueryTaskController.queryByTheMonth);  
+  app.get("/tasks/year/:year", QueryTaskController.queryByTheYear);
+  app.get("/tasks/done/:condition", QueryTaskController.queryDoneOrNotTasks);
+  app.get("/tasks/delayed", QueryTaskController.queryDelayedTasks);
+  app.get("/tasks/notifications/:daysOfDelay", QueryTaskController.notificationOfTasksNearTheDeadline);
 
   const DeleteTaskController: any = new DeleteTask();
   app.delete("/tasks/delete/all", DeleteTaskController.deletedAllTasks);

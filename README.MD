@@ -6,6 +6,8 @@
 
 # (Back-End)
 
+</div>
+
 Projeto para praticar a utilização de Node.js com Express e Prisma Studio.
 
 Estou construindo e planejando esse projeto do zero e sozinho. Tem o objetivo de consolidar meus conhecimentos principalmente no Back-end e conceitos de Engenharia de Software.
@@ -14,7 +16,6 @@ O projeto é uma API Rest para criar e manipular tarefas por meio de rotas utili
 
 🔹 Pretendo fazer muitas alterações e acrescimentos de funções e requisitos, durante a construção do projeto.
 
-</div>
 
 <br><br>
 
@@ -221,3 +222,5 @@ REQUISITOS FUNCIONAIS:
 </table>
 
 🔹O 5º sprint é aplicado parcialmente durante a construção do projeto, sendo no 5º sprint o monto de concentração exclusiva nesses pontos para maximiza-los.
+
+
