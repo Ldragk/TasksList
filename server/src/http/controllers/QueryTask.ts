@@ -1,6 +1,5 @@
 import {
-  IParams,
-  ISendNotification,
+  IParamsNotifications,
   NotificationOfTasksNearTheDeadline,
 } from "../../use-cases/queryCases/Check-notification";
 import { OverdueTasks } from "../../use-cases/queryCases/Overdue-tasks";
@@ -19,7 +18,7 @@ export class QueryTask {
   overdueTasks!: OverdueTasks;
   notificationsWithinThePeriod!: object;
   notifications!: NotificationOfTasksNearTheDeadline;
-  paramsNotification!: IParams;
+  paramsNotification!: IParamsNotifications;
 
   queryAllTasks = async (
     req: Request,

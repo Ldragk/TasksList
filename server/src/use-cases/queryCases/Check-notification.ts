@@ -4,7 +4,7 @@ import { numberOfDaysInTheMonth } from "../functions/numberOfDaysInTheMonth";
 
 const prisma = new PrismaClient();
 
-export interface ISendNotification {
+interface ISendNotification {
   id: string;
   title: string;
   date: string;
@@ -15,23 +15,23 @@ export interface ISendNotification {
 }
 [];
 
-export interface IParams {
+export interface IParamsNotifications {
   notificationsWithinThePeriod: number;
   type: number;
 }
 
 export class NotificationOfTasksNearTheDeadline {
   private tasks!: ISendNotification[];
-  private params!: IParams;
+  private params!: IParamsNotifications;
 
-  constructor(params: IParams) {
+  constructor(params: IParamsNotifications) {
     this.params = {
       notificationsWithinThePeriod: params.notificationsWithinThePeriod,
       type: params.type,
     };
   }
 
-  private async upcomingNotifications(): Promise<ISendNotification[]> {
+  private async notificationsWithinTheEstablishedDeadline(): Promise<ISendNotification[]> {
     this.tasks = await prisma.tasks.findMany({
       select: {
         id: true,
@@ -78,8 +78,8 @@ export class NotificationOfTasksNearTheDeadline {
   }
 
   public async sendNotification(): Promise<object | ISendNotification[]> {
-    return (await this.upcomingNotifications()).length === 0
+    return (await this.notificationsWithinTheEstablishedDeadline()).length === 0
       ? { message: "There are no tasks within the established time frame" }
-      : await this.upcomingNotifications();
+      : await this.notificationsWithinTheEstablishedDeadline();
   }
 }
