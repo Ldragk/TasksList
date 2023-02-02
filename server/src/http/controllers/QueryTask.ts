@@ -9,6 +9,9 @@ import { QueryByTheMonth } from "../../use-cases/queryCases/Query-month";
 import { QueryByTheYear } from "../../use-cases/queryCases/Query-year";
 import { TasksCondition } from "../../use-cases/queryCases/Tasks-condition";
 
+
+type NotificationsWithinThePeriod = object
+
 export class QueryTask {
   allTasks!: QueryAllTasks;
   tasksByTheFullDate!: QueryByTheFullDate;
@@ -16,7 +19,7 @@ export class QueryTask {
   tasksByTheYear!: QueryByTheYear;
   tasksCondition!: TasksCondition;
   overdueTasks!: OverdueTasks;
-  notificationsWithinThePeriod!: object;
+  notificationsWithinThePeriod!: NotificationsWithinThePeriod;
   notifications!: NotificationOfTasksNearTheDeadline;
   paramsNotification!: IParamsNotifications;
 

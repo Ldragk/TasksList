@@ -20,9 +20,12 @@ export interface IParamsNotifications {
   type: number;
 }
 
+type Tasks = ISendNotification[];
+
 export class NotificationOfTasksNearTheDeadline {
-  private tasks!: ISendNotification[];
+  private tasks!: Tasks;
   private params!: IParamsNotifications;
+  private todayDate!: string;
 
   constructor(params: IParamsNotifications) {
     this.params = {
@@ -31,7 +34,9 @@ export class NotificationOfTasksNearTheDeadline {
     };
   }
 
-  private async notificationsWithinTheEstablishedDeadline(): Promise<ISendNotification[]> {
+  private async notificationsWithinTheEstablishedDeadline(): Promise<
+    ISendNotification[]
+  > {
     this.tasks = await prisma.tasks.findMany({
       select: {
         id: true,
@@ -49,6 +54,9 @@ export class NotificationOfTasksNearTheDeadline {
         createdAt: "desc",
       },
     });
+    this.todayDate = `${
+      new Date().getMonth() + 1
+    }/${new Date().getDate()}/${new Date().getFullYear()}`;
 
     if (this.params.type === 1) {
       return this.tasks.filter(
@@ -67,13 +75,7 @@ export class NotificationOfTasksNearTheDeadline {
               numberOfDaysInTheMonth(),
               this.params.notificationsWithinThePeriod
             )
-          ) &&
-        new Date(task.date) >=
-          new Date(
-            `${
-              new Date().getMonth() + 1
-            }/${new Date().getDate()}/${new Date().getFullYear()}`
-          )
+          ) && new Date(task.date) >= new Date(this.todayDate)
     );
   }
 
