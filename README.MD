@@ -230,7 +230,7 @@ REQUISITOS FUNCIONAIS:
        <tr width="100%">                        
                <td>
                   <div align="justify">
-                        A estrutura do Scrum Board foi planejada com o objetivo de aprendizado. Portanto, primeiro criei as rotas e parcialmente as regras de negócio, para organiza-las e aprimora-las ao terminar. Contudo essa primeira organização da estrutura é feita sem consulta, ou seja, apenas com os conhecimento já memorizados e entendimento obtidos em estudos iniciais.
+                        A estrutura do Scrum Board foi planejada com o objetivo de aprendizado. Portanto, primeiro criar as rotas e parcialmente as regras de negócio, para organiza-las e aprimora-las ao termina-las. Contudo essa primeira organização da estrutura é feita sem consulta, ou seja, apenas com os conhecimento já memorizados e entendimento obtidos em estudos iniciais.
                         No fim do projeto, é realizado o aprimoramento profundo, aplicando com exatidão os princípios e regras de engenharia e arquitetura de software, agora, valendo-se de consulta aos meus materiais e também a novas consultas à internet.
                   </div>
                </td>
