@@ -10,8 +10,7 @@ export class QueryAllTasks {
       select: {
         id: true,
         title: true,
-        description: true,
-        date: true,
+        description: true,        
         done: true,
         createdAt: true,
         updatedAt: true,

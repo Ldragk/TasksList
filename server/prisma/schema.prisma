@@ -11,7 +11,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model tasks {
+model Tasks {
   id          String   @id @default(uuid())
   title       String
   description String
@@ -21,10 +21,12 @@ model tasks {
   date        String
   done        Boolean  @default(false)
   createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt    
+  updatedAt   DateTime @updatedAt
+
+  @@index([id])
 }
 
-model deletedTasks {
+model DeletedTasks {
   id          String   @id
   title       String
   description String
@@ -34,5 +36,7 @@ model deletedTasks {
   date        String
   done        Boolean  @default(false)
   createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  deletedAt   DateTime @default(now())
+
+  @@index([id])
 }

@@ -1,4 +1,4 @@
-import { Prisma, PrismaClient, tasks } from "@prisma/client";
+import { Prisma, PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -18,7 +18,7 @@ export class DeleteTask {
     }
   ) => {
     const idDeleted: string = req.params.id;
-    const deleteTask: tasks = await prisma.tasks.delete({
+    const deleteTask = await prisma.tasks.delete({
       where: {
         id: idDeleted,
       },

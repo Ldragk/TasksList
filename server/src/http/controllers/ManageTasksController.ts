@@ -15,11 +15,11 @@ export class ManageTasks {
   createTask = async (
     req: {
       body: {
+        title: string;
+        description: string;
         limitDay: string;
         limitMonth: string;
         limitYear: string;
-        title: string;
-        description: string;
       };
     },
     res: { json: (arg0: ITask) => any }
@@ -27,7 +27,7 @@ export class ManageTasks {
     const JunctionOfDateFragments = `${req.body.limitMonth}/${req.body.limitDay}/${req.body.limitYear}`;
 
     const tasks: ITask = await prisma.tasks.create({
-      data: {
+      data: {        
         title: req.body.title,
         description: req.body.description,
         limitDay: Number(req.body.limitDay),

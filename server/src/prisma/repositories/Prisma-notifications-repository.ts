@@ -1,30 +1,21 @@
-import { ISendNotification, PrismaNotificationMapper } from './Prisma-notifications-mapper';
-import { PrismaClient } from "@prisma/client";
+import { PrismaNotificationMapper } from "./Prisma-notifications-mapper";
+import { PrismaClient, Tasks } from "@prisma/client";
+import { Notification } from "../../entities/Notification";
 
 const prisma = new PrismaClient();
 
 export class PrismaNotificationsRepository extends PrismaNotificationMapper {
-    constructor() {
-        super();
-    }
-  
-    async findeById(): Promise<ISendNotification | null> {
-      const tasks = await prisma.tasks.findMany({
-        select: {
-            id: true,
-            title: true,            
-            done: true,
-            limitDay: true,
-            limitMonth: true,
-            limitYear: true,
-        },
-        where: {
-          done: false,
-        },
-      });
-  
-      return !tasks
-        ? null
-        : PrismaNotificationMapper.toPrisma(tasks);
-    }
-}  
+  constructor() {
+    super();
+  }
+
+  async findNotifications(done: boolean): Promise<Notification[]> {
+    const taskNotification = prisma.tasks.findMany({
+      where: {
+        done: done,
+      },
+    });
+
+    return (await taskNotification).map(PrismaNotificationMapper.toDomain);
+  }
+}
