@@ -6,7 +6,7 @@ interface IDateType {
   year: number;
 }
 
-export class QueryByTheYear {
+export class QueryByYear {
   private date: IDateType;
   private yearTasks!: object[];
 
@@ -16,7 +16,7 @@ export class QueryByTheYear {
     };
   }
 
-  public async tasksByTheYear(): Promise<object[] | object> {
+  public async tasksByYear(): Promise<object[] | object> {
     this.yearTasks = await prisma.tasks.findMany({
       select: {
         title: true,

@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { ITask } from "./ManageTasks";
+import { ITask } from "./ManageTasksController";
 
 const prisma = new PrismaClient();
 

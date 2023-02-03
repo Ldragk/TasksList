@@ -1,11 +1,12 @@
 import express from "express";
 import cors from "cors";
 import { PrismaClient } from "@prisma/client";
-import { DeleteTask } from "./controllers/DeleteTask";
-import { TrashDelete } from "./controllers/TrashDelete";
-import { TrashTasks } from "./controllers/TrashTasks";
-import { ManageTasks } from "./controllers/ManageTasks";
-import { QueryTask } from "./controllers/QueryTask";
+import { DeleteTask } from "./controllers/DeleteTaskController";
+import { TrashDelete } from "./controllers/TrashDeleteController";
+import { TrashTasks } from "./controllers/TrashTasksController";
+import { ManageTasks } from "./controllers/ManageTasksController";
+import { QueryTask } from "./controllers/GetTaskController";
+import { Notifications } from "./controllers/NotificationsController";
 
 const prisma = new PrismaClient();
 const app = express();
@@ -20,13 +21,16 @@ async function main() {
   app.put("/tasks/fullChange/:id/", ManageTasksController.updateTasks);
 
   const QueryTaskController: any = new QueryTask();
-  app.get("/tasks/all", QueryTaskController.queryAllTasks);
-  app.get("/tasks/date/:day/:month/:year", QueryTaskController.queryByTheFullDate);
-  app.get("/tasks/month/:month/:year", QueryTaskController.queryByTheMonth);  
-  app.get("/tasks/year/:year", QueryTaskController.queryByTheYear);
-  app.get("/tasks/done/:condition", QueryTaskController.queryDoneOrNotTasks);
-  app.get("/tasks/delayed", QueryTaskController.queryOverdueTasks);
-  app.get("/tasks/notifications/:daysOfDelay/:type", QueryTaskController.notificationOfTasksNearTheDeadline);
+  app.get("/tasks/all", QueryTaskController.getAllTasks);
+  app.get("/tasks/date/:day/:month/:year", QueryTaskController.getByFullDate);
+  app.get("/tasks/month/:month/:year", QueryTaskController.getByMonth);  
+  app.get("/tasks/year/:year", QueryTaskController.getByYear);
+  app.get("/tasks/done/:condition", QueryTaskController.getDoneOrNotTasks);
+  app.get("/tasks/delayed", QueryTaskController.getOverdueTasks);
+
+  const NotificationsController: any = new Notifications()
+  app.get("/tasks/notifications/:daysOfDelay/:type", 
+  NotificationsController.notificationOfTasksNearTheDeadline);
 
   const DeleteTaskController: any = new DeleteTask();
   app.delete("/tasks/delete/all", DeleteTaskController.deletedAllTasks);
