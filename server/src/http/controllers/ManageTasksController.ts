@@ -26,7 +26,7 @@ export class ManageTasks {
   ) => {
     const JunctionOfDateFragments = `${req.body.limitMonth}/${req.body.limitDay}/${req.body.limitYear}`;
 
-    const tasks: ITask = await prisma.tasks.create({
+    const tasks: ITask = await prisma.task.create({
       data: {        
         title: req.body.title,
         description: req.body.description,
@@ -46,7 +46,7 @@ export class ManageTasks {
     const id: string = req.params.id;
     const condition: boolean =
       Number(req.params.condition) === 1 ? true : false;
-    const tasks: ITask = await prisma.tasks.update({
+    const tasks: ITask = await prisma.task.update({
       where: {
         id: id,
       },
@@ -66,7 +66,7 @@ export class ManageTasks {
   ) => {
     const id: string = req.params.id;
     const JunctionOfDateFragments = `${req.body.limitMonth}/${req.body.limitDay}/${req.body.limitYear}`;
-    const tasks: ITask = await prisma.tasks.update({
+    const tasks: ITask = await prisma.task.update({
       where: {
         id: id,
       },

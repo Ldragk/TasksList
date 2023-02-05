@@ -11,7 +11,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Tasks {
+model Task {
   id          String   @id @default(uuid())
   title       String
   description String
@@ -26,7 +26,7 @@ model Tasks {
   @@index([id])
 }
 
-model DeletedTasks {
+model DeletedTask {
   id          String   @id
   title       String
   description String

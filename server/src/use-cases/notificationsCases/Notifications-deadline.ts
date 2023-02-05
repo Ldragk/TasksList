@@ -1,4 +1,4 @@
-import { PrismaNotificationsRepository } from "../../prisma/repositories/Prisma-notifications-repository";
+import { PrismaNotificationsRepository } from "../../prisma/repositories/notifications/Prisma-notifications-repository";
 import { convertExcessDaysAtTheTurnOfTheMonth } from "../functions/convertExcessDaysAtTheTurnOfTheMonth";
 import { numberOfDaysInTheMonth } from "../functions/numberOfDaysInTheMonth";
 import { Notification } from "../../entities/Notification";

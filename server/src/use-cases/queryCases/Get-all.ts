@@ -1,24 +1,12 @@
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { Task } from "../../entities/Task";
+import { PrismaTaskRepository } from "../../prisma/repositories/tasks/Prisma-task-repository";
 
 export class QueryAllTasks {
-  tasks!: object[];
+  async allTasks(): Promise<Task[] | object> {
+    const prismaTaskRepository = new PrismaTaskRepository();
 
-  async allTasks(): Promise<object[] | object> {
-    this.tasks = await prisma.tasks.findMany({
-      select: {
-        id: true,
-        title: true,
-        description: true,        
-        done: true,
-        createdAt: true,
-        updatedAt: true,
-      },
-      orderBy: {
-        createdAt: "desc",
-      },
-    });
-    return this.tasks.length === 0 ? { message: "No tasks found" } : this.tasks;
+    return (await prismaTaskRepository.findAllTasks()).length === 0
+      ? { message: "No tasks found" }
+      : await prismaTaskRepository.findAllTasks();
   }
 }

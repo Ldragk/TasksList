@@ -1,37 +1,24 @@
-import { PrismaClient } from "@prisma/client";
+import { Task } from "../../entities/Task";
+import { PrismaTaskRepository } from "../../prisma/repositories/tasks/Prisma-task-repository";
 
-const prisma = new PrismaClient();
-
-interface IDateType { 
+interface IDateType {
   year: number;
 }
 
 export class QueryByYear {
   private date: IDateType;
-  private yearTasks!: object[];
 
   constructor(date: IDateType) {
-    this.date = {     
+    this.date = {
       year: date.year,
     };
   }
 
-  public async tasksByYear(): Promise<object[] | object> {
-    this.yearTasks = await prisma.tasks.findMany({
-      select: {
-        title: true,
-        description: true,
-        done: true,
-        createdAt: true,
-        updatedAt: true,
-      },
-      where: {       
-        limitYear: this.date.year,
-      },
-      orderBy: {
-        createdAt: "desc",
-      },
-    });
-    return this.yearTasks.length === 0 ? { message: "No tasks found" } : this.yearTasks;
+  public async tasksByYear(): Promise<Task[] | object> {
+    const prismaTaskRepository = new PrismaTaskRepository();
+
+    return (await prismaTaskRepository.findByYear(this.date.year)).length === 0
+      ? { message: "No tasks found" }
+      : await prismaTaskRepository.findByYear(this.date.year);
   }
 }

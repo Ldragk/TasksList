@@ -1,6 +1,5 @@
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { Task } from "../../entities/Task";
+import { PrismaTaskRepository } from "../../prisma/repositories/tasks/Prisma-task-repository";
 
 interface IDateType {
   day: number;
@@ -9,10 +8,7 @@ interface IDateType {
 }
 
 export class QueryByFullDate {
-  private date: IDateType;
-  private dateTasks!: object[];
-
-  constructor(date: IDateType) {
+  constructor(private date: IDateType) {
     this.date = {
       day: date.day,
       month: date.month,
@@ -20,24 +16,21 @@ export class QueryByFullDate {
     };
   }
 
-  public async tasksByFullDate(): Promise<object[] | object> {
-    this.dateTasks = await prisma.tasks.findMany({
-      select: {
-        title: true,
-        description: true,
-        done: true,
-        createdAt: true,
-        updatedAt: true,
-      },
-      where: {
-        limitDay: this.date.day,
-        limitMonth: this.date.month,
-        limitYear: this.date.year,
-      },
-      orderBy: {
-        createdAt: "desc",
-      },
-    });
-    return this.dateTasks.length === 0 ? { message: "No tasks found" } : this.dateTasks;
+  public async tasksByFullDate(): Promise<Task[] | object> {
+    const prismaTaskRepository = new PrismaTaskRepository();
+
+    return (
+      await prismaTaskRepository.findByFullDate(
+        this.date.day,
+        this.date.month,
+        this.date.year
+      )
+    ).length === 0
+      ? { message: "No tasks found" }
+      : await prismaTaskRepository.findByFullDate(
+          this.date.day,
+          this.date.month,
+          this.date.year
+        );
   }
 }

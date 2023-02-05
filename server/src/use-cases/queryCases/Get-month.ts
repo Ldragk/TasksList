@@ -1,6 +1,5 @@
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { Task } from "../../entities/Task";
+import { PrismaTaskRepository } from "../../prisma/repositories/tasks/Prisma-task-repository";
 
 interface IDateType {
   month: number;
@@ -8,33 +7,20 @@ interface IDateType {
 }
 
 export class QueryByMonth {
-  private date: IDateType;
-  private monthTasks!: object[];
-
-  constructor(date: IDateType) {
+  constructor(private date: IDateType) {
     this.date = {
       month: date.month,
       year: date.year,
     };
   }
 
-  public async tasksByMonth(): Promise<object[] | object> {
-    this.monthTasks = await prisma.tasks.findMany({
-      select: {
-        title: true,
-        description: true,
-        done: true,
-        createdAt: true,
-        updatedAt: true,
-      },
-      where: {
-        limitMonth: this.date.month,
-        limitYear: this.date.year,
-      },
-      orderBy: {
-        createdAt: "desc",
-      },
-    });
-    return this.monthTasks.length === 0 ? { message: "No tasks found" } : this.monthTasks;
+  public async tasksByMonth(): Promise<Task[] | object> {
+    const prismaTaskRepository = new PrismaTaskRepository();
+
+    return (
+      await prismaTaskRepository.findByMonth(this.date.month, this.date.year)
+    ).length === 0
+      ? { message: "No tasks found" }
+      : await prismaTaskRepository.findByMonth(this.date.month, this.date.year);
   }
 }
