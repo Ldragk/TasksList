@@ -1,7 +1,7 @@
 import {
     IParamsNotifications,
     NotificationOfTasksNearTheDeadline,
-  } from "../../use-cases/notificationsCases/Notifications-deadline";
+  } from "../../use-cases/notifications-cases/Notifications-deadline";
 
 type NotificationsWithinThePeriod = object
 

@@ -1,5 +1,5 @@
 import { Task } from "../../entities/Task";
-import { PrismaTaskRepository } from "../../prisma/repositories/tasks/Prisma-task-repository";
+import { PrismaTaskQueryRepository } from "../../prisma/repositories/tasks/Prisma-query-repository";
 
 interface IDateType {
   day: number;
@@ -17,17 +17,17 @@ export class QueryByFullDate {
   }
 
   public async tasksByFullDate(): Promise<Task[] | object> {
-    const prismaTaskRepository = new PrismaTaskRepository();
+    const prismaTaskRecipientRepository = new PrismaTaskQueryRepository();
 
     return (
-      await prismaTaskRepository.findByFullDate(
+      await prismaTaskRecipientRepository.findByFullDate(
         this.date.day,
         this.date.month,
         this.date.year
       )
     ).length === 0
       ? { message: "No tasks found" }
-      : await prismaTaskRepository.findByFullDate(
+      : await prismaTaskRecipientRepository.findByFullDate(
           this.date.day,
           this.date.month,
           this.date.year

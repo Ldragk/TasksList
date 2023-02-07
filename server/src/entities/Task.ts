@@ -8,7 +8,7 @@ export interface TaskProps {
   limitMonth: number;
   limitYear: number;
   date: string;
-  done: boolean;
+  done?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -17,12 +17,16 @@ export class Task {
   private props: TaskProps;
 
   constructor(
-    props: Replace<TaskProps, { createdAt?: Date; updateAt?: Date }>,
+    props: Replace<
+      TaskProps,
+      {done?: boolean; createdAt?: Date; updateAt?: Date }
+    >,
     id?: string
   ) {
     this._id = id ?? randomUUID();
     this.props = {
-      ...props,
+      ...props,      
+      done: props.done ?? false,
       createdAt: props.createdAt ?? new Date(),
       updatedAt: props.updatedAt ?? new Date(),
     };
@@ -67,17 +71,17 @@ export class Task {
     return this.props.limitYear;
   }
 
-  public set date(date: string) {
-    this.props.date = date;
-  }
-  public get date() {
+  // public set date(date: string) {
+  //   this.props.date = date;
+  // }
+  public get date(): string {
     return this.props.date;
   }
 
-  public set done(done: boolean) {
+  public set done(done: boolean | undefined) {
     this.props.done = done;
   }
-  public get done(): boolean {
+  public get done(): boolean | undefined {
     return this.props.done;
   }
 

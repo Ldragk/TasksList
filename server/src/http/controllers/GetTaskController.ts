@@ -1,26 +1,19 @@
-import { OverdueTasks } from "../../use-cases/queryCases/Get-overdue";
-import { QueryAllTasks } from "../../use-cases/queryCases/Get-all";
-import { QueryByFullDate } from "../../use-cases/queryCases/Get-full-date";
-import { QueryByMonth } from "../../use-cases/queryCases/Get-month";
-import { QueryByYear } from "../../use-cases/queryCases/Get-year";
-import { TasksCondition } from "../../use-cases/queryCases/Get-status";
+import { OverdueTasks } from "../../use-cases/query-cases/Get-overdue";
+import { QueryAllTasks } from "../../use-cases/query-cases/Get-all";
+import { QueryByFullDate } from "../../use-cases/query-cases/Get-full-date";
+import { QueryByMonth } from "../../use-cases/query-cases/Get-month";
+import { QueryByYear } from "../../use-cases/query-cases/Get-year";
+import { TasksCondition } from "../../use-cases/query-cases/Get-status";
 
 export class QueryTask {
-  allTasks!: QueryAllTasks;
-  tasksByFullDate!: QueryByFullDate;
-  tasksByMonth!: QueryByMonth;
-  tasksByYear!: QueryByYear;
-  tasksCondition!: TasksCondition;
-  overdueTasks!: OverdueTasks;
-
   getAllTasks = async (
     req: Request,
     res: {
       json: (arg0: object[] | object) => Response;
     }
   ) => {
-    this.allTasks = new QueryAllTasks();
-    return res.json(await this.allTasks.allTasks());
+    const allTasks = new QueryAllTasks();
+    return res.json(await allTasks.allTasks());
   };
 
   getByFullDate = async (
@@ -29,13 +22,13 @@ export class QueryTask {
       json: (arg0: object[] | object) => Response;
     }
   ) => {
-    this.tasksByFullDate = new QueryByFullDate({
+    const tasksByFullDate: QueryByFullDate = new QueryByFullDate({
       day: Number(req.params.day),
       month: Number(req.params.month),
       year: Number(req.params.year),
     });
 
-    return res.json(await this.tasksByFullDate.tasksByFullDate());
+    return res.json(await tasksByFullDate.tasksByFullDate());
   };
 
   getByMonth = async (
@@ -44,12 +37,12 @@ export class QueryTask {
       json: (arg0: object[] | object) => Response;
     }
   ) => {
-    this.tasksByMonth = new QueryByMonth({
+    const tasksByMonth: QueryByMonth = new QueryByMonth({
       month: Number(req.params.month),
       year: Number(req.params.year),
     });
 
-    return res.json(await this.tasksByMonth.tasksByMonth());
+    return res.json(await tasksByMonth.tasksByMonth());
   };
 
   getByYear = async (
@@ -58,11 +51,11 @@ export class QueryTask {
       json: (arg0: object[] | object) => Response;
     }
   ) => {
-    this.tasksByYear = new QueryByYear({
+    const tasksByYear: QueryByYear = new QueryByYear({
       year: Number(req.params.year),
     });
 
-    return res.json(await this.tasksByYear.tasksByYear());
+    return res.json(await tasksByYear.tasksByYear());
   };
 
   getDoneOrNotTasks = async (
@@ -71,17 +64,19 @@ export class QueryTask {
       json: (arg0: object) => JSON;
     }
   ) => {
-    this.tasksCondition = new TasksCondition(Number(req.params.condition));
-    return res.json(await this.tasksCondition.doneOrNot());
+    const tasksCondition: TasksCondition = new TasksCondition(
+      Number(req.params.condition)
+    );
+    return res.json(await tasksCondition.doneOrNot());
   };
 
   getOverdueTasks = async (
     req: Request,
     res: {
-      json: (arg0: object[] | { message: string }) => JSON;
+      json: (arg0: object[] | object) => JSON;
     }
   ) => {
-    this.overdueTasks = new OverdueTasks();
-    return res.json(await this.overdueTasks.consultOverdueTasks());
+    const overdueTasks: OverdueTasks = new OverdueTasks();
+    return res.json(await overdueTasks.consultOverdueTasks());
   };
 }

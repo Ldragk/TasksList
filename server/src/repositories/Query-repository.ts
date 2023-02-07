@@ -1,7 +1,6 @@
 import { Task } from "../entities/Task";
 
-export abstract class TaskRepository { 
-  abstract create(task: Task): Promise<Task>;
+export abstract class QueryRepository { 
   abstract findAllTasks(done: boolean): Promise<Task[]>;
   abstract findByFullDate(day: number, month: number, year: number): Promise<Task[]>;
   abstract findByMonth(month: number, year: number): Promise<Task[]>;

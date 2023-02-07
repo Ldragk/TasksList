@@ -1,23 +1,15 @@
 import { PrismaTaskMapper } from "./Prisma-task-mapper";
 import { PrismaClient } from "@prisma/client";
 import { Task } from "../../../entities/Task";
-import { TaskRepository } from "../../../repositories/Task-repository";
+import { QueryRepository } from "../../../repositories/Query-repository";
 
 const prisma = new PrismaClient();
 
-export class PrismaTaskRepository implements TaskRepository {
+export class PrismaTaskQueryRepository implements QueryRepository {
   static findAllTasks() {
     throw new Error("Method not implemented.");
   }
   constructor() {}
-
-  async create(task: Task): Promise<Task> {
-    const newTask = prisma.task.create({
-      data: PrismaTaskMapper.toPrisma(task),
-    });
-
-    return PrismaTaskMapper.toDomain(await newTask);
-  }
 
   async findAllTasks(): Promise<Task[]> {
     const task = prisma.task.findMany({
