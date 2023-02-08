@@ -12,25 +12,23 @@ export class PrismaTaskMapper {
       limitYear: notification.limitYear,
       date: notification.date,
       done: notification.done,
-      creatAt: notification.createdAt,
-      updatedAt: notification.updatedAt,
+      createdAt: notification.createdAt,      
     };
   }
 
   static toDomain(raw: RawTask): Task {
-    return new Task(
-      {
-        title: raw.title,
-        description: raw.description,
-        limitDay: raw.limitDay,
-        limitMonth: raw.limitMonth,
-        limitYear: raw.limitYear,
-        date: raw.date,
-        done: raw.done,
-        createdAt: raw.createdAt,
-        updatedAt: raw.updatedAt,
-      },
-      raw.id
+    return new Task({      
+      title: raw.title,
+      description: raw.description,
+      limitDay: raw.limitDay,
+      limitMonth: raw.limitMonth,
+      limitYear: raw.limitYear,
+      date: raw.date,
+      done: raw.done,
+      createdAt: raw.createdAt,
+      updatedAt: raw.updatedAt,
+    },
+    raw.id,
     );
   }
 }

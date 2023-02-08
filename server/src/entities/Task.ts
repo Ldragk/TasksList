@@ -10,30 +10,29 @@ export interface TaskProps {
   date: string;
   done?: boolean;
   createdAt?: Date;
-  updatedAt?: Date;
+  updatedAt?: Date | null;
 }
 export class Task {
   private _id: string;
   private props: TaskProps;
 
   constructor(
-    props: Replace<
-      TaskProps,
-      {done?: boolean; createdAt?: Date; updateAt?: Date }
-    >,
+    props: Replace<TaskProps, { done?: boolean; createdAt?: Date }>,
     id?: string
   ) {
-    this._id = id ?? randomUUID();
     this.props = {
-      ...props,      
+      ...props,
       done: props.done ?? false,
       createdAt: props.createdAt ?? new Date(),
-      updatedAt: props.updatedAt ?? new Date(),
     };
+    this._id = id ?? randomUUID();
   }
 
+  public set id(id: string) {
+    this.id = id;
+  }
   public get id(): string {
-    return this.id;
+    return this._id;
   }
 
   public set title(title: string) {
@@ -71,9 +70,9 @@ export class Task {
     return this.props.limitYear;
   }
 
-  // public set date(date: string) {
-  //   this.props.date = date;
-  // }
+  public set date(date: string) {
+    this.props.date = date;
+  }
   public get date(): string {
     return this.props.date;
   }
@@ -92,14 +91,14 @@ export class Task {
     return this.props.createdAt;
   }
 
-  public set updatedAt(updatedAt: Date | undefined) {
-    this.props.updatedAt = updatedAt;
+  public updated() {
+    this.props.updatedAt = new Date();
   }
-  public get updatedAt(): Date | undefined {
+  public get updatedAt(): Date | null | undefined {
     return this.props.updatedAt;
   }
 
-  public static create(props: TaskProps) {
-    return new Task(props);
+  public static create(props: TaskProps, id: string) {
+    return new Task(props, id);
   }
 }

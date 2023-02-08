@@ -1,22 +1,12 @@
 import { Task } from "../../../entities/Task";
-import { TaskRecipientRepository } from "../../../repositories/Query-repository";
+import { CreateTaskBody } from "../../../http/dtos/create-task-body";
+import { PrismaManageRepository } from "../../../prisma/repositories/tasks/Prisma-manage-repository";
 
-export class CreateTaskBody {
-  limitDay(limitDay: any) {
-    throw new Error("Method not implemented.");
-  }
-  limitMonth(limitMonth: any) {
-    throw new Error("Method not implemented.");
-  }
-  limitYear(limitYear: any) {
-    throw new Error("Method not implemented.");
-  }
-  title: any;
-  description: any;
-  constructor(private taskRepository: TaskRecipientRepository) {}
+export class CreateTask {
+  constructor() {}
 
-  async createTask(props: Task): Promise<void> {
-    const prismaTaskRecipientRepository = new Task({
+  async createTask(props: CreateTaskBody, id: string): Promise<void> {
+    const task = new Task({     
       title: props.title,
       description: props.description,
       limitDay: props.limitDay,
@@ -24,8 +14,12 @@ export class CreateTaskBody {
       limitYear: props.limitYear,
       date: `${props.limitMonth}/${props.limitDay}/${props.limitYear}`,
       done: props.done,
+    //   createdAt: new Date(),
+    //   updatedAt: props.updatedAt,
     });
 
-    return await this.taskRepository.create(prismaTaskRecipientRepository);
+    const prismaManageRepository = new PrismaManageRepository();
+
+    return await prismaManageRepository.create(task);
   }
 }

@@ -8,11 +8,10 @@
 
 </div>
 
-Projeto para praticar a utilização de Node.js com Express e Prisma Studio.
 
-Estou construindo e planejando esse projeto do zero e sozinho. Tem o objetivo de consolidar meus conhecimentos principalmente no Back-end e conceitos de Engenharia de Software.
+Estou construindo e planejando esse projeto do zero e sozinho. Tem o objetivo de consolidar meus conhecimentos principalmente no Back-end e de Engenharia de Software e praticar a utilização de Node.js com Express e Prisma Studio.
 
-O projeto é uma API Rest para criar e manipular tarefas por meio de rotas utilizando os verbos http e banco de dados, com uma interface front-end básica para interação do usuário.
+O projeto é uma API Rest para criar e manipular tarefas por meio de rotas utilizando os verbos http e banco de dados.
 
 🔹 Pretendo fazer muitas alterações e acrescimentos de funções e requisitos, durante a construção do projeto.
 
@@ -26,40 +25,26 @@ O projeto é uma API Rest para criar e manipular tarefas por meio de rotas utili
 <table width="300px" align="center">
       <caption> <h1 align="center">Tecnologias</h1> </caption>	         
        <thead>                      
-               <th width="150px" style="text-align:center" colspan="1">Back-end</th>       
-               <th width="50px"></th>         
-               <th width="150px" style="text-align:center" colspan="2">Front-end</th>                
+               <th width="150px" style="text-align:center" colspan="1">Back-end</th>                  
        </thead>
        <tbody align="center">          
            <tr>                           
-                <td colspan="1">TypeScript</th>  
-                <td></th>          
-                <td colspan="2">React js</th>                 
+                <td colspan="1">TypeScript</th>                              
            </tr>
            <tr>             
-                 <td colspan="1">Node js</th> 
-                  <td></th>  
-                  <td colspan="2">Vite js</th>                
+                 <td colspan="1">Node js</th>       
            </tr>           
             <tr>             
-                 <td colspan="1">Express</th> 
-                  <td></th>  
-                  <td colspan="2">TailWind</th>                
+                 <td colspan="1">Express</th>          
            </tr>           
             <tr>             
-                 <td colspan="1">SQLite</th> 
-                  <td></th>  
-                  <td colspan="2">TypeScript</th>                
+                 <td colspan="1">SQLite</th>             
            </tr>           
             <tr>             
-                 <td colspan="1">Prisma Studio</th> 
-                  <td></th>  
-                  <td colspan="2"></th>                
+                 <td colspan="1">Prisma Studio</th>            
            </tr>           
              <tr>             
-                 <td colspan="1">Vitest</th> 
-                  <td></th>  
-                  <td colspan="2"></th>                
+                 <td colspan="1">Vitest</th>               
            </tr>           
        </tbody>
 </table>
@@ -173,52 +158,24 @@ REQUISITOS FUNCIONAIS:
 
 </table>
 
-<table width="66%" align="center">          
+<table width="33%" align="left">          
        <thead>                      
-               <th width="49%" style="text-align:center" colspan="4">4º Sprint</th>       
-               <th></th>         
-               <th width="49%" style="text-align:center" colspan="4">5º Sprint</th>  
-               <!-- <th></th> 
-               <th width="32%" style="text-align:center" colspan="6">6º Sprint</th>     -->
+               <th width="100%" style="text-align:center" colspan="4">4º Sprint</th>       
        </thead>
        <tbody>          
            <tr>                           
-                <td colspan="4">Construir e integrar Front-end com Back-end.</th>  
-                <td></th>          
-                <td colspan="5">Aprimorar qualidade do projeto:</th>  
-                <!-- <td></th> 
-                 <td colspan="6">Editar tarefa já criada</td> -->
+                <td colspan="4">Criar sistema de login e usuários.</th>  
            </tr>
            <tr>             
-                 <td colspan="4">Criar sistema de login e usuários.</th> 
-                  <td></th>  
-                  <td colspan="5">Organizar estrutura do projeto.</th>
-                  <!-- <td></th> 
-                 <td colspan="6">Consultar tarefas deletadas</td> -->
+                 <td colspan="4">Aprimorar estrutura do projeto.</th>                           
            </tr>
            <tr>             
-                <td colspan="4">Construir a Interface do usuário Front-end.</th> 
-                 <td></th>  
-                 <td colspan="5">Aplicar princípios de Engenharia de Software.</th>
-                 <!-- <td></th> 
-                 <td colspan="6"></td> -->
+                <td colspan="4">Aprimorar engenharia do projeto.</th>               
            </tr>           
            <tr>             
-                 <td colspan="4">Integrar Frond-end com Back-end do sistema de login.</th> 
-                  <td></th>    
-                  <td colspan="5"></th>
-                  <!-- <td></th> 
-                 <td colspan="6"></td> -->
+                 <!-- <td colspan="4"></th>                  -->
            </tr>
-           <!-- <tr>              -->
-                 <!-- <td colspan="4"></th>  -->
-                  <!-- <td></th>  
-                  <td colspan="5"></th>
-                  <td></th>  
-                 <td colspan="6"></td> -->
-           <!-- </tr> -->
        </tbody>
-
 </table>
 
 
