@@ -173,7 +173,7 @@ REQUISITOS FUNCIONAIS:
                 <td colspan="4">Aprimorar engenharia do projeto.</th>               
            </tr>           
            <tr>             
-                 <!-- <td colspan="4"></th>                  -->
+                 <td colspan="4"></th>                 
            </tr>
        </tbody>
 </table>
