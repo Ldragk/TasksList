@@ -8,16 +8,16 @@ import { CreateTaskBody } from "../../../http/dtos/create-task-body";
 const prisma = new PrismaClient();
 
 export class PrismaManageRepository implements ManageRepository {
-  update(task: Task): Promise<void> {
-      throw new Error("Method not implemented.");
+  update(task: Task): Promise<> {
+     
   }
   delete(task: Task): Promise<void> {
       throw new Error("Method not implemented.");
   }
-  async create(task: Task): Promise<void> {
+  async create(task: Task): Promise<CreateTaskBody> {
     const newTask = PrismaTaskMapper.toPrisma(task);
-    await prisma.task.create({
-      data: newTask,
+    return await prisma.task.create({
+     data: newTask,
     });
   }
 }

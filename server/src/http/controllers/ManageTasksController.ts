@@ -1,7 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 import { Task } from "../../entities/Task";
-import { CreateTaskBody } from "../dtos/create-task-body";
+import { PrismaTaskMapper } from "../../prisma/repositories/tasks/Prisma-task-mapper";
 import { CreateTask } from "../../use-cases/functions/manage-cases/Post-create";
+import { CreateTaskBody } from "../dtos/create-task-body";
 
 const prisma = new PrismaClient();
 
@@ -17,33 +18,24 @@ export interface ITask {
 export class ManageTasks {
   async createTask(
     req: {
-      body: {
-        id: string;
-        title: string;
-        description: string;
-        limitDay: number;
-        limitMonth: number;
-        limitYear: number;
-        done: boolean;
-      };
+      body: Task;
+      id: string;
     },
-    res: { json: (arg0: void) => Task }
+    res: { json: (arg0: CreateTaskBody) => Task }
   ): Promise<Task> {
-    const create = new CreateTask();
-
-    return res.json(
-      await create.createTask(
-        {
-          title: req.body.title,
-          description: req.body.description,
-          limitDay: req.body.limitDay,
-          limitMonth: req.body.limitMonth,
-          limitYear: req.body.limitYear,
-          done: req.body.done,
-        },
-        req.body.id
-      )
+    const taskToBeCreate = await CreateTask.execute(
+      {
+        title: req.body.title,
+        description: req.body.description,
+        limitDay: req.body.limitDay,
+        limitMonth: req.body.limitMonth,
+        limitYear: req.body.limitYear,
+        done: req.body.done,
+      },
+      req.id
     );
+
+    return res.json(taskToBeCreate);
   }
 
   changeCondition = async (

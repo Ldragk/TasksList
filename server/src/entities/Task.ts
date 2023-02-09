@@ -7,7 +7,7 @@ export interface TaskProps {
   limitDay: number;
   limitMonth: number;
   limitYear: number;
-  date: string;
+  date?: string | null;
   done?: boolean;
   createdAt?: Date;
   updatedAt?: Date | null;
@@ -74,7 +74,7 @@ export class Task {
     this.props.date = date;
   }
   public get date(): string {
-    return this.props.date;
+    return (this.date = `${this.limitDay}/${this.limitMonth}/${this.limitYear}`);
   }
 
   public set done(done: boolean | undefined) {
@@ -96,9 +96,5 @@ export class Task {
   }
   public get updatedAt(): Date | null | undefined {
     return this.props.updatedAt;
-  }
-
-  public static create(props: TaskProps, id: string) {
-    return new Task(props, id);
   }
 }

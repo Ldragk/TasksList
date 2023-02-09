@@ -6,9 +6,6 @@ import { QueryRepository } from "../../../repositories/Query-repository";
 const prisma = new PrismaClient();
 
 export class PrismaTaskQueryRepository implements QueryRepository {
-  static findAllTasks() {
-    throw new Error("Method not implemented.");
-  }
   constructor() {}
 
   async findAllTasks(): Promise<Task[]> {
