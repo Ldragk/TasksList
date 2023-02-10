@@ -1,8 +1,9 @@
 import { PrismaClient } from "@prisma/client";
 import { Task } from "../../entities/Task";
 import { PrismaTaskMapper } from "../../prisma/repositories/tasks/Prisma-task-mapper";
+import { TaskCondition } from "../../use-cases/functions/manage-cases/Patch-chance-condition";
 import { CreateTask } from "../../use-cases/functions/manage-cases/Post-create";
-import { CreateTaskBody } from "../dtos/create-task-body";
+import { TaskBody } from "../dtos/create-task-body";
 
 const prisma = new PrismaClient();
 
@@ -21,7 +22,7 @@ export class ManageTasks {
       body: Task;
       id: string;
     },
-    res: { json: (arg0: CreateTaskBody) => Task }
+    res: { json: (arg0: TaskBody) => Task }
   ): Promise<Task> {
     const taskToBeCreate = await CreateTask.execute(
       {
@@ -38,22 +39,13 @@ export class ManageTasks {
     return res.json(taskToBeCreate);
   }
 
-  changeCondition = async (
-    req: { params: { id: string; condition: string } },
-    res: { json: (arg0: ITask) => Response }
+  updateCondition = async (
+    req: { params: { id: string } },
+    res: { json: (arg0: TaskBody) => Promise<TaskBody> }
   ) => {
-    const id: string = req.params.id;
-    const condition: boolean =
-      Number(req.params.condition) === 1 ? true : false;
-    const tasks: ITask = await prisma.task.update({
-      where: {
-        id: id,
-      },
-      data: {
-        done: condition,
-      },
-    });
-    return res.json(tasks);
+    const taskUpdate = await TaskCondition.execute(req.params.id);
+
+    return res.json(taskUpdate);
   };
 
   updateTasks = async (

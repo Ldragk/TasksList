@@ -1,4 +1,4 @@
-export class CreateTaskBody {  
+export class TaskBody {  
   title!: string;
   description!: string;
   limitDay!: number;

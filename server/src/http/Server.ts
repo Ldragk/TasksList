@@ -17,7 +17,7 @@ app.use(cors());
 async function main() {
   const ManageTasksController: any = new ManageTasks();
   app.post("/tasks/create", ManageTasksController.createTask);
-  app.patch("/tasks/change/:id/:condition", ManageTasksController.changeCondition);
+  app.patch("/tasks/change/:id/", ManageTasksController.updateCondition);
   app.put("/tasks/fullChange/:id/", ManageTasksController.updateTasks);
 
   const QueryTaskController: any = new QueryTask();

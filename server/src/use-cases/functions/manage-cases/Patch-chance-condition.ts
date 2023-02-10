@@ -1,22 +1,13 @@
-import { PrismaClient } from "@prisma/client";
 import { PrismaManageRepository } from "../../../prisma/repositories/tasks/Prisma-manage-repository";
-
-const prisma = new PrismaClient();
+import { PrismaTaskQueryRepository } from "../../../prisma/repositories/tasks/Prisma-query-repository";
 
 export class TaskCondition {
-  async changeCondition(id: string, req: boolean) {
-    Number(req) === 1 ? true : false;
-    const tasksUpdate = await prisma.task.update({
-      where: {
-        id: id,
-      },
-      data: {
-        done: req,
-      },
-    });
+  static async execute(taskId: string) {
+    const prismaQueryRepository = new PrismaTaskQueryRepository();
+    const task = await prismaQueryRepository.findeById(taskId);
+    task.done === false ? (task.done = true) : (task.done = false);
+    
     const prismaManageRepository = new PrismaManageRepository();
-
     return await prismaManageRepository.update(task);
-
   }
 }

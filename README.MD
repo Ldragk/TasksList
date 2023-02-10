@@ -167,10 +167,10 @@ REQUISITOS FUNCIONAIS:
                 <td colspan="4">Criar sistema de login e usuários.</th>  
            </tr>
            <tr>             
-                 <td colspan="4">Aprimorar estrutura do projeto.</th>                           
+                 <td colspan="4">Aprimorar estrutura do software.</th>                           
            </tr>
            <tr>             
-                <td colspan="4">Aprimorar engenharia do projeto.</th>               
+                <td colspan="4">Aprimorar engenharia do software.</th>               
            </tr>           
            <tr>             
                  <td colspan="4"></th>                 
