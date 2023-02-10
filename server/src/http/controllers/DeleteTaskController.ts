@@ -1,36 +1,24 @@
-import { Prisma, PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { Prisma } from "@prisma/client";
+import { PrismaDeleteRepository } from "../../prisma/repositories/tasks/Prisma-delete-repository";
+import { TaskBody } from "../dtos/create-task-body";
 
 export class DeleteTask {
-  deletedTask = async (
+  async deletedTask(
     req: { params: { id: string } },
-    res: {
-      json: (arg0: {
-        id: string;
-        title: string;
-        description: string;
-        date: string;
-        done: boolean;
-        createdAt: Date;
-        updatedAt: Date;
-      }) => Response;
-    }
-  ) => {
+    res: { json: (arg0: TaskBody) => Promise<TaskBody> }
+  ) {
     const idDeleted: string = req.params.id;
-    const deleteTask = await prisma.tasks.delete({
-      where: {
-        id: idDeleted,
-      },
-    });
-    return res.json(deleteTask);
-  };
+    const prismaDeleteRepository = new PrismaDeleteRepository();
 
-  deletedAllTasks = async (
+    return res.json(await prismaDeleteRepository.delete(idDeleted));
+  }
+
+  async deletedAllTasks(
     req: Request,
-    res: { json: (arg0: Prisma.BatchPayload) => JSON }
-  ) => {
-    const deleted: Prisma.BatchPayload = await prisma.tasks.deleteMany();
-    return res.json(deleted);
-  };
+    res: { json: (arg0: Prisma.BatchPayload) => Promise<TaskBody> }
+  ) {
+    const prismaDeleteRepository = new PrismaDeleteRepository();
+
+    return res.json(await prismaDeleteRepository.deleteAll());
+  }
 }

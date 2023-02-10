@@ -6,7 +6,8 @@ export class TaskCondition {
     const prismaQueryRepository = new PrismaTaskQueryRepository();
     const task = await prismaQueryRepository.findeById(taskId);
     task.done === false ? (task.done = true) : (task.done = false);
-    
+    task.updated();
+
     const prismaManageRepository = new PrismaManageRepository();
     return await prismaManageRepository.saveCondition(task);
   }
