@@ -8,13 +8,11 @@
 
 </div>
 
-
-Estou construindo e planejando esse projeto do zero e sozinho. Tem o objetivo de consolidar meus conhecimentos principalmente no Back-end e de Engenharia de Software e praticar a utilização de Node.js com Express e Prisma Studio.
+Estou construindo e planejando esse projeto do zero e sozinho. Tem o objetivo de consolidar meus conhecimentos principalmente no Back-end e de Engenharia de Software, além de praticar a utilização de Node.js com Express e Prisma Studio.
 
 O projeto é uma API Rest para criar e manipular tarefas por meio de rotas utilizando os verbos http e banco de dados.
 
 🔹 Pretendo fazer muitas alterações e acrescimentos de funções e requisitos, durante a construção do projeto.
-
 
 <br><br>
 
@@ -116,7 +114,7 @@ REQUISITOS FUNCIONAIS:
                <th></th>         
                <th width="32%" style="text-align:center" colspan="2">✔️ 2º Sprint</th>  
                <th></th> 
-               <th width="32%" style="text-align:center" colspan="3">3º Sprint</th>    
+               <th width="32%" style="text-align:center" colspan="3">✔️ 3º Sprint</th>    
        </thead>
        <tbody>          
            <tr>                           
@@ -145,38 +143,42 @@ REQUISITOS FUNCIONAIS:
                   <td></th>    
                   <td colspan="2">✔️ Consultar tarefas feitas.</th>
                   <td></th> 
-                 <td colspan="3">Organizar estrutura do projeto.</td>
+                 <td colspan="3"></td>
            </tr>
            <tr>             
                  <td colspan="1">✔️ Deletar tarefa(s).</th> 
                   <td></th>  
                   <td colspan="2">✔️ Consultar tarefas não feitas.</th>
                   <td></th>  
-                 <td colspan="3">Aplicar validações e testes unitários.</td>
+                 <td colspan="3"></td>
            </tr>
        </tbody>
 
 </table>
 
-<table width="32%" align="left">          
+<table width="66%" align="center">          
        <thead>                      
-               <th width="100%" style="text-align:center" colspan="4">4º Sprint</th>       
+               <th width="49%" style="text-align:center" colspan="4">4º Sprint</th>      
+               <th></th>
+               <th width="49%" style="text-align:center" colspan="5">5º Sprint</th>        
        </thead>
        <tbody>          
-           <tr>                           
-                <td colspan="4">Criar sistema de login e usuários.</th>  
+           <tr>                 
+                <td colspan="4">Organizar estrutura do projeto.</th>
+                <td></th>             
+                <td colspan="5">Criar sistema de login e usuários.</th>  
+           </tr>
+           <tr>         
+                 <td colspan="4">Aplicar validações</th>     
+                 <td></th>  
+                 <td colspan="5">Aprimorar estrutura do software.</th>                           
            </tr>
            <tr>             
-                 <td colspan="4">Aprimorar estrutura do software.</th>                           
-           </tr>
-           <tr>             
-                <td colspan="4">Aprimorar engenharia do software.</th>               
+                <td colspan="4">Aplicar testes unitários</th> 
+                <td></th> 
+                <td colspan="5">Aprimorar engenharia do software.</th>               
            </tr>           
-           <tr>             
-                 <td colspan="4"></th>                 
+           <tr>                          
            </tr>
        </tbody>
 </table>
-
-
-

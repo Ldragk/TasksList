@@ -8,6 +8,6 @@ export class TaskCondition {
     task.done === false ? (task.done = true) : (task.done = false);
     
     const prismaManageRepository = new PrismaManageRepository();
-    return await prismaManageRepository.update(task);
+    return await prismaManageRepository.saveCondition(task);
   }
 }

@@ -1,20 +1,10 @@
-import { PrismaClient } from "@prisma/client";
 import { Task } from "../../entities/Task";
-import { PrismaTaskMapper } from "../../prisma/repositories/tasks/Prisma-task-mapper";
 import { TaskCondition } from "../../use-cases/functions/manage-cases/Patch-chance-condition";
 import { CreateTask } from "../../use-cases/functions/manage-cases/Post-create";
+import { FullUpdate } from "../../use-cases/functions/manage-cases/Put-full-update";
 import { TaskBody } from "../dtos/create-task-body";
 
-const prisma = new PrismaClient();
 
-export interface ITask {
-  title: string;
-  description: string;
-  limitDay: number;
-  limitMonth: number;
-  limitYear: number;
-  date: string;
-}
 
 export class ManageTasks {
   async createTask(
@@ -39,37 +29,27 @@ export class ManageTasks {
     return res.json(taskToBeCreate);
   }
 
-  updateCondition = async (
+  async updateCondition(
     req: { params: { id: string } },
     res: { json: (arg0: TaskBody) => Promise<TaskBody> }
-  ) => {
-    const taskUpdate = await TaskCondition.execute(req.params.id);
+  ) {
+    const id: string = req.params.id;
+    const taskUpdate = await TaskCondition.execute(id);
 
     return res.json(taskUpdate);
-  };
+  }
 
-  updateTasks = async (
+  async updateTasks(
     req: {
-      body: ITask;
+      body: Task;
       params: { id: string };
     },
-    res: { json: (arg0: ITask) => Response }
-  ) => {
+    res: { json: (arg0: TaskBody) => Promise<TaskBody> }
+  ) {
     const id: string = req.params.id;
-    const JunctionOfDateFragments = `${req.body.limitMonth}/${req.body.limitDay}/${req.body.limitYear}`;
-    const tasks: ITask = await prisma.task.update({
-      where: {
-        id: id,
-      },
-      data: {
-        title: req.body.title,
-        description: req.body.description,
-        limitDay: Number(req.body.limitDay),
-        limitMonth: Number(req.body.limitMonth),
-        limitYear: Number(req.body.limitYear),
-        date: JunctionOfDateFragments,
-      },
-    });
-    return res.json(tasks);
-  };
+    const body: Task = req.body;
+    const taskUpdate = await FullUpdate.execute(body, id);
+
+    return res.json(taskUpdate);
+  }
 }

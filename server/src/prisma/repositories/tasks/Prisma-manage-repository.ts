@@ -7,25 +7,32 @@ import { TaskBody } from "../../../http/dtos/create-task-body";
 const prisma = new PrismaClient();
 
 export class PrismaManageRepository implements ManageRepository {
-  
-  async update(task: Task): Promise<TaskBody> {
-    const updateTask = PrismaTaskMapper.toPrisma(task);
-    return await prisma.task.update({
-      where: {
-        id: updateTask.id,
-      },
-      data: {
-        done: updateTask.done,
-      },
-    });
-  }
-  delete(task: Task): Promise<void> {
-    throw new Error("Method not implemented.");
-  }
   async create(task: Task): Promise<TaskBody> {
     const newTask = PrismaTaskMapper.toPrisma(task);
     return await prisma.task.create({
       data: newTask,
+    });
+  }
+
+  async saveCondition(task: Task): Promise<TaskBody> {
+    const taskConditionUpdate = PrismaTaskMapper.toPrisma(task);
+    return await prisma.task.update({
+      where: {
+        id: taskConditionUpdate.id,
+      },
+      data: {
+        done: taskConditionUpdate.done,
+      },
+    });
+  }
+
+  async save(task: Task): Promise<TaskBody> {
+    const taskUpdate = PrismaTaskMapper.toPrisma(task);
+    return await prisma.task.update({
+      where: {
+        id: taskUpdate.id,
+      },
+      data: taskUpdate,
     });
   }
 }

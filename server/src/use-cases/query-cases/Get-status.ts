@@ -12,7 +12,7 @@ export interface IPromiseType {
 [];
 
 export class TasksCondition {
-  public conditionParameter!: number;
+  public conditionParameter!: ParameterType;
 
   constructor(conditionParameter: ParameterType) {
     this.conditionParameter = conditionParameter;
@@ -22,6 +22,9 @@ export class TasksCondition {
     const prismaTaskRecipientRepository = new PrismaTaskQueryRepository();
     const condition = this.conditionParameter === 1 ? true : false;
 
-    return await prismaTaskRecipientRepository.findByStatus(condition);
+    return (await prismaTaskRecipientRepository.findByStatus(condition))
+      .length === 0
+      ? { message: "No tasks found" }
+      : await prismaTaskRecipientRepository.findByStatus(condition);
   };
 }

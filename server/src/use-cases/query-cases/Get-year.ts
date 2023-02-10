@@ -17,7 +17,8 @@ export class QueryByYear {
   public async tasksByYear(): Promise<Task[] | object> {
     const prismaTaskRecipientRepository = new PrismaTaskQueryRepository();
 
-    return (await prismaTaskRecipientRepository.findByYear(this.date.year)).length === 0
+    return (await prismaTaskRecipientRepository.findByYear(this.date.year))
+      .length === 0
       ? { message: "No tasks found" }
       : await prismaTaskRecipientRepository.findByYear(this.date.year);
   }

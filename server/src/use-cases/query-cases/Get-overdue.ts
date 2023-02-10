@@ -4,7 +4,6 @@ export class OverdueTasks {
   public async consultOverdueTasks(): Promise<object[] | object> {
     const prismaTaskRecipientRepository = new PrismaTaskQueryRepository();
 
-
     const overdueTasks = (
       await prismaTaskRecipientRepository.findByOverdue(false)
     ).filter((task: any) => new Date(task.date) < new Date(Date.now()));
