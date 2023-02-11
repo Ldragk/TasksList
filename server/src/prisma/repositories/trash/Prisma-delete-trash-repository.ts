@@ -1,6 +1,5 @@
-import { Prisma, DeletedTask } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 import { PrismaClient } from "@prisma/client";
-import { Task } from "../../../entities/Task";
 import { TaskBody } from "../../../http/dtos/create-task-body";
 import { DeleteRepository } from "../../../repositories/Delete-repository";
 

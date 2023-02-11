@@ -7,15 +7,16 @@ interface TrashProps {
   date?: string | null;
   done?: boolean;
   createdAt?: Date;
-  deletedAt?: Date | null;
+  deletedAt?: Date | null | undefined;
 }
 
 export class Trash {
-  private props: TrashProps;
   private _id: string;
 
+  private props: TrashProps;
+
   constructor(props: TrashProps, id: string) {
-    this.props = props;
+    this.props = { ...props, deletedAt: undefined };
     this._id = id;
   }
 
@@ -82,9 +83,6 @@ export class Trash {
     return this.props.createdAt;
   }
 
-  public set deletedAt(deletedAt: Date | null | undefined) {
-    this.props.deletedAt = deletedAt;
-  }
   public get deletedAt(): Date | null | undefined {
     return this.props.deletedAt;
   }

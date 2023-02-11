@@ -9,8 +9,7 @@ export class TrashDelete {
     req: { params: { id: string } },
     res: { json: (arg0: TaskBody | object) => Promise<TaskBody> }
   ) {
-    const idDeleted: string = req.params.id;
-    await CreateTrash.execute(idDeleted)
+    const idDeleted: string = req.params.id;    
     return res.json(await DeleteTrash.execute(idDeleted));
   }
 

@@ -1,13 +1,28 @@
+import { Task } from "../../entities/Task";
+import { Trash } from "../../entities/Trash";
 import { TrashBody } from "../../http/dtos/create-trash-body";
-import { PrismaTrashRepository } from "../../prisma/repositories/tasks/Prisma-trash-repository";
+import { PrismaTaskQueryRepository } from "../../prisma/repositories/tasks/Prisma-query-repository";
+import { PrismaTrashRepository } from "../../prisma/repositories/trash/Prisma-trash-repository";
 
 export class CreateTrash {
-  static async execute(id: string): Promise<TrashBody | object> {
-    const prismaTrashRepository = new PrismaTrashRepository();
+  static async execute(taskId: string): Promise<TrashBody> {
+    const prismaQueryRepository = new PrismaTaskQueryRepository();
+    let task: Task = await prismaQueryRepository.findeById(taskId);
 
-    if (!!id) {
-      return { message: "Task not found" };
-    }
-    return await prismaTrashRepository.trashRepository(id);
+    const taskBody: Trash = new Trash(
+      {
+        title: task.title,
+        description: task.description,
+        limitDay: task.limitDay,
+        limitMonth: task.limitMonth,
+        limitYear: task.limitYear,
+        done: task.done,
+        createdAt: task.createdAt,
+      },
+      task.id
+    );
+
+    const prismaTrashRepository = new PrismaTrashRepository();
+    return await prismaTrashRepository.create(taskBody);
   }
 }
