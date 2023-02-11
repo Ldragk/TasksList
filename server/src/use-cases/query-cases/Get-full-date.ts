@@ -19,13 +19,11 @@ export class QueryByFullDate {
   public async tasksByFullDate(): Promise<Task[] | object> {
     const prismaTaskRecipientRepository = new PrismaTaskQueryRepository();
 
-    return (
-      await prismaTaskRecipientRepository.findByFullDate(
-        this.date.day,
-        this.date.month,
-        this.date.year
-      )
-    ).length === 0
+    return !!(await prismaTaskRecipientRepository.findByFullDate(
+      this.date.day,
+      this.date.month,
+      this.date.year
+    ))
       ? { message: "No tasks found" }
       : await prismaTaskRecipientRepository.findByFullDate(
           this.date.day,

@@ -5,7 +5,7 @@ export class QueryAllTasks {
   async allTasks(): Promise<Task[] | object> {
     const prismaTaskRecipientRepository = new PrismaTaskQueryRepository();
 
-    return (await prismaTaskRecipientRepository.findAllTasks()).length === 0
+    return !!(await prismaTaskRecipientRepository.findAllTasks())
       ? { message: "No tasks found" }
       : await prismaTaskRecipientRepository.findAllTasks();
   }

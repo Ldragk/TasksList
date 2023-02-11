@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { PrismaClient } from "@prisma/client";
-import { DeleteTask } from "./controllers/DeleteTaskController";
+import { DeleteTasks } from "./controllers/DeleteTaskController";
 import { TrashDelete } from "./controllers/TrashDeleteController";
 import { TrashTasks } from "./controllers/TrashTasksController";
 import { ManageTasks } from "./controllers/ManageTasksController";
@@ -32,9 +32,9 @@ async function main() {
   app.get("/tasks/notifications/:daysOfDelay/:type", 
   NotificationsController.notificationOfTasksNearTheDeadline);
 
-  const DeleteTaskController: any = new DeleteTask();
+  const DeleteTaskController: any = new DeleteTasks();
   app.delete("/tasks/delete/all", DeleteTaskController.deletedAllTasks);
-  app.delete("/tasks/delete/:id", DeleteTaskController.deletedTask);
+  app.delete("/tasks/delete/:id", DeleteTaskController.deleteTask);
 
   const TrashTasksController: any = new TrashTasks();
   app.post("/tasks/trash/save/:id", TrashTasksController.createTrashTask);

@@ -17,12 +17,10 @@ export class QueryByMonth {
   public async tasksByMonth(): Promise<Task[] | object> {
     const prismaTaskRecipientRepository = new PrismaTaskQueryRepository();
 
-    return (
-      await prismaTaskRecipientRepository.findByMonth(
-        this.date.month,
-        this.date.year
-      )
-    ).length === 0
+    return !!(await prismaTaskRecipientRepository.findByMonth(
+      this.date.month,
+      this.date.year
+    ))
       ? { message: "No tasks found" }
       : await prismaTaskRecipientRepository.findByMonth(
           this.date.month,

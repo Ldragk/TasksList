@@ -4,12 +4,14 @@ import { QueryByFullDate } from "../../use-cases/query-cases/Get-full-date";
 import { QueryByMonth } from "../../use-cases/query-cases/Get-month";
 import { QueryByYear } from "../../use-cases/query-cases/Get-year";
 import { TasksCondition } from "../../use-cases/query-cases/Get-status";
+import { Task } from "../../entities/Task";
+import { TaskBody } from "../dtos/create-task-body";
 
 export class QueryTask {
   getAllTasks = async (
     req: Request,
     res: {
-      json: (arg0: object[] | object) => Response;
+      json: (arg0: Task[] | object) => Promise<TaskBody>;
     }
   ) => {
     const allTasks = new QueryAllTasks();
@@ -19,7 +21,7 @@ export class QueryTask {
   getByFullDate = async (
     req: { params: { day: string; month: string; year: string } },
     res: {
-      json: (arg0: object[] | object) => Response;
+      json: (arg0: Task[] | object) => Promise<TaskBody>;
     }
   ) => {
     const tasksByFullDate: QueryByFullDate = new QueryByFullDate({
@@ -34,7 +36,7 @@ export class QueryTask {
   getByMonth = async (
     req: { params: { month: string; year: string } },
     res: {
-      json: (arg0: object[] | object) => Response;
+      json: (arg0: Task[] | object) => Promise<TaskBody>;
     }
   ) => {
     const tasksByMonth: QueryByMonth = new QueryByMonth({
@@ -48,7 +50,7 @@ export class QueryTask {
   getByYear = async (
     req: { params: { year: string } },
     res: {
-      json: (arg0: object[] | object) => Response;
+      json: (arg0: Task[] | object) => Promise<TaskBody>;
     }
   ) => {
     const tasksByYear: QueryByYear = new QueryByYear({
@@ -61,19 +63,17 @@ export class QueryTask {
   getDoneOrNotTasks = async (
     req: { params: { condition: string } },
     res: {
-      json: (arg0: object) => JSON;
+      json: (arg0: Task | object) => Promise<TaskBody>;
     }
   ) => {
-    const tasksCondition: TasksCondition = new TasksCondition(
-      Number(req.params.condition)
-    );
+    const tasksCondition = new TasksCondition(Number(req.params.condition));
     return res.json(await tasksCondition.doneOrNot());
   };
 
   getOverdueTasks = async (
     req: Request,
     res: {
-      json: (arg0: object[] | object) => JSON;
+      json: (arg0: Task[] | object) => Promise<TaskBody>;
     }
   ) => {
     const overdueTasks: OverdueTasks = new OverdueTasks();

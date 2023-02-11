@@ -1,7 +1,7 @@
 import { Task } from "../../entities/Task";
-import { TaskCondition } from "../../use-cases/functions/manage-cases/Patch-chance-condition";
-import { CreateTask } from "../../use-cases/functions/manage-cases/Post-create";
-import { FullUpdate } from "../../use-cases/functions/manage-cases/Put-full-update";
+import { TaskCondition } from "../../use-cases/manage-cases/Patch-chance-condition";
+import { CreateTask } from "../../use-cases/manage-cases/Post-create";
+import { FullUpdate } from "../../use-cases/manage-cases/Put-full-update";
 import { TaskBody } from "../dtos/create-task-body";
 
 export class ManageTasks {
@@ -29,7 +29,7 @@ export class ManageTasks {
 
   async updateCondition(
     req: { params: { id: string } },
-    res: { json: (arg0: TaskBody) => Promise<TaskBody> }
+    res: { json: (arg0: TaskBody | object) => Promise<TaskBody> }
   ) {
     const id: string = req.params.id;
     const taskUpdate = await TaskCondition.execute(id);
@@ -42,7 +42,7 @@ export class ManageTasks {
       body: Task;
       params: { id: string };
     },
-    res: { json: (arg0: TaskBody) => Promise<TaskBody> }
+    res: { json: (arg0: TaskBody | object) => Promise<TaskBody> }
   ) {
     const id: string = req.params.id;
     const body: Task = req.body;

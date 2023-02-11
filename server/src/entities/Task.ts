@@ -13,6 +13,7 @@ export interface TaskProps {
   updatedAt?: Date | null;
 }
 export class Task {
+  [x: string]: number;
   private _id: string;
   private props: TaskProps;
 

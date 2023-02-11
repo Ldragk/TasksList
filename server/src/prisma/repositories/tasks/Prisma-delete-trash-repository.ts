@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client";
+import { Prisma, DeletedTask } from "@prisma/client";
 import { PrismaClient } from "@prisma/client";
 import { Task } from "../../../entities/Task";
 import { TaskBody } from "../../../http/dtos/create-task-body";
@@ -6,15 +6,15 @@ import { DeleteRepository } from "../../../repositories/Delete-repository";
 
 const prisma = new PrismaClient();
 
-export class PrismaDeleteRepository implements DeleteRepository {
+export class PrismaDeleteTrashRepository implements DeleteRepository {
   async delete(id: string): Promise<TaskBody> {
-    return await prisma.task.delete({
+    return await prisma.deletedTask.delete({
       where: {
         id: id,
       },
     });
   }
   async deleteAll(): Promise<Prisma.BatchPayload> {
-    return await prisma.task.deleteMany();
+    return await prisma.deletedTask.deleteMany();
   }
 }

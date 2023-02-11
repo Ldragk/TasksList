@@ -177,8 +177,6 @@ REQUISITOS FUNCIONAIS:
                 <td colspan="4">Aplicar testes unitários</th> 
                 <td></th> 
                 <td colspan="5">Aprimorar engenharia do software.</th>               
-           </tr>           
-           <tr>                          
-           </tr>
+           </tr>                
        </tbody>
 </table>

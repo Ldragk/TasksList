@@ -1,5 +1,5 @@
-import { PrismaManageRepository } from "../../../prisma/repositories/tasks/Prisma-manage-repository";
-import { PrismaTaskQueryRepository } from "../../../prisma/repositories/tasks/Prisma-query-repository";
+import { PrismaManageRepository } from "../../prisma/repositories/tasks/Prisma-manage-repository";
+import { PrismaTaskQueryRepository } from "../../prisma/repositories/tasks/Prisma-query-repository";
 
 export class TaskCondition {
   static async execute(taskId: string) {
@@ -8,6 +8,9 @@ export class TaskCondition {
     task.done === false ? (task.done = true) : (task.done = false);
     task.updated();
 
+    if (!!task) {
+      return { message: "Task not found" };
+    }
     const prismaManageRepository = new PrismaManageRepository();
     return await prismaManageRepository.saveCondition(task);
   }

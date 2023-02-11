@@ -1,3 +1,4 @@
+import { Task } from "../../entities/Task";
 import { PrismaTaskQueryRepository } from "../../prisma/repositories/tasks/Prisma-query-repository";
 
 type ParameterType = number;
@@ -18,12 +19,11 @@ export class TasksCondition {
     this.conditionParameter = conditionParameter;
   }
 
-  public doneOrNot = async (): Promise<object | IPromiseType> => {
+  public doneOrNot = async (): Promise<object | Task> => {
     const prismaTaskRecipientRepository = new PrismaTaskQueryRepository();
     const condition = this.conditionParameter === 1 ? true : false;
 
-    return (await prismaTaskRecipientRepository.findByStatus(condition))
-      .length === 0
+    return !!(await prismaTaskRecipientRepository.findByStatus(condition))
       ? { message: "No tasks found" }
       : await prismaTaskRecipientRepository.findByStatus(condition);
   };

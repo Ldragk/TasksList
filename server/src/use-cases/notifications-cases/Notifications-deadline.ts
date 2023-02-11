@@ -1,6 +1,6 @@
 import { PrismaNotificationsRepository } from "../../prisma/repositories/notification/Prisma-notifications-repository";
-import { convertExcessDaysAtTheTurnOfTheMonth } from "../functions/convertExcessDaysAtTheTurnOfTheMonth";
-import { numberOfDaysInTheMonth } from "../functions/numberOfDaysInTheMonth";
+import { convertExcessDaysAtTheTurnOfTheMonth } from "./functions/convertExcessDaysAtTheTurnOfTheMonth";
+import { numberOfDaysInTheMonth } from "./functions/numberOfDaysInTheMonth";
 import { Notification } from "../../entities/Notification";
 
 export interface IParamsNotifications {
@@ -53,7 +53,7 @@ export class NotificationOfTasksNearTheDeadline {
   }
 
   public async sendNotification(): Promise<object | Notification[]> {
-    return (await this.notificationsWithinTheEstablishedDeadline()).length === 0
+    return !!(await this.notificationsWithinTheEstablishedDeadline())
       ? { message: "There are no tasks within the established time frame" }
       : await this.notificationsWithinTheEstablishedDeadline();
   }

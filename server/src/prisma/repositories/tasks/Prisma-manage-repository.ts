@@ -13,7 +13,6 @@ export class PrismaManageRepository implements ManageRepository {
       data: newTask,
     });
   }
-
   async saveCondition(task: Task): Promise<TaskBody> {
     const taskConditionUpdate = PrismaTaskMapper.toPrisma(task);
     return await prisma.task.update({
@@ -25,7 +24,6 @@ export class PrismaManageRepository implements ManageRepository {
       },
     });
   }
-
   async save(task: Task): Promise<TaskBody> {
     const taskUpdate = PrismaTaskMapper.toPrisma(task);
     return await prisma.task.update({
