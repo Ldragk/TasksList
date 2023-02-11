@@ -1,5 +1,4 @@
 import { Prisma } from "@prisma/client";
-import { PrismaDeleteTrashRepository } from "../../prisma/repositories/tasks/Prisma-delete-trash-repository";
 import { DeleteAllTrash } from "../../use-cases/delete-cases/Delete-all-trash";
 import { DeleteTrash } from "../../use-cases/delete-cases/Delete-trash";
 import { TaskBody } from "../dtos/create-task-body";

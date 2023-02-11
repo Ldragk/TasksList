@@ -12,7 +12,7 @@ Estou construindo e planejando esse projeto do zero e sozinho. Tem o objetivo de
 
 O projeto é uma API Rest para criar e manipular tarefas por meio de rotas utilizando os verbos http e banco de dados.
 
-🔹 Pretendo fazer muitas alterações e acrescimentos de funções e requisitos, durante a construção do projeto.
+🔹 Pretendo fazer muitas alterações e acréscimos de funções e requisitos, durante a construção do projeto.
 
 <br><br>
 

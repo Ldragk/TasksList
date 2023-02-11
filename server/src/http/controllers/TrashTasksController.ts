@@ -1,5 +1,4 @@
 import { PrismaClient } from "@prisma/client";
-import { ITask } from "./ManageTasksController";
 
 const prisma = new PrismaClient();
 
@@ -10,12 +9,12 @@ export class TrashTasks {
     res: { json: (arg0: ITask) => void }
   ) => {
     const idDeleted = req.params.id;
-    const tasks = await prisma.tasks.findUnique({
+    const tasks = await prisma.task.findUnique({
       where: {
         id: idDeleted,
       },
     });
-    const saveDeletedTasks: ITask = await prisma.deletedTasks.create({
+    const saveDeletedTasks: ITask = await prisma.deletedTask.create({
       data: {
         id: String(tasks?.id),
         title: String(tasks?.title),
@@ -45,7 +44,7 @@ export class TrashTasks {
       ) => Response;
     }
   ) => {
-    const tasks = await prisma.deletedTasks.findMany({
+    const tasks = await prisma.deletedTask.findMany({
       select: {
         id: true,
         title: true,
