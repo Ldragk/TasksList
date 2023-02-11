@@ -1,32 +1,18 @@
 import { PrismaClient } from "@prisma/client";
+import { Trash } from "../../entities/Trash";
+import { CreateTrash } from "../../use-cases/trash-cases/Create-trash";
+import { TrashBody } from "../dtos/create-trash-body";
 
 const prisma = new PrismaClient();
 
 export class TrashTasks {
-
   createTrashTask = async (
     req: { params: { id: string } },
-    res: { json: (arg0: ITask) => void }
+    res: { json: (arg0: TrashBody | object) => Promise<Trash> }
   ) => {
     const idDeleted = req.params.id;
-    const tasks = await prisma.task.findUnique({
-      where: {
-        id: idDeleted,
-      },
-    });
-    const saveDeletedTasks: ITask = await prisma.deletedTask.create({
-      data: {
-        id: String(tasks?.id),
-        title: String(tasks?.title),
-        description: String(tasks?.description),
-        limitDay: Number(tasks?.limitDay),
-        limitMonth: Number(String(tasks?.limitMonth)),
-        limitYear: Number(String(tasks?.limitYear)),
-        done: Boolean(tasks?.done),
-        date: String(tasks?.date),
-      },
-    });
-    return res.json(saveDeletedTasks);
+
+    return res.json(await CreateTrash.execute(idDeleted));
   };
 
   consultAllTrashTasks = async (

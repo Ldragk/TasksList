@@ -1,7 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { Replace } from "../helpers/Replace";
 
-export interface TaskProps {
+interface TaskProps {
   title: string;
   description: string;
   limitDay: number;
@@ -12,8 +12,7 @@ export interface TaskProps {
   createdAt?: Date;
   updatedAt?: Date | null;
 }
-export class Task {
-  [x: string]: number;
+export class Task { 
   private _id: string;
   private props: TaskProps;
 

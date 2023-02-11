@@ -52,9 +52,7 @@ export class NotificationOfTasksNearTheDeadline {
     );
   }
 
-  public async sendNotification(): Promise<object | Notification[]> {
-    return !!(await this.notificationsWithinTheEstablishedDeadline())
-      ? { message: "There are no tasks within the established time frame" }
-      : await this.notificationsWithinTheEstablishedDeadline();
+  public async sendNotification(): Promise<Notification[]> {
+    return await this.notificationsWithinTheEstablishedDeadline();
   }
 }

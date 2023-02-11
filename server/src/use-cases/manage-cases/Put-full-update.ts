@@ -1,9 +1,10 @@
 import { Task } from "../../entities/Task";
+import { TaskBody } from "../../http/dtos/create-task-body";
 import { PrismaManageRepository } from "../../prisma/repositories/tasks/Prisma-manage-repository";
 import { PrismaTaskQueryRepository } from "../../prisma/repositories/tasks/Prisma-query-repository";
 
 export class FullUpdate {
-  static async execute(body: Task, taskId: string) {
+  static async execute(body: TaskBody, taskId: string) {
     const prismaQueryRepository = new PrismaTaskQueryRepository();
     let task: Task = await prismaQueryRepository.findeById(taskId);
 
@@ -15,9 +16,6 @@ export class FullUpdate {
     task.done = body.done;
     task.updated();
 
-    if (!!task) {
-      return { message: "Task not found" };
-    }
     const prismaManageRepository = new PrismaManageRepository();
     return await prismaManageRepository.save(task);
   }

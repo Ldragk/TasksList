@@ -8,9 +8,6 @@ export class TaskCondition {
     task.done === false ? (task.done = true) : (task.done = false);
     task.updated();
 
-    if (!!task) {
-      return { message: "Task not found" };
-    }
     const prismaManageRepository = new PrismaManageRepository();
     return await prismaManageRepository.saveCondition(task);
   }
