@@ -2,6 +2,7 @@ import { Prisma } from "@prisma/client";
 import { Task } from "../../entities/Task";
 import { DeleteAllTasks } from "../../use-cases/delete-cases/Delete-all-tasks";
 import { DeleteTask } from "../../use-cases/delete-cases/Delete-task";
+import { CreateAllTrash } from "../../use-cases/trash-cases/Create-all-trash";
 import { CreateTrash } from "../../use-cases/trash-cases/Create-trash";
 import { TaskBody } from "../dtos/create-task-body";
 
@@ -24,7 +25,7 @@ export class DeleteTasks {
     }
   ) {
     const saveAndDelete = await (DeleteAllTasks.execute(),
-    await CreateTrash.execute(""));
+    CreateAllTrash.execute());
 
     return res.json(saveAndDelete);
   }
