@@ -14,7 +14,7 @@ export class QueryByMonth {
     };
   }
 
-  public async tasksByMonth(): Promise<Task[]> {
+  public async execute(): Promise<Task[]> {
     const prismaTaskRecipientRepository = new PrismaTaskQueryRepository();
 
     return await prismaTaskRecipientRepository.findByMonth(

@@ -11,16 +11,21 @@ export class DeleteTasks {
     res: { json: (arg0: TaskBody) => Promise<Task> }
   ) {
     const id: string = req.params.id;
+    const saveAndDelete = await (DeleteTask.execute(id),
+    CreateTrash.execute(id));
 
-    const teste = await (DeleteTask.execute(id), CreateTrash.execute(id));
-
-    return res.json(teste);
+    return res.json(saveAndDelete);
   }
 
   async deletedAllTasks(
     req: Request,
-    res: { json: (arg0: Prisma.BatchPayload) => Promise<Task> }
+    res: {
+      json: (arg0: Prisma.BatchPayload | TaskBody) => Promise<Task[]>;
+    }
   ) {
-    return res.json(await DeleteAllTasks.execute());
+    const saveAndDelete = await (DeleteAllTasks.execute(),
+    await CreateTrash.execute(""));
+
+    return res.json(saveAndDelete);
   }
 }

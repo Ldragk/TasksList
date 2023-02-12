@@ -14,7 +14,7 @@ export class QueryByYear {
     };
   }
 
-  public async tasksByYear(): Promise<Task[]> {
+  public async execute(): Promise<Task[]> {
     const prismaTaskRecipientRepository = new PrismaTaskQueryRepository();
 
     return await prismaTaskRecipientRepository.findByYear(this.date.year);

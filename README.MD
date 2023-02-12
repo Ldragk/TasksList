@@ -162,7 +162,7 @@ REQUISITOS FUNCIONAIS:
        </thead>
        <tbody>          
            <tr>                 
-                <td colspan="4">Organizar estrutura do projeto.</th>
+                <td colspan="4">✔️ Organizar estrutura do projeto.</th>
                 <td></th>             
                 <td colspan="5">Criar sistema de login e usuários.</th>  
            </tr>

@@ -16,7 +16,7 @@ export class QueryByFullDate {
     };
   }
 
-  public async tasksByFullDate(): Promise<Task[]> {
+  public async execute(): Promise<Task[]> {
     const prismaTaskRecipientRepository = new PrismaTaskQueryRepository();
 
     return await prismaTaskRecipientRepository.findByFullDate(

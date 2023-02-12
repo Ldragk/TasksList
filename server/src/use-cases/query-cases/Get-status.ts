@@ -19,10 +19,10 @@ export class TasksCondition {
     this.conditionParameter = conditionParameter;
   }
 
-  public doneOrNot = async (): Promise<Task[]> => {
+  public async execute(): Promise<Task[]> {
     const prismaTaskRecipientRepository = new PrismaTaskQueryRepository();
     const condition = this.conditionParameter === 1 ? true : false;
 
     return await prismaTaskRecipientRepository.findByStatus(condition);
-  };
+  }
 }

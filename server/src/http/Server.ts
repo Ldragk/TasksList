@@ -40,8 +40,8 @@ async function main() {
   app.get("/tasks/trash/all", TrashTasksController.consultAllTrashTasks);
 
   const DeleteTrashController: any = new TrashDelete();
-  app.delete("/tasks/delete/trash/:id", DeleteTrashController.deletedTrashTask);
-  app.delete("/tasks/delete/trash/all",DeleteTrashController.deletedAllTrashTasks);
+  app.delete("/trash/:id/delete", DeleteTrashController.deletedTrashTask);
+  app.delete("/trash/delete/all",DeleteTrashController.deletedAllTrashTasks);
 
   const Server: number = 3333;
   app.listen(Server, () => console.log(`Server is running on port ${Server}`));

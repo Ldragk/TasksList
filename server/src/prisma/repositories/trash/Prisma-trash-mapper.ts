@@ -12,23 +12,24 @@ export class PrismaTrashMapper {
       limitYear: trash.limitYear,
       date: trash.date,
       done: trash.done,
-      deletedAt: trash.createdAt,      
+      deletedAt: trash.createdAt,
     };
   }
 
   static toDomain(raw: RawTrash): Trash {
-    return new Trash({      
-      title: raw.title,
-      description: raw.description,
-      limitDay: raw.limitDay,
-      limitMonth: raw.limitMonth,
-      limitYear: raw.limitYear,
-      date: raw.date,
-      done: raw.done,
-      createdAt: raw.createdAt,
-      deletedAt: raw.deletedAt,
-    },
-    raw.id,
+    return new Trash(
+      {
+        title: raw.title,
+        description: raw.description,
+        limitDay: raw.limitDay,
+        limitMonth: raw.limitMonth,
+        limitYear: raw.limitYear,
+        date: raw.date,
+        done: raw.done,
+        createdAt: raw.createdAt,
+        deletedAt: raw.deletedAt,
+      },
+      raw.id
     );
   }
 }
