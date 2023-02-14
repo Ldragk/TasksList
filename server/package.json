@@ -4,7 +4,7 @@
   "description": "",
   "main": "Server.js",
   "scripts": {
-    "start": "tsx src/http/Server.ts"    
+    "start": "tsx src/http/Server.ts"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@prisma/client": "^4.9.0",
+    "class-validator": "^0.14.0",
     "cors": "^2.8.5",
     "express": "^4.18.2"
   }
