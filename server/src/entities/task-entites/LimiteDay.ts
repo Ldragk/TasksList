@@ -1,6 +1,9 @@
 import { numberOfDaysInTheMonth } from "../../use-cases/notifications-cases/functions/numberOfDaysInTheMonth";
 
 export class LimitDay {
+  static create(arg0: number) {
+    throw new Error("Method not implemented.");
+  }
   private readonly limitDay: number;
 
   public get value(): number {
@@ -8,7 +11,11 @@ export class LimitDay {
   }
 
   private validadeLimitDay(limitDay: number): boolean {
-    return limitDay >= 1 && limitDay <= numberOfDaysInTheMonth();
+    return (
+      limitDay >= 1 &&
+      limitDay <= numberOfDaysInTheMonth() &&
+      String(limitDay).length <= 2
+    );
   }
 
   constructor(limitDay: number) {

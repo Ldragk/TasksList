@@ -1,4 +1,7 @@
 export class Title {
+  static create(arg0: string) {
+    throw new Error("Method not implemented.");
+  }
 
   private readonly title: string;
 

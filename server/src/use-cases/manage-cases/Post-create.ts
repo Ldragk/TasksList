@@ -4,24 +4,42 @@ import { LimitDay } from "../../entities/task-entites/LimiteDay";
 import { LimitMonth } from "../../entities/task-entites/LimiteMonth";
 import { LimitYear } from "../../entities/task-entites/LimitYear";
 import { Title } from "../../entities/task-entites/Title";
-import { TaskBody } from "../../http/dtos/create-task-body";
 import { PrismaManageRepository } from "../../prisma/repositories/tasks/Prisma-manage-repository";
 
+interface CreateTaskRequest {
+  title: string;
+  description: string;
+  limitDay: number;
+  limitMonth: number;
+  limitYear: number;
+  done?: boolean;
+}
+
+interface CreateTaskResponse {
+  task: Task;
+}
+
 export class CreateTask {
-  static async execute(props: TaskBody, id: string): Promise<TaskBody> {
+  static async execute(
+    props: CreateTaskRequest
+    // id: string
+  ): Promise<Task> {
+    const { title, description, limitDay, limitMonth, limitYear, done } = props;
     const task = new Task(
       {
-        title: new Title(props.title),
-        description: new Description(props.description),
-        limitDay: new LimitDay(props.limitDay),
-        limitMonth: new LimitMonth(props.limitMonth),
-        limitYear: new LimitYear(props.limitYear),
-        done: props.done,
-      },
-      id
+        title: new Title(title),
+        description: new Description(description),
+        limitDay: new LimitDay(limitDay),
+        limitMonth: new LimitMonth(limitMonth),
+        limitYear: new LimitYear(limitYear),
+        done,
+      }
+      // id
     );
     const prismaManageRepository = new PrismaManageRepository();
 
-    return await prismaManageRepository.create(task);
+    await prismaManageRepository.create(task);
+
+    return task;
   }
 }

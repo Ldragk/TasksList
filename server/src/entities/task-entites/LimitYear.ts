@@ -1,4 +1,7 @@
 export class LimitYear {
+  static create(arg0: number) {
+    throw new Error("Method not implemented.");
+  }
   private readonly limitYear: number;
 
   public get value(): number {
@@ -6,7 +9,9 @@ export class LimitYear {
   }
 
   private validadeLimitYearLength(limitYear: number): boolean {
-    return limitYear >= new Date().getFullYear();
+    return (
+      limitYear >= new Date().getFullYear() && String(limitYear).length <= 4
+    );
   }
 
   constructor(limitYear: number) {

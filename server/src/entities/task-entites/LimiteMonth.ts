@@ -1,4 +1,7 @@
 export class LimitMonth {
+  static create(arg0: number) {
+    throw new Error("Method not implemented.");
+  }
   private readonly limitMonth: number;
 
   public get value(): number {
@@ -6,7 +9,9 @@ export class LimitMonth {
   }
 
   private validadeLimitMonth(limitMonth: number): boolean {
-    return limitMonth >= 1 && limitMonth <= 12;
+    return (
+      limitMonth >= 1 && limitMonth <= 12 && String(limitMonth).length <= 2
+    );
   }
 
   constructor(limitMonth: number) {

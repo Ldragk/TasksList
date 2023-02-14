@@ -3,18 +3,19 @@ import { TaskCondition } from "../../use-cases/manage-cases/Patch-chance-conditi
 import { CreateTask } from "../../use-cases/manage-cases/Post-create";
 import { FullUpdate } from "../../use-cases/manage-cases/Put-full-update";
 import { TaskBody } from "../dtos/create-task-body";
+import { TaskViewModel } from "../view-models/Task-view-model";
 
 export class ManageTasks {
   async createTask(
     req: {
       body: TaskBody;
-      id: string;
+      // id: string;
     },
-    res: { json: (arg0: TaskBody) => TaskBody }
-  ): Promise<TaskBody> {
+    res: { json: (arg0: TaskBody | object) => Promise<TaskBody> }
+  ) {
     const { title, description, limitDay, limitMonth, limitYear, done } =
       req.body;
-    const taskToBeCreate = await CreateTask.execute(
+    const newTask = await CreateTask.execute(
       {
         title,
         description,
@@ -22,11 +23,11 @@ export class ManageTasks {
         limitMonth,
         limitYear,
         done,
-      },
-      req.id
+      }
+      // req.id
     );
 
-    return res.json(taskToBeCreate);
+    return res.json(TaskViewModel.toHTTP(newTask));
   }
 
   async updateCondition(

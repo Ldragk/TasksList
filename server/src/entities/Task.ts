@@ -23,7 +23,7 @@ export class Task {
 
   constructor(
     props: Replace<TaskProps, { done?: boolean; createdAt?: Date }>,
-    id?: string
+    id?: string 
   ) {
     this.props = {
       ...props,
@@ -80,7 +80,7 @@ export class Task {
     this.props.date = date;
   }
   public get date(): string {
-    return (this.date = `${this.limitDay}/${this.limitMonth}/${this.limitYear}`);
+    return (this.date = `${this.limitDay.value}/${this.limitMonth.value}/${this.limitYear.value}`);
   }
 
   public set done(done: boolean | undefined) {
