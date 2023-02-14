@@ -7,19 +7,21 @@ import { TaskBody } from "../dtos/create-task-body";
 export class ManageTasks {
   async createTask(
     req: {
-      body: Task;
+      body: TaskBody;
       id: string;
     },
-    res: { json: (arg0: TaskBody) => Task }
-  ): Promise<Task> {
+    res: { json: (arg0: TaskBody) => TaskBody }
+  ): Promise<TaskBody> {
+    const { title, description, limitDay, limitMonth, limitYear, done } =
+      req.body;
     const taskToBeCreate = await CreateTask.execute(
       {
-        title: req.body.title,
-        description: req.body.description,
-        limitDay: req.body.limitDay,
-        limitMonth: req.body.limitMonth,
-        limitYear: req.body.limitYear,
-        done: req.body.done,
+        title,
+        description,
+        limitDay,
+        limitMonth,
+        limitYear,
+        done,
       },
       req.id
     );
@@ -39,13 +41,13 @@ export class ManageTasks {
 
   async updateTasks(
     req: {
-      body: Task;
+      body: TaskBody;
       params: { id: string };
     },
-    res: { json: (arg0: TaskBody | object) => Promise<TaskBody> }
+    res: { json: (arg0: TaskBody | object) => Promise<Task> }
   ) {
     const id: string = req.params.id;
-    const body: Task = req.body;
+    const body: TaskBody = req.body;
     const taskUpdate = await FullUpdate.execute(body, id);
 
     return res.json(taskUpdate);
