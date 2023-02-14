@@ -12,11 +12,11 @@ export class CreateTrash {
     const task: Task = await prismaQueryRepository.findeById(taskId);
     const taskBody: Trash = new Trash(
       {
-        title: task.title,
-        description: task.description,
-        limitDay: task.limitDay,
-        limitMonth: task.limitMonth,
-        limitYear: task.limitYear,
+        title: String(task.title),
+        description: String(task.description),
+        limitDay: Number(task.limitDay),
+        limitMonth: Number(task.limitMonth),
+        limitYear: Number(task.limitYear),
         done: task.done,
         createdAt: task.createdAt,
       },

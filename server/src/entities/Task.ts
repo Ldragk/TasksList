@@ -1,18 +1,23 @@
 import { randomUUID } from "node:crypto";
 import { Replace } from "../helpers/Replace";
+import { Description } from "./task-entites/Description";
+import { LimitDay } from "./task-entites/LimiteDay";
+import { LimitMonth } from "./task-entites/LimiteMonth";
+import { LimitYear } from "./task-entites/LimitYear";
+import { Title } from "./task-entites/Title";
 
 interface TaskProps {
-  title: string;
-  description: string;
-  limitDay: number;
-  limitMonth: number;
-  limitYear: number;
+  title: Title;
+  description: Description;
+  limitDay: LimitDay;
+  limitMonth: LimitMonth;
+  limitYear: LimitYear;
   date?: string | null;
   done?: boolean;
   createdAt?: Date;
   updatedAt?: Date | null;
 }
-export class Task { 
+export class Task {
   private _id: string;
   private props: TaskProps;
 
@@ -35,38 +40,39 @@ export class Task {
     return this._id;
   }
 
-  public set title(title: string) {
+  public set title(title: Title) {
     this.props.title = title;
   }
-  get title(): string {
+
+  get title(): Title {
     return this.props.title;
   }
 
-  public set description(description: string) {
+  public set description(description: Description) {
     this.props.description = description;
   }
-  public get description(): string {
+  public get description(): Description {
     return this.props.description;
   }
 
-  set limitDay(limitDay: number) {
+  set limitDay(limitDay: LimitDay) {
     this.props.limitDay = limitDay;
   }
-  public get limitDay(): number {
+  public get limitDay(): LimitDay {
     return this.props.limitDay;
   }
 
-  public set limitMonth(limitMonth: number) {
+  public set limitMonth(limitMonth: LimitMonth) {
     this.props.limitMonth = limitMonth;
   }
-  public get limitMonth(): number {
+  public get limitMonth(): LimitMonth {
     return this.props.limitMonth;
   }
 
-  public set limitYear(limitYear: number) {
+  public set limitYear(limitYear: LimitYear) {
     this.props.limitYear = limitYear;
   }
-  public get limitYear() {
+  public get limitYear(): LimitYear {
     return this.props.limitYear;
   }
 
