@@ -1,5 +1,5 @@
 import { Notification } from "../../../entities/Notification";
-import { Tasks as RawNotification } from "@prisma/client";
+import { Task as RawNotification } from "@prisma/client";
 
 export class PrismaNotificationMapper {
   static toPrisma(notification: Notification) {
@@ -8,8 +8,7 @@ export class PrismaNotificationMapper {
       title: notification.title,
       limitDay: notification.limitDay,
       limitMonth: notification.limitMonth,
-      limitYear: notification.limitYear,
-      date: notification.date,
+      limitYear: notification.limitYear,      
     };
   }
 
@@ -19,8 +18,7 @@ export class PrismaNotificationMapper {
         title: raw.title,
         limitDay: raw.limitDay,
         limitMonth: raw.limitMonth,
-        limitYear: raw.limitYear,
-        date: raw.date,
+        limitYear: raw.limitYear,       
       },
       raw.id
     );

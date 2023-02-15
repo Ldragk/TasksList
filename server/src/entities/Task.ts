@@ -11,8 +11,7 @@ interface TaskProps {
   description: Description;
   limitDay: LimitDay;
   limitMonth: LimitMonth;
-  limitYear: LimitYear;
-  date?: string | null;
+  limitYear: LimitYear; 
   done?: boolean;
   createdAt?: Date;
   updatedAt?: Date | null;
@@ -74,14 +73,7 @@ export class Task {
   }
   public get limitYear(): LimitYear {
     return this.props.limitYear;
-  }
-
-  public set date(date: string) {
-    this.props.date = date;
-  }
-  public get date(): string {
-    return (this.date = `${this.limitDay.value}/${this.limitMonth.value}/${this.limitYear.value}`);
-  }
+  } 
 
   public set done(done: boolean | undefined) {
     this.props.done = done;

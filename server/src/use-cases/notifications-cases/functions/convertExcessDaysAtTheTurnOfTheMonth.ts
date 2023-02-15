@@ -1,7 +1,7 @@
 export function convertExcessDaysAtTheTurnOfTheMonth(
   numberOfDaysInTheMonth: number,
   daysInAdvanceForNotification: number
-) {
+): string {
   const getDate: number = new Date().getDate();
   let getMonth: number = new Date().getMonth();
   const getYear: number = new Date().getFullYear();
@@ -26,6 +26,6 @@ export function convertExcessDaysAtTheTurnOfTheMonth(
       getMonth += 1;
     }
   }
-  const date = `${getMonth + 1}/${getDay}/${getYear}`;
+  const date = `${getMonth + 1}/${getDay}/${getYear}`;  
   return date;
 }

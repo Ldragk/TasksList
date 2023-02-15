@@ -10,7 +10,10 @@ export class LimitMonth {
 
   private validadeLimitMonth(limitMonth: number): boolean {
     return (
-      limitMonth >= 1 && limitMonth <= 12 && String(limitMonth).length <= 2
+      limitMonth >= 1 &&
+      limitMonth <= 12 &&
+      String(limitMonth).length <= 2 &&
+      /^[\d,.?!]+$/.test(String(limitMonth))
     );
   }
 
@@ -18,9 +21,15 @@ export class LimitMonth {
     const isLimitMonthLengthValid = this.validadeLimitMonth(limitMonth);
 
     if (!isLimitMonthLengthValid) {
-      throw new Error(`Limit month must be between 1 and 12 characters`);
+      if (limitMonth < 1 && limitMonth > 12) {
+        throw new Error(`Limit month must be between 1 and 12`);
+      }
+      if (String(limitMonth).length < 1) {
+        throw new Error(`The limit month must have at least 1 numbers`);
+      }
+      if (!/^[\d,.?!]+$/.test(String(limitMonth)))
+        throw new Error(`The month limit must have only numbers`);
     }
-
     this.limitMonth = limitMonth;
   }
 }

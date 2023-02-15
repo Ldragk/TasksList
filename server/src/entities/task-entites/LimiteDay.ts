@@ -14,7 +14,8 @@ export class LimitDay {
     return (
       limitDay >= 1 &&
       limitDay <= numberOfDaysInTheMonth() &&
-      String(limitDay).length <= 2
+      String(limitDay).length <= 2 &&
+      /^[\d,.?!]+$/.test(String(limitDay))
     );
   }
 
@@ -22,9 +23,16 @@ export class LimitDay {
     const isLimitDayLengthValid = this.validadeLimitDay(limitDay);
 
     if (!isLimitDayLengthValid) {
-      throw new Error(
-        `Limit day must be between 1 and ${numberOfDaysInTheMonth()} characters`
-      );
+      if (limitDay < 1 && limitDay > numberOfDaysInTheMonth()) {
+        throw new Error(
+          `Limit day must be between 1 and ${numberOfDaysInTheMonth()}`
+        );
+      }
+      if (String(limitDay).length < 1) {
+        throw new Error(`The limit day must have at least 1 number`);
+      }
+      if (!/^[\d,.?!]+$/.test(String(limitDay)))
+        throw new Error(`The limit day must have only numbers`);
     }
 
     this.limitDay = limitDay;

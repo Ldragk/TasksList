@@ -18,7 +18,6 @@ export class TaskBody {
   @ValidateIf((o) => o.limitYear >= 2023)
   limitYear!: number;
 
-  date?: string | undefined | null;
   done?: boolean;
   createdAt?: Date;
   updatedAt?: Date;

@@ -5,18 +5,12 @@ export interface NotificationProps {
   limitDay: number;
   limitMonth: number;
   limitYear: number;
-  date: string;
 }
-;
-
 export class Notification {
   private _id: string;
   private props: NotificationProps;
 
-  constructor(
-    props: NotificationProps,
-    id?: string
-  ) {
+  constructor(props: NotificationProps, id?: string) {
     this._id = id ?? randomUUID();
     this.props = {
       ...props,
@@ -53,13 +47,6 @@ export class Notification {
   }
   public get limitYear() {
     return this.props.limitYear;
-  }
-
-  public set date(date: string) {
-    this.props.date = date;
-  }
-  public get date() {
-    return this.props.date;
   }
 
   public static create(props: NotificationProps, id?: string) {

@@ -4,7 +4,6 @@ interface TrashProps {
   limitDay: number;
   limitMonth: number;
   limitYear: number;
-  date?: string | null;
   done?: boolean;
   createdAt?: Date;
   deletedAt?: Date | null | undefined;
@@ -60,13 +59,6 @@ export class Trash {
   }
   public get limitYear() {
     return this.props.limitYear;
-  }
-
-  public set date(date: string) {
-    this.props.date = date;
-  }
-  public get date(): string {
-    return (this.date = `${this.limitDay}/${this.limitMonth}/${this.limitYear}`);
   }
 
   public set done(done: boolean | undefined) {

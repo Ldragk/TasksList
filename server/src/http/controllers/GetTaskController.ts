@@ -6,15 +6,17 @@ import { QueryByYear } from "../../use-cases/query-cases/Get-year";
 import { TasksCondition } from "../../use-cases/query-cases/Get-status";
 import { Task } from "../../entities/Task";
 import { TaskBody } from "../dtos/create-task-body";
+import { TaskViewModel } from "../view-models/Task-view-model";
 
 export class QueryTask {
   getAllTasks = async (
     req: Request,
     res: {
-      json: (arg0: Task[] | object) => Promise<TaskBody>;
+      json: (arg0: TaskViewModel) => Promise<Task>;
     }
   ) => {
-    return res.json(await QueryAllTasks.execute());
+    const tasks = await QueryAllTasks.execute();
+    return res.json(tasks.map(TaskViewModel.toHTTP));
   };
 
   getByFullDate = async (
@@ -29,7 +31,8 @@ export class QueryTask {
       year: Number(req.params.year),
     });
 
-    return res.json(await tasksByFullDate.execute());
+    const tasks = await tasksByFullDate.execute();
+    return res.json(tasks.map(TaskViewModel.toHTTP));
   };
 
   getByMonth = async (
@@ -42,8 +45,8 @@ export class QueryTask {
       month: Number(req.params.month),
       year: Number(req.params.year),
     });
-
-    return res.json(await tasksByMonth.execute());
+    const tasks = await tasksByMonth.execute();
+    return res.json(tasks.map(TaskViewModel.toHTTP));
   };
 
   getByYear = async (
@@ -55,8 +58,8 @@ export class QueryTask {
     const tasksByYear: QueryByYear = new QueryByYear({
       year: Number(req.params.year),
     });
-
-    return res.json(await tasksByYear.execute());
+    const tasks = await tasksByYear.execute();
+    return res.json(tasks.map(TaskViewModel.toHTTP));
   };
 
   getDoneOrNotTasks = async (
@@ -65,8 +68,8 @@ export class QueryTask {
       json: (arg0: Task | object) => Promise<TaskBody>;
     }
   ) => {
-    const tasksCondition = new TasksCondition(Number(req.params.condition));
-    return res.json(await tasksCondition.execute());
+    const tasks = await TasksCondition.execute(Number(req.params.condition));
+    return res.json(tasks.map(TaskViewModel.toHTTP));
   };
 
   getOverdueTasks = async (
@@ -76,6 +79,7 @@ export class QueryTask {
     }
   ) => {
     const overdueTasks: OverdueTasks = new OverdueTasks();
-    return res.json(await overdueTasks.execute());
+    const tasks = await overdueTasks.execute();
+    return res.json(tasks.map(TaskViewModel.toHTTP));
   };
 }

@@ -37,18 +37,19 @@ export class NotificationOfTasksNearTheDeadline {
           convertExcessDaysAtTheTurnOfTheMonth(
             numberOfDaysInTheMonth(),
             this.params.notificationsWithinThePeriod
-          ) === task.date
+          ) === `${task.limitMonth}/${task.limitDay}/${task.limitYear}`
       );
     }
+
     return tasks.filter(
       (task: Notification) =>
-        new Date(task.date) <=
+        new Date(`${task.limitMonth}/${task.limitDay}/${task.limitYear}`) <=
           new Date(
             convertExcessDaysAtTheTurnOfTheMonth(
               numberOfDaysInTheMonth(),
               this.params.notificationsWithinThePeriod
             )
-          ) && new Date(task.date) >= new Date(todayDate)
+          ) && new Date(`${task.limitMonth}/${task.limitDay}/${task.limitYear}`) >= new Date(todayDate)
     );
   }
 

@@ -10,7 +10,9 @@ export class LimitYear {
 
   private validadeLimitYearLength(limitYear: number): boolean {
     return (
-      limitYear >= new Date().getFullYear() && String(limitYear).length <= 4
+      limitYear >= new Date().getFullYear() &&
+      String(limitYear).length <= 4 &&
+      /^[\d,.?!]+$/.test(String(limitYear))
     );
   }
 
@@ -18,9 +20,16 @@ export class LimitYear {
     const isLimitYearLengthValid = this.validadeLimitYearLength(limitYear);
 
     if (!isLimitYearLengthValid) {
-      throw new Error(
-        `Limit year must be equal to or greater than ${new Date().getFullYear()}`
-      );
+      if (limitYear < new Date().getFullYear()) {
+        throw new Error(
+          `Limit year must be equal to or greater than ${new Date().getFullYear()}`
+        );
+      }
+      if (String(limitYear).length < 4) {
+        throw new Error(`The limit year must have at least 4 numbers`);
+      }
+      if (!/^[\d,.?!]+$/.test(String(limitYear)))
+        throw new Error(`The year limit must have only numbers`);
     }
 
     this.limitYear = limitYear;

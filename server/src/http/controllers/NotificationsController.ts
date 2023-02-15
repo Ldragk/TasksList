@@ -1,34 +1,21 @@
-import {
-    IParamsNotifications,
-    NotificationOfTasksNearTheDeadline,
-  } from "../../use-cases/notifications-cases/Notifications-deadline";
+import { Notification } from "../../entities/Notification";
+import { NotificationOfTasksNearTheDeadline } from "../../use-cases/notifications-cases/Notifications-deadline";
+import { NotificationViewModel } from "../view-models/Notification-view-model";
 
-type NotificationsWithinThePeriod = object
+export class Notifications {
+  notificationOfTasksNearTheDeadline = async (
+    req: { params: { daysOfDelay: string; type: string } },
+    res: { json: (arg0: NotificationViewModel) => Notification }
+  ) => {
+    const notifications = new NotificationOfTasksNearTheDeadline({
+      notificationsWithinThePeriod: Number(req.params.daysOfDelay),
+      type: Number(req.params.type),
+    });
 
-export class Notifications{
-    notificationsWithinThePeriod!: NotificationsWithinThePeriod;
-    notifications!: NotificationOfTasksNearTheDeadline;
-    paramsNotification!: IParamsNotifications;
+    const notificationsWithinThePeriod = await notifications.sendNotification();
 
-    notificationOfTasksNearTheDeadline = async (
-        req: { params: { daysOfDelay: string; type: string } },
-        res: {
-          json: (arg0: object) => JSON;
-        }
-      ) => {
-        this.notifications = new NotificationOfTasksNearTheDeadline({
-          notificationsWithinThePeriod: Number(req.params.daysOfDelay),
-          type: Number(req.params.type),
-        });    
-        
-        this.notificationsWithinThePeriod =
-          await this.notifications.sendNotification();
-        return res.json(this.notificationsWithinThePeriod);
-      };
-  static id: any;
-  static title: any;
-  static done: any;
-  static limitDay: any;
-  static limitMonth: any;
-  static limitYear: any;
+    return res.json(
+      notificationsWithinThePeriod.map(NotificationViewModel.toHTTP)
+    );
+  };
 }

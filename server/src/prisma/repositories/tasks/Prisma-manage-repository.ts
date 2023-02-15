@@ -12,7 +12,7 @@ const prismaService = new PrismaService();
 export class PrismaManageRepository implements ManageRepository {
   async create(task: Task): Promise<void> {
     const newTask = PrismaTaskMapper.toPrisma(task);
-    await prisma.task.create({
+    await prismaService.task.create({
       data: newTask,
     });
   }
