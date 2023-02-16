@@ -167,7 +167,7 @@ REQUISITOS FUNCIONAIS:
                 <td colspan="5">Criar sistema de login e usuários.</th>  
            </tr>
            <tr>         
-                 <td colspan="4">❕ Aplicar validações</th>     
+                 <td colspan="4">✔️ Aplicar validações</th>     
                  <td></th>  
                  <td colspan="5">Aprimorar estrutura do software.</th>                           
            </tr>
