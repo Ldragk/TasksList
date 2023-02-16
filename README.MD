@@ -37,11 +37,7 @@ O projeto é uma API Rest para criar e manipular tarefas por meio de rotas utili
                  <td colspan="1">SQLite</th>             
            </tr>           
             <tr>             
-                 <td colspan="1">Prisma Studio</th>            
-           </tr>           
-             <tr>             
-                 <td colspan="1">Vitest</th>               
-           </tr>           
+                 <td colspan="1">Prisma Studio</th>               
        </tbody>
 </table>
 
