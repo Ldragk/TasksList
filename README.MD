@@ -40,7 +40,7 @@ O projeto é uma API Rest para criar e manipular tarefas por meio de rotas utili
                  <td colspan="1">Prisma Studio</th>   
             </tr>   
             <tr>             
-                 <td colspan="1">Jest js</th>   
+                 <td colspan="1">Vitest</th>   
             </tr>   
             <tr>             
                  <td colspan="1">Supertest</th>   
