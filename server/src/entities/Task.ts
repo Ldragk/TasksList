@@ -1,17 +1,14 @@
 import { randomUUID } from "node:crypto";
 import { Replace } from "../helpers/Replace";
-import { Description } from "./task-entites/Description";
-import { LimitDay } from "./task-entites/LimiteDay";
-import { LimitMonth } from "./task-entites/LimiteMonth";
-import { LimitYear } from "./task-entites/LimitYear";
-import { Title } from "./task-entites/Title";
+import { numberOfDaysInTheMonth } from "../use-cases/notifications-cases/functions/numberOfDaysInTheMonth";
+
 
 interface TaskProps {
-  title: Title;
-  description: Description;
-  limitDay: LimitDay;
-  limitMonth: LimitMonth;
-  limitYear: LimitYear; 
+  title: string;
+  description: string;
+  limitDay: number;
+  limitMonth: number;
+  limitYear: number;
   done?: boolean;
   createdAt?: Date;
   updatedAt?: Date | null;
@@ -22,7 +19,7 @@ export class Task {
 
   constructor(
     props: Replace<TaskProps, { done?: boolean; createdAt?: Date }>,
-    id?: string 
+    id?: string
   ) {
     this.props = {
       ...props,
@@ -39,41 +36,63 @@ export class Task {
     return this._id;
   }
 
-  public set title(title: Title) {
-    this.props.title = title;
+  public set title(title: string) {
+    title.length >= 1 && title.length <= 30
+      ? (this.props.title = title)
+      : new Error("Title must be between 1 and 30 characters");
   }
 
-  get title(): Title {
+  get title(): string {
     return this.props.title;
   }
 
-  public set description(description: Description) {
-    this.props.description = description;
+  public set description(description: string) {
+    description.length >= 1 && description.length <= 500
+      ? (this.props.description = description)
+      : new Error("Description must be between 1 and 500 characters");
   }
-  public get description(): Description {
+  public get description(): string {
     return this.props.description;
   }
 
-  set limitDay(limitDay: LimitDay) {
-    this.props.limitDay = limitDay;
+  set limitDay(limitDay: number) {
+    limitDay >= 1 &&
+    limitDay <= numberOfDaysInTheMonth() &&
+    String(limitDay).length <= 2 &&
+    /^[\d,.?!]+$/.test(String(limitDay))
+      ? (this.props.limitDay = limitDay)
+      : new Error(
+          "The limit day must be a number between 1 and the last day of the limit month"
+        );
   }
-  public get limitDay(): LimitDay {
+  public get limitDay(): number {
     return this.props.limitDay;
   }
 
-  public set limitMonth(limitMonth: LimitMonth) {
-    this.props.limitMonth = limitMonth;
+  public set limitMonth(limitMonth: number) {
+    limitMonth >= 1 &&
+    limitMonth <= 12 &&
+    String(limitMonth).length <= 2 &&
+    /^[\d,.?!]+$/.test(String(limitMonth))
+      ? (this.props.limitMonth = limitMonth)
+      : new Error("Limit month must be a number between 1 and 12");
   }
-  public get limitMonth(): LimitMonth {
+  public get limitMonth(): number {
     return this.props.limitMonth;
   }
 
-  public set limitYear(limitYear: LimitYear) {
-    this.props.limitYear = limitYear;
+  public set limitYear(limitYear: number) {
+    limitYear >= new Date().getFullYear() &&
+    String(limitYear).length <= 4 &&
+    /^[\d,.?!]+$/.test(String(limitYear))
+      ? (this.props.limitYear = limitYear)
+      : new Error(
+          "Limit year must be a number greater than or equal to the current year"
+        );
   }
-  public get limitYear(): LimitYear {
+  public get limitYear(): number {
     return this.props.limitYear;
-  } 
+  }
 
   public set done(done: boolean | undefined) {
     this.props.done = done;
