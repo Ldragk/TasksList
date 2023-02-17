@@ -12,10 +12,12 @@ export class Notifications {
       type: Number(req.params.type),
     });
 
-    const notificationsWithinThePeriod = await notifications.sendNotification();
+    const { notification } = await notifications.execute();
 
-    return res.json(
-      notificationsWithinThePeriod.map(NotificationViewModel.toHTTP)
-    );
+    return {
+      get: res.json(
+        notification.map(NotificationViewModel.toHTTP)
+      ),
+    };
   };
 }

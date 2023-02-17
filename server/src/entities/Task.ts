@@ -1,11 +1,11 @@
 import { randomUUID } from "node:crypto";
 import { Replace } from "../helpers/Replace";
 import { numberOfDaysInTheMonth } from "../use-cases/notifications-cases/functions/numberOfDaysInTheMonth";
-
+import { Description } from "./task-entites/Description";
 
 interface TaskProps {
   title: string;
-  description: string;
+  description: Description;
   limitDay: number;
   limitMonth: number;
   limitYear: number;
@@ -46,12 +46,10 @@ export class Task {
     return this.props.title;
   }
 
-  public set description(description: string) {
-    description.length >= 1 && description.length <= 500
-      ? (this.props.description = description)
-      : new Error("Description must be between 1 and 500 characters");
+  public set description(description: Description) {
+    this.props.description = description;
   }
-  public get description(): string {
+  public get description(): Description {
     return this.props.description;
   }
 

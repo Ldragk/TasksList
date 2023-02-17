@@ -38,7 +38,7 @@ async function main() {
   app.delete("/tasks/delete/:id", DeleteTaskController.deleteTask);
 
   const TrashTasksController: any = new TrashTasks();  
-  app.get("/tasks/trash/all", TrashTasksController.consultAllTrashTasks);
+  app.get("/tasks/trash/all", TrashTasksController.queryAllTrashTasks);
 
   const DeleteTrashController: any = new TrashDelete();
   app.delete("/trash/:id/delete", DeleteTrashController.deletedTrashTask);

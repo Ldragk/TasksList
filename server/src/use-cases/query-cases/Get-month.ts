@@ -1,5 +1,5 @@
-import { Task } from "../../entities/Task";
 import { PrismaTaskQueryRepository } from "../../prisma/repositories/tasks/Prisma-query-repository";
+import { GetTasksResponse } from "./Get-all";
 
 interface IDateType {
   month: number;
@@ -14,12 +14,14 @@ export class QueryByMonth {
     };
   }
 
-  public async execute(): Promise<Task[]> {
+  public async execute(): Promise<GetTasksResponse> {
     const prismaTaskRecipientRepository = new PrismaTaskQueryRepository();
 
-    return await prismaTaskRecipientRepository.findByMonth(
-      this.date.month,
-      this.date.year
-    );
+    return {
+      tasks: await prismaTaskRecipientRepository.findByMonth(
+        this.date.month,
+        this.date.year
+      ),
+    };
   }
 }

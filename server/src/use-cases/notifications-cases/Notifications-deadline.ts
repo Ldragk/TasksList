@@ -8,6 +8,10 @@ export interface IParamsNotifications {
   type: number;
 }
 
+interface NotificationResponse {
+  notification: Notification[];
+}
+
 export class NotificationOfTasksNearTheDeadline {
   private params: IParamsNotifications;
 
@@ -49,11 +53,15 @@ export class NotificationOfTasksNearTheDeadline {
               numberOfDaysInTheMonth(),
               this.params.notificationsWithinThePeriod
             )
-          ) && new Date(`${task.limitMonth}/${task.limitDay}/${task.limitYear}`) >= new Date(todayDate)
+          ) &&
+        new Date(`${task.limitMonth}/${task.limitDay}/${task.limitYear}`) >=
+          new Date(todayDate)
     );
   }
 
-  public async sendNotification(): Promise<Notification[]> {
-    return await this.notificationsWithinTheEstablishedDeadline();
+  public async execute(): Promise<NotificationResponse> {
+    return {
+      notification: await this.notificationsWithinTheEstablishedDeadline(),
+    };
   }
 }

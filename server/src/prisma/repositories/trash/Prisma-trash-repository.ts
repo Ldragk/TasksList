@@ -1,23 +1,22 @@
 import { PrismaClient } from "@prisma/client";
 import { Trash } from "../../../entities/Trash";
-import { TrashBody } from "../../../http/dtos/create-trash-body";
 import { TrashRepository } from "../../../repositories/Trash-repository";
 import { PrismaTrashMapper } from "./Prisma-trash-mapper";
 
 const prisma = new PrismaClient();
 
 export class PrismaTrashRepository implements TrashRepository {
-  async create(task: Trash): Promise<TrashBody> {
+  async create(task: Trash): Promise<void> {
     const trashTask = PrismaTrashMapper.toPrisma(task);
 
-    const saveDeletedTasks: TrashBody = await prisma.deletedTask.create({
+    const tasks = await prisma.deletedTask.create({
       data: {
         ...trashTask,
         deletedAt: new Date(),
       },
     });
 
-    return saveDeletedTasks;
+    tasks;
   }
 
   async findAllTrash(): Promise<Trash[]> {

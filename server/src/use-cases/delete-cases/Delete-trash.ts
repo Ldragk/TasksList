@@ -1,10 +1,13 @@
-import { TaskBody } from "../../http/dtos/create-task-body";
 import { PrismaDeleteTrashRepository } from "../../prisma/repositories/trash/Prisma-delete-trash-repository";
 
+interface DeleteTrashResponse {
+  deleteTrash: void;
+}
+
 export class DeleteTrash {
-  static async execute(id: string): Promise<TaskBody> {
+  static async execute(id: string): Promise<DeleteTrashResponse> {
     const prismaDeleteRepository = new PrismaDeleteTrashRepository();
 
-    return await prismaDeleteRepository.delete(id);
+    return { deleteTrash: await prismaDeleteRepository.delete(id) };
   }
 }

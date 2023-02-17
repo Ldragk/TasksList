@@ -11,7 +11,6 @@ interface TrashProps {
 
 export class Trash {
   private _id: string;
-
   private props: TrashProps;
 
   constructor(props: TrashProps, id: string) {

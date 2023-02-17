@@ -99,14 +99,4 @@ export class PrismaTaskQueryRepository implements QueryRepository {
 
     return PrismaTaskMapper.toDomain(task);
   }
-
-  async findAllIds(): Promise<object[]> {
-    const tasks = prisma.task.findMany({
-      select: {
-        id: true,
-      },
-    });
-
-    return await tasks;
-  }
 }

@@ -1,16 +1,12 @@
 import { Trash } from "../../entities/Trash";
-import { CreateTrash } from "../../use-cases/trash-cases/Create-trash";
-import { AllTrashs } from "../../use-cases/trash-cases/Get-all-trash";
-import { TrashBody } from "../dtos/create-trash-body";
+import { AllTrash } from "../../use-cases/trash-cases/Get-all-trash";
+import { TrashViewModel } from "../view-models/Trash-view-model";
 
-export class TrashTasks {  
-
-  async consultAllTrashTasks(
-    req: Request,
-    res: {
-      json: (arg0: Trash[]) => Promise<TrashBody[]>;
-    }
-  ): Promise<TrashBody[]> {
-    return res.json(await AllTrashs.execute());
+export class TrashTasks {
+  async queryAllTrashTasks(res: {
+    json: (arg0: TrashViewModel) => Promise<Trash[]>;
+  }) {
+    const { trash } = await AllTrash.execute();
+    return { get: res.json(trash.map(TrashViewModel.toHTTP)) };
   }
 }

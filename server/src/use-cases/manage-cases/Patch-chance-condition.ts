@@ -1,14 +1,21 @@
+import { Task } from "../../entities/Task";
 import { PrismaManageRepository } from "../../prisma/repositories/tasks/Prisma-manage-repository";
 import { PrismaTaskQueryRepository } from "../../prisma/repositories/tasks/Prisma-query-repository";
 
-export class TaskCondition {
-  static async execute(taskId: string) {
+interface EditTaskResponse {
+  task: Task;
+}
+
+export class TaskStatus {
+  static async execute(taskId: string): Promise<EditTaskResponse> {
     const prismaQueryRepository = new PrismaTaskQueryRepository();
-    const task = await prismaQueryRepository.findeById(taskId);
+    const task: Task = await prismaQueryRepository.findeById(taskId);
+
     task.done === false ? (task.done = true) : (task.done = false);
     task.updated();
 
     const prismaManageRepository = new PrismaManageRepository();
-    return await prismaManageRepository.saveCondition(task);
+    await prismaManageRepository.saveCondition(task);
+    return { task: task };
   }
 }

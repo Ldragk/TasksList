@@ -1,9 +1,5 @@
 import { Task } from "../../entities/Task";
 import { Description } from "../../entities/task-entites/Description";
-import { LimitDay } from "../../entities/task-entites/LimiteDay";
-import { LimitMonth } from "../../entities/task-entites/LimiteMonth";
-import { LimitYear } from "../../entities/task-entites/LimitYear";
-import { Title } from "../../entities/task-entites/Title";
 import { PrismaManageRepository } from "../../prisma/repositories/tasks/Prisma-manage-repository";
 
 interface CreateTaskRequest {
@@ -20,26 +16,20 @@ interface CreateTaskResponse {
 }
 
 export class CreateTask {
-  static async execute(
-    props: CreateTaskRequest
-    // id: string
-  ): Promise<Task> {
+  static async execute(props: CreateTaskRequest): Promise<CreateTaskResponse> {
     const { title, description, limitDay, limitMonth, limitYear, done } = props;
-    const task = new Task(
-      {
-        title: new Title(title),
-        description: new Description(description),
-        limitDay: new LimitDay(limitDay),
-        limitMonth: new LimitMonth(limitMonth),
-        limitYear: new LimitYear(limitYear),
-        done,
-      }
-      // id
-    );
+    const task = new Task({
+      title: title,
+      description: new Description(description),
+      limitDay: limitDay,
+      limitMonth: limitMonth,
+      limitYear: limitYear,
+      done,
+    });
     const prismaManageRepository = new PrismaManageRepository();
 
     await prismaManageRepository.create(task);
 
-    return task;
+    return { task: task };
   }
 }

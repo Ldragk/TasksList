@@ -1,21 +1,23 @@
-import { Prisma } from "@prisma/client";
+import { Trash } from "../../entities/Trash";
 import { DeleteAllTrash } from "../../use-cases/delete-cases/Delete-all-trash";
 import { DeleteTrash } from "../../use-cases/delete-cases/Delete-trash";
-import { TaskBody } from "../dtos/create-task-body";
 
 export class TrashDelete {
   async deletedTrashTask(
     req: { params: { id: string } },
-    res: { json: (arg0: TaskBody) => Promise<TaskBody> }
+    res: { json: (arg0: void) => Promise<Trash> }
   ) {
     const id: string = req.params.id;
-    return res.json(await DeleteTrash.execute(id));
+    const { deleteTrash } = await DeleteTrash.execute(id);
+
+    return { delete: res.json(deleteTrash) };
   }
 
-  async deletedAllTrashTasks(
-    req: Request,
-    res: { json: (arg0: Prisma.BatchPayload) => Promise<TaskBody> }
+  async deletedAllTrashTasks(   
+    res: { json: (arg0: void) => Promise<Trash> }
   ) {
-    return res.json(await DeleteAllTrash.execute());
+    const { deleteTrash } = await DeleteAllTrash.execute();
+
+    return { delete: res.json(deleteTrash) };
   }
 }

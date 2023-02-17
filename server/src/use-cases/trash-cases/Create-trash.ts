@@ -1,27 +1,45 @@
 import { Task } from "../../entities/Task";
 import { Trash } from "../../entities/Trash";
-import { TrashBody } from "../../http/dtos/create-trash-body";
 import { PrismaTaskQueryRepository } from "../../prisma/repositories/tasks/Prisma-query-repository";
 import { PrismaTrashRepository } from "../../prisma/repositories/trash/Prisma-trash-repository";
 
+export interface CreateTrashResponse {
+  deleteTrash?: void;
+  createTrash: Trash;
+}
+
 export class CreateTrash {
-  static async execute(taskId: string): Promise<TrashBody> {
+  static async execute(taskId: string): Promise<CreateTrashResponse> {
     const prismaQueryRepository = new PrismaTaskQueryRepository();
     const prismaTrashRepository = new PrismaTrashRepository();
 
     const task: Task = await prismaQueryRepository.findeById(taskId);
-    const taskBody: Trash = new Trash(
+
+    const {
+      id,
+      title,
+      description,
+      limitDay,
+      limitMonth,
+      limitYear,
+      done,
+      createdAt,
+    } = task;
+
+    const trash: Trash = new Trash(
       {
-        title: String(task.title),
-        description: String(task.description),
-        limitDay: Number(task.limitDay),
-        limitMonth: Number(task.limitMonth),
-        limitYear: Number(task.limitYear),
-        done: task.done,
-        createdAt: task.createdAt,
+        title: String(title),
+        description: String(description),
+        limitDay: Number(limitDay),
+        limitMonth: Number(limitMonth),
+        limitYear: Number(limitYear),
+        done: done,
+        createdAt: createdAt,
       },
-      task.id
+      id
     );
-    return await prismaTrashRepository.create(taskBody);
+    await prismaTrashRepository.create(trash);
+
+    return { createTrash: trash };
   }
 }

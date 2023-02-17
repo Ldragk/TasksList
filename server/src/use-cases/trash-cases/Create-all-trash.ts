@@ -1,30 +1,42 @@
-import { Task } from "../../entities/Task";
+import { Description } from "../../entities/task-entites/Description";
 import { Trash } from "../../entities/Trash";
-import { TrashBody } from "../../http/dtos/create-trash-body";
 import { PrismaTrashRepository } from "../../prisma/repositories/trash/Prisma-trash-repository";
 import { QueryAllTasks } from "../query-cases/Get-all";
+import { CreateTrashResponse } from "./Create-trash";
 
 export class CreateAllTrash {
-  static async execute(): Promise<TrashBody> {
+  static async execute(): Promise<CreateTrashResponse> {
     const prismaTrashRepository = new PrismaTrashRepository();
 
-    const allTasks: Task[] = await QueryAllTasks.execute();
+    const allTasks = await QueryAllTasks.execute();
+
     const tasks = Object(allTasks);
 
-    return tasks.map((task: Trash) => {
+    return tasks.map(async (task: Trash) => {
+      const {
+        id,
+        title,
+        description,
+        limitDay,
+        limitMonth,
+        limitYear,
+        done,
+        createdAt,
+      } = task;
       const trashBody: Trash = new Trash(
         {
-          title: task.title,
-          description: task.description,
-          limitDay: task.limitDay,
-          limitMonth: task.limitMonth,
-          limitYear: task.limitYear,
-          done: task.done,
-          createdAt: task.createdAt,
+          title: title,
+          description: String(description),
+          limitDay: limitDay,
+          limitMonth: limitMonth,
+          limitYear: limitYear,
+          done: done,
+          createdAt: createdAt,
         },
-        task.id
+        String(id)
       );
-      return prismaTrashRepository.create(trashBody);
+      
+      return { createTrash: await prismaTrashRepository.create(trashBody) };
     });
   }
 }
