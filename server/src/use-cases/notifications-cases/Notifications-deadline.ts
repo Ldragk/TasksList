@@ -22,9 +22,7 @@ export class NotificationOfTasksNearTheDeadline {
     };
   }
 
-  private async notificationsWithinTheEstablishedDeadline(): Promise<
-    Notification[]
-  > {
+  async execute(): Promise<NotificationResponse> {
     const prismaNotificationsRepository: any =
       new PrismaNotificationsRepository();
 
@@ -36,32 +34,30 @@ export class NotificationOfTasksNearTheDeadline {
     }/${new Date().getDate()}/${new Date().getFullYear()}`;
 
     if (this.params.type === 1) {
-      return tasks.filter(
-        (task: Notification) =>
-          convertExcessDaysAtTheTurnOfTheMonth(
-            numberOfDaysInTheMonth(),
-            this.params.notificationsWithinThePeriod
-          ) === `${task.limitMonth}/${task.limitDay}/${task.limitYear}`
-      );
-    }
-
-    return tasks.filter(
-      (task: Notification) =>
-        new Date(`${task.limitMonth}/${task.limitDay}/${task.limitYear}`) <=
-          new Date(
+      return {
+        notification: tasks.filter(
+          (task: Notification) =>
             convertExcessDaysAtTheTurnOfTheMonth(
               numberOfDaysInTheMonth(),
               this.params.notificationsWithinThePeriod
-            )
-          ) &&
-        new Date(`${task.limitMonth}/${task.limitDay}/${task.limitYear}`) >=
-          new Date(todayDate)
-    );
-  }
+            ) === `${task.limitMonth}/${task.limitDay}/${task.limitYear}`
+        ),
+      };
+    }
 
-  public async execute(): Promise<NotificationResponse> {
     return {
-      notification: await this.notificationsWithinTheEstablishedDeadline(),
+      notification: tasks.filter(
+        (task: Notification) =>
+          new Date(`${task.limitMonth}/${task.limitDay}/${task.limitYear}`) <=
+            new Date(
+              convertExcessDaysAtTheTurnOfTheMonth(
+                numberOfDaysInTheMonth(),
+                this.params.notificationsWithinThePeriod
+              )
+            ) &&
+          new Date(`${task.limitMonth}/${task.limitDay}/${task.limitYear}`) >=
+            new Date(todayDate)
+      ),
     };
   }
 }

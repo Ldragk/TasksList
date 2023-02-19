@@ -4,20 +4,21 @@
   "description": "",
   "main": "Server.js",
   "scripts": {
-    "start": "tsx src/http/Server.ts"
+    "start": "tsx src/http/Server.ts",
+    "test": "vitest"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.15",
-    "prisma": "^4.9.0",
+    "prisma": "^4.10.1",
     "tsx": "^3.12.2",
     "typescript": "^4.9.4",
     "vitest": "^0.28.5"
   },
   "dependencies": {
-    "@prisma/client": "^4.9.0",
+    "@prisma/client": "^4.10.1",
     "class-validator": "^0.14.0",
     "cors": "^2.8.5",
     "express": "^4.18.2"

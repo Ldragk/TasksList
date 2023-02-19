@@ -1,13 +1,13 @@
 import { Task as RawTask } from "@prisma/client";
 import { Task } from "../../../entities/Task";
-import { Description } from "../../../entities/task-entites/Description";
+import { Content } from "../../../entities/task-entites/Content";
 
 export class PrismaTaskMapper {
   static toPrisma(task: Task) {
     return {
       id: task.id,
       title: task.title,
-      description: task.description.value,
+      content: task.content.value,
       limitDay: task.limitDay,
       limitMonth: task.limitMonth,
       limitYear: task.limitYear,
@@ -20,7 +20,7 @@ export class PrismaTaskMapper {
     return new Task(
       {
         title: raw.title,
-        description: new Description(raw.description),
+        content: new Content(raw.content),
         limitDay: raw.limitDay,
         limitMonth: raw.limitMonth,
         limitYear: raw.limitYear,

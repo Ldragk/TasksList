@@ -10,11 +10,15 @@ export class Notification {
   private _id: string;
   private props: NotificationProps;
 
-  constructor(props: NotificationProps, id?: string) {
-    this._id = id ?? randomUUID();
+  constructor(props: NotificationProps, id: string) {
+    this._id = id;
     this.props = {
       ...props,
     };
+  }
+
+  public set id(id: string) {
+    this._id = id;
   }
 
   public get id() {
@@ -49,7 +53,7 @@ export class Notification {
     return this.props.limitYear;
   }
 
-  public static create(props: NotificationProps, id?: string) {
+  public static create(props: NotificationProps, id: string) {
     return new Notification(props, id);
   }
 }

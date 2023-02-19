@@ -1,4 +1,4 @@
-import { Description } from "../../entities/task-entites/Description";
+import { Description } from "../../entities/task-entites/Content";
 import { Trash } from "../../entities/Trash";
 import { PrismaTrashRepository } from "../../prisma/repositories/trash/Prisma-trash-repository";
 import { QueryAllTasks } from "../query-cases/Get-all";

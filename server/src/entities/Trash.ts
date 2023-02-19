@@ -1,6 +1,6 @@
 interface TrashProps {
   title: string;
-  description: string;
+  content: string;
   limitDay: number;
   limitMonth: number;
   limitYear: number;
@@ -32,11 +32,12 @@ export class Trash {
     return this.props.title;
   }
 
-  public set description(description: string) {
-    this.props.description = description;
+  public set content(content: string) {
+    this.props.content = content;
   }
-  public get description(): string {
-    return this.props.description;
+
+  public get content(): string {
+    return this.props.content;
   }
 
   set limitDay(limitDay: number) {

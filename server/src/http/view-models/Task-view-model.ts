@@ -5,7 +5,7 @@ export class TaskViewModel {
     return {
       id: task.id,
       title: task.title,
-      description: task.description.value,
+      content: task.content.value,
       limitDay: task.limitDay,
       limitMonth: task.limitMonth,
       limitYear: task.limitYear,     

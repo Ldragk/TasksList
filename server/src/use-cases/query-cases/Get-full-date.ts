@@ -7,8 +7,6 @@ interface IDateType {
   year: number;
 }
 
-
-
 export class QueryByFullDate {
   constructor(private date: IDateType) {
     this.date = {

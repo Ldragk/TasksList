@@ -1,10 +1,10 @@
 import { Task } from "../../entities/Task";
-import { Description } from "../../entities/task-entites/Description";
+import { Content } from "../../entities/task-entites/Content";
 import { PrismaManageRepository } from "../../prisma/repositories/tasks/Prisma-manage-repository";
 
 interface CreateTaskRequest {
   title: string;
-  description: string;
+  content: string;
   limitDay: number;
   limitMonth: number;
   limitYear: number;
@@ -17,10 +17,10 @@ interface CreateTaskResponse {
 
 export class CreateTask {
   static async execute(props: CreateTaskRequest): Promise<CreateTaskResponse> {
-    const { title, description, limitDay, limitMonth, limitYear, done } = props;
+    const { title, content, limitDay, limitMonth, limitYear, done } = props;
     const task = new Task({
       title: title,
-      description: new Description(description),
+      content: new Content(content),
       limitDay: limitDay,
       limitMonth: limitMonth,
       limitYear: limitYear,

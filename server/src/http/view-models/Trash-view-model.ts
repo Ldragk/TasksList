@@ -5,7 +5,7 @@ export class TrashViewModel {
     return {
       id: trash.id,
       title: trash.title,
-      description: trash.description,
+      content: trash.content,
       limitDay: trash.limitDay,
       limitMonth: trash.limitMonth,
       limitYear: trash.limitYear,     

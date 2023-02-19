@@ -1,6 +1,6 @@
 export class TrashBody {  
   title!: string;
-  description!: string;
+  content!: string;
   limitDay!: number;
   limitMonth!: number;
   limitYear!: number; 

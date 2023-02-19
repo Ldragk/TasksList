@@ -1,11 +1,11 @@
 import { randomUUID } from "node:crypto";
 import { Replace } from "../helpers/Replace";
 import { numberOfDaysInTheMonth } from "../use-cases/notifications-cases/functions/numberOfDaysInTheMonth";
-import { Description } from "./task-entites/Description";
+import { Content } from "./task-entites/Content";
 
 interface TaskProps {
   title: string;
-  description: Description;
+  content: Content;
   limitDay: number;
   limitMonth: number;
   limitYear: number;
@@ -46,11 +46,12 @@ export class Task {
     return this.props.title;
   }
 
-  public set description(description: Description) {
-    this.props.description = description;
+  public set content(content: Content) {
+    this.props.content = content;
   }
-  public get description(): Description {
-    return this.props.description;
+
+  public get content(): Content {
+    return this.props.content;
   }
 
   set limitDay(limitDay: number) {

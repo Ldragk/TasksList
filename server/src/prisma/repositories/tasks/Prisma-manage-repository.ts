@@ -2,9 +2,7 @@ import { Task } from "../../../entities/Task";
 import { PrismaTaskMapper } from "./Prisma-task-mapper";
 import { PrismaClient } from "@prisma/client";
 import { ManageRepository } from "../../../repositories/Manage-repository";
-import { TaskBody } from "../../../http/dtos/create-task-body";
 import { PrismaService } from "../../prisma.service";
-import { TaskViewModel } from "../../../http/view-models/Task-view-model";
 
 const prisma = new PrismaClient();
 

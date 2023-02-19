@@ -18,7 +18,7 @@ export class CreateTrash {
     const {
       id,
       title,
-      description,
+      content,
       limitDay,
       limitMonth,
       limitYear,
@@ -29,7 +29,7 @@ export class CreateTrash {
     const trash: Trash = new Trash(
       {
         title: String(title),
-        description: String(description),
+        content: String(content),
         limitDay: Number(limitDay),
         limitMonth: Number(limitMonth),
         limitYear: Number(limitYear),

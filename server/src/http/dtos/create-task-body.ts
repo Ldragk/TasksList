@@ -6,8 +6,8 @@ export class TaskBody {
   @Length(1, 30)
   title!: string;
 
-  @Length(5, 500)
-  description!: string;
+  @Length(5, 250)
+  content!: string;
 
   @ValidateIf((o) => o.limitDay >= 1 && o.limitDay <= numberOfDaysInTheMonth())
   limitDay!: number;

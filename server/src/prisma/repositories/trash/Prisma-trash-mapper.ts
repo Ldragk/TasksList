@@ -6,7 +6,7 @@ export class PrismaTrashMapper {
     return {
       id: trash.id,
       title: trash.title,
-      description: trash.description,
+      content: trash.content,
       limitDay: trash.limitDay,
       limitMonth: trash.limitMonth,
       limitYear: trash.limitYear,     
@@ -19,7 +19,7 @@ export class PrismaTrashMapper {
     return new Trash(
       {
         title: raw.title,
-        description: raw.description,
+        content: raw.content,
         limitDay: raw.limitDay,
         limitMonth: raw.limitMonth,
         limitYear: raw.limitYear,       

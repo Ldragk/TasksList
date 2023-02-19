@@ -8,9 +8,12 @@ import { Task } from "../../entities/Task";
 import { TaskViewModel } from "../view-models/Task-view-model";
 
 export class QueryTask {
-  getAllTasks = async (res: {
-    json: (arg0: TaskViewModel) => Promise<Task>;
-  }) => {
+  getAllTasks = async (
+    req: Request,
+    res: {
+      json: (arg0: TaskViewModel) => Promise<Task>;
+    }
+  ) => {
     const { tasks } = await QueryAllTasks.execute();
     return { get: res.json(tasks.map(TaskViewModel.toHTTP)) };
   };
@@ -70,9 +73,12 @@ export class QueryTask {
     return { get: res.json(tasks.map(TaskViewModel.toHTTP)) };
   };
 
-  getOverdueTasks = async (res: {
-    json: (arg0: TaskViewModel) => Promise<Task>;
-  }) => {
+  getOverdueTasks = async (
+    req: Request,
+    res: {
+      json: (arg0: TaskViewModel) => Promise<Task>;
+    }
+  ) => {
     const overdueTasks: OverdueTasks = new OverdueTasks();
     const { tasks } = await overdueTasks.execute();
     return { get: res.json(tasks.map(TaskViewModel.toHTTP)) };
