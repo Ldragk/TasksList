@@ -18,16 +18,10 @@ export class PrismaTaskQueryRepository implements QueryRepository {
     return (await task).map(PrismaTaskMapper.toDomain);
   }
 
-  async findByFullDate(
-    day: number,
-    month: number,
-    year: number
-  ): Promise<Task[]> {
+  async findByFullDate(date: string): Promise<Task[]> {
     const task = await prisma.task.findMany({
       where: {
-        limitDay: day,
-        limitMonth: month,
-        limitYear: year,
+        date: date,
       },
       orderBy: {
         createdAt: "desc",
@@ -37,11 +31,16 @@ export class PrismaTaskQueryRepository implements QueryRepository {
     return task.map(PrismaTaskMapper.toDomain);
   }
 
-  async findByMonth(month: number, year: number): Promise<Task[]> {
+  async findByMonth(
+    month: number,
+    days: number[],
+    year: number
+  ): Promise<Task[]> {
     const task = await prisma.task.findMany({
       where: {
-        limitMonth: month,
-        limitYear: year,
+        date: {
+          contains: `${month}/${days.map((day) => day)}/${year}`,
+        },
       },
       orderBy: {
         createdAt: "desc",
@@ -54,7 +53,9 @@ export class PrismaTaskQueryRepository implements QueryRepository {
   async findByYear(year: number): Promise<Task[]> {
     const task = await prisma.task.findMany({
       where: {
-        limitYear: year,
+        date: {
+          contains: `${year}`,
+        },
       },
       orderBy: {
         createdAt: "desc",

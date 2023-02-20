@@ -2,9 +2,7 @@ import { randomUUID } from "node:crypto";
 
 export interface NotificationProps {
   title: string;
-  limitDay: number;
-  limitMonth: number;
-  limitYear: number;
+  date: string;
 }
 export class Notification {
   private _id: string;
@@ -28,29 +26,17 @@ export class Notification {
   public set title(title: string) {
     this.props.title = title;
   }
+
   get title() {
     return this.props.title;
   }
 
-  set limitDay(limitDay: number) {
-    this.props.limitDay = limitDay;
+  public set date(date: string) {
+    this.props.date = date;
   }
-  public get limitDay() {
-    return this.props.limitDay;
-  }
-
-  public set limitMonth(limitMonth: number) {
-    this.props.limitMonth = limitMonth;
-  }
-  public get limitMonth() {
-    return this.props.limitMonth;
-  }
-
-  public set limitYear(limitYear: number) {
-    this.props.limitYear = limitYear;
-  }
-  public get limitYear() {
-    return this.props.limitYear;
+  
+  get date() {
+    return this.props.date;
   }
 
   public static create(props: NotificationProps, id: string) {

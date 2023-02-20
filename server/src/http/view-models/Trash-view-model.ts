@@ -6,12 +6,10 @@ export class TrashViewModel {
       id: trash.id,
       title: trash.title,
       content: trash.content,
-      limitDay: trash.limitDay,
-      limitMonth: trash.limitMonth,
-      limitYear: trash.limitYear,     
+      date: trash.date,
       done: trash.done,
       createdAt: trash.createdAt,
-      deletedAt: trash.deletedAt,      
+      deletedAt: trash.deletedAt,
     };
   }
 }

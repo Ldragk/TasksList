@@ -6,9 +6,7 @@ export class PrismaNotificationMapper {
     return new Notification(
       {
         title: raw.title,
-        limitDay: raw.limitDay,
-        limitMonth: raw.limitMonth,
-        limitYear: raw.limitYear,
+        date: raw.date,
       },
       raw.id
     );

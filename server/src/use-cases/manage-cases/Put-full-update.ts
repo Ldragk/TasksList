@@ -1,14 +1,13 @@
 import { Task } from "../../entities/Task";
 import { Content } from "../../entities/task-entites/Content";
+import { LimitDate } from "../../entities/task-entites/LimitDate";
 import { PrismaManageRepository } from "../../prisma/repositories/tasks/Prisma-manage-repository";
 import { PrismaTaskQueryRepository } from "../../prisma/repositories/tasks/Prisma-query-repository";
 
 interface EditTaskRequest {
   title: string;
   content: string;
-  limitDay: number;
-  limitMonth: number;
-  limitYear: number;
+  date: string;
   done?: boolean;
 }
 
@@ -24,13 +23,11 @@ export class FullUpdate {
     const prismaQueryRepository = new PrismaTaskQueryRepository();
     let task: Task = await prismaQueryRepository.findeById(taskId);
 
-    const { title, content, limitDay, limitMonth, limitYear, done } = body;
+    const { title, content, date, done } = body;
 
     task.title = title ?? task.title;
     task.content = new Content(content) ?? task.content;
-    task.limitDay = limitDay ?? task.limitDay;
-    task.limitMonth = limitMonth ?? task.limitMonth;
-    task.limitYear = limitYear ?? task.limitYear;
+    task.date = new LimitDate(date) ?? task.date;
     task.done = done ?? task.done;
     task.updated();
 

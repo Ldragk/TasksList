@@ -2,13 +2,12 @@ import { randomUUID } from "node:crypto";
 import { Replace } from "../helpers/Replace";
 import { numberOfDaysInTheMonth } from "../use-cases/notifications-cases/functions/numberOfDaysInTheMonth";
 import { Content } from "./task-entites/Content";
+import { LimitDate } from "./task-entites/LimitDate";
 
 interface TaskProps {
   title: string;
   content: Content;
-  limitDay: number;
-  limitMonth: number;
-  limitYear: number;
+  date: LimitDate;
   done?: boolean;
   createdAt?: Date;
   updatedAt?: Date | null;
@@ -54,43 +53,12 @@ export class Task {
     return this.props.content;
   }
 
-  set limitDay(limitDay: number) {
-    limitDay >= 1 &&
-    limitDay <= numberOfDaysInTheMonth() &&
-    String(limitDay).length <= 2 &&
-    /^[\d,.?!]+$/.test(String(limitDay))
-      ? (this.props.limitDay = limitDay)
-      : new Error(
-          "The limit day must be a number between 1 and the last day of the limit month"
-        );
-  }
-  public get limitDay(): number {
-    return this.props.limitDay;
+  public set date(date: LimitDate) {
+    this.props.date = date;
   }
 
-  public set limitMonth(limitMonth: number) {
-    limitMonth >= 1 &&
-    limitMonth <= 12 &&
-    String(limitMonth).length <= 2 &&
-    /^[\d,.?!]+$/.test(String(limitMonth))
-      ? (this.props.limitMonth = limitMonth)
-      : new Error("Limit month must be a number between 1 and 12");
-  }
-  public get limitMonth(): number {
-    return this.props.limitMonth;
-  }
-
-  public set limitYear(limitYear: number) {
-    limitYear >= new Date().getFullYear() &&
-    String(limitYear).length <= 4 &&
-    /^[\d,.?!]+$/.test(String(limitYear))
-      ? (this.props.limitYear = limitYear)
-      : new Error(
-          "Limit year must be a number greater than or equal to the current year"
-        );
-  }
-  public get limitYear(): number {
-    return this.props.limitYear;
+  public get date(): LimitDate {
+    return this.props.date;
   }
 
   public set done(done: boolean | undefined) {

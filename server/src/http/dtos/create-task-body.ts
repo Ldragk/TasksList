@@ -9,14 +9,13 @@ export class TaskBody {
   @Length(5, 250)
   content!: string;
 
-  @ValidateIf((o) => o.limitDay >= 1 && o.limitDay <= numberOfDaysInTheMonth())
-  limitDay!: number;
-
-  @ValidateIf((o) => o.limitMonth >= 1 && o.limitMonth <= 12)
-  limitMonth!: number;
-
-  @ValidateIf((o) => o.limitYear >= 2023)
-  limitYear!: number;
+  @ValidateIf((o) => new Date(o).getDay() >= 1 && new Date(o).getDay() <= numberOfDaysInTheMonth(o))
+  @ValidateIf((o) => String(new Date(o).getDay()).length <= 2)
+  @ValidateIf((o) => new Date(o).getMonth() >= 1 && new Date(o).getMonth() <= 12)
+  @ValidateIf((o) => String(new Date(o).getMonth()).length <= 2)
+  @ValidateIf((o) => new Date(o).getFullYear() >= new Date().getFullYear())
+  @ValidateIf((o) => String(new Date(o).getFullYear()).length <= 4)
+  date!: string
 
   done?: boolean;
   createdAt?: Date;

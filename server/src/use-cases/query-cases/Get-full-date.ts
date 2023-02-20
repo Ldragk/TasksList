@@ -1,30 +1,16 @@
 import { PrismaTaskQueryRepository } from "../../prisma/repositories/tasks/Prisma-query-repository";
 import { GetTasksResponse } from "./Get-all";
 
-interface IDateType {
-  day: number;
-  month: number;
-  year: number;
+interface GetTaskRequest {
+  date: string;
 }
 
 export class QueryByFullDate {
-  constructor(private date: IDateType) {
-    this.date = {
-      day: date.day,
-      month: date.month,
-      year: date.year,
-    };
-  }
-
-  public async execute(): Promise<GetTasksResponse> {
+  async execute(getDate: GetTaskRequest): Promise<GetTasksResponse> {
     const prismaTaskRecipientRepository = new PrismaTaskQueryRepository();
-
+    const { date } = getDate;
     return {
-      tasks: await prismaTaskRecipientRepository.findByFullDate(
-        this.date.day,
-        this.date.month,
-        this.date.year
-      ),
+      tasks: await prismaTaskRecipientRepository.findByFullDate(date),
     };
   }
 }

@@ -1,12 +1,9 @@
-export class TrashBody {  
+export class TrashBody {
   title!: string;
   content!: string;
-  limitDay!: number;
-  limitMonth!: number;
-  limitYear!: number; 
-  date?: string | undefined | null
+  date!: string;  
   done?: boolean;
   createdAt?: Date;
-  deletedAt?: Date;    
+  deletedAt?: Date;
   id?: string;
 }

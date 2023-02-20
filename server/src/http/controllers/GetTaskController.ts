@@ -8,6 +8,8 @@ import { Task } from "../../entities/Task";
 import { TaskViewModel } from "../view-models/Task-view-model";
 
 export class QueryTask {
+
+
   getAllTasks = async (
     req: Request,
     res: {
@@ -24,13 +26,11 @@ export class QueryTask {
       json: (arg0: TaskViewModel) => Promise<Task>;
     }
   ) => {
-    const tasksByFullDate: QueryByFullDate = new QueryByFullDate({
-      day: Number(req.params.day),
-      month: Number(req.params.month),
-      year: Number(req.params.year),
-    });
+    const tasksByFullDate = new QueryByFullDate();
 
-    const { tasks } = await tasksByFullDate.execute();
+    const { tasks } = await tasksByFullDate.execute({
+      date: `${req.params.month}/${req.params.day}/${req.params.year}`,
+    });
     return { get: res.json(tasks.map(TaskViewModel.toHTTP)) };
   };
 

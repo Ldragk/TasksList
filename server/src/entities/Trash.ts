@@ -1,9 +1,7 @@
 interface TrashProps {
   title: string;
   content: string;
-  limitDay: number;
-  limitMonth: number;
-  limitYear: number;
+  date: string;
   done?: boolean;
   createdAt?: Date;
   deletedAt?: Date | null | undefined;
@@ -40,25 +38,12 @@ export class Trash {
     return this.props.content;
   }
 
-  set limitDay(limitDay: number) {
-    this.props.limitDay = limitDay;
-  }
-  public get limitDay(): number {
-    return this.props.limitDay;
+  public set date(date: string) {
+    this.props.date = date;
   }
 
-  public set limitMonth(limitMonth: number) {
-    this.props.limitMonth = limitMonth;
-  }
-  public get limitMonth(): number {
-    return this.props.limitMonth;
-  }
-
-  public set limitYear(limitYear: number) {
-    this.props.limitYear = limitYear;
-  }
-  public get limitYear() {
-    return this.props.limitYear;
+  public get date(): string {
+    return this.props.date;
   }
 
   public set done(done: boolean | undefined) {

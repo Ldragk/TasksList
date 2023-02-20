@@ -15,7 +15,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-async function main() {
+async function App() {
   const ManageTasksController: any = new ManageTasks();
   app.post("/tasks/create", ManageTasksController.createTask);
   app.patch("/tasks/change/:id/", ManageTasksController.updateCondition);
@@ -47,7 +47,7 @@ async function main() {
   const Server: number = 3333;
   app.listen(Server, () => console.log(`Server is running on port ${Server}`));
 }
-main()
+App()
   .then(async () => {
     await prisma.$disconnect();
   })

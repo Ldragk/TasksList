@@ -37,10 +37,15 @@ export class NotificationOfTasksNearTheDeadline {
       return {
         notification: tasks.filter(
           (task: Notification) =>
+            /* No inicio o banco de dados estava criando a data com cada elemento separadamente,
+            por esse motivo criei a função  "convertExcessDaysAtTheTurnOfTheMonth", 
+            decidi mantê-la pela lógica que criei, mas poderia usar também: */
+            
+            // String(new Date(todayDate + this.params.notificationsWithinThePeriod))
             convertExcessDaysAtTheTurnOfTheMonth(
-              numberOfDaysInTheMonth(),
+              numberOfDaysInTheMonth(todayDate),
               this.params.notificationsWithinThePeriod
-            ) === `${task.limitMonth}/${task.limitDay}/${task.limitYear}`
+            ) === task.date
         ),
       };
     }
@@ -48,15 +53,9 @@ export class NotificationOfTasksNearTheDeadline {
     return {
       notification: tasks.filter(
         (task: Notification) =>
-          new Date(`${task.limitMonth}/${task.limitDay}/${task.limitYear}`) <=
-            new Date(
-              convertExcessDaysAtTheTurnOfTheMonth(
-                numberOfDaysInTheMonth(),
-                this.params.notificationsWithinThePeriod
-              )
-            ) &&
-          new Date(`${task.limitMonth}/${task.limitDay}/${task.limitYear}`) >=
-            new Date(todayDate)
+          new Date(task.date) <=
+            new Date(todayDate + this.params.notificationsWithinThePeriod) &&
+          new Date(task.date) >= new Date(todayDate)
       ),
     };
   }
