@@ -12,7 +12,7 @@ export class Trash {
   private props: TrashProps;
 
   constructor(props: TrashProps, id: string) {
-    this.props = { ...props, deletedAt: undefined };
+    this.props = props;
     this._id = id;
   }
 
@@ -58,6 +58,14 @@ export class Trash {
   }
   public get createdAt(): Date | undefined {
     return this.props.createdAt;
+  }
+
+  deleted() {
+    return this.props.deletedAt = new Date();
+  }
+
+  public set deletedAt(deletedAt: Date | null | undefined) {
+    this.props.deletedAt = new Date();
   }
 
   public get deletedAt(): Date | null | undefined {

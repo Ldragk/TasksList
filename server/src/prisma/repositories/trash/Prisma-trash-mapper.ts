@@ -7,11 +7,9 @@ export class PrismaTrashMapper {
       id: trash.id,
       title: trash.title,
       content: trash.content,
-      limitDay: trash.limitDay,
-      limitMonth: trash.limitMonth,
-      limitYear: trash.limitYear,     
+      date: trash.date,
       done: trash.done,
-      deletedAt: trash.createdAt,
+      deletedAt: trash.deleted(),
     };
   }
 
@@ -20,9 +18,7 @@ export class PrismaTrashMapper {
       {
         title: raw.title,
         content: raw.content,
-        limitDay: raw.limitDay,
-        limitMonth: raw.limitMonth,
-        limitYear: raw.limitYear,       
+        date: raw.date,
         done: raw.done,
         createdAt: raw.createdAt,
         deletedAt: raw.deletedAt,
