@@ -1,7 +1,7 @@
 import { it, describe, expect } from "vitest";
 import { LimitDate } from "./LimitDate";
 
-const currentYear = new Date().getFullYear()
+const currentYear = new Date().getFullYear();
 
 describe("Task limit date", () => {
   it("should be able to create a valid task limit date", () => {
@@ -9,7 +9,7 @@ describe("Task limit date", () => {
   });
 
   it("should be able to create a invalid task limit date", () => {
-    expect(() => new LimitDate("12122021")).toThrow()
+    expect(() => new LimitDate("12122021")).toThrow();
   });
 
   it("should be able to create a invalid task limit date", () => {
@@ -20,11 +20,9 @@ describe("Task limit date", () => {
     expect(() => new LimitDate("12 22 2021")).toThrow();
   });
 
-
-
   it("should not be able to create a task limit date with invalid year format", () => {
     expect(() => new LimitDate("12/12/202")).toThrow();
-  }); 
+  });
 
   it("should not be able to create a task limit date with invalid year value", () => {
     expect(() => new LimitDate(`02/20/${currentYear - 1}`)).toThrow();
@@ -38,16 +36,13 @@ describe("Task limit date", () => {
     expect(() => new LimitDate("12/12/")).toThrow();
   });
 
-
-
-
   it("should not be able to create a task limit date with invalid month format", () => {
     expect(() => new LimitDate(`132/20/${currentYear}`)).toThrow();
   });
 
   it("should not be able to create a task limit date with invalid month value", () => {
     expect(() => new LimitDate(`0/20/${currentYear}`)).toThrow();
-  });  
+  });
 
   it("should not be able to create a task limit date with invalid month value", () => {
     expect(() => new LimitDate(`13/20/${currentYear}`)).toThrow();
@@ -57,14 +52,16 @@ describe("Task limit date", () => {
     expect(() => new LimitDate(`/20/${currentYear}`)).toThrow();
   });
 
-
-
   it("should not be able to create a task limit date with invalid day format", () => {
     expect(() => new LimitDate(`11/200/${currentYear}`)).toThrow();
   });
 
   it("should not be able to create a task limit date with invalid day value", () => {
-    expect(() => new LimitDate(`11/32/${currentYear}`)).toThrow();
+    expect(() => new LimitDate(`11/31/${currentYear}`)).toThrow();
+  });
+
+  it("should not be able to create a task limit date with invalid day value", () => {
+    expect(() => new LimitDate(`02/29/${currentYear}`)).toThrow();
   });
 
   it("should not be able to create a task limit date with invalid day value", () => {
@@ -74,5 +71,4 @@ describe("Task limit date", () => {
   it("should not be able to create a task limit date with invalid day format and value", () => {
     expect(() => new LimitDate(`11//${currentYear}`)).toThrow();
   });
-
 });

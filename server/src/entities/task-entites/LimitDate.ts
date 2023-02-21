@@ -1,3 +1,4 @@
+import { daysInTheMonth } from "../../helpers/DaysInTheMonth";
 import { numberOfDaysInTheMonth } from "../../use-cases/notifications-cases/functions/numberOfDaysInTheMonth";
 
 export class LimitDate {
@@ -34,7 +35,7 @@ export class LimitDate {
       Number(date[0]) >= 1 &&
       Number(date[0]) <= 12 &&
       Number(date[1]) >= 1 &&
-      Number(date[1]) <= numberOfDaysInTheMonth(this.value) &&
+      Number(date[1]) <= daysInTheMonth(Number(date[0])) &&
       Number(date[2]) >= new Date().getFullYear()
     );
   }

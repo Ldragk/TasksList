@@ -1,14 +1,14 @@
-export function numberOfDaysInTheMonth(date: string) {
+export function numberOfDaysInTheMonth(date: string): number {
   let MonthDays: number = 31;
-  const cathMonth: string = String(new Date(date)).split(" ")[1];
+  const getMonth: string = String(new Date(date)).split(" ")[1];
   if (
-    cathMonth === "Apr" ||
-    cathMonth === "Jun" ||
-    cathMonth === "Sep" ||
-    cathMonth === "Nov"
+    getMonth === "Apr" ||
+    getMonth === "Jun" ||
+    getMonth === "Sep" ||
+    getMonth === "Nov"
   ) {
     MonthDays = 30;
-  } else if (cathMonth === "Feb") {
+  } else if (getMonth === "Feb") {
     MonthDays = 28;
   }
   return MonthDays;
