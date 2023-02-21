@@ -1,3 +1,4 @@
+import { Dates } from "../../helpers/Dates";
 import { PrismaTaskQueryRepository } from "../../prisma/repositories/tasks/Prisma-query-repository";
 import { GetTasksResponse } from "./Get-all";
 
@@ -17,8 +18,15 @@ export class QueryByYear {
   public async execute(): Promise<GetTasksResponse> {
     const prismaTaskRecipientRepository = new PrismaTaskQueryRepository();
 
+    const months: number[] = new Dates().getMonths;
+    const days: number[] = new Dates().getDays;
+
     return {
-      tasks: await prismaTaskRecipientRepository.findByYear(this.date.year),
+      tasks: await prismaTaskRecipientRepository.findByYear(
+        months,
+        days,
+        this.date.year
+      ),
     };
   }
 }

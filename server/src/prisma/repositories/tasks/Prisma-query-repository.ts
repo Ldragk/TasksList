@@ -36,31 +36,37 @@ export class PrismaTaskQueryRepository implements QueryRepository {
     days: number[],
     year: number
   ): Promise<Task[]> {
-    const task = await prisma.task.findMany({
-      where: {
-        date: {
-          contains: `${month}/${days.map((day) => day)}/${year}`,
+    let task: any;
+    for (let i = 0; i < days.length; i++) {
+      task = await prisma.task.findMany({
+        where: {
+          date: `${month}/${days[i]}/${year}`[i],
         },
-      },
-      orderBy: {
-        createdAt: "desc",
-      },
-    });
+        orderBy: {
+          createdAt: "desc",
+        },
+      });
+    }
 
     return task.map(PrismaTaskMapper.toDomain);
   }
 
-  async findByYear(year: number): Promise<Task[]> {
-    const task = await prisma.task.findMany({
-      where: {
-        date: {
-          contains: `${year}`,
+  async findByYear(
+    month: number[],
+    days: number[],
+    year: number
+  ): Promise<Task[]> {
+    let task: any;
+    for (let i = 0; i < days.length; i++) {
+      task = await prisma.task.findMany({
+        where: {
+          date: `${month[i]}/${days[i]}/${year}`[i],
         },
-      },
-      orderBy: {
-        createdAt: "desc",
-      },
-    });
+        orderBy: {
+          createdAt: "desc",
+        },
+      });
+    }
 
     return task.map(PrismaTaskMapper.toDomain);
   }

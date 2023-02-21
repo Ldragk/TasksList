@@ -10,14 +10,11 @@ export class ManageTasks {
     req: { body: TaskBody },
     res: { json: (arg0: TaskViewModel) => Promise<Task> }
   ) {
-    const { title, description, limitDay, limitMonth, limitYear, done } =
-      req.body;
+    const { title, content, date, done } = req.body;
     const { task } = await CreateTask.execute({
       title,
-      description,
-      limitDay,
-      limitMonth,
-      limitYear,
+      content,
+      date,
       done,
     });
 
@@ -42,14 +39,11 @@ export class ManageTasks {
     res: { json: (arg0: TaskViewModel) => Promise<Task> }
   ) {
     const id: string = req.params.id;
-    const { title, description, limitDay, limitMonth, limitYear, done } =
-      req.body;
+    const { title, content, date, done } = req.body;
     const { task } = await FullUpdate.execute(id, {
       title,
-      description,
-      limitDay,
-      limitMonth,
-      limitYear,
+      content,
+      date,
       done,
     });
 

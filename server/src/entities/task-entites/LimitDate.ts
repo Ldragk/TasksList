@@ -32,9 +32,9 @@ export class LimitDate {
       date[1].length > 0 &&
       date[2].length === 4 &&
       Number(date[0]) >= 1 &&
-      Number(date[0]) <= numberOfDaysInTheMonth(this.value) &&
+      Number(date[0]) <= 12 &&
       Number(date[1]) >= 1 &&
-      Number(date[1]) <= 12 &&
+      Number(date[1]) <= numberOfDaysInTheMonth(this.value) &&
       Number(date[2]) >= new Date().getFullYear()
     );
   }
@@ -45,9 +45,11 @@ export class LimitDate {
 
     if (!isDateLengthValid) {
       throw new Error(
-        `Date must be in the format: mm/dd/yyyy, where mm to be between 1 and 12, 
-        dd to be between 1 and lasted day in the month and yyyy to be greater 
-        than or equal to the current year`
+        `Date must be string and separated by bars "/", with that format: month/day/year. 
+        Where 
+        "month" to be between 1 and 12, 
+        "day" to be between 1 and lasted day in the month and,
+        "year" to be greater  than or equal to the current year and have 4 digits.`
       );
     }
 
