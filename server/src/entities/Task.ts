@@ -1,7 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { Replace } from "../helpers/Replace";
-import { Content } from "./task-entites/Content";
-import { LimitDate } from "./task-entites/LimitDate";
+import { Content } from "./task-entities/Content";
+import { LimitDate } from "./task-entities/LimitDate";
 
 interface TaskProps {
   title: string;
@@ -74,9 +74,7 @@ export class Task {
     return this.props.createdAt;
   }
 
-  public updated() {
-    this.props.updatedAt = new Date();
-  }
+  public updated() {}
   public get updatedAt(): Date | null | undefined {
     return this.props.updatedAt;
   }

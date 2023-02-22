@@ -12,11 +12,12 @@ export class Trash {
   private props: TrashProps;
 
   constructor(props: TrashProps, id: string) {
+    if (id.length !== 36 ) throw new Error("Id must be a valid uuid");
     this.props = props;
     this._id = id;
   }
 
-  public set id(id: string) {
+  public set id(id: string) {    
     this.id = id;
   }
   public get id(): string {
@@ -61,11 +62,11 @@ export class Trash {
   }
 
   deleted() {
-    return this.props.deletedAt = new Date();
+    return (this.props.deletedAt = new Date());
   }
 
   public set deletedAt(deletedAt: Date | null | undefined) {
-    this.props.deletedAt = new Date();
+    this.props.deletedAt = deletedAt;
   }
 
   public get deletedAt(): Date | null | undefined {

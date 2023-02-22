@@ -1,5 +1,4 @@
 import { daysInTheMonth } from "../../helpers/DaysInTheMonth";
-import { numberOfDaysInTheMonth } from "../../use-cases/notifications-cases/functions/numberOfDaysInTheMonth";
 
 export class LimitDate {
   static create(arg0: string) {

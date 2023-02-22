@@ -1,6 +1,6 @@
 import { Task } from "../../entities/Task";
-import { Content } from "../../entities/task-entites/Content";
-import { LimitDate } from "../../entities/task-entites/LimitDate";
+import { Content } from "../../entities/task-entities/Content";
+import { LimitDate } from "../../entities/task-entities/LimitDate";
 import { PrismaManageRepository } from "../../prisma/repositories/tasks/Prisma-manage-repository";
 
 interface CreateTaskRequest {

@@ -19,9 +19,7 @@ export class CreateTrash {
       id,
       title,
       content,
-      limitDay,
-      limitMonth,
-      limitYear,
+      date,
       done,
       createdAt,
     } = task;
@@ -30,9 +28,7 @@ export class CreateTrash {
       {
         title: String(title),
         content: String(content),
-        limitDay: Number(limitDay),
-        limitMonth: Number(limitMonth),
-        limitYear: Number(limitYear),
+        date: String(date),
         done: done,
         createdAt: createdAt,
       },

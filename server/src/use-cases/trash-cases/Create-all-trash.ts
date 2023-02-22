@@ -1,4 +1,3 @@
-import { Description } from "../../entities/task-entites/Content";
 import { Trash } from "../../entities/Trash";
 import { PrismaTrashRepository } from "../../prisma/repositories/trash/Prisma-trash-repository";
 import { QueryAllTasks } from "../query-cases/Get-all";
@@ -8,34 +7,21 @@ export class CreateAllTrash {
   static async execute(): Promise<CreateTrashResponse> {
     const prismaTrashRepository = new PrismaTrashRepository();
 
-    const allTasks = await QueryAllTasks.execute();
-
-    const tasks = Object(allTasks);
+    const { tasks } = Object(await QueryAllTasks.execute());
 
     return tasks.map(async (task: Trash) => {
-      const {
-        id,
-        title,
-        description,
-        limitDay,
-        limitMonth,
-        limitYear,
-        done,
-        createdAt,
-      } = task;
-      const trashBody: Trash = new Trash(
+      const { id, title, content, date, done, createdAt } = task;
+      const trashBody = new Trash(
         {
           title: title,
-          description: String(description),
-          limitDay: limitDay,
-          limitMonth: limitMonth,
-          limitYear: limitYear,
+          content: String(content),
+          date: String(date),
           done: done,
           createdAt: createdAt,
         },
         String(id)
-      );
-      
+      );    
+
       return { createTrash: await prismaTrashRepository.create(trashBody) };
     });
   }

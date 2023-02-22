@@ -1,7 +1,9 @@
 import { expect } from "vitest";
 import { Task } from "./Task";
-import { Description } from "./task-entites/Content";
 import { it, describe } from "vitest";
+import { Content } from "./task-entities/Content";
+import { LimitDate } from "./task-entities/LimitDate";
+import { currentYear } from "./task-entities/LimitDate.spec";
 
 describe("task", () => {
   it("should be able to create a valid task", () => {
@@ -9,10 +11,8 @@ describe("task", () => {
       () =>
         new Task({
           title: "Task 1",
-          description: new Description("Description of task 1"),
-          limitDay: 1,
-          limitMonth: 12,
-          limitYear: 2023,
+          content: new Content("Content 1"),
+          date: new LimitDate(`02/28/${currentYear}`),
           done: true,
           createdAt: new Date(),
           updatedAt: undefined,
@@ -20,19 +20,16 @@ describe("task", () => {
     ).toBeTruthy();
   });
 
-
   it("should be able to create a invalid task", () => {
     expect(
       () =>
         new Task({
           title: "",
-          description: new Description(""),
-          limitDay: 111 || 0,
-          limitMonth: 13 || 0,
-          limitYear: 2022 || 202,
+          content: new Content("asdf"),
+          date: new LimitDate(`02/29/2022`),
           createdAt: new Date(Date.now() - 1),
           updatedAt: new Date(),
         })
-    ).toThrow();;
+    ).toThrow();
   });
 });

@@ -9,14 +9,12 @@ export class PrismaTrashRepository implements TrashRepository {
   async create(task: Trash): Promise<void> {
     const trashTask = PrismaTrashMapper.toPrisma(task);
 
-    const tasks = await prisma.deletedTask.create({
+    await prisma.deletedTask.create({
       data: {
         ...trashTask,
         deletedAt: new Date(),
       },
     });
-
-    tasks;
   }
 
   async findAllTrash(): Promise<Trash[]> {

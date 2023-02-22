@@ -1,7 +1,7 @@
 import { it, describe, expect } from "vitest";
 import { LimitDate } from "./LimitDate";
 
-const currentYear = new Date().getFullYear();
+export const currentYear = new Date().getFullYear();
 
 describe("Task limit date", () => {
   it("should be able to create a valid task limit date", () => {
