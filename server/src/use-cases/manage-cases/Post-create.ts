@@ -2,6 +2,7 @@ import { Task } from "../../entities/Task";
 import { Content } from "../../entities/task-entities/Content";
 import { LimitDate } from "../../entities/task-entities/LimitDate";
 import { PrismaManageRepository } from "../../prisma/repositories/tasks/Prisma-manage-repository";
+import { ManageRepository } from "../../repositories/Manage-repository";
 
 interface CreateTaskRequest {
   title: string;
@@ -15,7 +16,9 @@ interface CreateTaskResponse {
 }
 
 export class CreateTask {
-  static async execute(props: CreateTaskRequest): Promise<CreateTaskResponse> {
+  constructor(private manageRepository: ManageRepository) {}
+
+  async execute(props: CreateTaskRequest): Promise<CreateTaskResponse> {
     const { title, content, date, done } = props;
     const task = new Task({
       title: title,
@@ -24,7 +27,6 @@ export class CreateTask {
       done,
     });
     const prismaManageRepository = new PrismaManageRepository();
-
     await prismaManageRepository.create(task);
 
     return { task: task };

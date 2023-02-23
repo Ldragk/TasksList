@@ -3,7 +3,7 @@ import { Replace } from "../helpers/Replace";
 import { Content } from "./task-entities/Content";
 import { LimitDate } from "./task-entities/LimitDate";
 
-interface TaskProps {
+export interface TaskProps {
   title: string;
   content: Content;
   date: LimitDate;
