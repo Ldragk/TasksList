@@ -2,9 +2,9 @@ import { Task } from "../../entities/Task";
 import { ManageRepository } from "../Manage-repository";
 
 export class InMemoryTaskRepository implements ManageRepository {
-  private tasks: Task[] = [];
+  public tasks: Task[] = [];
 
-  async create(task: Task): Promise<void> {
+  async create(task: Task) {
     this.tasks.push(task);
   }
 

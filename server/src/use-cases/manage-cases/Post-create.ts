@@ -26,8 +26,8 @@ export class CreateTask {
       date: new LimitDate(date),
       done,
     });
-    const prismaManageRepository = new PrismaManageRepository();
-    await prismaManageRepository.create(task);
+
+    await this.manageRepository.create(task);
 
     return { task: task };
   }

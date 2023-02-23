@@ -4,16 +4,19 @@ import { InMemoryTaskRepository } from "../../repositories/in-memory-repository/
 import { CreateTask } from "./Post-create";
 
 describe("Create Task Use Case", () => {
+  const tasksRepository = new InMemoryTaskRepository();
+  const createTask = new CreateTask(tasksRepository);
   it("should be able to create a valid task", async () => {
-    const inMemoryRepository = new InMemoryTaskRepository();
-    const createTask = new CreateTask(inMemoryRepository);
-    expect(
-      createTask.execute({
-        title: "title",
-        content: "content",
-        date: "02/23/2024",
-        done: false,
-      })
-    ).resolves.toBeInstanceOf(Task);
+    const { task } = await createTask.execute({
+      title: "title",
+      content: "content",
+      date: "02/23/2024",
+      done: false,
+    });
+    expect(tasksRepository.tasks).toHaveLength(1);
+    expect(tasksRepository.tasks[0]).toEqual(task);
+    expect(tasksRepository.tasks[0]).toBeInstanceOf(Task);
   });
+
+  
 });
