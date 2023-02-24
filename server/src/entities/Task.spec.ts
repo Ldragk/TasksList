@@ -30,6 +30,6 @@ describe("task", () => {
           createdAt: new Date(Date.now() - 1),
           updatedAt: new Date(),
         })
-    ).toThrow();
+    ).toThrowError();
   });
 });

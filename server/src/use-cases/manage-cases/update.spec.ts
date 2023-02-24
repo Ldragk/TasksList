@@ -22,4 +22,20 @@ describe("update", () => {
     expect(tasksRepository.tasks[0].date.value).toEqual(taskUpdate.date);
     expect(tasksRepository.tasks[0].done).toEqual(taskUpdate.done);
   });
+
+  it("should not be able to updated a non existing tasks", async () => {
+    const tasksRepository = new InMemoryManageRepository();
+    const update = new FullUpdate(tasksRepository);
+
+    const taskUpdate = {
+      title: "new title",
+      content: "new content",
+      date: "3/25/2025",
+      done: true,
+    };
+
+    expect(async () => {
+      return await update.execute("fake-notification-id", taskUpdate);
+    }).rejects.toThrowError();
+  });
 });

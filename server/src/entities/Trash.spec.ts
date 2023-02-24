@@ -35,6 +35,6 @@ describe("task", () => {
           },
             "asdas1231" 
         )
-    ).toThrow();
+    ).toThrowError();
   });
 });

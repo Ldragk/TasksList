@@ -10,10 +10,10 @@ describe("Task content", () => {
   });
 
   it("should not be able to create a task content with less than 5 caracteres", () => {
-    expect(() => new Content("aaa")).toThrow();
+    expect(() => new Content("aaa")).toThrowError();
   });
 
   it("should not be able to create a task content with more than 250 caracteres", () => {
-    expect(() => new Content("a".repeat(251))).toThrow();
+    expect(() => new Content("a".repeat(251))).toThrowError();
   });
 });
