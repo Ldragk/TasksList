@@ -1,12 +1,12 @@
 import { it, describe, expect } from "vitest";
 import { Task } from "../../entities/Task";
 import { InMemoryTaskRepository } from "../../repositories/in-memory-repository/in-memory-task-repository";
-import { CreateTask } from "./Post-create";
+import { CreateTask } from "./Create";
 
 describe("Create Task Use Case", () => {
-  const tasksRepository = new InMemoryTaskRepository();
-  const createTask = new CreateTask(tasksRepository);
   it("should be able to create a valid task", async () => {
+    const tasksRepository = new InMemoryTaskRepository();
+    const createTask = new CreateTask(tasksRepository);
     const { task } = await createTask.execute({
       title: "title",
       content: "content",
@@ -17,6 +17,4 @@ describe("Create Task Use Case", () => {
     expect(tasksRepository.tasks[0]).toEqual(task);
     expect(tasksRepository.tasks[0]).toBeInstanceOf(Task);
   });
-
-  
 });
