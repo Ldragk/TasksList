@@ -96,14 +96,5 @@ export class PrismaTaskQueryRepository implements QueryRepository {
 
     return task.map(PrismaTaskMapper.toDomain);
   }
-
-  async findeById(taskId: string): Promise<Task> {
-    const task = await prisma.task.findUniqueOrThrow({
-      where: {
-        id: taskId,
-      },
-    });
-
-    return PrismaTaskMapper.toDomain(task);
-  }
+  
 }

@@ -9,7 +9,7 @@ export function MakeTask(overrides: Override = {}) {
     title: "title",
     content: new Content("content"),
     date: new LimitDate("02/23/2024"),
-    done: undefined,
+    done: false,
     ...overrides,
   });
 }

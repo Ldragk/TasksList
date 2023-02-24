@@ -1,5 +1,4 @@
 import { Task } from "../../entities/Task";
-import { PrismaManageRepository } from "../../prisma/repositories/tasks/Prisma-manage-repository";
 import { PrismaTaskQueryRepository } from "../../prisma/repositories/tasks/Prisma-query-repository";
 import { ManageRepository } from "../../repositories/Manage-repository";
 
@@ -11,8 +10,7 @@ export class TaskStatus {
   constructor(private manageRepository: ManageRepository) {}
 
   async execute(taskId: string): Promise<EditTaskResponse> {
-    const prismaQueryRepository = new PrismaTaskQueryRepository();
-    const task: Task = await prismaQueryRepository.findeById(taskId);
+    const task = await this.manageRepository.findeById(taskId);
 
     task.done === false ? (task.done = true) : (task.done = false);
     task.updated();

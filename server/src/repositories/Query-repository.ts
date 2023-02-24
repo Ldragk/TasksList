@@ -6,5 +6,5 @@ export abstract class QueryRepository {
   abstract findByMonth(month: number, days: number[], year: number): Promise<Task[]>;
   abstract findByYear(month: number[], days: number[], year: number): Promise<Task[]>;
   abstract findByStatus(condition: boolean): Promise<Task[]>;
-  abstract findByOverdue(condition: boolean): Promise<Task[]>;
+  abstract findByOverdue(condition: boolean): Promise<Task[]>; 
 }

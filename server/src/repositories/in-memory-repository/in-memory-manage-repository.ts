@@ -1,17 +1,15 @@
 import { Task } from "../../entities/Task";
-import { PrismaTaskQueryRepository } from "../../prisma/repositories/tasks/Prisma-query-repository";
 import { ManageRepository } from "../Manage-repository";
 
-export class InMemoryTaskRepository implements ManageRepository {
+export class InMemoryManageRepository implements ManageRepository {
   public tasks: Task[] = [];
 
   async create(task: Task) {
     this.tasks.push(task);
   }
 
-  async saveCondition(taskId: Task): Promise<void> {
-    const prismaQueryRepository = new PrismaTaskQueryRepository();
-    const task: Task = this.tasks[0];
+  async saveCondition(task: Task): Promise<void> {
+    const taskIndex = this.tasks.findIndex((t) => t.id === task.id);
   }
 
   async save(task: Task): Promise<void> {
@@ -20,5 +18,13 @@ export class InMemoryTaskRepository implements ManageRepository {
       throw new Error("Task not found");
     }
     this.tasks[taskIndex] = task;
+  }
+
+  async findeById(taskId?: string): Promise<Task> {
+    const task = this.tasks.find((t) => t.id === taskId);
+    if (!task) {
+      throw new Error("Task not found");
+    }
+    return task;
   }
 }

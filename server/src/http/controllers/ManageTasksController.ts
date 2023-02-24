@@ -7,10 +7,6 @@ import { TaskBody } from "../dtos/create-task-body";
 import { TaskViewModel } from "../view-models/Task-view-model";
 
 export class ManageTasks {
-
-
-  
-
   async create(
     req: { body: TaskBody },
     res: { json: (arg0: TaskViewModel) => Promise<Task> }
@@ -47,7 +43,8 @@ export class ManageTasks {
   ) {
     const id: string = req.params.id;
     const { title, content, date, done } = req.body;
-    const { task } = await FullUpdate.execute(id, {
+    const fullUpdate = new FullUpdate(new PrismaManageRepository());
+    const { task } = await fullUpdate.execute(id, {
       title,
       content,
       date,

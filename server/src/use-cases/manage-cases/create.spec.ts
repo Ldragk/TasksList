@@ -1,11 +1,11 @@
 import { it, describe, expect } from "vitest";
 import { Task } from "../../entities/Task";
-import { InMemoryTaskRepository } from "../../repositories/in-memory-repository/in-memory-task-repository";
+import { InMemoryManageRepository } from "../../repositories/in-memory-repository/in-memory-manage-repository";
 import { CreateTask } from "./Create";
 
 describe("Create Task Use Case", () => {
   it("should be able to create a valid task", async () => {
-    const tasksRepository = new InMemoryTaskRepository();
+    const tasksRepository = new InMemoryManageRepository();
     const createTask = new CreateTask(tasksRepository);
     const { task } = await createTask.execute({
       title: "title",

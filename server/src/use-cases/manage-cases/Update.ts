@@ -2,7 +2,6 @@ import { Task } from "../../entities/Task";
 import { Content } from "../../entities/task-entities/Content";
 import { LimitDate } from "../../entities/task-entities/LimitDate";
 import { PrismaManageRepository } from "../../prisma/repositories/tasks/Prisma-manage-repository";
-import { PrismaTaskQueryRepository } from "../../prisma/repositories/tasks/Prisma-query-repository";
 
 interface EditTaskRequest {
   title: string;
@@ -16,12 +15,13 @@ interface EditTaskResponse {
 }
 
 export class FullUpdate {
-  static async execute(
+  constructor(private manageRepository: PrismaManageRepository) {}
+
+  async execute(
     taskId: string,
     body: EditTaskRequest
   ): Promise<EditTaskResponse> {
-    const prismaQueryRepository = new PrismaTaskQueryRepository();
-    let task: Task = await prismaQueryRepository.findeById(taskId);
+    let task: Task = await this.manageRepository.findeById(taskId);
 
     const { title, content, date, done } = body;
 
@@ -31,8 +31,7 @@ export class FullUpdate {
     task.done = done ?? task.done;
     task.updated();
 
-    const prismaManageRepository = new PrismaManageRepository();
-    await prismaManageRepository.save(task);
+    await this.manageRepository.save(task);
     return { task: task };
   }
 }
