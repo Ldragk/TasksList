@@ -157,27 +157,19 @@ REQUISITOS FUNCIONAIS:
 
 </table>
 
-<table width="66%" align="center">          
+<table width="33%" align="center">          
        <thead>                      
-               <th width="49%" style="text-align:center" colspan="4">4º Sprint</th>      
-               <th></th>
-               <th width="49%" style="text-align:center" colspan="5">5º Sprint</th>        
+               <th width="100%" style="text-align:center" colspan="4">4º Sprint</th>                         
        </thead>
        <tbody>          
            <tr>                 
                 <td colspan="4">✔️ Organizar estrutura do projeto.</th>
-                <td></th>             
-                <td colspan="5">Criar sistema de login e usuários.</th>  
            </tr>
            <tr>         
-                 <td colspan="4">✔️ Aplicar validações</th>     
-                 <td></th>  
-                 <td colspan="5">Aprimorar estrutura do software.</th>                           
+                 <td colspan="4">✔️ Aplicar validações</th>                        
            </tr>
            <tr>             
                 <td colspan="4">Aplicar testes unitários</th> 
-                <td></th> 
-                <td colspan="5">Aprimorar engenharia do software.</th>               
            </tr>                
        </tbody>
 </table>
