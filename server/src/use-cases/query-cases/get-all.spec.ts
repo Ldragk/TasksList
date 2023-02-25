@@ -9,13 +9,13 @@ describe("get all", () => {
     const getAll = new QueryAllTasks(tasksRepository);
     const task = MakeTask();
 
-    const returnTask = vi.spyOn(tasksRepository, "create");
+    const calledTask = vi.spyOn(tasksRepository, "create");
 
     await tasksRepository.create(task);
     await tasksRepository.create(task);
     const { tasks } = await getAll.execute();
 
-    expect(returnTask).toHaveBeenCalledTimes(2);
+    expect(calledTask).toHaveBeenCalledTimes(2);
     expect(tasksRepository.tasks).toHaveLength(2);
     expect(tasksRepository.tasks).toEqual([task, task]);
     expect(getAll.execute()).toEqual(Promise.resolve([task]));

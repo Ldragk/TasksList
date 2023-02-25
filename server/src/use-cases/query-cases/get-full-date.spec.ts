@@ -9,7 +9,7 @@ describe("Get full date", () => {
     const queryByFullDate = new QueryByFullDate(taskRepository);
     const task = MakeTask();
 
-    const returnTask = vi.spyOn(taskRepository, "create");
+    const called = vi.spyOn(taskRepository, "create");
 
     await taskRepository.create(task);
     await taskRepository.create(task);
@@ -21,7 +21,7 @@ describe("Get full date", () => {
     expect(queryByFullDate.execute({ date: task.date.value })).toEqual(
       Promise.resolve([task])
     );
-    expect(returnTask).toHaveBeenCalledTimes(3);
+    expect(called).toHaveBeenCalledTimes(3);
     expect(taskRepository.tasks).toHaveLength(3);
     expect(tasks).toHaveLength(3);
   });
