@@ -6,9 +6,11 @@ export interface GetTasksResponse {
 }
 
 export class QueryAllTasks {
-  public static async execute(): Promise<GetTasksResponse> {
-    const prismaTaskRecipientRepository = new PrismaTaskQueryRepository();
+  constructor(
+    private findRecipientRepository: PrismaTaskQueryRepository
+  ) {}
 
-    return { tasks: await prismaTaskRecipientRepository.findAllTasks() };
+  public async execute(): Promise<GetTasksResponse> {
+    return { tasks: await this.findRecipientRepository.findAllTasks() };
   }
 }

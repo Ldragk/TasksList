@@ -6,8 +6,6 @@ import { QueryRepository } from "../../../repositories/Query-repository";
 const prisma = new PrismaClient();
 
 export class PrismaTaskQueryRepository implements QueryRepository {
-  constructor() {}
-
   async findAllTasks(): Promise<Task[]> {
     const task = prisma.task.findMany({
       orderBy: {
@@ -96,5 +94,4 @@ export class PrismaTaskQueryRepository implements QueryRepository {
 
     return task.map(PrismaTaskMapper.toDomain);
   }
-  
 }

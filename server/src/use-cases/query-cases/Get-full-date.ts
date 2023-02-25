@@ -6,11 +6,16 @@ interface GetTaskRequest {
 }
 
 export class QueryByFullDate {
+
+  constructor(private findRecipientRepository: PrismaTaskQueryRepository) {
+    
+  }
+
   async execute(getDate: GetTaskRequest): Promise<GetTasksResponse> {
-    const prismaTaskRecipientRepository = new PrismaTaskQueryRepository();
+    
     const { date } = getDate;
     return {
-      tasks: await prismaTaskRecipientRepository.findByFullDate(date),
+      tasks: await this.findRecipientRepository.findByFullDate(date),
     };
   }
 }

@@ -6,17 +6,17 @@ import { QueryByYear } from "../../use-cases/query-cases/Get-year";
 import { TasksCondition } from "../../use-cases/query-cases/Get-status";
 import { Task } from "../../entities/Task";
 import { TaskViewModel } from "../view-models/Task-view-model";
+import { PrismaTaskQueryRepository } from "../../prisma/repositories/tasks/Prisma-query-repository";
 
 export class QueryTask {
-
-
   getAllTasks = async (
     req: Request,
     res: {
       json: (arg0: TaskViewModel) => Promise<Task>;
     }
   ) => {
-    const { tasks } = await QueryAllTasks.execute();
+    const queryAllTasks = new QueryAllTasks(new PrismaTaskQueryRepository());
+    const { tasks } = await queryAllTasks.execute();
     return { get: res.json(tasks.map(TaskViewModel.toHTTP)) };
   };
 
@@ -26,7 +26,9 @@ export class QueryTask {
       json: (arg0: TaskViewModel) => Promise<Task>;
     }
   ) => {
-    const tasksByFullDate = new QueryByFullDate();
+    const tasksByFullDate = new QueryByFullDate(
+      new PrismaTaskQueryRepository()
+    );
 
     const { tasks } = await tasksByFullDate.execute({
       date: `${req.params.month}/${req.params.day}/${req.params.year}`,
