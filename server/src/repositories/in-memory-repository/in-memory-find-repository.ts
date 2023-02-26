@@ -16,12 +16,11 @@ export class InMemoryFindRepository
     return this.tasks.filter((task) => task.date.value === date);
   }
 
-  async findByMonth(
-    month: number,
-    days: number[],
-    year: number
-  ): Promise<Task[]> {
-    return this.tasks;
+  async findByMonth(month: number, days: number[], year: number): Promise<any> {
+    for (let i = 0; i < days.length; i++)
+      return this.tasks.filter((task) => {
+        return task.date.value[i] === `${month}/${days[i]}/${year}`[i];
+      });
   }
 
   async findByYear(
