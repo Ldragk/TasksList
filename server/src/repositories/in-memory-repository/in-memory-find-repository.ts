@@ -16,11 +16,29 @@ export class InMemoryFindRepository
     return this.tasks.filter((task) => task.date.value === date);
   }
 
-  async findByMonth(month: number, days: number[], year: number): Promise<any> {
+  async findByMonth(
+    month: number,
+    days: number[],
+    year: number
+  ): Promise<Task[]> {
+    const tasksMonth: Task[] = [];
+    for (const i of days) {
+      this.tasks.map((task) => {
+        if (task.date.value === `${month}/${i}/${year}`) {
+          return tasksMonth.push(task);
+        }
+      });
+    }
+    return tasksMonth;
+
+    /*
+    Com a forma abaixo, não consigo retornar o resultado, assim so funcionaria com "Promise<any>",
+    não sendo o ideal, pois o retorno deveria ser "Promise<Task[]>", como está declarado na classe abstrata.
     for (let i = 0; i < days.length; i++)
       return this.tasks.filter((task) => {
         return task.date.value[i] === `${month}/${days[i]}/${year}`[i];
-      });
+      }); 
+   */
   }
 
   async findByYear(
