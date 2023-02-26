@@ -7,25 +7,17 @@ interface IDateType {
 }
 
 export class QueryByYear {
-  private date: IDateType;
+  constructor(private findRecipientRepository: PrismaTaskQueryRepository) {}
 
-  constructor(date: IDateType) {
-    this.date = {
-      year: date.year,
-    };
-  }
-
-  public async execute(): Promise<GetTasksResponse> {
-    const prismaTaskRecipientRepository = new PrismaTaskQueryRepository();
-
+  public async execute(date: IDateType): Promise<GetTasksResponse> {
     const months: number[] = new Dates().getMonths;
     const days: number[] = new Dates().getDays;
 
     return {
-      tasks: await prismaTaskRecipientRepository.findByYear(
+      tasks: await this.findRecipientRepository.findByYear(
         months,
         days,
-        this.date.year
+        date.year
       ),
     };
   }

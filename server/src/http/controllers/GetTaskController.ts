@@ -56,10 +56,10 @@ export class QueryTask {
       json: (arg0: TaskViewModel) => Promise<Task>;
     }
   ) => {
-    const tasksByYear: QueryByYear = new QueryByYear({
+    const tasksByYear = new QueryByYear(new PrismaTaskQueryRepository());
+    const { tasks } = await tasksByYear.execute({
       year: Number(req.params.year),
     });
-    const { tasks } = await tasksByYear.execute();
     return { get: res.json(tasks.map(TaskViewModel.toHTTP)) };
   };
 

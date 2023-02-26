@@ -22,9 +22,9 @@ export class InMemoryFindRepository
     year: number
   ): Promise<Task[]> {
     const tasksMonth: Task[] = [];
-    for (const i of days) {
+    for (const d of days) {
       this.tasks.map((task) => {
-        if (task.date.value === `${month}/${i}/${year}`) {
+        if (task.date.value === `${month}/${d}/${year}`) {
           return tasksMonth.push(task);
         }
       });
@@ -46,7 +46,17 @@ export class InMemoryFindRepository
     days: number[],
     year: number
   ): Promise<Task[]> {
-    return this.tasks;
+    const tasksYear: Task[] = [];
+    
+    for (const d of days) {
+      for(const m of month){
+      this.tasks.map((task) => {
+        if (task.date.value === `${m}/${d}/${year}`) {
+          return tasksYear.push(task);
+        }
+      })};
+    }
+    return tasksYear;
   }
 
   async findByStatus(condition: boolean): Promise<Task[]> {
