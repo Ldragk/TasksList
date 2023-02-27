@@ -69,7 +69,8 @@ export class QueryTask {
       json: (arg0: TaskViewModel) => Promise<Task>;
     }
   ) => {
-    const { tasks } = await TasksCondition.execute(
+    const tasksCondition = new TasksCondition(new PrismaTaskQueryRepository());
+    const { tasks } = await tasksCondition.execute(
       Number(req.params.condition)
     );
     return { get: res.json(tasks.map(TaskViewModel.toHTTP)) };

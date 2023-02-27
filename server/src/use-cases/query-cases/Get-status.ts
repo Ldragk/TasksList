@@ -14,19 +14,18 @@ export interface IPromiseType {
 
 export class TasksCondition {
   public conditionParameter!: ParameterType;
-  static conditionParameter: number;
 
-  constructor() {}
+  constructor(private findRecipientRepository: PrismaTaskQueryRepository) {}
 
-  public static async execute(
+  public async execute(
     conditionParameter: ParameterType
   ): Promise<GetTasksResponse> {
     this.conditionParameter = conditionParameter;
-    const prismaTaskRecipientRepository = new PrismaTaskQueryRepository();
+
     const condition = this.conditionParameter === 1 ? true : false;
 
     return {
-      tasks: await prismaTaskRecipientRepository.findByStatus(condition),
+      tasks: await this.findRecipientRepository.findByStatus(condition),
     };
   }
 }

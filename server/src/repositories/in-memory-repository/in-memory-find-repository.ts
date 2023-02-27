@@ -60,7 +60,7 @@ export class InMemoryFindRepository
   }
 
   async findByStatus(condition: boolean): Promise<Task[]> {
-    return this.tasks;
+    return this.tasks.filter((task) => task.done === condition);
   }
 
   async findByOverdue(condition: boolean): Promise<Task[]> {
