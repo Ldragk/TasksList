@@ -2,12 +2,12 @@ import { PrismaTaskQueryRepository } from "../../prisma/repositories/tasks/Prism
 import { GetTasksResponse } from "./Get-all";
 
 export class OverdueTasks {
-  public async execute(): Promise<GetTasksResponse> {
-    const prismaTaskRecipientRepository = new PrismaTaskQueryRepository();
+  constructor(private findRecipientRepository: PrismaTaskQueryRepository) {}
 
+  async execute(): Promise<GetTasksResponse> {
     const overdueTasks = (
-      await prismaTaskRecipientRepository.findByOverdue(false)
-    ).filter((task: any) => new Date(task.date) < new Date(Date.now()));
+      await this.findRecipientRepository.findByOverdue(false)
+    ).filter((task: any) => new Date(task.date.value) < new Date(Date.now()));
 
     return { tasks: overdueTasks };
   }
