@@ -4,8 +4,8 @@ import { InMemoryFindRepository } from "../../repositories/in-memory-repository/
 import { MakeTask } from "../../test/factories/task.factory";
 import { OverdueTasks } from "./Get-overdue";
 
-describe("get by month", () => {
-  it("should return all tasks in a month", async () => {
+describe("get by overdue", () => {
+  it("should return all overdue tasks", async () => {
     const tasksRepository = new InMemoryFindRepository();
     const overdueTasks = new OverdueTasks(tasksRepository);
 

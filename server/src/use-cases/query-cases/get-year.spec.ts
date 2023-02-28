@@ -4,8 +4,8 @@ import { InMemoryFindRepository } from "../../repositories/in-memory-repository/
 import { MakeTask } from "../../test/factories/task.factory";
 import { QueryByYear } from "./Get-year";
 
-describe("get by month", () => {
-  it("should return all tasks in a month", async () => {
+describe("get by year", () => {
+  it("should return all tasks in a year", async () => {
     const tasksRepository = new InMemoryFindRepository();
     const queryByYear = new QueryByYear(tasksRepository);
 

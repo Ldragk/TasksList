@@ -13,33 +13,26 @@ interface NotificationResponse {
 }
 
 export class NotificationOfTasksNearTheDeadline {
-  private params: IParamsNotifications;
+  constructor(private notificationRepository: PrismaNotificationsRepository) {}
 
-  constructor(params: IParamsNotifications) {
-    this.params = {
-      notificationsWithinThePeriod: params.notificationsWithinThePeriod,
-      type: params.type,
-    };
-  }
-
-  async execute(): Promise<NotificationResponse> {
-    const prismaNotificationsRepository: any =
-      new PrismaNotificationsRepository();
-
+  async execute({
+    notificationsWithinThePeriod,
+    type,
+  }: IParamsNotifications): Promise<NotificationResponse> {
     const tasks: Notification[] =
-      await prismaNotificationsRepository.findNotifications(false);
+      await this.notificationRepository.findNotifications(false);
 
     const todayDate: string = `${
       new Date().getMonth() + 1
     }/${new Date().getDate()}/${new Date().getFullYear()}`;
 
-    if (this.params.type === 1) {
+    if (type === 1) {
       return {
         notification: tasks.filter(
           (task: Notification) =>
             convertExcessDaysAtTheTurnOfTheMonth(
               numberOfDaysInTheMonth(todayDate),
-              this.params.notificationsWithinThePeriod
+              notificationsWithinThePeriod
             ) === task.date
         ),
       };
@@ -52,7 +45,7 @@ export class NotificationOfTasksNearTheDeadline {
             new Date(
               convertExcessDaysAtTheTurnOfTheMonth(
                 numberOfDaysInTheMonth(todayDate),
-                this.params.notificationsWithinThePeriod
+                notificationsWithinThePeriod
               )
             ) && new Date(task.date) >= new Date(todayDate)
       ),

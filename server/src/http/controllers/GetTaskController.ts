@@ -82,7 +82,9 @@ export class QueryTask {
       json: (arg0: TaskViewModel) => Promise<Task>;
     }
   ) => {
-    const overdueTasks: OverdueTasks = new OverdueTasks(new PrismaTaskQueryRepository());
+    const overdueTasks: OverdueTasks = new OverdueTasks(
+      new PrismaTaskQueryRepository()
+    );
     const { tasks } = await overdueTasks.execute();
     return { get: res.json(tasks.map(TaskViewModel.toHTTP)) };
   };

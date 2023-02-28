@@ -5,7 +5,7 @@ import { MakeTask } from "../../test/factories/task.factory";
 import { QueryByFullDate } from "./Get-full-date";
 
 describe("Get full date", () => {
-  it("should return all tasks", async () => {
+  it("should return all tasks with parameter date", async () => {
     const tasksRepository = new InMemoryFindRepository();
     const queryByFullDate = new QueryByFullDate(tasksRepository);
     const task = MakeTask();

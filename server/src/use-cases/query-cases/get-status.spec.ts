@@ -3,8 +3,8 @@ import { InMemoryFindRepository } from "../../repositories/in-memory-repository/
 import { MakeTask } from "../../test/factories/task.factory";
 import { TasksCondition } from "./Get-status";
 
-describe("get by month", () => {
-  it("should return all tasks in a month", async () => {
+describe("get by task status", () => {
+  it("should return all tasks in a parameter true or false", async () => {
     const tasksRepository = new InMemoryFindRepository();
     const tasksCondition = new TasksCondition(tasksRepository);
 
