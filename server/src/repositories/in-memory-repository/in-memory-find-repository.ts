@@ -6,8 +6,6 @@ export class InMemoryFindRepository
   extends InMemoryManageRepository
   implements QueryRepository
 {
-  public tasks: Task[] = [];
-
   async findAllTasks(): Promise<Task[]> {
     return this.tasks;
   }
@@ -47,14 +45,15 @@ export class InMemoryFindRepository
     year: number
   ): Promise<Task[]> {
     const tasksYear: Task[] = [];
-    
+
     for (const d of days) {
-      for(const m of month){
-      this.tasks.map((task) => {
-        if (task.date.value === `${m}/${d}/${year}`) {
-          return tasksYear.push(task);
-        }
-      })};
+      for (const m of month) {
+        this.tasks.map((task) => {
+          if (task.date.value === `${m}/${d}/${year}`) {
+            return tasksYear.push(task);
+          }
+        });
+      }
     }
     return tasksYear;
   }

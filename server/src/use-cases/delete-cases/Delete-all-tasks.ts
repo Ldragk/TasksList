@@ -2,9 +2,11 @@ import { PrismaDeleteRepository } from "../../prisma/repositories/tasks/Prisma-d
 import { DeletedTaskResponse } from "./Delete-task";
 
 export class DeleteAllTasks {
-  static async execute(): Promise<DeletedTaskResponse> {
-    const prismaDeleteRepository = new PrismaDeleteRepository();
+  constructor(private deleteRepository: PrismaDeleteRepository) {}
 
-    return { deleteTrash: await prismaDeleteRepository.deleteAll() };
+  async execute(): Promise<DeletedTaskResponse> {
+   
+
+    return { deleteTrash: await this.deleteRepository.deleteAll() };
   }
 }

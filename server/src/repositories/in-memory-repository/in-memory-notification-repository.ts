@@ -7,10 +7,7 @@ export class InMemoryNotificationRepository
   extends InMemoryManageRepository
   implements NotificationRepository
 {
-  public tasks: Task[] = [];
-  public notifications: Notification[] = [];
-
-  async findNotifications(done: boolean): Promise<any> {
+  async findNotifications(done: boolean): Promise<Notification[]> {
     const tasks = this.tasks.filter((task) => task.done === done);
 
     return tasks.map((task) => {
@@ -19,7 +16,7 @@ export class InMemoryNotificationRepository
         date: task.date.value,
         id: task.id,
       };
-      return notification;
+      return notification as Notification;
     });
   }
 }

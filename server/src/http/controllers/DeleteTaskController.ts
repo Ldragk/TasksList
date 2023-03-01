@@ -1,4 +1,6 @@
 import { Trash } from "../../entities/Trash";
+import { PrismaDeleteRepository } from "../../prisma/repositories/tasks/Prisma-delete-repository";
+import { PrismaTrashRepository } from "../../prisma/repositories/trash/Prisma-trash-repository";
 import { DeleteAllTasks } from "../../use-cases/delete-cases/Delete-all-tasks";
 import { DeleteTask } from "../../use-cases/delete-cases/Delete-task";
 import { CreateAllTrash } from "../../use-cases/trash-cases/Create-all-trash";
@@ -27,8 +29,11 @@ export class DeleteTasks {
       json: (arg0: Trash | void) => Promise<Trash[]>;
     }
   ) {
-    const { createTrash } = await CreateAllTrash.execute();
-    const { deleteTrash } = await DeleteAllTasks.execute();
+    const deleteAllTasks = new DeleteAllTasks(new PrismaDeleteRepository());
+    const createAllTrash = new CreateAllTrash(new PrismaTrashRepository());
+    
+    const { createTrash } = await createAllTrash.execute();
+    const { deleteTrash } = await deleteAllTasks.execute();
 
     return {
       create: res.json(createTrash),

@@ -1,13 +1,15 @@
 import { Trash } from "../../entities/Trash";
+import { PrismaTaskQueryRepository } from "../../prisma/repositories/tasks/Prisma-query-repository";
 import { PrismaTrashRepository } from "../../prisma/repositories/trash/Prisma-trash-repository";
 import { QueryAllTasks } from "../query-cases/Get-all";
 import { CreateTrashResponse } from "./Create-trash";
 
 export class CreateAllTrash {
-  static async execute(): Promise<CreateTrashResponse> {
-    const prismaTrashRepository = new PrismaTrashRepository();
+  constructor(private trashRepository: PrismaTrashRepository) {}
 
-    const { tasks } = Object(await QueryAllTasks.execute());
+  async execute(): Promise<CreateTrashResponse> {
+    const queryAllTasks = new QueryAllTasks(new PrismaTaskQueryRepository());
+    const { tasks } = Object(await queryAllTasks.execute());
 
     return tasks.map(async (task: Trash) => {
       const { id, title, content, date, done, createdAt } = task;
@@ -20,9 +22,11 @@ export class CreateAllTrash {
           createdAt: createdAt,
         },
         String(id)
-      );    
+      );
 
-      return { createTrash: await prismaTrashRepository.create(trashBody) };
+      return {
+        createTrash: await this.trashRepository.create(trashBody),
+      };
     });
   }
 }
