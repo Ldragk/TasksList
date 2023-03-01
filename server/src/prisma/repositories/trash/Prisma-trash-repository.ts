@@ -1,15 +1,15 @@
-import { PrismaClient } from "@prisma/client";
 import { Trash } from "../../../entities/Trash";
 import { TrashRepository } from "../../../repositories/Trash-repository";
+import { PrismaService } from "../../prisma.service";
 import { PrismaTrashMapper } from "./Prisma-trash-mapper";
 
-const prisma = new PrismaClient();
+const prismaService = new PrismaService();
 
 export class PrismaTrashRepository implements TrashRepository {
   async create(task: Trash): Promise<void> {
     const trashTask = PrismaTrashMapper.toPrisma(task);
 
-    await prisma.deletedTask.create({
+    await prismaService.deletedTask.create({
       data: {
         ...trashTask,
         deletedAt: new Date(),
@@ -18,7 +18,7 @@ export class PrismaTrashRepository implements TrashRepository {
   }
 
   async findAllTrash(): Promise<Trash[]> {
-    const allTrash = prisma.deletedTask.findMany({
+    const allTrash = prismaService.deletedTask.findMany({
       orderBy: {
         createdAt: "desc",
       },

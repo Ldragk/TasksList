@@ -1,10 +1,8 @@
 import { Task } from "../../../entities/Task";
 import { PrismaTaskMapper } from "./Prisma-task-mapper";
-import { PrismaClient } from "@prisma/client";
 import { ManageRepository } from "../../../repositories/Manage-repository";
 import { PrismaService } from "../../prisma.service";
 
-const prisma = new PrismaClient();
 
 const prismaService = new PrismaService();
 
@@ -18,7 +16,7 @@ export class PrismaManageRepository implements ManageRepository {
 
   async saveCondition(task: Task): Promise<void> {
     const taskConditionUpdate = PrismaTaskMapper.toPrisma(task);
-    await prisma.task.update({
+    await prismaService.task.update({
       where: {
         id: taskConditionUpdate.id,
       },
@@ -30,7 +28,7 @@ export class PrismaManageRepository implements ManageRepository {
 
   async save(task: Task): Promise<void> {
     const taskUpdate = PrismaTaskMapper.toPrisma(task);
-    await prisma.task.update({
+    await prismaService.task.update({
       where: {
         id: taskUpdate.id,
       },
@@ -39,7 +37,7 @@ export class PrismaManageRepository implements ManageRepository {
   }
 
   async findeById(taskId?: string): Promise<Task> {
-    const task = await prisma.task.findUniqueOrThrow({
+    const task = await prismaService.task.findUniqueOrThrow({
       where: {
         id: taskId,
       },
