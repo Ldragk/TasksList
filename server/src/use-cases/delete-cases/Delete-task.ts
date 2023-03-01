@@ -3,13 +3,12 @@ import { PrismaDeleteRepository } from "../../prisma/repositories/tasks/Prisma-d
 
 export interface DeletedTaskResponse {
   deleteTrash: void;
-  createTrash?: Trash
+  createTrash?: Trash;
 }
 
 export class DeleteTask {
-  static async execute(id: string): Promise<DeletedTaskResponse> {
-    const prismaDeleteRepository = new PrismaDeleteRepository();
-
-    return { deleteTrash: await prismaDeleteRepository.delete(id) };
+  constructor(private deleteRepository: PrismaDeleteRepository) {}
+  async execute(id: string): Promise<DeletedTaskResponse> {
+    return { deleteTrash: await this.deleteRepository.delete(id) };
   }
 }

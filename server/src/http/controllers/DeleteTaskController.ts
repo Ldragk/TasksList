@@ -13,9 +13,12 @@ export class DeleteTasks {
     res: { json: (arg0: TrashViewModel | void) => Promise<Trash> }
   ) {
     const id: string = req.params.id;
+    
+    const create = new CreateTrash(new PrismaTrashRepository());
+    const deleteTask = new DeleteTask(new PrismaDeleteRepository());
 
-    const { createTrash } = await CreateTrash.execute(id);
-    const { deleteTrash } = await DeleteTask.execute(id);
+    const { createTrash } = await create.execute(id);
+    const { deleteTrash } = await deleteTask.execute(id);
 
     return {
       create: res.json(TrashViewModel.toHTTP(createTrash)),
@@ -29,10 +32,10 @@ export class DeleteTasks {
       json: (arg0: Trash | void) => Promise<Trash[]>;
     }
   ) {
+    const create = new CreateAllTrash(new PrismaTrashRepository());
     const deleteAllTasks = new DeleteAllTasks(new PrismaDeleteRepository());
-    const createAllTrash = new CreateAllTrash(new PrismaTrashRepository());
-    
-    const { createTrash } = await createAllTrash.execute();
+
+    const { createTrash } = await create.execute();
     const { deleteTrash } = await deleteAllTasks.execute();
 
     return {
