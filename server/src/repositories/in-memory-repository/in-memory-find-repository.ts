@@ -66,11 +66,5 @@ export class InMemoryFindRepository
     return this.tasks.filter((task) => task.done === condition);
   }
 
-  async findeById(taskId?: string): Promise<Task> {
-    const task = this.tasks.find((t) => t.id === taskId);
-    if (!task) {
-      throw new Error("Task not found");
-    }
-    return task;
-  }
+
 }
