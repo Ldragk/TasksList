@@ -21,7 +21,7 @@ export class FullUpdate {
     taskId: string,
     body: EditTaskRequest
   ): Promise<EditTaskResponse> {
-    let task: Task = await this.manageRepository.findeById(taskId);
+    const task: Task = await this.manageRepository.findeById(taskId);
 
     const { title, content, date, done } = body;
 

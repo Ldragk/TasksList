@@ -15,7 +15,7 @@ export class CreateTrash {
   ) {}
 
   async execute(taskId: string): Promise<CreateTrashResponse> {
-    const task: Task = await this.manageRepository.findeById(taskId);
+    let task: Task = await this.manageRepository.findeById(taskId);
 
     const { id, title, content, date, done, createdAt } = task;
 

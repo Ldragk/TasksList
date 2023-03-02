@@ -5,6 +5,10 @@ export class InMemoryDeleteRepository
   extends InMemoryManageRepository
   implements DeleteRepository
 {
+  constructor() {
+    super();
+  }
+
   async delete(id: string): Promise<void> {
     const task = this.tasks.find((task) => task.id === id);
     if (!task) throw new Error("Task not found");

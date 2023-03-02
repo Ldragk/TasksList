@@ -20,7 +20,8 @@ export class InMemoryManageRepository implements ManageRepository {
     this.tasks[taskIndex] = task;
   }
 
-  async findeById(taskId: string): Promise<Task> {
+  async findeById(taskId: string): Promise<Task> {  
+    
     const task = this.tasks.find((t) => t.id === taskId);
     if (!task) {
       throw new Error("Task not found");
