@@ -15,9 +15,10 @@ describe("Create all deleted tasks", () => {
     const task = MakeTask();
     const called = vi.spyOn(taskRepository, "create");
 
-    await taskRepository.create(task);
-    await taskRepository.create(task);
-    await taskRepository.create(task);
+      for (let i = 0; i < 3; ) {
+      await taskRepository.create(task);
+      i++;
+    }
 
     const { createTrash } = await create.execute();
 

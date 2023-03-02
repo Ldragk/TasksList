@@ -1,14 +1,13 @@
 import { Prisma } from "@prisma/client";
-import { PrismaDeleteTrashRepository } from "../../prisma/repositories/trash/Prisma-delete-trash-repository";
+import { DeleteRepository } from "../../repositories/Delete-repository";
 
 interface DeleteAllTrashResponse {
   deleteTrash: void;
 }
 
 export class DeleteAllTrash {
-  static async execute(): Promise<DeleteAllTrashResponse> {
-    const prismaDeleteRepository = new PrismaDeleteTrashRepository();
-
-    return { deleteTrash: await prismaDeleteRepository.deleteAll() };
+  constructor(private deleteTrashRepository: DeleteRepository) {}
+  async execute(): Promise<DeleteAllTrashResponse> {
+    return { deleteTrash: await this.deleteTrashRepository.deleteAll() };
   }
 }

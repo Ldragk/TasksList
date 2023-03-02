@@ -41,10 +41,7 @@ O projeto é uma API Rest para criar e manipular tarefas por meio de rotas utili
             </tr>   
             <tr>             
                  <td colspan="1">Vitest</th>   
-            </tr>   
-            <tr>             
-                 <td colspan="1">Supertest</th>   
-            </tr>             
+            </tr>        
        </tbody>
 </table>
 
@@ -169,7 +166,7 @@ REQUISITOS FUNCIONAIS:
                  <td colspan="4">✔️ Aplicar validações</th>                        
            </tr>
            <tr>             
-                <td colspan="4">Aplicar testes unitários</th> 
+                <td colspan="4">✔️ Aplicar testes unitários</th> 
            </tr>                
        </tbody>
 </table>

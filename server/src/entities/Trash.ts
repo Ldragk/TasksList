@@ -1,4 +1,4 @@
-interface TrashProps {
+export interface TrashProps {
   title: string;
   content: string;
   date: string;

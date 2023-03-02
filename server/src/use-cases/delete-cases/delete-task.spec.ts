@@ -3,8 +3,8 @@ import { InMemoryDeleteRepository } from "../../repositories/in-memory-repositor
 import { MakeTask } from "../../test/factories/task.factory";
 import { DeleteTask } from "./Delete-task";
 
-describe("get by deleted tasks", () => {
-  it("should return all deleted tasks", async () => {
+describe("Deleted tasks", () => {
+  it("should return deleted tasks", async () => {
     const deleteRepository = new InMemoryDeleteRepository();
     const deleteTask = new DeleteTask(deleteRepository);
 
@@ -12,9 +12,10 @@ describe("get by deleted tasks", () => {
 
     const called = vi.spyOn(deleteRepository, "create");
 
-    await deleteRepository.create(task);
-    await deleteRepository.create(task);
-    await deleteRepository.create(task);
+    for (let i = 0; i < 3; ) {
+      await deleteRepository.create(task);
+      i++
+    }
 
     expect(deleteRepository.tasks).toHaveLength(3);
     const { deleteTrash } = await deleteTask.execute(

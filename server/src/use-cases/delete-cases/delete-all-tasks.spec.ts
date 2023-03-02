@@ -3,7 +3,7 @@ import { InMemoryDeleteRepository } from "../../repositories/in-memory-repositor
 import { MakeTask } from "../../test/factories/task.factory";
 import { DeleteAllTasks } from "./Delete-all-tasks";
 
-describe("get by deleted tasks", () => {
+describe("Deleted all tasks", () => {
   it("should return all deleted tasks", async () => {
     const deleteRepository = new InMemoryDeleteRepository();
     const deleteAllTasks = new DeleteAllTasks(deleteRepository);
