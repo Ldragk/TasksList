@@ -1,8 +1,8 @@
-import { PrismaDeleteRepository } from "../../prisma/repositories/tasks/Prisma-delete-repository";
+import { DeleteRepository } from "../../repositories/Delete-repository";
 import { DeletedTaskResponse } from "./Delete-task";
 
 export class DeleteAllTasks {
-  constructor(private deleteRepository: PrismaDeleteRepository) {}
+  constructor(private deleteRepository: DeleteRepository) {}
 
   async execute(): Promise<DeletedTaskResponse> {
    

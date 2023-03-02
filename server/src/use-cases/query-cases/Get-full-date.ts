@@ -1,4 +1,4 @@
-import { PrismaTaskQueryRepository } from "../../prisma/repositories/tasks/Prisma-query-repository";
+import { QueryRepository } from "../../repositories/Query-repository";
 import { GetTasksResponse } from "./Get-all";
 
 interface GetTaskRequest {
@@ -7,7 +7,7 @@ interface GetTaskRequest {
 
 export class QueryByFullDate {
 
-  constructor(private findRecipientRepository: PrismaTaskQueryRepository) {
+  constructor(private findRecipientRepository: QueryRepository) {
     
   }
 

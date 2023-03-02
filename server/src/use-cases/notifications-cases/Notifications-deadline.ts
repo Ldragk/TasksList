@@ -1,7 +1,7 @@
-import { PrismaNotificationsRepository } from "../../prisma/repositories/notification/Prisma-notifications-repository";
 import { convertExcessDaysAtTheTurnOfTheMonth } from "./functions/convertExcessDaysAtTheTurnOfTheMonth";
 import { numberOfDaysInTheMonth } from "./functions/numberOfDaysInTheMonth";
 import { Notification } from "../../entities/Notification";
+import { NotificationRepository } from "../../repositories/Notification-repository";
 
 export interface IParamsNotifications {
   notificationsWithinThePeriod: number;
@@ -13,7 +13,7 @@ interface NotificationResponse {
 }
 
 export class NotificationOfTasksNearTheDeadline {
-  constructor(private notificationRepository: PrismaNotificationsRepository) {}
+  constructor(private notificationRepository: NotificationRepository) {}
 
   async execute({
     notificationsWithinThePeriod,

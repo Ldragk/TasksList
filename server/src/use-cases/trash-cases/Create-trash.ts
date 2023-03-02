@@ -1,7 +1,7 @@
 import { Task } from "../../entities/Task";
 import { Trash } from "../../entities/Trash";
-import { PrismaManageRepository } from "../../prisma/repositories/tasks/Prisma-manage-repository";
-import { PrismaTrashRepository } from "../../prisma/repositories/trash/Prisma-trash-repository";
+import { ManageRepository } from "../../repositories/Manage-repository";
+import { TrashRepository } from "../../repositories/Trash-repository";
 
 export interface CreateTrashResponse {
   deleteTrash?: void;
@@ -9,20 +9,21 @@ export interface CreateTrashResponse {
 }
 
 export class CreateTrash {
-  constructor(private trashRepository: PrismaTrashRepository) {}
+  constructor(
+    private trashRepository: TrashRepository,
+    private manageRepository: ManageRepository
+  ) {}
 
   async execute(taskId: string): Promise<CreateTrashResponse> {
-    const prismaManageRepository = new PrismaManageRepository();
-
-    const task: Task = await prismaManageRepository.findeById(taskId);
+    const task: Task = await this.manageRepository.findeById(taskId);
 
     const { id, title, content, date, done, createdAt } = task;
 
     const trash: Trash = new Trash(
       {
         title: String(title),
-        content: String(content),
-        date: String(date),
+        content: content.value,
+        date: date.value,
         done: done,
         createdAt: createdAt,
       },

@@ -1,7 +1,7 @@
 import { Task } from "../../entities/Task";
 import { Content } from "../../entities/task-entities/Content";
 import { LimitDate } from "../../entities/task-entities/LimitDate";
-import { PrismaManageRepository } from "../../prisma/repositories/tasks/Prisma-manage-repository";
+import { ManageRepository } from "../../repositories/Manage-repository";
 
 interface EditTaskRequest {
   title: string;
@@ -15,7 +15,7 @@ interface EditTaskResponse {
 }
 
 export class FullUpdate {
-  constructor(private manageRepository: PrismaManageRepository) {}
+  constructor(private manageRepository: ManageRepository) {}
 
   async execute(
     taskId: string,

@@ -1,4 +1,4 @@
-import { PrismaTaskQueryRepository } from "../../prisma/repositories/tasks/Prisma-query-repository";
+import { QueryRepository } from "../../repositories/Query-repository";
 import { GetTasksResponse } from "./Get-all";
 
 type ParameterType = number;
@@ -15,7 +15,7 @@ export interface IPromiseType {
 export class TasksCondition {
   public conditionParameter!: ParameterType;
 
-  constructor(private findRecipientRepository: PrismaTaskQueryRepository) {}
+  constructor(private findRecipientRepository: QueryRepository) {}
 
   public async execute(
     conditionParameter: ParameterType

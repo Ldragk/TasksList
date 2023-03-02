@@ -1,5 +1,5 @@
 import { Task } from "../../entities/Task";
-import { PrismaTaskQueryRepository } from "../../prisma/repositories/tasks/Prisma-query-repository";
+import { QueryRepository } from "../../repositories/Query-repository";
 
 export interface GetTasksResponse {
   tasks: Task[];
@@ -7,7 +7,7 @@ export interface GetTasksResponse {
 
 export class QueryAllTasks {
   constructor(
-    private findRecipientRepository: PrismaTaskQueryRepository
+    private findRecipientRepository: QueryRepository
   ) {}
 
   public async execute(): Promise<GetTasksResponse> {

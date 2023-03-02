@@ -1,5 +1,5 @@
 import { Dates } from "../../helpers/Dates";
-import { PrismaTaskQueryRepository } from "../../prisma/repositories/tasks/Prisma-query-repository";
+import { QueryRepository } from "../../repositories/Query-repository";
 import { GetTasksResponse } from "./Get-all";
 
 interface IDateType {
@@ -7,7 +7,7 @@ interface IDateType {
 }
 
 export class QueryByYear {
-  constructor(private findRecipientRepository: PrismaTaskQueryRepository) {}
+  constructor(private findRecipientRepository: QueryRepository) {}
 
   public async execute(date: IDateType): Promise<GetTasksResponse> {
     const months: number[] = new Dates().getMonths;

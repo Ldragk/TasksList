@@ -2,8 +2,7 @@ import express from "express";
 import cors from "cors";
 import { PrismaClient } from "@prisma/client";
 import { DeleteTasks } from "./controllers/DeleteTaskController";
-import { TrashDelete } from "./controllers/TrashDeleteController";
-import { TrashTasks } from "./controllers/TrashTasksController";
+import { TrashTasks } from "./controllers/TrashController";
 import { ManageTasks } from "./controllers/ManageTasksController";
 import { QueryTask } from "./controllers/GetTaskController";
 import { Notifications } from "./controllers/NotificationsController";
@@ -39,12 +38,10 @@ async function App() {
   app.delete("/tasks/delete/all", DeleteTaskController.deletedAllTasks);
   app.delete("/tasks/delete/:id", DeleteTaskController.deleteTask);
 
-  const TrashTasksController: any = new TrashTasks();
-  app.get("/tasks/trash/all", TrashTasksController.queryAllTrashTasks);
-
-  const DeleteTrashController: any = new TrashDelete();
-  app.delete("/trash/:id/delete", DeleteTrashController.deletedTrashTask);
-  app.delete("/trash/delete/all", DeleteTrashController.deletedAllTrashTasks);
+  const TrashController: any = new TrashTasks();
+  app.get("/tasks/trash/all", TrashController.queryAllTrashTasks);  
+  app.delete("/trash/:id/delete", TrashController.deletedTrashTask);
+  app.delete("/trash/delete/all", TrashController.deletedAllTrashTasks);
 
   const Server: number = 3333;
   app.listen(Server, () => console.log(`Server is running on port ${Server}`));

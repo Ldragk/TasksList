@@ -1,5 +1,5 @@
 import { Trash } from "../../entities/Trash";
-import { PrismaDeleteRepository } from "../../prisma/repositories/tasks/Prisma-delete-repository";
+import { DeleteRepository } from "../../repositories/Delete-repository";
 
 export interface DeletedTaskResponse {
   deleteTrash: void;
@@ -7,7 +7,7 @@ export interface DeletedTaskResponse {
 }
 
 export class DeleteTask {
-  constructor(private deleteRepository: PrismaDeleteRepository) {}
+  constructor(private deleteRepository: DeleteRepository) {}
   async execute(id: string): Promise<DeletedTaskResponse> {
     return { deleteTrash: await this.deleteRepository.delete(id) };
   }

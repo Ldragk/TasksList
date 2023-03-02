@@ -1,8 +1,8 @@
-import { PrismaTaskQueryRepository } from "../../prisma/repositories/tasks/Prisma-query-repository";
+import { QueryRepository } from "../../repositories/Query-repository";
 import { GetTasksResponse } from "./Get-all";
 
 export class OverdueTasks {
-  constructor(private findRecipientRepository: PrismaTaskQueryRepository) {}
+  constructor(private findRecipientRepository: QueryRepository) {}
 
   async execute(): Promise<GetTasksResponse> {
     const overdueTasks = (
