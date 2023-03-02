@@ -25,7 +25,7 @@ export class TrashTasks {
     return { delete: res.json(deleteTrash) };
   }
 
-  async deletedAllTrashTasks(   
+  async deletedAllTrashTasks(
     req: Request,
     res: { json: (arg0: void) => Promise<Trash> }
   ) {

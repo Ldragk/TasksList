@@ -1,6 +1,5 @@
 import { Trash } from "../../entities/Trash";
 import { TrashRepository } from "../Trash-repository";
-import { InMemoryManageRepository } from "./in-memory-manage-repository";
 
 export class InMemoryTrashRepository implements TrashRepository {
   trash: Trash[] = [];
