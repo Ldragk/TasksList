@@ -51,15 +51,15 @@ O projeto é uma API Rest para criar e manipular tarefas por meio de rotas utili
 
 <br><br>
 
-# Instalação
+## Instalação
 
      $ npm i
 
-# Executando o aplicativo
+## Executando o aplicativo
 
     $ npm run start
 
-# Teste
+## Teste
 
     $ npm test
 
