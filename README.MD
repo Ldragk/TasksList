@@ -127,9 +127,12 @@ O projeto é uma API Rest para criar e manipular tarefas por meio de rotas utili
           foi ultrapassado.
 
      - Ser notificado de tarefas próximas da data limite:
+          - É passado um valor em dias, de quantos dias no futuro será feita a busca.
           - O parâmetro com valor "1" busca pela data específica, ou seja, busca as tarefas cujo 
-          data limite seja no mês/dia/ano informado.
-               Ex: Tarefas com data limite daqui a 10 dias (/tasks/notifications/10/1);
+          data limite seja no dia informado. (/tasks/notifications/10/1)
+               Ex: Tarefas com data limite daqui a 10 dias, suponto que estamos em 02/28/2023, 
+               trará tarefas do dia 03/10/2023 ;
+
           - Outro parâmetro (recomendo usar 0), busca todas as tarefas da data atual até o 
           prazo informado. (/tasks/notifications/10/0).
 
