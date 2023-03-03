@@ -157,7 +157,7 @@ REQUISITOS FUNCIONAIS:
 
 <table width="33%" align="left">          
        <thead>                      
-               <th width="100%" style="text-align:center" colspan="4">4º Sprint</th>                         
+               <th width="100%" style="text-align:center" colspan="4">✔️ 4º Sprint</th>                         
        </thead>
        <tbody>          
            <tr>                 
