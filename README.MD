@@ -51,6 +51,20 @@ O projeto é uma API Rest para criar e manipular tarefas por meio de rotas utili
 
 <br><br>
 
+# Instalação
+
+     $ npm i
+
+# Executando o aplicativo
+
+    $ npm run start
+
+# Teste
+
+    $ npm test
+
+<br><br>
+
 <div align="center">
 
 ## BACKLOG DO PRODUTO
@@ -97,7 +111,6 @@ REQUISITOS FUNCIONAIS:
 - Editar tarefa já criada;
 - Consultar tarefas atrasadas;
 - Ser notificado de tarefas próximas da data limite;
-- Criar sistema de login e usuários.
 
 <br><br><br>
 
