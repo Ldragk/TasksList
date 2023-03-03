@@ -51,23 +51,39 @@ O projeto é uma API Rest para criar e manipular tarefas por meio de rotas utili
 
 <br><br>
 
+<div align="center">
+
 ## Instalação
+
+</div>
 
      $ npm i
 
+<div align="center">
+
 ## Executando o aplicativo
+
+</div>
 
     $ npm run start
 
+<div align="center">
+
 ## Teste
+
+</div>
 
     $ npm test
 
+<div align="center">
+
 ## Documentação
 
+</div>
+
     - Criar tarefa:
-          - Por padrão o valor "done" inicia "false", não sendo necessário informa-lo ao criar a 
-          tarefa. Contudo o programa permite criar uma tarefa passando um valor inicial 
+          - Por padrão o valor "done" inicia "false", não sendo necessário informa-lo ao criar a
+          tarefa. Contudo o programa permite criar uma tarefa passando um valor inicial
           "done": "true"
 
           - Estrutura da data:
