@@ -164,7 +164,7 @@ HISTORIAS:
 - Eu como usuário quero poder fazer login e acessar minhas
   tarefas em qualquer aparelho.
 
-<br><br><br>
+<br><br>
 
 <strong>
 REQUISITOS FUNCIONAIS:
@@ -185,7 +185,7 @@ REQUISITOS FUNCIONAIS:
 - Consultar tarefas atrasadas;
 - Ser notificado de tarefas próximas da data limite;
 
-<br><br><br>
+<br><br>
 
 <div align="center">
 
