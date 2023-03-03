@@ -67,7 +67,8 @@ O projeto é uma API Rest para criar e manipular tarefas por meio de rotas utili
 
     - Criar tarefa:
           - Por padrão o valor "done" inicia "false", não sendo necessário informa-lo ao criar a 
-          tarefa. Contudo o programa permite criar uma tarefa passando um valor inicial "done": "true"
+          tarefa. Contudo o programa permite criar uma tarefa passando um valor inicial 
+          "done": "true"
 
           - Estrutura da data:
                - Data limite é o prazo final para concluir a tarefa.
