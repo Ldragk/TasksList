@@ -42,6 +42,9 @@ O projeto é uma API Rest para criar e manipular tarefas por meio de rotas utili
             </tr>   
             <tr>             
                  <td colspan="1">Vitest</th>   
+            </tr>  
+            <tr>             
+                 <td colspan="1">Class-validator</th>   
             </tr>        
        </tbody>
 </table>
