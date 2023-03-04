@@ -108,7 +108,7 @@ O projeto é uma API Rest para criar e manipular tarefas por meio de rotas utili
                }
 
      - Listar tarefa:
-          - A busca é pela data limite e não pelo data de criação;
+          - A busca é pela data limite e não pela data de criação;
           - Pelo Dia: Informar mês/dia/ano. (/tasks/date/21/2/2023);
           - Pelo Mês: Informar mês/ano. (/tasks/month/2/2024);
           - Pelo Ano: Informar ano. (/tasks/year/2023).
