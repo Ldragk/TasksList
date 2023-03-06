@@ -16,8 +16,6 @@ model Task {
   done      Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  @@index([id])
 }
 
 model DeletedTask {
@@ -28,6 +26,4 @@ model DeletedTask {
   done      Boolean  @default(false)
   createdAt DateTime @default(now())
   deletedAt DateTime @default(now())
-
-  @@index([id])
 }
