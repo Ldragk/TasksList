@@ -90,7 +90,7 @@ O projeto é uma API Rest para criar e manipular tarefas por meio de rotas utili
                - Data limite é o prazo final para concluir a tarefa.
                - Estrutura: mês/dia/ano;
                - Mês e Dia >= 1 < que 2 dígitos, Ano === 4 dígitos;
-               - A data de limite não pode ser menor que a data atual.
+               - A data limite não pode ser menor que a data atual.
 
            Request JSON:
 
