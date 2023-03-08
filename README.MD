@@ -144,7 +144,8 @@ O projeto é uma API Rest para criar e manipular tarefas por meio de rotas utili
           cujo prazo (data limite) foi ultrapassado.
 
      - Ser notificado de tarefas próximas da data limite:
-          - É passado um parâmetro com valor em dias.
+          - São passados dois parâmetros, um com valor em dias, outro para
+          selecionar o modo de notificação, nessa ordem respectivamente.
           - O parâmetro com valor "1" busca pela data específica, ou seja, busca as tarefas cujo
           data limite seja no dia informado. (/tasks/notifications/10/1)
                Ex: Tarefas com data limite daqui a 10 dias, supondo que estamos em 02/28/2023,
