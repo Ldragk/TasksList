@@ -6,9 +6,11 @@
 
 </div>
 
+Projeto back-end com API REST, sendo um app para criar tarefas, editar, deletar, consultar e receber notificações de aviso.
+
 Construí e planejei esse projeto do zero e sozinho. Tem o objetivo de consolidar meus conhecimentos principalmente no Back-end e de Engenharia de Software, além de praticar a utilização de Node.js com Express e Prisma Studio.
 
-O projeto é uma API Rest para criar e manipular tarefas por meio de rotas utilizando os verbos http e banco de dados (ORM).
+
 
 <br>
 
