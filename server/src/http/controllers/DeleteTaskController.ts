@@ -31,7 +31,7 @@ export class DeleteTasks {
   }
 
   async deletedAllTasks(
-    req: Request,
+    _: Request,
     res: {
       json: (arg0: Trash | void) => Promise<Trash[]>;
     }

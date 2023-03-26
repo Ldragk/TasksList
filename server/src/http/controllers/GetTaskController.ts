@@ -10,7 +10,7 @@ import { PrismaTaskQueryRepository } from "../../prisma/repositories/tasks/Prism
 
 export class QueryTask {
   getAllTasks = async (
-    req: Request,
+    _: Request,
     res: {
       json: (arg0: TaskViewModel) => Promise<Task>;
     }
@@ -77,7 +77,7 @@ export class QueryTask {
   };
 
   getOverdueTasks = async (
-    req: Request,
+    _: Request,
     res: {
       json: (arg0: TaskViewModel) => Promise<Task>;
     }

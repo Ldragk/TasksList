@@ -8,7 +8,7 @@ import { TrashViewModel } from "../view-models/Trash-view-model";
 
 export class TrashTasks {
   async findAllTrashTasks(
-    req: Request,
+    _: Request,
     res: {
       json: (arg0: TrashViewModel) => Promise<Trash[]>;
     }
@@ -30,7 +30,7 @@ export class TrashTasks {
   }
 
   async deletedAllTrashTasks(
-    req: Request,
+    _: Request,
     res: { json: (arg0: void) => Promise<Trash> }
   ) {
     const deleteAllTrash = new DeleteAllTrash(
