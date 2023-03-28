@@ -185,27 +185,6 @@ HISTORIAS:
 
 <br><br>
 
-<strong>
-REQUISITOS FUNCIONAIS:
-</strong>
-<br><br>
-
-- Criar tarefa com título, descrição e data limite;
-- Listar todas as tarefas;
-- Listar tarefas do mês;
-- Listar tarefas do dia;
-- Deletar tarefas;
-- Salvar tarefas deletadas;
-- Consultar tarefas deletadas;
-- Marcar ou desmarcar tarefas como feitas;
-- Consultar tarefas feitas;
-- Consultar tarefas não feitas;
-- Editar tarefa já criada;
-- Consultar tarefas atrasadas;
-- Ser notificado de tarefas próximas da data limite;
-
-<br><br>
-
 <div align="center">
 
 ## SPRINTS
