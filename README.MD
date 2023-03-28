@@ -171,9 +171,10 @@ HISTORIAS:
 
 - Eu como usuário quero criar uma tarefa;
 - Eu como usuário quero estabelecer o título, descrição e data limite da tarefa;
+- Eu como usuário quero ver as tarefas por dia, mês ou ano;
 - Eu como usuário quedo deletar uma ou mais tarefas;
-- Eu como usuário quero poder consultar tarefas deletadas;
 - Eu como usuário quero marcar uma tarefa como feita;
+- Eu como usuário quero poder consultar tarefas deletadas;
 - Eu como usuário quero desmarcar uma tarefa marcada como feita;
 - Eu como usuário quero ver todas as tarefas feitas;
 - Eu como usuário quero ver todas as tarefas não feitas;
@@ -182,6 +183,27 @@ HISTORIAS:
   da data limite;
 - Eu como usuário quero poder fazer login e acessar minhas
   tarefas em qualquer aparelho.
+
+<br><br>
+
+<strong>
+REQUISITOS FUNCIONAIS:
+</strong>
+<br><br>
+
+- Criar tarefa com título, descrição e data limite;
+- Listar todas as tarefas;
+- Listar tarefas do mês;
+- Listar tarefas do dia;
+- Deletar tarefas;
+- Salvar tarefas deletadas;
+- Consultar tarefas deletadas;
+- Marcar ou desmarcar tarefas como feitas;
+- Consultar tarefas feitas;
+- Consultar tarefas não feitas;
+- Editar tarefa já criada;
+- Consultar tarefas atrasadas;
+- Ser notificado de tarefas próximas da data limite;
 
 <br><br>
 
