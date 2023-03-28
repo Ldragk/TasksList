@@ -171,6 +171,7 @@ HISTORIAS:
 
 - Eu como usuário quero criar uma tarefa;
 - Eu como usuário quero estabelecer o título, descrição e data limite da tarefa;
+- Eu como usuário quero ver todas as tarefas criadas;
 - Eu como usuário quero ver as tarefas por dia, mês ou ano;
 - Eu como usuário quedo deletar uma ou mais tarefas;
 - Eu como usuário quero marcar uma tarefa como feita;
@@ -195,6 +196,7 @@ REQUISITOS FUNCIONAIS:
 - Listar todas as tarefas;
 - Listar tarefas do mês;
 - Listar tarefas do dia;
+- Listar tarefas do ano;
 - Deletar tarefas;
 - Salvar tarefas deletadas;
 - Consultar tarefas deletadas;
