@@ -12,7 +12,8 @@ describe("Create deleted tasks", () => {
     const create = new CreateTrash(trashRepository, taskRepository);
 
     const task = MakeTask();
-    const called = vi.spyOn(taskRepository, "create");
+    const calledTask = vi.spyOn(taskRepository, "create");
+    const calledTrash = vi.spyOn(trashRepository, "create");
 
     for (let i = 0; i < 3; ) {
       await taskRepository.create(task);
@@ -22,7 +23,8 @@ describe("Create deleted tasks", () => {
     const id = taskRepository.tasks[0].id;
     const { createTrash } = await create.execute(id);
 
-    expect(called).toHaveBeenCalledTimes(3);
+    expect(calledTask).toHaveBeenCalledTimes(3);
+    expect(calledTrash).toHaveBeenCalledTimes(1);
     expect(taskRepository.tasks).toHaveLength(3);
     expect(trashRepository.trash).toHaveLength(1);
   });

@@ -1,4 +1,3 @@
-import { Prisma } from "@prisma/client";
 import { DeleteRepository } from "../../repositories/Delete-repository";
 
 interface DeleteAllTrashResponse {

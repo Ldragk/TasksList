@@ -1,14 +1,17 @@
 import { Trash } from "../../entities/Trash";
-import { PrismaTaskQueryRepository } from "../../prisma/repositories/tasks/Prisma-query-repository";
+import { QueryRepository } from "../../repositories/Query-repository";
 import { TrashRepository } from "../../repositories/Trash-repository";
 import { QueryAllTasks } from "../query-cases/Get-all";
 import { CreateTrashResponse } from "./Create-trash";
 
 export class CreateAllTrash {
-  constructor(private trashRepository: TrashRepository) {}
+  constructor(
+    private trashRepository: TrashRepository,
+    private queryRepository: QueryRepository
+  ) {}
 
   async execute(): Promise<CreateTrashResponse> {
-    const queryAllTasks = new QueryAllTasks(new PrismaTaskQueryRepository());
+    const queryAllTasks = new QueryAllTasks(this.queryRepository);
     const { tasks } = Object(await queryAllTasks.execute());
 
     return tasks.map(async (task: Trash) => {

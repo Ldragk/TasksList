@@ -6,7 +6,6 @@ import { PrismaService } from "../../prisma.service";
 const prismaService = new PrismaService();
 
 export class PrismaNotificationsRepository implements NotificationRepository {
-  
   async findNotifications(done: boolean): Promise<Notification[]> {
     const taskNotification = await prismaService.task.findMany({
       where: {

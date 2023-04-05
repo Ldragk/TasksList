@@ -26,6 +26,4 @@ export class PrismaTrashRepository implements TrashRepository {
 
     return (await allTrash).map(PrismaTrashMapper.toDomain);
   }
-
- 
 }

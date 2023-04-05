@@ -19,6 +19,16 @@ export class NotificationOfTasksNearTheDeadline {
     notificationsWithinThePeriod,
     type,
   }: IParamsNotifications): Promise<NotificationResponse> {
+    return await this.notificationType({
+      notificationsWithinThePeriod,
+      type,
+    });
+  }
+
+  private async notificationType({
+    notificationsWithinThePeriod,
+    type,
+  }: IParamsNotifications): Promise<NotificationResponse> {
     const tasks: Notification[] =
       await this.notificationRepository.findNotifications(false);
 

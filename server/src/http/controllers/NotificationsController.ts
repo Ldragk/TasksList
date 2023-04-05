@@ -8,7 +8,9 @@ export class Notifications {
     req: { params: { daysOfDelay: string; type: string } },
     res: { json: (arg0: NotificationViewModel) => Notification }
   ) => {
-    const notifications = new NotificationOfTasksNearTheDeadline(new PrismaNotificationsRepository());
+    const notifications = new NotificationOfTasksNearTheDeadline(
+      new PrismaNotificationsRepository()
+    );
 
     const { notification } = await notifications.execute({
       notificationsWithinThePeriod: Number(req.params.daysOfDelay),
@@ -16,9 +18,7 @@ export class Notifications {
     });
 
     return {
-      get: res.json(
-        notification.map(NotificationViewModel.toHTTP)
-      ),
+      get: res.json(notification.map(NotificationViewModel.toHTTP)),
     };
   };
 }
