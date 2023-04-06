@@ -1,8 +1,27 @@
+
+<p align="center">
+  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;    
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;  
+  <a href="#-instalação">Execução</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp; 
+  <a href="#-documentação">Documentação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp; 
+  <a href="#-backlog_do_produto">Backlog do Produto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp; 
+</p>
+
+<br>
+
 <div align="center">
 
 # Projeto Lista de Tarefas
 
 # (Back-End)
+
+</div>
+
+<br><br>
+
+<div align="center">
+
+## Projeto
 
 </div>
 
@@ -12,8 +31,6 @@ Construí e planejei esse projeto do zero e sozinho. Tem o objetivo de consolida
 
 
 
-<br>
-
 - Nota: Não iniciei o projeto aplicando TDD, nem mesmo DDD. A ideia era consolidar meu estudos, de cursos e projetos de eventos, com a prática e aprender mais ao longo do desenvolvimento. Assim iniciei desenvolvendo de acordo com o aprendizado do evento <a href="https://github.com/Lucasvmarangoni/NLW-Ignite-2022" target="_blank">NLW ESpots Ignite</a> da RocketSeat. Após alcançar esse objetivo ainda pretendia fazer outras coisas (funcionalidades) antes de começar a aprimorar a engenharia e arquitetura do software, mas comecei a aprimorar algumas coisas e acabei decidindo por já organizar tudo logo, de acordo com o aprendizado com o evento <a href="https://github.com/Lucasvmarangoni/notifications-service" target="_blank">Ignite Lab 04</a> da RocketSeat. Ao longo dessa etapa mudei muitas decisões iniciais, como abandonar a ideia de criar um front-end. Por não ter iniciado com TDD, os testes unitários ficaram para o final, assim como muitas outras coisas, como validações e entre outros recursos de estrutura e engenharia. Por ter desenvolvido o projeto dessa forma tive que alterar muitas coisas por diversas vezes, o que foi bom, pois aumentou meu tempo programando e resolvendo problemas, além de desenvolver minha habilidade de manutenção do código.
   <br><br>
 
@@ -21,8 +38,15 @@ Construí e planejei esse projeto do zero e sozinho. Tem o objetivo de consolida
 
 </div>
 
+<div align="center">
+
+## Tecnologias
+
+</div>
+
 <table width="300px" align="center">
-      <caption> <h1 align="center">Tecnologias</h1> </caption>	         
+      <caption> <h1 align="center">         
+      </h1> </caption>	         
        <thead>                      
                <th width="150px" style="text-align:center" colspan="1">Back-end</th>                  
        </thead>
@@ -159,7 +183,7 @@ Construí e planejei esse projeto do zero e sozinho. Tem o objetivo de consolida
 
 <div align="center">
 
-## BACKLOG DO PRODUTO
+## Backlog do Produto
 
 </div>
 <br><br><br>
