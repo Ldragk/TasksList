@@ -1,7 +1,7 @@
 
 <p align="center">
   <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;    
-  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;  
+  <a href="#-Tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;  
   <a href="#-instalação">Execução</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp; 
   <a href="#-documentação">Documentação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp; 
   <a href="#-backlog_do_produto">Backlog do Produto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp; 
