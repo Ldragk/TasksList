@@ -6,14 +6,14 @@
      <img align="center" src="https://img.shields.io/badge/-Tecnologias-05122A?style=flat&logo=Tecnologias" alt=""/>
   </a>&nbsp;&nbsp;|&nbsp;
   <a href="#instalação">
-     <img align="center" src="https://img.shields.io/badge/-Execução-05122A?style=flat&logo=Execução" alt=""/>
+     <img align="center" src="https://img.shields.io/badge/-Execuçao-05122A?style=flat&logo=Execuçao" alt=""/>
   </a>&nbsp;&nbsp;|&nbsp;
   <a href="#documentação">
-     <img align="center" src="https://img.shields.io/badge/-Documentação-05122A?style=flat&logo=Documentaçao" alt=""/>
+     <img align="center" src="https://img.shields.io/badge/-Documentação-05122A?style=flat&logo=Documentação" alt=""/>
   </a>&nbsp;&nbsp;|&nbsp;
   <a href="#backlog-do-produto">
      <img align="center" src="https://img.shields.io/badge/-Backlog do Produto-05122A?style=flat&logo=Backlog do Produto" alt=""/>
-  </a>&nbsp;&nbsp;
+  </a>
 </p>
 
 <br>
