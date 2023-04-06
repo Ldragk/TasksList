@@ -7,13 +7,13 @@
   </a>&nbsp;&nbsp;|&nbsp;
   <a href="#instalação">
      <img align="center" src="https://img.shields.io/badge/-Execução-05122A?style=flat&logo=Execução" alt=""/>
-  </a>&nbsp;&nbsp;|&nbsp;
-  <a href="#documentação">
-     <img align="center" src="https://img.shields.io/badge/-Documentação-05122A?style=flat&logo=Documentação" alt=""/>
-  </a>&nbsp;&nbsp;|&nbsp;
+  </a>&nbsp;&nbsp;|&nbsp;  
   <a href="#backlog-do-produto">
      <img align="center" src="https://img.shields.io/badge/-Backlog do Produto-05122A?style=flat&logo=Backlog do Produto" alt=""/>
   </a>
+  <a href="#documentação">
+     <img align="center" src="https://img.shields.io/badge/-Documentação-05122A?style=flat&logo=Documentação" alt=""/>
+  </a>&nbsp;&nbsp;|&nbsp;
 </div>
 
 <br>
