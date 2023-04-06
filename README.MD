@@ -1,10 +1,19 @@
-
 <p align="center">
-  <a href="#projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;    
-  <a href="#tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;  
-  <a href="#instalação">Execução</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp; 
-  <a href="#documentação">Documentação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp; 
-  <a href="#backlog-do-produto">Backlog do Produto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp; 
+<a href="#projeto" target="_blank">
+    <img align="center" src="https://img.shields.io/badge/-Projeto-05122A?style=flat&logo=Projeto" alt=""/>
+  </a>&nbsp;&nbsp;|&nbsp; 
+  <a href="#tecnologias">
+     <img align="center" src="https://img.shields.io/badge/-Tecnologias-05122A?style=flat&logo=Tecnologias" alt=""/>
+  </a>&nbsp;&nbsp;|&nbsp;
+  <a href="#instalação">
+     <img align="center" src="https://img.shields.io/badge/-Execução-05122A?style=flat&logo=Execução" alt=""/>
+  </a>&nbsp;&nbsp;|&nbsp;
+  <a href="#documentação">
+     <img align="center" src="https://img.shields.io/badge/-Documentação-05122A?style=flat&logo=Documentação" alt=""/>
+  </a>&nbsp;&nbsp;|&nbsp;
+  <a href="#backlog-do-produto">
+     <img align="center" src="https://img.shields.io/badge/-Backlog do Produto-05122A?style=flat&logo=Backlog do Produto" alt=""/>
+  </a>&nbsp;&nbsp;
 </p>
 
 <br>
@@ -28,8 +37,6 @@
 Projeto back-end com API REST, sendo um app para criar tarefas, editar, deletar, consultar e receber notificações de aviso.
 
 Construí e planejei esse projeto do zero e sozinho. Tem o objetivo de consolidar meus conhecimentos principalmente no Back-end e de Engenharia de Software, além de praticar a utilização de Node.js com Express e Prisma Studio.
-
-
 
 - Nota: Não iniciei o projeto aplicando TDD, nem mesmo DDD. A ideia era consolidar meu estudos, de cursos e projetos de eventos, com a prática e aprender mais ao longo do desenvolvimento. Assim iniciei desenvolvendo de acordo com o aprendizado do evento <a href="https://github.com/Lucasvmarangoni/NLW-Ignite-2022" target="_blank">NLW ESpots Ignite</a> da RocketSeat. Após alcançar esse objetivo ainda pretendia fazer outras coisas (funcionalidades) antes de começar a aprimorar a engenharia e arquitetura do software, mas comecei a aprimorar algumas coisas e acabei decidindo por já organizar tudo logo, de acordo com o aprendizado com o evento <a href="https://github.com/Lucasvmarangoni/notifications-service" target="_blank">Ignite Lab 04</a> da RocketSeat. Ao longo dessa etapa mudei muitas decisões iniciais, como abandonar a ideia de criar um front-end. Por não ter iniciado com TDD, os testes unitários ficaram para o final, assim como muitas outras coisas, como validações e entre outros recursos de estrutura e engenharia. Por ter desenvolvido o projeto dessa forma tive que alterar muitas coisas por diversas vezes, o que foi bom, pois aumentou meu tempo programando e resolvendo problemas, além de desenvolver minha habilidade de manutenção do código.
   <br><br>
