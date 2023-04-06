@@ -1,4 +1,4 @@
-<p align="center">
+<div align="center">
 <a href="#projeto" target="_blank">
     <img align="center" src="https://img.shields.io/badge/-Projeto-05122A?style=flat&logo=Projeto" alt=""/>
   </a>&nbsp;&nbsp;|&nbsp; 
@@ -6,7 +6,7 @@
      <img align="center" src="https://img.shields.io/badge/-Tecnologias-05122A?style=flat&logo=Tecnologias" alt=""/>
   </a>&nbsp;&nbsp;|&nbsp;
   <a href="#instalação">
-     <img align="center" src="https://img.shields.io/badge/-Execuçao-05122A?style=flat&logo=Execuçao" alt=""/>
+     <img align="center" src="https://img.shields.io/badge/-Execução-05122A?style=flat&logo=Execução" alt=""/>
   </a>&nbsp;&nbsp;|&nbsp;
   <a href="#documentação">
      <img align="center" src="https://img.shields.io/badge/-Documentação-05122A?style=flat&logo=Documentação" alt=""/>
@@ -14,7 +14,7 @@
   <a href="#backlog-do-produto">
      <img align="center" src="https://img.shields.io/badge/-Backlog do Produto-05122A?style=flat&logo=Backlog do Produto" alt=""/>
   </a>
-</p>
+</div>
 
 <br>
 
