@@ -4,7 +4,7 @@
   <a href="#tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;  
   <a href="#instalação">Execução</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp; 
   <a href="#documentação">Documentação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp; 
-  <a href="#backlog_do_produto">Backlog do Produto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp; 
+  <a href="#backlog-do-produto">Backlog do Produto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp; 
 </p>
 
 <br>
