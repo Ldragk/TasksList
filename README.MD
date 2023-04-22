@@ -11,8 +11,8 @@
   <a href="#documentação">
      <img align="center" src="https://img.shields.io/badge/-Documenta%C3%A7%C3%A3o-05122A?style=flat&logo=Documenta%C3%A7%C3%A3o" alt=""/>
   </a>
-  <a href="#backlog-do-produto">
-     <img align="center" src="https://img.shields.io/badge/-Backlog do Produto-05122A?style=flat&logo=Backlog do Produto" alt=""/>
+  <a href="#backlog">
+     <img align="center" src="https://img.shields.io/badge/-Backlog do Produto-05122A?style=flat&logo=Backlog" alt=""/>
   </a>
 </div>
 
@@ -211,7 +211,7 @@ Não iniciei o projeto aplicando TDD, nem mesmo DDD. A ideia era consolidar meus
 
 <div align="center">
 
-## Backlog do Produto
+## Backlog
 
 </div>
 <br><br><br>
