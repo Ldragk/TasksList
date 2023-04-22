@@ -24,7 +24,7 @@
 
 
 # (Back-End)
-![version](https://img.shields.io/badge/version-2.3.3-purple)
+![version](https://img.shields.io/badge/version-2.3.2-purple)
 
 
 </div>
@@ -37,11 +37,22 @@
 
 </div>
 
-Projeto back-end com API REST, sendo um app para criar tarefas, editar, deletar, consultar e receber notificações de aviso.
+- Esse é um projeto que planejei e construí do zero sozinho. 
 
-Construí e planejei esse projeto do zero e sozinho. Tem o objetivo de consolidar meus conhecimentos principalmente no Back-end e de Engenharia de Software, além de praticar a utilização de Node.js com Express e Prisma Studio.
 
-- Nota: Não iniciei o projeto aplicando TDD, nem mesmo DDD. A ideia era consolidar meus estudos de cursos e projetos de eventos com a prática e aprender mais ao longo do desenvolvimento. Assim, iniciei desenvolvendo de acordo com o aprendizado do evento <a href="https://github.com/Lucasvmarangoni/NLW-Ignite-2022" target="_blank">NLW ESpots Ignite</a> da RocketSeat. Após alcançar esse objetivo, ainda pretendia fazer outras coisas (funcionalidades) antes de começar a aprimorar a engenharia e arquitetura do software, mas comecei a aprimorar algumas coisas e acabei decidindo por já organizar tudo logo, de acordo com o aprendizado com o evento <a href="https://github.com/Lucasvmarangoni/notifications-service" target="_blank">Ignite Lab 04</a> da RocketSeat. Ao longo dessa etapa, mudei muitas decisões iniciais, como abandonar a ideia de criar um front-end. Por não ter iniciado com TDD, os testes unitários ficaram para o final, assim como muitas outras coisas, como validações e outros recursos de estrutura e engenharia. Por ter desenvolvido o projeto dessa forma, tive que alterar muitas coisas por diversas vezes, o que foi bom, pois aumentou meu tempo programando e resolvendo problemas, além de desenvolver minha habilidade de manutenção do código.
+É um Projeto back-end que utiliza API REST, sendo um app para criar tarefas, editar, deletar, consultar e receber notificações.
+
+<br>
+
+### Objetivo 
+
+Inicialmente teve o objetivo de consolidar meus conhecimentos principalmente no Back-end e Engenharia de Software, além de praticar a utilização de Node.js com Express e Prisma Studio. Prendo continuar utilizando esse projeto para praticar, aprimorando-o com as novas habilidades, tecnologias e ferramentas que adquiro enquanto desenvolvo outros projetos. 
+
+<br>
+
+### Registro de Construção
+
+Não iniciei o projeto aplicando TDD, nem mesmo DDD. A ideia era consolidar meus estudos de cursos e projetos de eventos com a prática e aprender mais ao longo do desenvolvimento. Assim, iniciei desenvolvendo de acordo com o aprendizado do evento <a href="https://github.com/Lucasvmarangoni/NLW-Ignite-2022" target="_blank">NLW ESpots Ignite</a> da RocketSeat. Após alcançar esse objetivo, ainda pretendia fazer outras coisas (funcionalidades) antes de começar a aprimorar a engenharia e arquitetura do software, mas comecei a aprimorar algumas coisas e acabei decidindo por já organizar tudo logo, de acordo com o aprendizado com o evento <a href="https://github.com/Lucasvmarangoni/notifications-service" target="_blank">Ignite Lab 04</a> da RocketSeat. Ao longo dessa etapa, mudei muitas decisões iniciais, como abandonar a ideia de criar um front-end. Por não ter iniciado com TDD, os testes unitários ficaram para o final, assim como muitas outras coisas, como validações e outros recursos de estrutura e engenharia. Por ter desenvolvido o projeto dessa forma, tive que alterar muitas coisas por diversas vezes, o que foi bom, pois aumentou meu tempo programando e resolvendo problemas, além de desenvolver minha habilidade de manutenção do código.
 <br><br>
 
 
@@ -49,6 +60,9 @@ Construí e planejei esse projeto do zero e sozinho. Tem o objetivo de consolida
 <div align="center">
 
 </div>
+
+
+<br><br>
 
 <div align="center">
 
@@ -114,6 +128,8 @@ Construí e planejei esse projeto do zero e sozinho. Tem o objetivo de consolida
     $ npm test
 
 <div align="center">
+
+<br><br>
 
 ## Documentação
 
