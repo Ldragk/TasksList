@@ -12,7 +12,7 @@
      <img align="center" src="https://img.shields.io/badge/-Documenta%C3%A7%C3%A3o-05122A?style=flat&logo=Documenta%C3%A7%C3%A3o" alt=""/>
   </a>
   <a href="#backlog">
-     <img align="center" src="https://img.shields.io/badge/-Backlog do Produto-05122A?style=flat&logo=Backlog" alt=""/>
+     <img align="center" src="https://img.shields.io/badge/-Backlog-05122A?style=flat&logo=Backlog" alt=""/>
   </a>
 </div>
 
