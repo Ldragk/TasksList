@@ -67,6 +67,8 @@ Então comecei a aplicar os conhecimento obtidos com o evento <a href="https://g
 
 - Por ter desenvolvido o projeto dessa forma, tive que alterar muitas coisas por diversas vezes, o que foi bom, pois aumentou meu tempo programando e resolvendo os problemas que surgiam, além de desenvolver minha habilidade de manutenção do código.
 
+<br>
+
 ![version](https://img.shields.io/badge/version-3.0.0-white)<br>
 A versão 3.0.0 já esta em planejamento. Será aplicado o conhecimento do projeto <a href="https://github.com/Lucasvmarangoni/Best-Surfing" target="_blank">Best-Surfing</a> afim de aprimorar o projeto e consolidar esses novos conhecimentos.
 
