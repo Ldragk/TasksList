@@ -54,10 +54,6 @@ Inicialmente teve o objetivo de consolidar meus conhecimentos principalmente no 
 
 <br>
 
-O objetivo do projeto era consolidar meus estudos de cursos e projetos de eventos por meio da prática, e também aprender mais durante o desenvolvimento.
-
-<br>
-
 ![version](https://img.shields.io/badge/version-1.0.0-white)<br>
 O projeto teve seu desenvolvimento iniciado de acordo com o aprendizado do evento <a href="https://github.com/Lucasvmarangoni/NLW-Ignite-2022" target="_blank">NLW ESpots Ignite</a> da RocketSeat, ou seja, um back-end simples e básico.
 
