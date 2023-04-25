@@ -63,7 +63,7 @@ Após alcançar esse objetivo, ainda pretendia fazer outras coisas (funcionalida
 <br>
 
 ![version](https://img.shields.io/badge/version-2.0.0-white)<br>
-Então comecei a aplicar os conhecimento obtidos com o evento <a href="https://github.com/Lucasvmarangoni/notifications-service" target="_blank">Ignite Lab 04 - Notification Service</a> da RocketSeat. Ao longo dessa etapa, mudei muitas decisões iniciais. Por não ter iniciado com TDD, alguns testes unitários ficaram para depois da funcionalidade estar pronta, assim como muitas outras coisas, como validações e outros recursos de estrutura e engenharia. 
+Então, comecei a aplicar os conhecimentos obtidos com o evento <a href="https://github.com/Lucasvmarangoni/notifications-service" target="_blank">Ignite Lab 04 - Notification Service</a> da RocketSeat. Ao longo dessa etapa, mudei muitas decisões iniciais. Por não ter iniciado com TDD, alguns testes unitários ficaram para depois da funcionalidade estar pronta, assim como muitas outras coisas, como validações e outros recursos de estrutura e engenharia. 
 
 - Por ter desenvolvido o projeto dessa forma, tive que alterar muitas coisas por diversas vezes, o que foi bom, pois aumentou meu tempo programando e resolvendo os problemas que surgiam, além de desenvolver minha habilidade de manutenção do código.
 
