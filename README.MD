@@ -24,7 +24,7 @@
 
 
 # (Back-End)
-![version](https://img.shields.io/badge/version-2.3.2-purple)
+![version](https://img.shields.io/badge/version-2.3.2-white)
 
 
 </div>
