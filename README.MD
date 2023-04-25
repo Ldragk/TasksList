@@ -70,7 +70,7 @@ Então, comecei a aplicar os conhecimentos obtidos com o evento <a href="https:/
 <br>
 
 ![version](https://img.shields.io/badge/version-3.0.0-white)<br>
-A versão 3.0.0 já esta em planejamento. Será aplicado o conhecimento do projeto <a href="https://github.com/Lucasvmarangoni/Best-Surfing" target="_blank">Best-Surfing</a> objetivando o aprimoramento do projeto e os novos conhecimentos.
+A versão 3.0.0 já esta em planejamento. Será aplicado o conhecimento do projeto <a href="https://github.com/Lucasvmarangoni/Best-Surfing" target="_blank">Best-Surfing</a> objetivando o aprimoramento do projeto e consolidar os novos conhecimentos.
 
 
 <br><br>
