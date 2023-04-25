@@ -40,7 +40,7 @@
 - Esse é um projeto que planejei e desenvolvi do zero sozinho. 
 
 
-É um Projeto back-end que utiliza API REST, sendo um app para criar tarefas, editar, deletar, consultar e receber notificações.
+O projeto é uma API REST para servir uma aplicação de Lista de tarefas. Permite criar, editar, deletar, consultar e receber notificações.
 
 <br>
 
