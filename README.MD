@@ -163,7 +163,7 @@ A versão 3.0.0 já esta em planejamento. Será aplicado o conhecimento do proje
           - Estrutura da data:
                - Data limite é o prazo final para concluir a tarefa.
                - Estrutura: mês/dia/ano;
-               - 1 <= Mês e Dia <= 2 dígitos, Ano === 4 dígitos;
+               - Mês e Dia 1 ou 2 dígitos, Ano 4 dígitos;
                - A data limite não pode ser menor que a data atual.
 
            Request JSON:
