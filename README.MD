@@ -37,7 +37,7 @@
 
 </div>
 
-- Esse é um projeto que planejei e desenvolvi do zero sozinho. 
+- Esse projeto planejei e desenvolvi do zero sozinho. 
 
 
 O projeto é uma API REST para servir uma aplicação de Lista de tarefas. Permite criar, editar, deletar, consultar e receber notificações.
@@ -70,7 +70,7 @@ Então, comecei a aplicar os conhecimentos obtidos com o evento <a href="https:/
 <br>
 
 ![version](https://img.shields.io/badge/version-3.0.0-white)<br>
-A versão 3.0.0 já esta em planejamento. Será aplicado o conhecimento do projeto <a href="https://github.com/Lucasvmarangoni/Best-Surfing" target="_blank">Best-Surfing</a> objetivando o aprimoramento do projeto e consolidar os novos conhecimentos.
+A versão 3.0.0 já esta em planejamento. Será aplicado o conhecimento do projeto <a href="https://github.com/Lucasvmarangoni/Best-Surfing" target="_blank">Best-Surfing</a>.
 
 
 <br><br>
