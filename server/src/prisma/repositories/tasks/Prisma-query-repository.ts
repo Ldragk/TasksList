@@ -1,6 +1,6 @@
 import { PrismaTaskMapper } from "./Prisma-task-mapper";
 import { Task } from "../../../entities/Task";
-import { QueryRepository } from "../../../repositories/Query-repository";
+import { QueryRepository } from "../../../repositories/get-repository";
 import { PrismaService } from "../../prisma.service";
 
 const prismaService = new PrismaService();

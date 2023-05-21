@@ -1,4 +1,4 @@
-import { Notification } from "../../../entities/Notification";
+import { Notification } from "../../../entities/notification";
 import { Task as RawNotification } from "@prisma/client";
 
 export class PrismaNotificationMapper {

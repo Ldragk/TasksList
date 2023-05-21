@@ -1,4 +1,4 @@
-import { DeleteRepository } from "../../../repositories/Delete-repository";
+import { DeleteRepository } from "../../../repositories/delete-repository";
 import { PrismaService } from "../../prisma.service";
 
 const prismaService = new PrismaService();

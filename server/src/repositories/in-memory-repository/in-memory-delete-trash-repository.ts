@@ -1,4 +1,4 @@
-import { DeleteRepository } from "../Delete-repository";
+import { DeleteRepository } from "../delete-repository";
 import { InMemoryTrashRepository } from "./in-memory-trash-repository";
 
 

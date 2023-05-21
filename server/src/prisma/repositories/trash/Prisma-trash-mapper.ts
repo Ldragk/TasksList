@@ -1,5 +1,5 @@
 import { DeletedTask as RawTrash } from "@prisma/client";
-import { Trash } from "../../../entities/Trash";
+import { Trash } from "../../../entities/trash";
 
 export class PrismaTrashMapper {
   static toPrisma(trash: Trash) {

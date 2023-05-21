@@ -1,6 +1,6 @@
-import { Notification } from "../../entities/Notification";
-import { Task } from "../../entities/Task";
-import { NotificationRepository } from "../Notification-repository";
+import { Notification } from "../../entities/notification";
+import { Task } from "../../entities/task";
+import { NotificationRepository } from "../notification-repository";
 import { InMemoryManageRepository } from "./in-memory-manage-repository";
 
 export class InMemoryNotificationRepository

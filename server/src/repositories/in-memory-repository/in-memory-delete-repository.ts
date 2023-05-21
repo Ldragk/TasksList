@@ -1,4 +1,4 @@
-import { DeleteRepository } from "../Delete-repository";
+import { DeleteRepository } from "../delete-repository";
 import { InMemoryManageRepository } from "./in-memory-manage-repository";
 
 export class InMemoryDeleteRepository

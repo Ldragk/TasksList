@@ -1,6 +1,6 @@
-import { Task } from "../../../entities/Task";
+import { Task } from "../../../entities/task";
 import { PrismaTaskMapper } from "./Prisma-task-mapper";
-import { ManageRepository } from "../../../repositories/Manage-repository";
+import { ManageRepository } from "../../../repositories/manage-repository";
 import { PrismaService } from "../../prisma.service";
 
 

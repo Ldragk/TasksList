@@ -1,7 +1,7 @@
 import { Task as RawTask } from "@prisma/client";
-import { Task } from "../../../entities/Task";
-import { Content } from "../../../entities/task-entities/Content";
-import { LimitDate } from "../../../entities/task-entities/LimitDate";
+import { Task } from "../../../entities/task";
+import { Content } from "../../../entities/task-entities/content";
+import { LimitDate } from "../../../entities/task-entities/limitDate";
 
 export class PrismaTaskMapper {
   static toPrisma(task: Task) {

@@ -1,8 +1,16 @@
-import { App } from "./http/Server";
+import  App  from "./http/server";
+import { PrismaService } from "./prisma/prisma.service";
 
-async function main() {
-  const Server: number = 3333;
-  App().listen(Server, () =>
-    console.log(`Server is running on port ${Server}`)
-  );
-}
+const prisma = new PrismaService();
+
+(async function main() {  
+  App()
+  .then(async () => {
+    await prisma.$disconnect();
+  })
+  .catch(async (e) => {
+    console.error(e);
+    await prisma.$disconnect();
+    process.exit(1);
+  });
+})()

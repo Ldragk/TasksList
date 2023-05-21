@@ -1,6 +1,6 @@
 import { PrismaNotificationMapper } from "./Prisma-notifications-mapper";
-import { Notification } from "../../../entities/Notification";
-import { NotificationRepository } from "../../../repositories/Notification-repository";
+import { Notification } from "../../../entities/notification";
+import { NotificationRepository } from "../../../repositories/notification-repository";
 import { PrismaService } from "../../prisma.service";
 
 const prismaService = new PrismaService();
