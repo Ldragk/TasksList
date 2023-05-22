@@ -90,11 +90,7 @@ Inicialmente teve o objetivo de consolidar meus conhecimentos de Back-end e Enge
             <tr>             
                  <td colspan="1">Class-validator</th>   
                  <td colspan="2"></th>   
-            </tr>  
-            <tr>             
-                 <td colspan="1"></th>   
-                 <td colspan="2"></th>   
-            </tr>       
+            </tr>              
        </tbody>
 </table>
 
@@ -124,14 +120,13 @@ Então, comecei a aplicar os conhecimentos obtidos com o evento <a href="https:/
 <br>
 
 <a href="" title="clique para ver o código da versão 2.1.0">![version](https://img.shields.io/badge/version-2.1.0-black)</a> 
-
+<br>
 O projeto será aprimorado com novos conhecimentos que obtive com o projeto <a href="https://github.com/Lucasvmarangoni/Best-Surf" target="_blank">Best-Surf</a>.
 Nesta atualização, vou realizar a alteração de nomenclaturas, aprimorar testes, Graceful shutdown, tratamento de erros, status code, logging e cache.
 
 <br>
 
 <a href="" title="Ainda em planejamento!">![version](https://img.shields.io/badge/version-3.0.0-white)</a> 
-
 <br>
 A versão 3.0.0 já esta em planejamento. Será aplicado o conhecimento do projeto <a href="https://github.com/Lucasvmarangoni/Best-Surf" target="_blank">Best-Surf</a>, além de outros.
 
