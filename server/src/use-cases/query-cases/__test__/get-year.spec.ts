@@ -1,12 +1,12 @@
 import { describe, it, expect, vi } from "vitest";
 import { LimitDate } from "../../../entities/task-entities/limitDate";
-import { InMemoryFindRepository } from "../../../repositories/in-memory-repository/in-memory-find-repository";
+import { InMemoryQueryRepository } from "../../../repositories/in-memory-repository/in-memory-query-repository";
 import { MakeTask } from "../../../test/factories/task-factory";
 import { QueryByYear } from "../get-year";
 
 describe("get by year", () => {
   it("should return all tasks in a year", async () => {
-    const tasksRepository = new InMemoryFindRepository();
+    const tasksRepository = new InMemoryQueryRepository();
     const queryByYear = new QueryByYear(tasksRepository);
 
     let task = MakeTask();

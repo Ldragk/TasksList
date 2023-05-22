@@ -1,11 +1,11 @@
 import { describe, it, expect, vi } from "vitest";
-import { InMemoryFindRepository } from "../../../repositories/in-memory-repository/in-memory-find-repository";
+import { InMemoryQueryRepository } from "../../../repositories/in-memory-repository/in-memory-query-repository";
 import { MakeTask } from "../../../test/factories/task-factory";
 import { QueryAllTasks } from "../get-all";
 
 describe("get all", () => {
   it("should get all tasks", async () => {
-    const tasksRepository = new InMemoryFindRepository();
+    const tasksRepository = new InMemoryQueryRepository();
     const getAll = new QueryAllTasks(tasksRepository);
     const task = MakeTask();
 

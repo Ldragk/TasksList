@@ -1,12 +1,12 @@
 import { describe, it, expect, vi } from "vitest";
 import { LimitDate } from "../../../entities/task-entities/limitDate";
-import { InMemoryFindRepository } from "../../../repositories/in-memory-repository/in-memory-find-repository";
+import { InMemoryQueryRepository } from "../../../repositories/in-memory-repository/in-memory-query-repository";
 import { MakeTask } from "../../../test/factories/task-factory";
 import { QueryByFullDate } from "../get-full-date";
 
 describe("Get full date", () => {
   it("should return all tasks with parameter date", async () => {
-    const tasksRepository = new InMemoryFindRepository();
+    const tasksRepository = new InMemoryQueryRepository();
     const queryByFullDate = new QueryByFullDate(tasksRepository);
     const task = MakeTask();
     const taskNotGet = MakeTask({ date: new LimitDate("02/24/2024") });

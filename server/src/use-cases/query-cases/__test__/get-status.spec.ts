@@ -1,11 +1,11 @@
 import { describe, it, expect, vi } from "vitest";
-import { InMemoryFindRepository } from "../../../repositories/in-memory-repository/in-memory-find-repository";
+import { InMemoryQueryRepository } from "../../../repositories/in-memory-repository/in-memory-query-repository";
 import { MakeTask } from "../../../test/factories/task-factory";
 import { TasksCondition } from "../get-status";
 
 describe("get by task status", () => {
   it("should return all tasks in a parameter true or false", async () => {
-    const tasksRepository = new InMemoryFindRepository();
+    const tasksRepository = new InMemoryQueryRepository();
     const tasksCondition = new TasksCondition(tasksRepository);
 
     let trueTask = MakeTask({ done: true });

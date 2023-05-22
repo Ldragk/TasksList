@@ -2,7 +2,7 @@ import { Task } from "../../entities/task";
 import { QueryRepository } from "../get-repository";
 import { InMemoryManageRepository } from "./in-memory-manage-repository";
 
-export class InMemoryFindRepository
+export class InMemoryQueryRepository
   extends InMemoryManageRepository
   implements QueryRepository
 {

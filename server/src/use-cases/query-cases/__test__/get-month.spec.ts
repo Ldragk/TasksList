@@ -1,12 +1,12 @@
 import { describe, it, expect, vi } from "vitest";
 import { LimitDate } from "../../../entities/task-entities/limitDate";
-import { InMemoryFindRepository } from "../../../repositories/in-memory-repository/in-memory-find-repository";
+import { InMemoryQueryRepository } from "../../../repositories/in-memory-repository/in-memory-query-repository";
 import { MakeTask } from "../../../test/factories/task-factory";
 import { QueryByMonth } from "../get-month";
 
 describe("get by month", () => {
   it("should return all tasks in a month", async () => {
-    const tasksRepository = new InMemoryFindRepository();
+    const tasksRepository = new InMemoryQueryRepository();
     const queryByMonth = new QueryByMonth(tasksRepository);
 
     let task = MakeTask();
