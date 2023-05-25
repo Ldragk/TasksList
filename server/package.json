@@ -7,7 +7,7 @@
     "start": "dotenv -e .env -- ts-node src/index.ts",
     "start:test": "dotenv -e .env -- ts-node src/main.ts",
     "test": "vitest",
-    "copy": "docker cp prisma-studio:/. ./prisma-files",
+    "img:create": "docker build -t prisma -f docker/Dockerfile .",    
     "up": "docker-compose -f docker/docker-compose.yml up -d",
     "access": "docker exec -it prisma-studio bash"
   },
@@ -30,6 +30,7 @@
     "@types/node": "^20.2.3",
     "@types/pino": "^7.0.5",
     "@types/uuid": "^9.0.1",
+    "prisma": "^4.14.1",
     "ts-node": "^10.9.1",
     "tsx": "^3.12.2",
     "typescript": "^4.9.5",
@@ -37,7 +38,7 @@
   },
   "dependencies": {
     "@overnightjs/core": "^1.7.6",
-    "@prisma/client": "^4.10.1",
+    "@prisma/client": "^4.14.1",
     "bson": "^5.3.0",
     "class-validator": "^0.14.0",
     "config": "^3.3.9",

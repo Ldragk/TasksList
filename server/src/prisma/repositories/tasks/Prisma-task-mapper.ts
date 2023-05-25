@@ -1,4 +1,4 @@
-import { Task as RawTask } from "../../../../prisma-files/node_modules/@prisma/client";
+import { Task as RawTask } from "@prisma/client";
 import { Task } from "../../../entities/task";
 import { Content } from "../../../entities/task-entities/content";
 import { LimitDate } from "../../../entities/task-entities/limitDate";

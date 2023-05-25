@@ -1,11 +1,13 @@
-# Use a imagem base do Node.js
-FROM timothyjmiller/prisma-studio:latest as prisma
+FROM node:14
 
-COPY docker/prisma-introspect.sh ./prisma-introspect.sh
-RUN npx prisma generate
+WORKDIR /
 
+COPY ../package.json .
 
+COPY src ./src
 
+RUN npm i
 
+EXPOSE 3333
 
-
+CMD ["npm", "start"]
