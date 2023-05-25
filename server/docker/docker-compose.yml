@@ -1,0 +1,14 @@
+version: '3.7'
+services:
+  prisma-studio:
+    build: Dockerfile
+    container_name: prisma-studio
+    image: prisma
+    restart: unless-stopped
+    ports:
+      - 5555:5555
+    env_file:
+      - .env
+    
+    
+# Lembrar de colocar senha e fazer isso com variável de ambiente

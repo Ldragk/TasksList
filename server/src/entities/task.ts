@@ -1,7 +1,11 @@
-import { randomUUID } from "node:crypto";
+import { ObjectId } from "bson";
 import { Replace } from "../helpers/replace";
 import { Content } from "./task-entities/content";
 import { LimitDate } from "./task-entities/limitDate";
+import { v4 as uuidv4 } from "uuid";
+
+
+
 
 export interface TaskProps {
   title: string;
@@ -24,7 +28,7 @@ export class Task {
       done: props.done ?? false,
       createdAt: props.createdAt ?? new Date(),
     };
-    this._id = id ?? randomUUID();
+    this._id = id ?? String(new ObjectId())
   }
 
   public set id(id: string) {

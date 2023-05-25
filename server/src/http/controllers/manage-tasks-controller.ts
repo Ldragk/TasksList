@@ -5,8 +5,12 @@ import { CreateTask } from "../../use-cases/manage-cases/create";
 import { FullUpdate } from "../../use-cases/manage-cases/update";
 import { TaskBody } from "../dtos/create-task-body";
 import { TaskViewModel } from "../view-models/task-view-model";
+import { Controller, Patch, Post, Put } from '@overnightjs/core';
 
+@Controller('tasks')
 export class ManageTasks {
+
+  @Post('create')
   async create(
     req: { body: TaskBody },
     res: { json: (arg0: TaskViewModel) => Promise<Task> }
@@ -23,6 +27,7 @@ export class ManageTasks {
     return { task: res.json(TaskViewModel.toHTTP(task)) };
   }
 
+  @Patch('change/:id')
   async updateCondition(
     req: { params: { id: string } },
     res: { json: (arg0: TaskViewModel) => Promise<Task> }
@@ -34,6 +39,7 @@ export class ManageTasks {
     return { task: res.json(TaskViewModel.toHTTP(task)) };
   }
 
+  @Put('fullChange/:id')
   async updateTasks(
     req: {
       params: { id: string };

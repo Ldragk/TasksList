@@ -1,5 +1,5 @@
 import { Notification } from "../../../entities/notification";
-import { Task as RawNotification } from "@prisma/client";
+import { Task as RawNotification } from "../../../../prisma-files/node_modules/@prisma/client";
 
 export class PrismaNotificationMapper {
   static toDomain(raw: RawNotification): Notification {

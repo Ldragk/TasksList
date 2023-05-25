@@ -1,7 +1,6 @@
 import  App  from "./http/server";
-import { PrismaService } from "./prisma/prisma.service";
+import { prisma } from "./prisma/prisma-client";
 
-const prisma = new PrismaService();
 
 (async function main() {  
   App()

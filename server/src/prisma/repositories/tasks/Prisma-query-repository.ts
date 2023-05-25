@@ -1,13 +1,11 @@
 import { PrismaTaskMapper } from "./Prisma-task-mapper";
-import { Task } from "../../../entities/Task";
+import { Task } from "../../../entities/task";
 import { QueryRepository } from "../../../repositories/get-repository";
-import { PrismaService } from "../../prisma.service";
-
-const prismaService = new PrismaService();
+import { prisma } from "../../prisma-client";
 
 export class PrismaTaskQueryRepository implements QueryRepository {
   async findAllTasks(): Promise<Task[]> {
-    const task = prismaService.task.findMany({
+    const task = prisma.task.findMany({
       orderBy: {
         createdAt: "desc",
       },
@@ -17,7 +15,7 @@ export class PrismaTaskQueryRepository implements QueryRepository {
   }
 
   async findByFullDate(date: string): Promise<Task[]> {
-    const task = await prismaService.task.findMany({
+    const task = await prisma.task.findMany({
       where: {
         date: date,
       },
@@ -36,7 +34,7 @@ export class PrismaTaskQueryRepository implements QueryRepository {
   ): Promise<Task[]> {
     let task: any;
     for (let i = 0; i < days.length; i++) {
-      task = await prismaService.task.findMany({
+      task = await prisma.task.findMany({
         where: {
           date: `${month}/${days[i]}/${year}`[i],
         },
@@ -56,7 +54,7 @@ export class PrismaTaskQueryRepository implements QueryRepository {
   ): Promise<Task[]> {
     let task: any;
     for (let i = 0; i < days.length; i++) {
-      task = await prismaService.task.findMany({
+      task = await prisma.task.findMany({
         where: {
           date: `${month[i]}/${days[i]}/${year}`[i],
         },
@@ -70,7 +68,7 @@ export class PrismaTaskQueryRepository implements QueryRepository {
   }
 
   async findByStatus(condition: boolean): Promise<Task[]> {
-    const task = await prismaService.task.findMany({
+    const task = await prisma.task.findMany({
       where: {
         done: condition,
       },
@@ -83,7 +81,7 @@ export class PrismaTaskQueryRepository implements QueryRepository {
   }
 
   async findByOverdue(condition: boolean): Promise<Task[]> {
-    const task = await prismaService.task.findMany({
+    const task = await prisma.task.findMany({
       where: {
         done: condition,
       },

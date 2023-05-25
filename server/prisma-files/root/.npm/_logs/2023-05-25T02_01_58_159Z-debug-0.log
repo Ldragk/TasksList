@@ -1,0 +1,60 @@
+0 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'install' ]
+1 info using npm@8.5.0
+2 info using node@v16.14.2
+3 timing npm:load:whichnode Completed in 0ms
+4 timing config:load:defaults Completed in 1ms
+5 timing config:load:file:/usr/local/lib/node_modules/npm/npmrc Completed in 0ms
+6 timing config:load:builtin Completed in 0ms
+7 timing config:load:cli Completed in 0ms
+8 timing config:load:env Completed in 0ms
+9 timing config:load:file:/.npmrc Completed in 2ms
+10 timing config:load:project Completed in 6ms
+11 timing config:load:file:/root/.npmrc Completed in 0ms
+12 timing config:load:user Completed in 0ms
+13 timing config:load:file:/usr/local/etc/npmrc Completed in 0ms
+14 timing config:load:global Completed in 0ms
+15 timing config:load:validate Completed in 0ms
+16 timing config:load:credentials Completed in 1ms
+17 timing config:load:setEnvs Completed in 1ms
+18 timing config:load Completed in 11ms
+19 timing npm:load:configload Completed in 12ms
+20 timing npm:load:setTitle Completed in 0ms
+21 timing config:load:flatten Completed in 2ms
+22 timing npm:load:display Completed in 3ms
+23 verbose logfile /root/.npm/_logs/2023-05-25T02_01_58_159Z-debug-0.log
+24 timing npm:load:logFile Completed in 4ms
+25 timing npm:load:timers Completed in 0ms
+26 timing npm:load:configScope Completed in 0ms
+27 timing npm:load Completed in 19ms
+28 timing arborist:ctor Completed in 1ms
+29 timing arborist:ctor Completed in 0ms
+30 verbose shrinkwrap failed to load node_modules/.package-lock.json out of date, updated: node_modules
+31 verbose shrinkwrap failed to load node_modules/.package-lock.json out of date, updated: node_modules
+32 timing idealTree:init Completed in 24ms
+33 timing idealTree:userRequests Completed in 0ms
+34 silly idealTree buildDeps
+35 timing idealTree Completed in 26ms
+36 timing command:install Completed in 30ms
+37 verbose stack Error: Tracker "idealTree" already exists
+37 verbose stack     at Arborist.[_onError] (/usr/local/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/tracker.js:107:11)
+37 verbose stack     at Arborist.addTracker (/usr/local/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/tracker.js:31:21)
+37 verbose stack     at Arborist.[buildDeps] (/usr/local/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/build-ideal-tree.js:798:10)
+37 verbose stack     at Arborist.buildIdealTree (/usr/local/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/build-ideal-tree.js:215:29)
+37 verbose stack     at async Promise.all (index 1)
+37 verbose stack     at async Arborist.reify (/usr/local/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/reify.js:152:5)
+37 verbose stack     at async Install.exec (/usr/local/lib/node_modules/npm/lib/commands/install.js:157:5)
+37 verbose stack     at async module.exports (/usr/local/lib/node_modules/npm/lib/cli.js:66:5)
+38 verbose cwd /
+39 verbose Linux 5.19.0-42-generic
+40 verbose argv "/usr/local/bin/node" "/usr/local/bin/npm" "install"
+41 verbose node v16.14.2
+42 verbose npm  v8.5.0
+43 error Tracker "idealTree" already exists
+44 verbose exit 1
+45 timing npm Completed in 181ms
+46 verbose unfinished npm timer reify 1684980118308
+47 verbose unfinished npm timer reify:loadTrees 1684980118310
+48 verbose unfinished npm timer idealTree:buildDeps 1684980118336
+49 verbose code 1
+50 error A complete log of this run can be found in:
+50 error     /root/.npm/_logs/2023-05-25T02_01_58_159Z-debug-0.log

@@ -1,0 +1,30 @@
+{
+  "last_reminder": 0,
+  "cached_at": 1684985630972,
+  "version": "4.14.1",
+  "cli_path": "/node_modules/prisma/build/index.js",
+  "output": {
+    "product": "prisma",
+    "previous_version": "4.14.1",
+    "checkpoint_version": 4,
+    "local_timestamp_without_timezone": "2023-05-25T03:33:48Z",
+    "current_version": "4.14.1",
+    "current_release_date": 1684339911,
+    "client_event_id": "c380d6d5-6875-48a3-ae0f-b0845a749572",
+    "current_download_url": "https://github.com/prisma/prisma",
+    "package": "prisma",
+    "release_tag": "latest",
+    "install_command": "npm install --save-dev prisma",
+    "schema_providers": [
+      "mongodb"
+    ],
+    "schema_preview_features": [],
+    "schema_generators_providers": [
+      "prisma-client-js"
+    ],
+    "current_changelog_url": "https://github.com/prisma/prisma",
+    "outdated": false,
+    "project_website": "https://prisma.io",
+    "alerts": []
+  }
+}

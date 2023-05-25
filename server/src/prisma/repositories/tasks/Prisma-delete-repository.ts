@@ -1,17 +1,16 @@
+import { prisma } from "../../prisma-client";
 import { DeleteRepository } from "../../../repositories/delete-repository";
-import { PrismaService } from "../../prisma.service";
 
-const prismaService = new PrismaService();
 
 export class PrismaDeleteRepository implements DeleteRepository {
   async delete(id: string): Promise<void> {
-    await prismaService.task.delete({
+    await prisma.task.delete({
       where: {
         id: id,
       },
     });
   }
   async deleteAll(): Promise<void> {
-    await prismaService.task.deleteMany();
+    await prisma.task.deleteMany();
   }
 }

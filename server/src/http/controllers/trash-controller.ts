@@ -1,3 +1,4 @@
+import { Controller, Delete, Get } from "@overnightjs/core";
 import { Trash } from "../../entities/trash";
 import { PrismaDeleteTrashRepository } from "../../prisma/repositories/trash/Prisma-delete-trash-repository";
 import { PrismaTrashRepository } from "../../prisma/repositories/trash/Prisma-trash-repository";
@@ -6,7 +7,10 @@ import { DeleteTrash } from "../../use-cases/delete-cases/delete-trash";
 import { AllTrash } from "../../use-cases/trash-cases/get-all-trash";
 import { TrashViewModel } from "../view-models/trash-view-model";
 
+@Controller("trash")
 export class TrashTasks {
+
+  @Get("all")
   async findAllTrashTasks(
     _: Request,
     res: {
@@ -18,6 +22,7 @@ export class TrashTasks {
     return { get: res.json(trash.map(TrashViewModel.toHTTP)) };
   }
 
+  @Delete(":id/delete")
   async deletedTrashTask(
     req: { params: { id: string } },
     res: { json: (arg0: void) => Promise<Trash> }
@@ -29,6 +34,7 @@ export class TrashTasks {
     return { delete: res.json(deleteTrash) };
   }
 
+  @Delete("delete/all")
   async deletedAllTrashTasks(
     _: Request,
     res: { json: (arg0: void) => Promise<Trash> }

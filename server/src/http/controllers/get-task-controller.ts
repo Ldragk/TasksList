@@ -7,8 +7,13 @@ import { TasksCondition } from "../../use-cases/query-cases/get-status";
 import { Task } from "../../entities/task";
 import { TaskViewModel } from "../view-models/task-view-model";
 import { PrismaTaskQueryRepository } from "../../prisma/repositories/tasks/Prisma-query-repository";
+import { Controller, Get } from "@overnightjs/core";
 
+
+@Controller("tasks")
 export class QueryTask {
+
+  @Get("all")
   getAllTasks = async (
     _: Request,
     res: {
@@ -20,6 +25,7 @@ export class QueryTask {
     return { get: res.json(tasks.map(TaskViewModel.toHTTP)) };
   };
 
+  @Get("date/:day/:month/:year")
   getByFullDate = async (
     req: { params: { day: string; month: string; year: string } },
     res: {
@@ -36,6 +42,7 @@ export class QueryTask {
     return { get: res.json(tasks.map(TaskViewModel.toHTTP)) };
   };
 
+  @Get("month/:month/:year")
   getByMonth = async (
     req: { params: { month: string; year: string } },
     res: {
@@ -50,6 +57,7 @@ export class QueryTask {
     return { get: res.json(tasks.map(TaskViewModel.toHTTP)) };
   };
 
+  @Get("year/:year")
   getByYear = async (
     req: { params: { year: string } },
     res: {
@@ -63,6 +71,7 @@ export class QueryTask {
     return { get: res.json(tasks.map(TaskViewModel.toHTTP)) };
   };
 
+  @Get("done/:condition")
   getDoneOrNotTasks = async (
     req: { params: { condition: string } },
     res: {
@@ -76,6 +85,7 @@ export class QueryTask {
     return { get: res.json(tasks.map(TaskViewModel.toHTTP)) };
   };
 
+  @Get("delayed")
   getOverdueTasks = async (
     _: Request,
     res: {

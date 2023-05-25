@@ -1,0 +1,99 @@
+0 verbose cli [
+0 verbose cli   '/usr/local/bin/node',
+0 verbose cli   '/usr/local/bin/npm',
+0 verbose cli   'i',
+0 verbose cli   '@prisma/client@latest'
+0 verbose cli ]
+1 info using npm@8.5.0
+2 info using node@v16.14.2
+3 timing npm:load:whichnode Completed in 1ms
+4 timing config:load:defaults Completed in 1ms
+5 timing config:load:file:/usr/local/lib/node_modules/npm/npmrc Completed in 1ms
+6 timing config:load:builtin Completed in 1ms
+7 timing config:load:cli Completed in 1ms
+8 timing config:load:env Completed in 0ms
+9 timing config:load:file:/.npmrc Completed in 0ms
+10 timing config:load:project Completed in 4ms
+11 timing config:load:file:/root/.npmrc Completed in 2ms
+12 timing config:load:user Completed in 3ms
+13 timing config:load:file:/usr/local/etc/npmrc Completed in 0ms
+14 timing config:load:global Completed in 0ms
+15 timing config:load:validate Completed in 0ms
+16 timing config:load:credentials Completed in 1ms
+17 timing config:load:setEnvs Completed in 1ms
+18 timing config:load Completed in 12ms
+19 timing npm:load:configload Completed in 12ms
+20 timing npm:load:setTitle Completed in 0ms
+21 timing config:load:flatten Completed in 2ms
+22 timing npm:load:display Completed in 3ms
+23 verbose logfile /root/.npm/_logs/2023-05-25T02_25_37_167Z-debug-0.log
+24 timing npm:load:logFile Completed in 4ms
+25 timing npm:load:timers Completed in 0ms
+26 timing npm:load:configScope Completed in 0ms
+27 timing npm:load Completed in 20ms
+28 timing arborist:ctor Completed in 0ms
+29 timing idealTree:init Completed in 19ms
+30 timing arborist:ctor Completed in 0ms
+31 http fetch GET 200 https://registry.npmjs.org/@prisma%2fclient 60ms (cache hit)
+32 timing idealTree:userRequests Completed in 185ms
+33 silly idealTree buildDeps
+34 silly fetch manifest @prisma/client@4.14.1
+35 silly fetch manifest prisma@^4.14.1
+36 http fetch GET 200 https://registry.npmjs.org/prisma 50ms (cache hit)
+37 silly placeDep ROOT @prisma/client@4.14.1 REPLACE for: my-prisma-project@1.0.0 want: 4.14.1
+38 silly fetch manifest @prisma/engines-version@4.14.0-67.d9a4c5988f480fa576d43970d5a23641aa77bc9c
+39 http fetch GET 200 https://registry.npmjs.org/@prisma%2fengines-version 30ms (cache hit)
+40 timing idealTree:#root Completed in 152ms
+41 silly placeDep ROOT @prisma/engines-version@4.14.0-67.d9a4c5988f480fa576d43970d5a23641aa77bc9c OK for: @prisma/client@4.14.1 want: 4.14.0-67.d9a4c5988f480fa576d43970d5a23641aa77bc9c
+42 timing idealTree:node_modules/@prisma/client Completed in 2ms
+43 timing idealTree:node_modules/@prisma/engines-version Completed in 0ms
+44 timing idealTree:buildDeps Completed in 156ms
+45 timing idealTree:fixDepFlags Completed in 0ms
+46 timing idealTree Completed in 362ms
+47 timing reify:loadTrees Completed in 362ms
+48 timing reify:diffTrees Completed in 1ms
+49 silly reify mark retired [ '/node_modules/@prisma/client' ]
+50 silly reify mark retired [ '/node_modules/@prisma/engines-version' ]
+51 silly reify moves {
+51 silly reify   '/node_modules/@prisma/client': '/node_modules/@prisma/.client-fMKkuqRy',
+51 silly reify   '/node_modules/@prisma/engines-version': '/node_modules/@prisma/.engines-version-y4C7sCJR'
+51 silly reify }
+52 timing reify:retireShallow Completed in 1ms
+53 timing reify:createSparse Completed in 1ms
+54 timing reify:loadBundles Completed in 0ms
+55 silly audit bulk request {
+55 silly audit   '@prisma/engines': [ '4.14.1' ],
+55 silly audit   prisma: [ '4.14.1' ],
+55 silly audit   '@prisma/client': [ '4.14.1' ],
+55 silly audit   '@prisma/engines-version': [ '4.14.0-67.d9a4c5988f480fa576d43970d5a23641aa77bc9c' ]
+55 silly audit }
+56 silly tarball no local data for @prisma/engines-version@https://registry.npmjs.org/@prisma/engines-version/-/engines-version-4.14.0-67.d9a4c5988f480fa576d43970d5a23641aa77bc9c.tgz. Extracting by manifest.
+57 silly tarball no local data for @prisma/client@https://registry.npmjs.org/@prisma/client/-/client-4.14.1.tgz. Extracting by manifest.
+58 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 361ms
+59 timing auditReport:getReport Completed in 361ms
+60 silly audit report {}
+61 timing auditReport:init Completed in 0ms
+62 timing reify:audit Completed in 362ms
+63 http fetch GET 200 https://registry.npmjs.org/@prisma/engines-version/-/engines-version-4.14.0-67.d9a4c5988f480fa576d43970d5a23641aa77bc9c.tgz 387ms (cache miss)
+64 timing reifyNode:node_modules/@prisma/engines-version Completed in 405ms
+65 http fetch GET 200 https://registry.npmjs.org/@prisma/client/-/client-4.14.1.tgz 1041ms (cache miss)
+66 timing reifyNode:node_modules/@prisma/client Completed in 1061ms
+67 timing reify:unpack Completed in 1062ms
+68 timing reify:unretire Completed in 0ms
+69 timing build:queue Completed in 0ms
+70 info run @prisma/client@4.14.1 postinstall node_modules/@prisma/client node scripts/postinstall.js
+71 info run @prisma/client@4.14.1 postinstall { code: 0, signal: null }
+72 timing build:run:postinstall:node_modules/@prisma/client Completed in 3029ms
+73 timing build:run:postinstall Completed in 3029ms
+74 timing build:deps Completed in 3030ms
+75 timing build Completed in 3031ms
+76 timing reify:build Completed in 3031ms
+77 timing reify:trash Completed in 6ms
+78 timing reify:save Completed in 4ms
+79 timing reify Completed in 4475ms
+80 silly CHANGE node_modules/@prisma/engines-version
+81 silly CHANGE node_modules/@prisma/client
+82 timing command:i Completed in 4480ms
+83 verbose exit 0
+84 timing npm Completed in 4629ms
+85 info ok

@@ -12,6 +12,7 @@ app.use(express.json());
 app.use(cors());
 
 async function App() {
+  
   const manageTasksController: any = new ManageTasks();
   app.post("/tasks/create", manageTasksController.create);
   app.patch("/tasks/change/:id/", manageTasksController.updateCondition);
@@ -36,7 +37,7 @@ async function App() {
   app.delete("/tasks/delete/:id", deleteTaskController.deleteTask);
 
   const trashController: any = new TrashTasks();
-  app.get("/tasks/trash/all", trashController.findAllTrashTasks);  
+  app.get("/trash/all", trashController.findAllTrashTasks);  
   app.delete("/trash/:id/delete", trashController.deletedTrashTask);
   app.delete("/trash/delete/all", trashController.deletedAllTrashTasks);
 
@@ -45,3 +46,5 @@ async function App() {
 }
 
 export default App;
+
+
