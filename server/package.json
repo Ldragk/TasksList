@@ -6,10 +6,7 @@
   "scripts": {
     "start": "dotenv -e .env -- ts-node src/index.ts",
     "start:test": "dotenv -e .env -- ts-node src/main.ts",
-    "test": "vitest",
-    "img:create": "docker build -t prisma -f docker/Dockerfile .",    
-    "up": "docker-compose -f docker/docker-compose.yml up -d",
-    "access": "docker exec -it prisma-studio bash"
+    "test": "vitest"
   },
   "repository": {
     "type": "git",

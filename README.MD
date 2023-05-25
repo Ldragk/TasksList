@@ -89,12 +89,8 @@ Inicialmente teve o objetivo de consolidar meus conhecimentos de Back-end e Enge
             </tr>  
             <tr>             
                  <td colspan="1">Class-validator</th>   
-                 <td colspan="2">Docker</th>   
-            </tr>       
-            <tr>           
-                 <td colspan="1"></th>   
                  <td colspan="2">MongoDB</th>   
-            </tr>               
+            </tr>                     
        </tbody>
 </table>
 
