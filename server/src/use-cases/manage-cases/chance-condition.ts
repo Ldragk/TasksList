@@ -1,5 +1,5 @@
-import { Task } from "../../entities/task";
-import { ManageRepository } from "../../repositories/manage-repository";
+import { Task } from "@src/entities/task";
+import { ManageRepository } from "@src/repositories/manage-repository";
 
 interface EditTaskResponse {
   task: Task;

@@ -1,4 +1,4 @@
-import { Task } from "../../entities/task";
+import { Task } from "@src/entities/task";
 import { QueryRepository } from "../get-repository";
 import { InMemoryManageRepository } from "./in-memory-manage-repository";
 

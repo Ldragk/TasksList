@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
-import { InMemoryQueryRepository } from "../../../repositories/in-memory-repository/in-memory-query-repository";
-import { MakeTask } from "../../../test/factories/task-factory";
+import { InMemoryQueryRepository } from "@src/repositories/in-memory-repository/in-memory-query-repository";
+import { MakeTask } from "@src/test/factories/task-factory";
 import { QueryAllTasks } from "../get-all";
 
 describe("get all", () => {

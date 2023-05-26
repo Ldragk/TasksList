@@ -1,4 +1,4 @@
-import { Trash } from "../../entities/trash";
+import { Trash } from "@src/entities/trash";
 import { TrashRepository } from "../trash-repository";
 
 export class InMemoryTrashRepository implements TrashRepository {

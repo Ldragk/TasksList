@@ -1,4 +1,4 @@
-import { QueryRepository } from "../../repositories/get-repository";
+import { QueryRepository } from "@src/repositories/get-repository";
 import { GetTasksResponse } from "./get-all";
 
 type ParameterType = number;

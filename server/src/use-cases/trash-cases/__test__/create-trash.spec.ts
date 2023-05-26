@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
-import { InMemoryManageRepository } from "../../../repositories/in-memory-repository/in-memory-manage-repository";
-import { InMemoryTrashRepository } from "../../../repositories/in-memory-repository/in-memory-trash-repository";
-import { MakeTask } from "../../../test/factories/task-factory";
+import { InMemoryManageRepository } from "@src/repositories/in-memory-repository/in-memory-manage-repository";
+import { InMemoryTrashRepository } from "@src/repositories/in-memory-repository/in-memory-trash-repository";
+import { MakeTask } from "@src/test/factories/task-factory";
 import { CreateTrash } from "../create-trash";
 
 describe("Create deleted tasks", () => {

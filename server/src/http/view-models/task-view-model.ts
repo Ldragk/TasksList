@@ -1,4 +1,4 @@
-import { Task } from "../../entities/task";
+import { Task } from "@src/entities/task";
 
 export class TaskViewModel {
   static toHTTP(task: Task) {

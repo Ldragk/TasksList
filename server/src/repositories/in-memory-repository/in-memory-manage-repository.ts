@@ -1,4 +1,4 @@
-import { Task } from "../../entities/task";
+import { Task } from "@src/entities/task";
 import { ManageRepository } from "../manage-repository";
 
 export class InMemoryManageRepository implements ManageRepository {

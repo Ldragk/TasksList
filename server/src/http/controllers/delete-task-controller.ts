@@ -1,13 +1,13 @@
 import { Controller, Delete } from "@overnightjs/core";
-import { Trash } from "../../entities/trash";
-import { PrismaDeleteRepository } from "../../prisma/repositories/tasks/Prisma-delete-repository";
-import { PrismaManageRepository } from "../../prisma/repositories/tasks/Prisma-manage-repository";
-import { PrismaTaskQueryRepository } from "../../prisma/repositories/tasks/Prisma-query-repository";
-import { PrismaTrashRepository } from "../../prisma/repositories/trash/Prisma-trash-repository";
-import { DeleteAllTasks } from "../../use-cases/delete-cases/delete-all-tasks";
-import { DeleteTask } from "../../use-cases/delete-cases/delete-task";
-import { CreateAllTrash } from "../../use-cases/trash-cases/create-all-trash";
-import { CreateTrash } from "../../use-cases/trash-cases/create-trash";
+import { Trash } from "@src/entities/trash";
+import { PrismaDeleteRepository } from "@src/prisma/repositories/tasks/Prisma-delete-repository";
+import { PrismaManageRepository } from "@src/prisma/repositories/tasks/Prisma-manage-repository";
+import { PrismaTaskQueryRepository } from "@src/prisma/repositories/tasks/Prisma-query-repository";
+import { PrismaTrashRepository } from "@src/prisma/repositories/trash/Prisma-trash-repository";
+import { DeleteAllTasks } from "@src/use-cases/delete-cases/delete-all-tasks";
+import { DeleteTask } from "@src/use-cases/delete-cases/delete-task";
+import { CreateAllTrash } from "@src/use-cases/trash-cases/create-all-trash";
+import { CreateTrash } from "@src/use-cases/trash-cases/create-trash";
 import { TrashViewModel } from "../view-models/trash-view-model";
 
 

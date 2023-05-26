@@ -31,5 +31,4 @@ enum ExitStatus {
         logger.error(`App existed with error: ${err}`);
         process.exit(ExitStatus.Failure);
     }
-  })();
-  
+  })

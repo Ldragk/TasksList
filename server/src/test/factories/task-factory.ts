@@ -1,6 +1,6 @@
-import { Task, TaskProps } from "../../entities/task";
-import { Content } from "../../entities/task-entities/content";
-import { LimitDate } from "../../entities/task-entities/limitDate";
+import { Task, TaskProps } from "@src/entities/task";
+import { Content } from "@src/entities/task-entities/content";
+import { LimitDate } from "@src/entities/task-entities/limitDate";
 
 type Override = Partial<TaskProps>;
 

@@ -1,7 +1,7 @@
 import { PrismaNotificationMapper } from "./Prisma-notifications-mapper";
-import { Notification } from "../../../entities/notification";
-import { NotificationRepository } from "../../../repositories/notification-repository";
-import { prisma } from "../../prisma-client";
+import { Notification } from "@src/entities/notification";
+import { NotificationRepository } from "@src/repositories/notification-repository";
+import { prisma } from "@src/prisma-client";
 
 export class PrismaNotificationsRepository implements NotificationRepository {
   async findNotifications(done: boolean): Promise<Notification[]> {

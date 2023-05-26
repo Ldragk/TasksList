@@ -1,12 +1,12 @@
-import { OverdueTasks } from "../../use-cases/query-cases/get-overdue";
-import { QueryAllTasks } from "../../use-cases/query-cases/get-all";
-import { QueryByFullDate } from "../../use-cases/query-cases/get-full-date";
-import { QueryByMonth } from "../../use-cases/query-cases/get-month";
-import { QueryByYear } from "../../use-cases/query-cases/get-year";
-import { TasksCondition } from "../../use-cases/query-cases/get-status";
-import { Task } from "../../entities/task";
+import { OverdueTasks } from "@src/use-cases/query-cases/get-overdue";
+import { QueryAllTasks } from "@src/use-cases/query-cases/get-all";
+import { QueryByFullDate } from "@src/use-cases/query-cases/get-full-date";
+import { QueryByMonth } from "@src/use-cases/query-cases/get-month";
+import { QueryByYear } from "@src/use-cases/query-cases/get-year";
+import { TasksCondition } from "@src/use-cases/query-cases/get-status";
+import { Task } from "@src/entities/task";
 import { TaskViewModel } from "../view-models/task-view-model";
-import { PrismaTaskQueryRepository } from "../../prisma/repositories/tasks/Prisma-query-repository";
+import { PrismaTaskQueryRepository } from "@src/prisma/repositories/tasks/Prisma-query-repository";
 import { Controller, Get } from "@overnightjs/core";
 
 

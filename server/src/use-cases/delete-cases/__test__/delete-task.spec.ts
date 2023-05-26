@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
-import { InMemoryDeleteRepository } from "../../../repositories/in-memory-repository/in-memory-delete-repository";
-import { MakeTask } from "../../../test/factories/task-factory";
+import { InMemoryDeleteRepository } from "@src/repositories/in-memory-repository/in-memory-delete-repository";
+import { MakeTask } from "@src/test/factories/task-factory";
 import { DeleteTask } from "../delete-task";
 
 describe("Deleted tasks", () => {

@@ -1,4 +1,4 @@
-import { DeleteRepository } from "../../repositories/delete-repository";
+import { DeleteRepository } from "@src/repositories/delete-repository";
 import { DeletedTaskResponse } from "./delete-task";
 
 export class DeleteAllTasks {

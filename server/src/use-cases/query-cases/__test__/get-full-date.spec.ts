@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
-import { LimitDate } from "../../../entities/task-entities/limitDate";
-import { InMemoryQueryRepository } from "../../../repositories/in-memory-repository/in-memory-query-repository";
-import { MakeTask } from "../../../test/factories/task-factory";
+import { LimitDate } from "@src/entities/task-entities/limitDate";
+import { InMemoryQueryRepository } from "@src/repositories/in-memory-repository/in-memory-query-repository";
+import { MakeTask } from "@src/test/factories/task-factory";
 import { QueryByFullDate } from "../get-full-date";
 
 describe("Get full date", () => {

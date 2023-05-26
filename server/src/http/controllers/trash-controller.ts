@@ -1,10 +1,10 @@
 import { Controller, Delete, Get } from "@overnightjs/core";
-import { Trash } from "../../entities/trash";
-import { PrismaDeleteTrashRepository } from "../../prisma/repositories/trash/Prisma-delete-trash-repository";
-import { PrismaTrashRepository } from "../../prisma/repositories/trash/Prisma-trash-repository";
-import { DeleteAllTrash } from "../../use-cases/delete-cases/delete-all-trash";
-import { DeleteTrash } from "../../use-cases/delete-cases/delete-trash";
-import { AllTrash } from "../../use-cases/trash-cases/get-all-trash";
+import { Trash } from "@src/entities/trash";
+import { PrismaDeleteTrashRepository } from "@src/prisma/repositories/trash/Prisma-delete-trash-repository";
+import { PrismaTrashRepository } from "@src/prisma/repositories/trash/Prisma-trash-repository";
+import { DeleteAllTrash } from "@src/use-cases/delete-cases/delete-all-trash";
+import { DeleteTrash } from "@src/use-cases/delete-cases/delete-trash";
+import { AllTrash } from "@src/use-cases/trash-cases/get-all-trash";
 import { TrashViewModel } from "../view-models/trash-view-model";
 
 @Controller("trash")

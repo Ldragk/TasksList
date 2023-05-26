@@ -1,6 +1,6 @@
-import { Trash } from "../../entities/trash";
-import { QueryRepository } from "../../repositories/get-repository";
-import { TrashRepository } from "../../repositories/trash-repository";
+import { Trash } from "@src/entities/trash";
+import { QueryRepository } from "@src/repositories/get-repository";
+import { TrashRepository } from "@src/repositories/trash-repository";
 import { QueryAllTasks } from "../query-cases/get-all";
 import { CreateTrashResponse } from "./create-trash";
 

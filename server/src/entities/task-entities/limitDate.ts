@@ -1,4 +1,4 @@
-import { daysInTheMonth } from "../../test/utils/days-in-the-month";
+import { daysInTheMonth } from "@src/test/utils/days-in-the-month";
 
 export class LimitDate {
   static create(arg0: string) {

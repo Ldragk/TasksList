@@ -1,7 +1,7 @@
-import { Task } from "../../../entities/task";
+import { Task } from "@src/entities/task";
 import { PrismaTaskMapper } from "./Prisma-task-mapper";
-import { ManageRepository } from "../../../repositories/manage-repository";
-import { prisma } from "../../prisma-client";
+import { ManageRepository } from "@src/repositories/manage-repository";
+import { prisma } from "@src/prisma-client";
 
 export class PrismaManageRepository implements ManageRepository {
   async create(task: Task): Promise<void> {

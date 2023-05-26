@@ -1,7 +1,7 @@
 import { convertExcessDaysAtTheTurnOfTheMonth } from "./functions/convertExcessDaysAtTheTurnOfTheMonth";
 import { numberOfDaysInTheMonth } from "./functions/numberOfDaysInTheMonth";
-import { Notification } from "../../entities/notification";
-import { NotificationRepository } from "../../repositories/notification-repository";
+import { Notification } from "@src/entities/notification";
+import { NotificationRepository } from "@src/repositories/notification-repository";
 
 export interface IParamsNotifications {
   notificationsWithinThePeriod: number;

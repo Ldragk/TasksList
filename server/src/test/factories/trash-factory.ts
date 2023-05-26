@@ -1,4 +1,4 @@
-import { Trash, TrashProps } from "../../entities/trash";
+import { Trash, TrashProps } from "@src/entities/trash";
 
 type Override = Partial<TrashProps>;
 

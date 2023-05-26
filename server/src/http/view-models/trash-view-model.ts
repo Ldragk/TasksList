@@ -1,4 +1,4 @@
-import { Trash } from "../../entities/trash";
+import { Trash } from "@src/entities/trash";
 
 export class TrashViewModel {
   static toHTTP(trash: Trash) {

@@ -1,6 +1,6 @@
 import { it, describe, expect } from "vitest";
-import { Task } from "../../../entities/task";
-import { InMemoryManageRepository } from "../../../repositories/in-memory-repository/in-memory-manage-repository";
+import { Task } from "@src/entities/task";
+import { InMemoryManageRepository } from "@src/repositories/in-memory-repository/in-memory-manage-repository";
 import { CreateTask } from "../create";
 
 describe("Create Task Use Case", () => {

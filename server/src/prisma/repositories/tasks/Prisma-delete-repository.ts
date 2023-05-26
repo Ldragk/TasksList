@@ -1,5 +1,5 @@
-import { prisma } from "../../prisma-client";
-import { DeleteRepository } from "../../../repositories/delete-repository";
+import { prisma } from "@src/prisma-client";
+import { DeleteRepository } from "@src/repositories/delete-repository";
 
 
 export class PrismaDeleteRepository implements DeleteRepository {

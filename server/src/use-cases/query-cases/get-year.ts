@@ -1,5 +1,5 @@
-import { Dates } from "../../helpers/dates";
-import { QueryRepository } from "../../repositories/get-repository";
+import { Dates } from "@src/helpers/dates";
+import { QueryRepository } from "@src/repositories/get-repository";
 import { GetTasksResponse } from "./get-all";
 
 interface IDateType {

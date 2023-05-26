@@ -1,3 +1,4 @@
+import './util/module-alias';
 import { Server } from "@overnightjs/core";
 import cors from "cors";
 import express from "express";
@@ -20,7 +21,7 @@ export class SetupServer extends Server {
     }
 
     public async init(): Promise<void> {
-      this.setupExpress
+      this.setupExpress()
       await this.databaseSetup();
       }
 

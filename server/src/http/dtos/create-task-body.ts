@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsUUID, Length, ValidateIf } from "class-validator";
-import { numberOfDaysInTheMonth } from "../../use-cases/notifications-cases/functions/numberOfDaysInTheMonth";
+import { numberOfDaysInTheMonth } from "@src/use-cases/notifications-cases/functions/numberOfDaysInTheMonth";
 
 export class TaskBody {
   @IsNotEmpty()

@@ -1,4 +1,4 @@
-import { DeleteRepository } from "../../repositories/delete-repository";
+import { DeleteRepository } from "@src/repositories/delete-repository";
 
 interface DeleteTrashResponse {
   deleteTrash: void;

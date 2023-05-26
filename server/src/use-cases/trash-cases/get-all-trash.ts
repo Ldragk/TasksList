@@ -1,5 +1,5 @@
-import { Trash } from "../../entities/trash";
-import { TrashRepository } from "../../repositories/trash-repository";
+import { Trash } from "@src/entities/trash";
+import { TrashRepository } from "@src/repositories/trash-repository";
 
 interface GetTrashResponse {
   trash: Trash[];

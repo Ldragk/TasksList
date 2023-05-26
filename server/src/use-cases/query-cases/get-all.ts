@@ -1,5 +1,5 @@
-import { Task } from "../../entities/task";
-import { QueryRepository } from "../../repositories/get-repository";
+import { Task } from "@src/entities/task";
+import { QueryRepository } from "@src/repositories/get-repository";
 
 export interface GetTasksResponse {
   tasks: Task[];

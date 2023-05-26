@@ -1,7 +1,7 @@
-import { Task } from "../../entities/task";
-import { Trash } from "../../entities/trash";
-import { ManageRepository } from "../../repositories/manage-repository";
-import { TrashRepository } from "../../repositories/trash-repository";
+import { Task } from "@src/entities/task";
+import { Trash } from "@src/entities/trash";
+import { ManageRepository } from "@src/repositories/manage-repository";
+import { TrashRepository } from "@src/repositories/trash-repository";
 
 export interface CreateTrashResponse {
   deleteTrash?: void;

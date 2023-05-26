@@ -1,6 +1,6 @@
-import { Trash } from "../../../entities/trash";
-import { prisma } from "../../prisma-client";
-import { TrashRepository } from "../../../repositories/trash-repository";
+import { Trash } from "@src/entities/trash";
+import { prisma } from "@src/prisma-client";
+import { TrashRepository } from "@src/repositories/trash-repository";
 import { PrismaTrashMapper } from "./Prisma-trash-mapper";
 
 export class PrismaTrashRepository implements TrashRepository {

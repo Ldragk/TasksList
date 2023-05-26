@@ -1,6 +1,6 @@
 import { it, describe, expect } from "vitest";
-import { InMemoryManageRepository } from "../../../repositories/in-memory-repository/in-memory-manage-repository";
-import { MakeTask } from "../../../test/factories/task-factory";
+import { InMemoryManageRepository } from "@src/repositories/in-memory-repository/in-memory-manage-repository";
+import { MakeTask } from "@src/test/factories/task-factory";
 import { TaskStatus } from "../chance-condition";
 
 describe("Change condition Task Use Case", () => {

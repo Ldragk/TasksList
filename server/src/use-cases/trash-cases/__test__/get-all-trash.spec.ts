@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
-import { InMemoryTrashRepository } from "../../../repositories/in-memory-repository/in-memory-trash-repository";
-import { MakeTrash } from "../../../test/factories/trash-factory";
+import { InMemoryTrashRepository } from "@src/repositories/in-memory-repository/in-memory-trash-repository";
+import { MakeTrash } from "@src/test/factories/trash-factory";
 import { AllTrash } from "../get-all-trash";
 
 describe("Get all trash tasks", () => {

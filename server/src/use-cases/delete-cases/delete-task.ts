@@ -1,5 +1,5 @@
-import { Trash } from "../../entities/trash";
-import { DeleteRepository } from "../../repositories/delete-repository";
+import { Trash } from "@src/entities/trash";
+import { DeleteRepository } from "@src/repositories/delete-repository";
 
 export interface DeletedTaskResponse {
   deleteTrash: void;

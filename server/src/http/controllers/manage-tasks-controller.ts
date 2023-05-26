@@ -1,8 +1,8 @@
-import { Task } from "../../entities/task";
-import { PrismaManageRepository } from "../../prisma/repositories/tasks/Prisma-manage-repository";
-import { TaskStatus } from "../../use-cases/manage-cases/chance-condition";
-import { CreateTask } from "../../use-cases/manage-cases/create";
-import { FullUpdate } from "../../use-cases/manage-cases/update";
+import { Task } from "@src/entities/task";
+import { PrismaManageRepository } from "@src/prisma/repositories/tasks/Prisma-manage-repository";
+import { TaskStatus } from "@src/use-cases/manage-cases/chance-condition";
+import { CreateTask } from "@src/use-cases/manage-cases/create";
+import { FullUpdate } from "@src/use-cases/manage-cases/update";
 import { TaskBody } from "../dtos/create-task-body";
 import { TaskViewModel } from "../view-models/task-view-model";
 import { Controller, Patch, Post, Put } from '@overnightjs/core';
