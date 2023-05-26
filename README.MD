@@ -111,7 +111,7 @@ Após alcançar esse objetivo, ainda pretendia fazer outras coisas (funcionalida
 
 <br>
 
-<a href="https://github.com/Lucasvmarangoni/TaskList/commit/2690efd" title="clique para ver o código da versão 2.0.0">![version](https://img.shields.io/badge/version-2.0.0-white)</a> 
+<a href="https://github.com/Lucasvmarangoni/TaskList/tree/2690efd2b1ca82fe52ce211c912a0f021fd8d8eb" title="clique para ver o código da versão 2.0.0">![version](https://img.shields.io/badge/version-2.0.0-white)</a> 
 <br>
 Então, comecei a aplicar os conhecimentos obtidos com o evento <a href="https://github.com/Lucasvmarangoni/notifications-service" target="_blank">Ignite Lab 04 - Notification Service</a> da RocketSeat. Ao longo dessa etapa, mudei muitas decisões iniciais. Por não ter iniciado com TDD, alguns testes unitários ficaram para depois da funcionalidade estar pronta, assim como muitas outras coisas, como validações e outros recursos de estrutura e engenharia. 
 
@@ -122,7 +122,7 @@ Então, comecei a aplicar os conhecimentos obtidos com o evento <a href="https:/
 <a href="" title="clique para ver o código da versão 2.1.0">![version](https://img.shields.io/badge/version-2.1.0-black)</a> 
 <br>
 O projeto será aprimorado com novos conhecimentos que obtive com o projeto <a href="https://github.com/Lucasvmarangoni/Best-Surf" target="_blank">Best-Surf</a>.
-Nesta atualização, vou realizar a alteração de nomenclaturas, aprimorar testes, Graceful shutdown, tratamento de erros, status code, logging e cache.
+Nesta atualização, vou realizar a alteração de nomenclaturas, aprimorar testes, tratamento de erros, status code, logging e cache.
 
 <br>
 
