@@ -89,7 +89,7 @@ Inicialmente teve o objetivo de consolidar meus conhecimentos de Back-end e Enge
             </tr>  
             <tr>             
                  <td colspan="1">Class-validator</th>   
-                 <td colspan="2">MongoDB</th>   
+                 <td colspan="2">SQLite &#8594; MongoDB</th>   
             </tr>                     
        </tbody>
 </table>
