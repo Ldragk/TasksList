@@ -6,16 +6,11 @@
   </a>
   <a href="#tecnologias">
      <img align="center" src="https://img.shields.io/badge/-Tecnologias-05122A?style=flat&logo=Tecnologias" alt=""/>
-  </a>
-  <a href="#instalação">
-     <img align="center" src="https://img.shields.io/badge/-Execu%C3%A7%C3%A3o-05122A?style=flat&logo=Execu%C3%A7%C3%A3o" alt=""/>
-  </a>
-  <a href="#documentação">
-     <img align="center" src="https://img.shields.io/badge/-Documenta%C3%A7%C3%A3o-05122A?style=flat&logo=Documenta%C3%A7%C3%A3o" alt=""/>
-  </a>
-  <a href="#backlog">
-     <img align="center" src="https://img.shields.io/badge/-Backlog-05122A?style=flat&logo=Backlog" alt=""/>
-  </a>
+  </a>  
+     <a href="#registro-de-desenvolvimento">
+     <img align="center" src="https://img.shields.io/badge/-Registro%20de%20Desenvolvimento-05122A?style=flat&logo=Tecnologias" alt=""/>
+     </a>
+
 </div>
 
 <br>
@@ -52,11 +47,15 @@ Inicialmente teve o objetivo de consolidar meus conhecimentos de Back-end e Enge
 
 <br>
 
+<div align="center">
+
+## Tecnologias
+
+</div>
+
+
 <table width="300px" align="center">
       <caption> 
-      <h2 align="center">         
-          Tecnologias
-      </h2> 
       </caption>	         
        <thead>                      
                <th width="50%px" style="text-align:center" colspan="1">v2.0.0</th>                  
@@ -96,7 +95,7 @@ Inicialmente teve o objetivo de consolidar meus conhecimentos de Back-end e Enge
 
 <br>
 
-### Registro de Desenvolvimento
+## Registro de Desenvolvimento
 
 - Link para o código da versão nas badges.
 
@@ -122,7 +121,7 @@ Então, comecei a aplicar os conhecimentos obtidos com o evento <a href="https:/
 <a href="" title="clique para ver o código da versão 2.1.0">![version](https://img.shields.io/badge/version-2.1.0-black)</a> 
 <br>
 O projeto será aprimorado com novos conhecimentos que obtive com o projeto <a href="https://github.com/Lucasvmarangoni/Best-Surf" target="_blank">Best-Surf</a>.
-Nesta atualização, vou realizar a alteração de nomenclaturas, aprimorar testes, tratamento de erros, status code, logging e cache.
+Nesta atualização, será realizada a alteração de nomenclaturas, aprimoramento de testes, tratamento de erros, status code, logging, cache, graceful shutdown (já existe na versão 2.0.0, o prisma gera automaticamente, nessa versão é feito manualmente) e trocar o banco de dados para mongoDB.
 
 <br>
 
