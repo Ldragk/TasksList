@@ -92,7 +92,7 @@ Inicialmente teve o objetivo de consolidar meus conhecimentos de Back-end e Enge
             </tr>      
             tr>             
                  <td colspan="1"></th>   
-                 <td colspan="2">Express Opes API</th>   
+                 <td colspan="2">Express Open API</th>   
             </tr>     
             <tr>             
                  <td colspan="1"></th>   
