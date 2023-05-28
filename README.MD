@@ -89,8 +89,7 @@ Inicialmente teve o objetivo de consolidar meus conhecimentos de Back-end e Enge
             <tr>             
                  <td colspan="1">Class-validator</th>   
                  <td colspan="2">SQLite &#8594; MongoDB</th>   
-            </tr>      
-            tr>             
+            </tr>                             
                  <td colspan="1"></th>   
                  <td colspan="2">Express Open API</th>   
             </tr>     
