@@ -120,14 +120,11 @@ Inicialmente teve o objetivo de consolidar meus conhecimentos de Back-end e Enge
 <br>
 O projeto teve seu desenvolvimento iniciado de acordo com o aprendizado do evento <a href="https://github.com/Lucasvmarangoni/NLW-Ignite-2022" target="_blank">NLW ESpots Ignite</a> da RocketSeat, ou seja, um back-end simples e básico.
 
-
-Após alcançar esse objetivo, ainda pretendia fazer outras coisas (funcionalidades) antes de começar a aprimorar a engenharia e arquitetura do software, mas comecei a aprimorar algumas coisas e acabei decidindo por já organizar tudo logo.
-
 <br>
 
 <a href="https://github.com/Lucasvmarangoni/TaskList/tree/2690efd2b1ca82fe52ce211c912a0f021fd8d8eb" title="clique para ver o código da versão 2.0.0">![version](https://img.shields.io/badge/version-2.0.0-white)</a> 
 <br>
-Então, comecei a aplicar os conhecimentos obtidos com o evento <a href="https://github.com/Lucasvmarangoni/notifications-service" target="_blank">Ignite Lab 04 - Notification Service</a> da RocketSeat. Ao longo dessa etapa, mudei muitas decisões iniciais. Por não ter iniciado com TDD, alguns testes unitários ficaram para depois da funcionalidade estar pronta, assim como muitas outras coisas, como validações e outros recursos de estrutura e engenharia. 
+Logo após concluir a v1.0.0, comecei a aplicar os conhecimentos obtidos com o evento <a href="https://github.com/Lucasvmarangoni/notifications-service" target="_blank">Ignite Lab 04 - Notification Service</a> da RocketSeat. Apliquei testes unitários, validações, DDD, TDD, in memory database, factory pattern, singleton, inversão de dependência e princípios SOLID.
 
 <br>
 
