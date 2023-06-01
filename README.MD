@@ -130,7 +130,7 @@ Logo após concluir a v1.0.0, comecei a aplicar os conhecimentos obtidos com o e
 
 <a href="" title="clique para ver o código da versão 2.1.0">![version](https://img.shields.io/badge/version-2.1.0-black)</a> 
 <br>
-Nesta atualização, estou aplicando parcialmente os conhecimentos que adquiri no projeto <a href="https://github.com/Lucasvmarangoni/Best-Surf" target="_blank">Best-Surf</a>. Estou aprimorando e adicionando testes, aplicando tratamento de erros, status code, logging, cache, graceful shutdown, troca do banco de dados para MongoDB, documentação OpenAPI, automação de fluxo de trabalho.
+Nesta atualização, estou aplicando parcialmente os conhecimentos que adquiri no projeto <a href="https://github.com/Lucasvmarangoni/Best-Surf" target="_blank">Best-Surf</a>. Estou aprimorando e adicionando testes, aplicando tratamento de erros, status code, logging, cache, graceful shutdown, troca do banco de dados para MongoDB, documentação OpenAPI, automação de fluxo de trabalho e refatoração para performance.
 
 <br>
 
