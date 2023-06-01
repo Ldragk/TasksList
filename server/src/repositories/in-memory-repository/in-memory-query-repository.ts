@@ -14,49 +14,37 @@ export class InMemoryQueryRepository
     return this.tasks.filter((task) => task.date.value === date);
   }
 
-  async findByMonth(
-    month: number,
-    days: number[],
-    year: number
-  ): Promise<Task[]> {
+  async findByMonth(month: number, days: number[], year: number): Promise<Task[]> {
     const tasksMonth: Task[] = [];
-    for (const d of days) {
-      this.tasks.map((task) => {
-        if (task.date.value === `${month}/${d}/${year}`) {
-          return tasksMonth.push(task);
-        }
-      });
-    }
-    return tasksMonth;
-
-    /*
-    Com a forma abaixo, não consigo retornar o resultado, assim so funcionaria com "Promise<any>",
-    não sendo o ideal, pois o retorno deveria ser "Promise<Task[]>", como está declarado na classe abstrata.
-    for (let i = 0; i < days.length; i++)
-      return this.tasks.filter((task) => {
-        return task.date.value[i] === `${month}/${days[i]}/${year}`[i];
-      }); 
-   */
-  }
-
-  async findByYear(
-    month: number[],
-    days: number[],
-    year: number
-  ): Promise<Task[]> {
-    const tasksYear: Task[] = [];
-
-    for (const d of days) {
-      for (const m of month) {
-        this.tasks.map((task) => {
-          if (task.date.value === `${m}/${d}/${year}`) {
-            return tasksYear.push(task);
-          }
-        });
+  
+    const targetDate = `${month}/${days[0]}/${year}`;
+  
+    for (const task of this.tasks) {
+      if (task.date.value === targetDate) {
+        tasksMonth.push(task);
       }
     }
-    return tasksYear;
+  
+    return tasksMonth;
   }
+
+  async findByYear(month: number[], days: number[], year: number): Promise<Task[]> {
+    const tasksYear: Task[] = [];
+  
+    for (const task of this.tasks) {
+      const [taskMonth, taskDay, taskYear] = task.date.value.split('/');
+      const taskMonthNumber = parseInt(taskMonth, 10);
+      const taskDayNumber = parseInt(taskDay, 10);
+      const taskYearNumber = parseInt(taskYear, 10);
+  
+      if (month.includes(taskMonthNumber) 
+      && days.includes(taskDayNumber) 
+      && taskYearNumber === year) {
+        tasksYear.push(task);
+      }
+    }  
+    return tasksYear;
+  }  
 
   async findByStatus(condition: boolean): Promise<Task[]> {
     return this.tasks.filter((task) => task.done === condition);
@@ -65,6 +53,4 @@ export class InMemoryQueryRepository
   async findByOverdue(condition: boolean): Promise<Task[]> {
     return this.tasks.filter((task) => task.done === condition);
   }
-
-
 }
