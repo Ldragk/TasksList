@@ -8,6 +8,7 @@ import { Task } from "@src/entities/task";
 import { TaskViewModel } from "../view-models/task-view-model";
 import { PrismaTaskQueryRepository } from "@src/prisma/repositories/tasks/Prisma-query-repository";
 import { Controller, Get } from "@overnightjs/core";
+import { Request } from "express";
 
 
 @Controller("tasks")

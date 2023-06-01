@@ -13,7 +13,7 @@ import logger from "./logger";
 import { prisma } from "./prisma/prisma-client";
 
 
-export class SetupServer extends Server {
+class SetupServer extends Server {
     private server?: http.Server;    
   
     constructor(private port = 3333) {
@@ -69,13 +69,11 @@ export class SetupServer extends Server {
         }
       }
 
-      public start(): void {
+      public start(): void {        
         this.app.listen(this.port, () => {
           logger.info('Server listening on port: ' + this.port);
         });
       }
 }
 
-
-
-
+export default SetupServer;

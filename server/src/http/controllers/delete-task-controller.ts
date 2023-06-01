@@ -9,12 +9,13 @@ import { DeleteTask } from "@src/use-cases/delete-cases/delete-task";
 import { CreateAllTrash } from "@src/use-cases/trash-cases/create-all-trash";
 import { CreateTrash } from "@src/use-cases/trash-cases/create-trash";
 import { TrashViewModel } from "../view-models/trash-view-model";
+import { Request } from "express";
 
 
 @Controller("tasks")
 export class DeleteTasks {
 
-  @Delete("delete/:id")
+  @Delete("delete/unique/:id")
   async deleteTask(
     req: { params: { id: string } },
     res: { json: (arg0: TrashViewModel | void) => Promise<Trash> }
@@ -29,7 +30,7 @@ export class DeleteTasks {
 
     const { createTrash } = await create.execute(id);
     const { deleteTrash } = await deleteTask.execute(id);
-
+      
     return {
       create: res.json(TrashViewModel.toHTTP(createTrash)),
       delete: res.json(deleteTrash),

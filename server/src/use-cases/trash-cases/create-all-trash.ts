@@ -15,7 +15,8 @@ export class CreateAllTrash {
     const { tasks } = Object(await queryAllTasks.execute());
 
     return tasks.map(async (task: Trash) => {
-      const { id, title, content, date, done, createdAt } = task;
+      const { id, title, content, date, done, createdAt } = task;    
+      
       const trashBody = new Trash(
         {
           title: title,

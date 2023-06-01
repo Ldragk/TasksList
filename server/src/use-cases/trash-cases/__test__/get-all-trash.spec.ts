@@ -4,7 +4,7 @@ import { MakeTrash } from "@src/test/factories/trash-factory";
 import { AllTrash } from "../get-all-trash";
 
 describe("Get all trash tasks", () => {
-  it("should return all trash tasks", async () => {
+  it("should return all trash tasks", async () => {   
     const trashRepository = new InMemoryTrashRepository();
 
     const allTrash = new AllTrash(trashRepository);

@@ -6,6 +6,7 @@ import { DeleteAllTrash } from "@src/use-cases/delete-cases/delete-all-trash";
 import { DeleteTrash } from "@src/use-cases/delete-cases/delete-trash";
 import { AllTrash } from "@src/use-cases/trash-cases/get-all-trash";
 import { TrashViewModel } from "../view-models/trash-view-model";
+import { Request } from "express";
 
 @Controller("trash")
 export class TrashTasks {

@@ -1,7 +1,7 @@
 import { PrismaTaskMapper } from "./Prisma-task-mapper";
 import { Task } from "@src/entities/task";
 import { QueryRepository } from "@src/repositories/get-repository";
-import { prisma } from "@src/prisma-client";
+import { prisma } from "@src/prisma/prisma-client";
 
 export class PrismaTaskQueryRepository implements QueryRepository {
   async findAllTasks(): Promise<Task[]> {

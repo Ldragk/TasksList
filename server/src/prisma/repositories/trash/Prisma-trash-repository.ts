@@ -1,5 +1,5 @@
 import { Trash } from "@src/entities/trash";
-import { prisma } from "@src/prisma-client";
+import { prisma } from "@src/prisma/prisma-client";
 import { TrashRepository } from "@src/repositories/trash-repository";
 import { PrismaTrashMapper } from "./Prisma-trash-mapper";
 
