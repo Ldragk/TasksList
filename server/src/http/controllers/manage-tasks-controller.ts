@@ -6,6 +6,7 @@ import { FullUpdate } from "@src/use-cases/manage-cases/update";
 import { TaskBody } from "../dtos/create-task-body";
 import { TaskViewModel } from "../view-models/task-view-model";
 import { Controller, Patch, Post, Put } from '@overnightjs/core';
+import logger from "@src/logger";
 
 @Controller('tasks')
 export class ManageTasks {
@@ -17,6 +18,7 @@ export class ManageTasks {
   ) {
     const { title, content, date, done } = req.body;
     const createTask = new CreateTask(new PrismaManageRepository());
+   try{
     const { task } = await createTask.execute({
       title,
       content,
@@ -25,6 +27,9 @@ export class ManageTasks {
     });
 
     return { task: res.json(TaskViewModel.toHTTP(task)) };
+   } catch(err) {   
+    return logger.error(err)
+   }
   }
 
   @Patch('change/:id')
@@ -34,9 +39,13 @@ export class ManageTasks {
   ) {
     const id: string = req.params.id;
     const taskStatus = new TaskStatus(new PrismaManageRepository());
-    const { task } = await taskStatus.execute(id);
+    try{
+      const { task } = await taskStatus.execute(id);
 
-    return { task: res.json(TaskViewModel.toHTTP(task)) };
+      return { task: res.json(TaskViewModel.toHTTP(task)) };
+    } catch(err) {
+      return logger.error(err)
+    }
   }
 
   @Put('fullChange/:id')
@@ -50,13 +59,17 @@ export class ManageTasks {
     const id: string = req.params.id;
     const { title, content, date, done } = req.body;
     const fullUpdate = new FullUpdate(new PrismaManageRepository());
+   try{
     const { task } = await fullUpdate.execute(id, {
       title,
       content,
       date,
       done,
-    });
+    }); 
 
     return { task: res.json(TaskViewModel.toHTTP(task)) };
+  } catch(err) {
+    return logger.error(err)
+  }
   }
 }

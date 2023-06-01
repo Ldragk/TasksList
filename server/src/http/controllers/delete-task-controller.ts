@@ -10,6 +10,7 @@ import { CreateAllTrash } from "@src/use-cases/trash-cases/create-all-trash";
 import { CreateTrash } from "@src/use-cases/trash-cases/create-trash";
 import { TrashViewModel } from "../view-models/trash-view-model";
 import { Request } from "express";
+import logger from "@src/logger";
 
 
 @Controller("tasks")
@@ -28,13 +29,17 @@ export class DeleteTasks {
     );
     const deleteTask = new DeleteTask(new PrismaDeleteRepository());
 
-    const { createTrash } = await create.execute(id);
+    try{
+      const { createTrash } = await create.execute(id);
     const { deleteTrash } = await deleteTask.execute(id);
       
     return {
       create: res.json(TrashViewModel.toHTTP(createTrash)),
       delete: res.json(deleteTrash),
     };
+    } catch (err) {
+      return logger.error(err);
+    }
   }
 
   @Delete("delete/all")
@@ -50,12 +55,16 @@ export class DeleteTasks {
     );
     const deleteAllTasks = new DeleteAllTasks(new PrismaDeleteRepository());
 
-    const { createTrash } = await create.execute();
+    try{
+      const { createTrash } = await create.execute();
     const { deleteTrash } = await deleteAllTasks.execute();
 
     return {
       create: res.json(createTrash),
       delete: res.json(deleteTrash),
     };
+    } catch (err) {
+      return logger.error(err);
+    }
   }
 }

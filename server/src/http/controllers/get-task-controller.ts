@@ -9,6 +9,7 @@ import { TaskViewModel } from "../view-models/task-view-model";
 import { PrismaTaskQueryRepository } from "@src/prisma/repositories/tasks/Prisma-query-repository";
 import { Controller, Get } from "@overnightjs/core";
 import { Request } from "express";
+import logger from "@src/logger";
 
 
 @Controller("tasks")
@@ -51,11 +52,15 @@ export class QueryTask {
     }
   ) => {
     const tasksByMonth = new QueryByMonth(new PrismaTaskQueryRepository());
+   try{
     const { tasks } = await tasksByMonth.execute({
       month: Number(req.params.month),
       year: Number(req.params.year),
     });
     return { get: res.json(tasks.map(TaskViewModel.toHTTP)) };
+   } catch (err) {
+     return logger.error(err);
+   }
   };
 
   @Get("year/:year")
@@ -66,10 +71,15 @@ export class QueryTask {
     }
   ) => {
     const tasksByYear = new QueryByYear(new PrismaTaskQueryRepository());
-    const { tasks } = await tasksByYear.execute({
-      year: Number(req.params.year),
-    });
-    return { get: res.json(tasks.map(TaskViewModel.toHTTP)) };
+    
+    try{
+      const { tasks } = await tasksByYear.execute({
+        year: Number(req.params.year),
+      });
+      return { get: res.json(tasks.map(TaskViewModel.toHTTP)) };
+    } catch (err) {
+      return logger.error(err);
+    }
   };
 
   @Get("done/:condition")
@@ -80,10 +90,15 @@ export class QueryTask {
     }
   ) => {
     const tasksCondition = new TasksCondition(new PrismaTaskQueryRepository());
-    const { tasks } = await tasksCondition.execute(
-      Number(req.params.condition)
-    );
-    return { get: res.json(tasks.map(TaskViewModel.toHTTP)) };
+   
+    try{
+      const { tasks } = await tasksCondition.execute(
+        Number(req.params.condition)
+      );
+      return { get: res.json(tasks.map(TaskViewModel.toHTTP)) };
+    } catch (err) { 
+      return logger.error(err);
+    }
   };
 
   @Get("delayed")
@@ -96,7 +111,12 @@ export class QueryTask {
     const overdueTasks: OverdueTasks = new OverdueTasks(
       new PrismaTaskQueryRepository()
     );
-    const { tasks } = await overdueTasks.execute();
-    return { get: res.json(tasks.map(TaskViewModel.toHTTP)) };
+    
+    try{
+      const { tasks } = await overdueTasks.execute();
+      return { get: res.json(tasks.map(TaskViewModel.toHTTP)) };
+    } catch (err) {
+      return logger.error(err);
+    }
   };
 }

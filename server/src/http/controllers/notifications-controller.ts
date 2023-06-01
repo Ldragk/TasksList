@@ -3,6 +3,7 @@ import { Notification } from "@src/entities/notification";
 import { PrismaNotificationsRepository } from "@src/prisma/repositories/notification/Prisma-notifications-repository";
 import { NotificationOfTasksNearTheDeadline } from "@src/use-cases/notifications-cases/notifications-deadline";
 import { NotificationViewModel } from "../view-models/notification-view-model";
+import logger from "@src/logger";
 
 @Controller("tasks")
 export class Notifications {
@@ -16,6 +17,7 @@ export class Notifications {
       new PrismaNotificationsRepository()
     );
 
+   try{
     const { notification } = await notifications.execute({
       notificationsWithinThePeriod: Number(req.params.daysOfDelay),
       type: Number(req.params.type),
@@ -24,5 +26,8 @@ export class Notifications {
     return {
       get: res.json(notification.map(NotificationViewModel.toHTTP)),
     };
+   } catch (err) {
+      return logger.error(err);
+    }
   };
 }

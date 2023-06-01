@@ -7,6 +7,7 @@ import { DeleteTrash } from "@src/use-cases/delete-cases/delete-trash";
 import { AllTrash } from "@src/use-cases/trash-cases/get-all-trash";
 import { TrashViewModel } from "../view-models/trash-view-model";
 import { Request } from "express";
+import logger from "@src/logger";
 
 @Controller("trash")
 export class TrashTasks {
@@ -19,8 +20,13 @@ export class TrashTasks {
     }
   ) {
     const allTrash = new AllTrash(new PrismaTrashRepository());
-    const { trash } = await allTrash.execute();
-    return { get: res.json(trash.map(TrashViewModel.toHTTP)) };
+    
+    try{
+      const { trash } = await allTrash.execute();
+      return { get: res.json(trash.map(TrashViewModel.toHTTP)) };
+    } catch (err) {
+      return logger.error(err);
+    }
   }
 
   @Delete(":id/delete")
@@ -30,9 +36,13 @@ export class TrashTasks {
   ) {
     const id: string = req.params.id;
     const deleted = new DeleteTrash(new PrismaDeleteTrashRepository());
-    const { deleteTrash } = await deleted.execute(id);
-
-    return { delete: res.json(deleteTrash) };
+   
+    try{
+      const { deleteTrash } = await deleted.execute(id);
+      return { delete: res.json(deleteTrash) };
+    } catch (err) {
+      return logger.error(err);
+    }
   }
 
   @Delete("delete/all")
@@ -43,8 +53,12 @@ export class TrashTasks {
     const deleteAllTrash = new DeleteAllTrash(
       new PrismaDeleteTrashRepository()
     );
-    const { deleteTrash } = await deleteAllTrash.execute();
-
-    return { delete: res.json(deleteTrash) };
+   
+    try{
+      const { deleteTrash } = await deleteAllTrash.execute();
+      return { delete: res.json(deleteTrash) };
+    } catch (err) {
+      return logger.error(err);
+    }
   }
 }
