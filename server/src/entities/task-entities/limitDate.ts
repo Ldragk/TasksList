@@ -24,7 +24,8 @@ export class LimitDate {
     return this.year;
   }
 
-  private validadeDateLength(date: String[]): boolean {
+  private validadeDateLength(date: String[]): boolean {    
+    
     return (
       date[0].length <= 2 &&
       date[0].length > 0 &&
@@ -42,15 +43,40 @@ export class LimitDate {
   constructor(getDate: string) {
     const arrayDate = getDate.split("/");
     const isDateLengthValid = this.validadeDateLength(arrayDate);
-
+    
     if (!isDateLengthValid) {
-      throw new Error(
-        `Date must be string and separated by bars "/", with that format: month/day/year. 
-        Where 
-        "month" to be between 1 and 12, 
-        "day" to be between 1 and lasted day in the month and,
-        "year" to be greater  than or equal to the current year and have 4 digits.`
-      );
+      const month = arrayDate[0];
+      const day = arrayDate[1];
+      const year = arrayDate[2];
+      
+      const dateFormat: string = `Format: Date must be a string and separated by slashes '/', with the following format: month/day/year.`;
+
+      const errors = [];
+
+      if (month.length > 2 || month.length === 0 || Number(month) < 1 || Number(month) > 12) {
+        errors.push(`
+          ${dateFormat}
+          Month must be between 1 and 12`);
+      }
+
+      if (day.length > 2 || day.length === 0 || Number(day) < 1 || Number(day) > daysInTheMonth(Number(month))) {
+        errors.push(`
+          ${dateFormat}
+          Day must be between 1 and the last day of the respective month`);
+      }
+
+      if (year.length !== 4 || Number(year) < new Date().getFullYear()) {
+        errors.push(`
+          ${dateFormat}
+          Year must be greater than or equal to the current year and consist of 4 digits`);
+      }
+
+      if (errors.length > 0) {
+        throw new Error(`
+        Invalid date format!
+        ${errors.join("\n")}`);
+      }
+
     }
 
     this.month = Number(arrayDate[0]);
