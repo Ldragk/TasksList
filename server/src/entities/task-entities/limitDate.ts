@@ -54,29 +54,23 @@ export class LimitDate {
       const errors = [];
 
       if (month.length > 2 || month.length === 0 || Number(month) < 1 || Number(month) > 12) {
-        errors.push(`
-          ${dateFormat}
-          Month must be between 1 and 12`);
+        errors.push(`- Month must be between 1 and 12.`);
       }
 
       if (day.length > 2 || day.length === 0 || Number(day) < 1 || Number(day) > daysInTheMonth(Number(month))) {
-        errors.push(`
-          ${dateFormat}
-          Day must be between 1 and the last day of the respective month`);
+        errors.push(`- Day must be between 1 and the last day of the respective month.`);
       }
 
       if (year.length !== 4 || Number(year) < new Date().getFullYear()) {
-        errors.push(`
-          ${dateFormat}
-          Year must be greater than or equal to the current year and consist of 4 digits`);
+        errors.push(`- Year must be greater than or equal to the current year and consist of 4 digits.`);
       }
 
       if (errors.length > 0) {
         throw new Error(`
-        Invalid date format!
-        ${errors.join("\n")}`);
+        Invalid date format!       
+        ${dateFormat}     
+        ${errors.join('\n')}`);
       }
-
     }
 
     this.month = Number(arrayDate[0]);
