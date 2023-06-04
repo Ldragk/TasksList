@@ -5,6 +5,5 @@ Notas.MD
 registros-v2.md
 .env
 
-server/src/util/err/api-err.ts
-server/src/util/err/internal-error.ts
-server/src/http/controllers/index.ts
+
+server/src/util/performance-now.ts

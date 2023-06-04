@@ -7,14 +7,17 @@ import { TaskBody } from "../dtos/create-task-body";
 import { TaskViewModel } from "../view-models/task-view-model";
 import { Controller, Patch, Post, Put } from '@overnightjs/core';
 import logger from "@src/logger";
+import { BaseController } from ".";
+import { Response } from "express";
+import { Prisma } from "@prisma/client";
 
 @Controller('tasks')
-export class ManageTasks {
+export class ManageTasks extends BaseController{
 
   @Post('create')
   async create(
     req: { body: TaskBody },
-    res: { json: (arg0: TaskViewModel) => Promise<Task> }
+    res: Response
   ) {
     const { title, content, date, done } = req.body;
     const createTask = new CreateTask(new PrismaManageRepository());
@@ -26,9 +29,10 @@ export class ManageTasks {
       done,
     });
 
-    return { task: res.json(TaskViewModel.toHTTP(task)) };
+    return { task: TaskViewModel.toHTTP(task) };
    } catch(err) {   
-    return logger.error(err)
+    logger.error(err)
+    return this.sendCreateUpdateErrorResponse(res, err as Error);
    }
   }
 
