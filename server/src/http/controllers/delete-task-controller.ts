@@ -41,12 +41,13 @@ export class DeleteTasks {
       return logger.error(err);
     }
   }
-
+ 
   @Delete("delete/all")
   async deletedAllTasks(
     _: Request,
     res: {
       json: (arg0: Trash | void) => Promise<Trash[]>;
+      status: (code: number) => any;
     }
   ) {
     const create = new CreateAllTrash(
@@ -60,8 +61,8 @@ export class DeleteTasks {
     const { deleteTrash } = await deleteAllTasks.execute();
 
     return {
-      create: res.json(createTrash),
-      delete: res.json(deleteTrash),
+      create: res.status(201).json(createTrash),
+      delete: res.status(200).json(deleteTrash),
     };
     } catch (err) {
       return logger.error(err);
