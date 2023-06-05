@@ -31,7 +31,7 @@ export class DeleteTasks {
 
     try{
       const { createTrash } = await create.execute(id);
-    const { deleteTrash } = await deleteTask.execute(id);
+      const { deleteTrash } = await deleteTask.execute(id);
       
     return {
       create: res.json(TrashViewModel.toHTTP(createTrash)),
@@ -57,7 +57,7 @@ export class DeleteTasks {
 
     try{
       const { createTrash } = await create.execute();
-    const { deleteTrash } = await deleteAllTasks.execute();
+      const { deleteTrash } = await deleteAllTasks.execute();
 
     return {
       create: res.status(201).json(createTrash),

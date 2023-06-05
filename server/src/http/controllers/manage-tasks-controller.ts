@@ -38,16 +38,16 @@ export class ManageTasks extends BaseController {
   @Patch('change/:id')
   async updateCondition(
     req: { params: { id: string } },
-    res: { json: (arg0: TaskViewModel) => Promise<Task> }
+    res: Response
   ) {
     const id: string = req.params.id;
     const taskStatus = new TaskStatus(new PrismaManageRepository());
     try {
       const { task } = await taskStatus.execute(id);
 
-      return { task: res.json(TaskViewModel.toHTTP(task)) };
-    } catch (err) {
-      return logger.error(err)
+      return { task: res.status(200).json(TaskViewModel.toHTTP(task)) };
+    } catch (err) {      
+      return this.sendCreateUpdateErrorResponse(res, err as Error)
     }
   }
 
