@@ -57,7 +57,7 @@ export class ManageTasks extends BaseController {
       params: { id: string };
       body: TaskBody;
     },
-    res: { json: (arg0: TaskViewModel) => Promise<Task> }
+    res: Response
   ) {
     const id: string = req.params.id;
     const { title, content, date, done } = req.body;
@@ -72,7 +72,7 @@ export class ManageTasks extends BaseController {
 
       return { task: res.json(TaskViewModel.toHTTP(task)) };
     } catch (err) {
-      return logger.error(err)
+      return this.sendCreateUpdateErrorResponse(res, err as Error)
     }
   }
 }

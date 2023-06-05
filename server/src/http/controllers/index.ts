@@ -39,26 +39,33 @@ export abstract class BaseController {
     }
   }
 
-  private handleClientError(err: Prisma.PrismaClientValidationError | Error): {
+  private handleClientError(err: Prisma.PrismaClientValidationError): {
     code: number;
     error: string;
     cause?: string;
   } {
     const errorMessage = err.message;
-    const regex = /Argument done: Got invalid value (\S+) on prisma\.createOneTask\. Provided (\S+), expected (\S+)/;
-    const match = regex.exec(errorMessage);
+    const regex = /Argument (title|content|date|done): Got invalid value (\S+) on prisma\.(createOneTask|updateOneTask)\. Provided (\S+), expected (\S+)/g;
+    let match;
+    let argument
+    let value
+    let providedType
+    let expectedType
 
-    const value = match?.[1] ?? '';
-    const providedType = match?.[2] ?? '';
-    const expectedType = match?.[3] ?? '';
+    while ((match = regex.exec(errorMessage)) !== null) {
+      argument = match[1];
+      value = match[2];
+      providedType = match[4];
+      expectedType = match[5];
+    }
 
     // ! Don't break line in template literals, because "\n" occurs    
-    const customErrorMessage = `The value ${value} of ${providedType} type, is not valid type. Expected type ${expectedType}`;
+    const customErrorMessage = `The Argument ${argument} with value ${value} of ${providedType} type, is not valid. Expected type ${expectedType}`;
 
     return {
       code: 400,
       error: (err as Error).message,
-      cause: customErrorMessage,
+      cause: value || providedType && expectedType ? customErrorMessage : 'This is not the expected type',
     };
   }
 
@@ -67,13 +74,13 @@ export abstract class BaseController {
     error: string;
     cause: string;
     message: string;
-  } {   
-    const notFoundTask = 'Invalid id. Task not found.';    
+  } {
+    const notFoundTask = 'Invalid id. Task not found.';
 
     return {
       code: 404,
       error: (err as Error).message,
-      cause: notFoundTask, 
+      cause: notFoundTask,
       message: 'The id should be in the ObjectID format. If the format is correct, there is no task with the requested id.'
     };
   }
