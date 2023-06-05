@@ -1,7 +1,4 @@
-export class Content {
-  static create(arg0: string) {
-    throw new Error('Method not implemented.');
-  }
+export class Content {  
   private readonly content: string;
 
   get value(): string {
@@ -18,7 +15,6 @@ export class Content {
     if (!isContentLengthValid) {
       throw new Error('Content must be between 5 and 250 characters');
     }
-
     this.content = content;
   }
 }

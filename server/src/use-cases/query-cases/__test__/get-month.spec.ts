@@ -9,8 +9,8 @@ describe("get by month", () => {
     const tasksRepository = new InMemoryQueryRepository();
     const queryByMonth = new QueryByMonth(tasksRepository);
 
-    let task = MakeTask();
-    let taskNotGet = MakeTask({ date: new LimitDate("3/23/2024") });
+    const task = MakeTask();
+    const taskNotGet = MakeTask({ date: new LimitDate("3/23/2024") });
 
     const called = vi.spyOn(tasksRepository, "create");
 

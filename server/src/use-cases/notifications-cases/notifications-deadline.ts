@@ -32,7 +32,7 @@ export class NotificationOfTasksNearTheDeadline {
     const tasks: Notification[] =
       await this.notificationRepository.findNotifications(false);
 
-    const todayDate: string = `${
+    const todayDate = `${
       new Date().getMonth() + 1
     }/${new Date().getDate()}/${new Date().getFullYear()}`;
 

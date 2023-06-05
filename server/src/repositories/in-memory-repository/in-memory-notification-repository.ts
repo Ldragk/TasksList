@@ -1,5 +1,4 @@
 import { Notification } from "@src/entities/notification";
-import { Task } from "@src/entities/task";
 import { NotificationRepository } from "../notification-repository";
 import { InMemoryManageRepository } from "./in-memory-manage-repository";
 

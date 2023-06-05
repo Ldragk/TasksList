@@ -8,7 +8,7 @@ describe("Deleted tasks", () => {
     const deleteRepository = new InMemoryDeleteRepository();
     const deleteTask = new DeleteTask(deleteRepository);
 
-    let task = MakeTask();
+    const task = MakeTask();
 
     const called = vi.spyOn(deleteRepository, "create");
 

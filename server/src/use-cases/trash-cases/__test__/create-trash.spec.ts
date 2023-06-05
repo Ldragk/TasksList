@@ -20,7 +20,7 @@ describe("Create deleted tasks", () => {
       i++;
     }
 
-    const id = taskRepository.tasks[0].id;
+    const id = taskRepository.tasks[0].id;    
     const { createTrash } = await create.execute(id);
 
     expect(calledTask).toHaveBeenCalledTimes(3);

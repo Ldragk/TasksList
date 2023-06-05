@@ -31,7 +31,7 @@ export class ManageTasks extends BaseController{
 
     return { task: res.status(201).json(TaskViewModel.toHTTP(task)) };
    } catch(err) {   
-    logger.error(err)
+    // logger.error(err)
     return this.sendCreateUpdateErrorResponse(res, err as Error);
    }
   }

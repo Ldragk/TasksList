@@ -1,5 +1,5 @@
 export function daysInTheMonth(month: number) {
-  let MonthDays: number = 31;
+  let MonthDays = 31;
 
   if (month === 2) {
     return (MonthDays = 28);

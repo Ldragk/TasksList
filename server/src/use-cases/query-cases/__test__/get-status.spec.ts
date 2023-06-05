@@ -8,8 +8,8 @@ describe("get by task status", () => {
     const tasksRepository = new InMemoryQueryRepository();
     const tasksCondition = new TasksCondition(tasksRepository);
 
-    let trueTask = MakeTask({ done: true });
-    let falseTask = MakeTask();
+    const trueTask = MakeTask({ done: true });
+    const falseTask = MakeTask();
 
     const called = vi.spyOn(tasksRepository, "create");
 

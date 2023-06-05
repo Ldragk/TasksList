@@ -1,5 +1,6 @@
 import { QueryRepository } from "@src/repositories/get-repository";
 import { GetTasksResponse } from "./get-all";
+import { Task } from "@src/entities/task";
 
 export class OverdueTasks {
   constructor(private findRecipientRepository: QueryRepository) {}
@@ -7,7 +8,7 @@ export class OverdueTasks {
   async execute(): Promise<GetTasksResponse> {
     const overdueTasks = (
       await this.findRecipientRepository.findByOverdue(false)
-    ).filter((task: any) => new Date(task.date.value) < new Date(Date.now()));
+    ).filter((task: Task) => new Date(task.date.value) < new Date(Date.now()));
 
     return { tasks: overdueTasks };
   }

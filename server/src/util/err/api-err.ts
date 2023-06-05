@@ -28,8 +28,7 @@ export default class ApiErr {
       ...(err.documentation && { documentation: err.documentation }),
       ...(err.description && { description: err.description }),
     };
-  }
-
- 
+  } 
 }
 
+// TODO: Fazer os testes unitários dessa class ApiErr

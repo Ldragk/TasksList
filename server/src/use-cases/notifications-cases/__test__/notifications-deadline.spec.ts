@@ -17,8 +17,8 @@ describe("get by notification in deadline", () => {
       10
     );
 
-    let task = MakeTask({ date: new LimitDate("02/02/3021") });
-    let taskGet = MakeTask({
+    const task = MakeTask({ date: new LimitDate("02/02/3021") });
+    const taskGet = MakeTask({
       date: new LimitDate(date),
     });
 

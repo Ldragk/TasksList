@@ -1,5 +1,4 @@
 import { ObjectId } from "bson";
-import { Replace } from "../helpers/replace";
 import { Content } from "./task-entities/content";
 import { LimitDate } from "./task-entities/limitDate";
 
@@ -16,7 +15,7 @@ export class Task {
   private props: TaskProps;
 
   constructor(
-    props: Replace<TaskProps, { done?: boolean; createdAt?: Date }>,
+    props: TaskProps,
     id?: string
   ) {
     this.props = {
@@ -74,7 +73,7 @@ export class Task {
     return this.props.createdAt;
   }
 
-  public updated() {}
+  // public updated() {}
   public get updatedAt(): Date | null | undefined {
     return this.props.updatedAt;
   }

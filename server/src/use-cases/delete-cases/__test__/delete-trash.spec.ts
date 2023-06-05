@@ -8,7 +8,7 @@ describe("Deleted trash", () => {
     const deleteRepository = new InMemoryTrashDeleteRepository();
     const trashDelete = new DeleteTrash(deleteRepository);
 
-    let Trash = MakeTrash();
+    const Trash = MakeTrash();
 
     const called = vi.spyOn(deleteRepository, "create");
 

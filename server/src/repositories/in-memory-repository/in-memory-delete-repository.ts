@@ -11,8 +11,10 @@ export class InMemoryDeleteRepository
 
   async delete(id: string): Promise<void> {
     const task = this.tasks.find((task) => task.id === id);
-    if (!task) throw new Error("Task not found");
-    this.tasks.splice(this.tasks.indexOf(task), 1);
+    if (!task) {
+    throw new Error("Task not found");
+  }
+   this.tasks.splice(this.tasks.indexOf(task), 1);
   }
 
   async deleteAll(): Promise<void> {

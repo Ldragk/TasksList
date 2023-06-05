@@ -1,9 +1,6 @@
 import { daysInTheMonth } from "@src/test/utils/days-in-the-month";
 
-export class LimitDate {
-  static create(arg0: string) {
-    throw new Error("Method not implemented.");
-  }
+export class LimitDate {  
   private readonly month: number;
   private readonly day: number;
   private readonly year: number;
@@ -24,7 +21,7 @@ export class LimitDate {
     return this.year;
   }
 
-  private validadeDateLength(date: String[]): boolean {    
+  private validadeDateLength(date: string[]): boolean {    
     
     return (
       date[0].length <= 2 &&
@@ -49,7 +46,7 @@ export class LimitDate {
       const day = arrayDate[1];
       const year = arrayDate[2];
       
-      const dateFormat: string = `Format: Date must be a string and separated by slashes '/', with the following format: month/day/year.`;
+      const dateFormat = `Format: Date must be a string and separated by slashes '/', with the following format: month/day/year.`;
 
       const errors = [];
 

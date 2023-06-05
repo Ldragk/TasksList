@@ -5,6 +5,8 @@ import { Content } from "../task-entities/content";
 import { LimitDate } from "../task-entities/limitDate";
 import { currentYear } from "../task-entities/__test__/limitDate.spec";
 
+// TODO: Implement error handling tests. Ex: limitDate
+
 describe("task", () => {
   it("should be able to create a valid task", () => {
     expect(

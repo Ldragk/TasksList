@@ -9,8 +9,8 @@ describe("get by overdue", () => {
     const tasksRepository = new InMemoryQueryRepository();
     const overdueTasks = new OverdueTasks(tasksRepository);
 
-    let OverdueTask = MakeTask({ date: new LimitDate("02/23/2023") });
-    let task = MakeTask({ date: new LimitDate("02/23/3024") });
+    const OverdueTask = MakeTask({ date: new LimitDate("02/23/2023") });
+    const task = MakeTask({ date: new LimitDate("02/23/3024") });
 
     const called = vi.spyOn(tasksRepository, "create");
 

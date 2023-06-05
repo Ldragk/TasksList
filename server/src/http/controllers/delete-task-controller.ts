@@ -45,9 +45,8 @@ export class DeleteTasks {
   @Delete("delete/all")
   async deletedAllTasks(
     _: Request,
-    res: {
-      json: (arg0: Trash | void) => Promise<Trash[]>;
-      status: (code: number) => any;
+    res: {     
+      status: (code: number) => { json: (arg0: Trash | void) => Promise<Trash[]> };
     }
   ) {
     const create = new CreateAllTrash(

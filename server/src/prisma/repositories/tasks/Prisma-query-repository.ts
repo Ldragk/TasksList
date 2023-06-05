@@ -32,19 +32,20 @@ export class PrismaTaskQueryRepository implements QueryRepository {
     days: number[],
     year: number
   ): Promise<Task[]> {
-    let task: any;
+    const tasks = [];
     for (let i = 0; i < days.length; i++) {
-      task = await prisma.task.findMany({
+      const date = `${month}/${days[i]}/${year}`;
+      const task = await prisma.task.findMany({
         where: {
-          date: `${month}/${days[i]}/${year}`[i],
+          date: date,
         },
         orderBy: {
           createdAt: "desc",
         },
       });
+      tasks.push(...task);
     }
-
-    return task.map(PrismaTaskMapper.toDomain);
+    return tasks.map(PrismaTaskMapper.toDomain);
   }
 
   async findByYear(
@@ -52,19 +53,20 @@ export class PrismaTaskQueryRepository implements QueryRepository {
     days: number[],
     year: number
   ): Promise<Task[]> {
-    let task: any;
+    const tasks = [];
     for (let i = 0; i < days.length; i++) {
-      task = await prisma.task.findMany({
+      const date = `${month}/${days[i]}/${year}`;
+      const task = await prisma.task.findMany({
         where: {
-          date: `${month[i]}/${days[i]}/${year}`[i],
+          date: date,
         },
         orderBy: {
           createdAt: "desc",
         },
       });
+      tasks.push(...task);
     }
-
-    return task.map(PrismaTaskMapper.toDomain);
+    return tasks.map(PrismaTaskMapper.toDomain);
   }
 
   async findByStatus(condition: boolean): Promise<Task[]> {
@@ -76,7 +78,6 @@ export class PrismaTaskQueryRepository implements QueryRepository {
         createdAt: "desc",
       },
     });
-
     return task.map(PrismaTaskMapper.toDomain);
   }
 
@@ -89,7 +90,6 @@ export class PrismaTaskQueryRepository implements QueryRepository {
         createdAt: "desc",
       },
     });
-
     return task.map(PrismaTaskMapper.toDomain);
   }
 }
