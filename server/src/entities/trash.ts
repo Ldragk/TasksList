@@ -12,12 +12,12 @@ export class Trash {
   private props: TrashProps;
 
   constructor(props: TrashProps, id: string) {
-    if (id.length !== 24) throw new Error("Id must be a valid ObjectID");
+    if (id.length !== 24) throw new Error('Id must be a valid ObjectID');
     this.props = props;
     this._id = id;
   }
 
-  public set id(id: string) {    
+  public set id(id: string) {
     this.id = id;
   }
   public get id(): string {

@@ -72,3 +72,5 @@ describe("Task limit date", () => {
     expect(() => new LimitDate(`11//${currentYear}`)).toThrowError();
   });
 });
+
+// TODO: Melhorar esses casos de erro!

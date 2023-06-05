@@ -1,6 +1,6 @@
-import { Trash } from "../entities/trash";
+import { Trash } from '../entities/trash';
 
 export abstract class TrashRepository {
   abstract create(trash: Trash): Promise<void>;
-  abstract findAllTrash(): Promise<Trash[]>; 
+  abstract findAllTrash(): Promise<Trash[]>;
 }

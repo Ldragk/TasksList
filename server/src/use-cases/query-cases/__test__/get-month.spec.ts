@@ -19,7 +19,7 @@ describe("get by month", () => {
     await tasksRepository.create(taskNotGet);
 
     const { tasks } = await queryByMonth.execute({ month: 2, year: 2024 });
-
+    
     expect(tasksRepository.tasks[0].date.value).toEqual(task.date.value);
     expect(
       queryByMonth.execute({

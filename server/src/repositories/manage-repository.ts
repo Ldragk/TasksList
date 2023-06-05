@@ -1,4 +1,4 @@
-import { Task } from "../entities/task";
+import { Task } from '../entities/task';
 
 export abstract class ManageRepository {
   abstract create(task: Task): Promise<void>;

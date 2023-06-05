@@ -1,4 +1,3 @@
-
 export interface NotificationProps {
   title: string;
   date: string;
@@ -33,7 +32,7 @@ export class Notification {
   public set date(date: string) {
     this.props.date = date;
   }
-  
+
   get date() {
     return this.props.date;
   }

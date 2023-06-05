@@ -12,7 +12,7 @@ import { Response } from "express";
 import { Prisma } from "@prisma/client";
 
 @Controller('tasks')
-export class ManageTasks extends BaseController{
+export class ManageTasks extends BaseController {
 
   @Post('create')
   async create(
@@ -21,19 +21,18 @@ export class ManageTasks extends BaseController{
   ) {
     const { title, content, date, done } = req.body;
     const createTask = new CreateTask(new PrismaManageRepository());
-   try{
-    const { task } = await createTask.execute({
-      title,
-      content,
-      date,
-      done,
-    });
+    try {
+      const { task } = await createTask.execute({
+        title,
+        content,
+        date,
+        done,
+      });
 
-    return { task: res.status(201).json(TaskViewModel.toHTTP(task)) };
-   } catch(err) {   
-    // logger.error(err)
-    return this.sendCreateUpdateErrorResponse(res, err as Error);
-   }
+      return { task: res.status(201).json(TaskViewModel.toHTTP(task)) };
+    } catch (err) {
+      return this.sendCreateUpdateErrorResponse(res, err as Error);
+    }
   }
 
   @Patch('change/:id')
@@ -43,11 +42,11 @@ export class ManageTasks extends BaseController{
   ) {
     const id: string = req.params.id;
     const taskStatus = new TaskStatus(new PrismaManageRepository());
-    try{
+    try {
       const { task } = await taskStatus.execute(id);
 
       return { task: res.json(TaskViewModel.toHTTP(task)) };
-    } catch(err) {
+    } catch (err) {
       return logger.error(err)
     }
   }
@@ -63,17 +62,17 @@ export class ManageTasks extends BaseController{
     const id: string = req.params.id;
     const { title, content, date, done } = req.body;
     const fullUpdate = new FullUpdate(new PrismaManageRepository());
-   try{
-    const { task } = await fullUpdate.execute(id, {
-      title,
-      content,
-      date,
-      done,
-    }); 
+    try {
+      const { task } = await fullUpdate.execute(id, {
+        title,
+        content,
+        date,
+        done,
+      });
 
-    return { task: res.json(TaskViewModel.toHTTP(task)) };
-  } catch(err) {
-    return logger.error(err)
-  }
+      return { task: res.json(TaskViewModel.toHTTP(task)) };
+    } catch (err) {
+      return logger.error(err)
+    }
   }
 }

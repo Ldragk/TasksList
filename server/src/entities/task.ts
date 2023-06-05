@@ -1,6 +1,6 @@
-import { ObjectId } from "bson";
-import { Content } from "./task-entities/content";
-import { LimitDate } from "./task-entities/limitDate";
+import { ObjectId } from 'bson';
+import { Content } from './task-entities/content';
+import { LimitDate } from './task-entities/limitDate';
 
 export interface TaskProps {
   title: string;
@@ -14,16 +14,13 @@ export class Task {
   private _id: string;
   private props: TaskProps;
 
-  constructor(
-    props: TaskProps,
-    id?: string
-  ) {
+  constructor(props: TaskProps, id?: string) {
     this.props = {
       ...props,
       done: props.done ?? false,
       createdAt: props.createdAt ?? new Date(),
     };
-    this._id = id ?? String(new ObjectId())
+    this._id = id ?? String(new ObjectId());
   }
 
   public set id(id: string) {
@@ -36,7 +33,7 @@ export class Task {
   public set title(title: string) {
     title.length >= 1 && title.length <= 30
       ? (this.props.title = title)
-      : new Error("Title must be between 1 and 30 characters");
+      : new Error('Title must be between 1 and 30 characters');
   }
 
   get title(): string {
@@ -73,7 +70,8 @@ export class Task {
     return this.props.createdAt;
   }
 
-  // public updated() {}
+  public updated() {}
+  
   public get updatedAt(): Date | null | undefined {
     return this.props.updatedAt;
   }

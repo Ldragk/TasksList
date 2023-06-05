@@ -1,6 +1,6 @@
 import { daysInTheMonth } from "@src/test/utils/days-in-the-month";
 
-export class LimitDate {  
+export class LimitDate {
   private readonly month: number;
   private readonly day: number;
   private readonly year: number;
@@ -21,8 +21,8 @@ export class LimitDate {
     return this.year;
   }
 
-  private validadeDateLength(date: string[]): boolean {    
-    
+  private validadeDateLength(date: string[]): boolean {
+
     return (
       date[0].length <= 2 &&
       date[0].length > 0 &&
@@ -40,12 +40,12 @@ export class LimitDate {
   constructor(getDate: string) {
     const arrayDate = getDate.split("/");
     const isDateLengthValid = this.validadeDateLength(arrayDate);
-    
+
     if (!isDateLengthValid) {
       const month = arrayDate[0];
       const day = arrayDate[1];
       const year = arrayDate[2];
-      
+
       const dateFormat = `Format: Date must be a string and separated by slashes '/', with the following format: month/day/year.`;
 
       const errors = [];
@@ -66,7 +66,7 @@ export class LimitDate {
         throw new Error(`
         Invalid date format!       
         ${dateFormat}     
-        ${errors.join('\n')}`);
+        ${errors.join('\n        ')}`); // ! Don't remove the spaces. (8)
       }
     }
 
