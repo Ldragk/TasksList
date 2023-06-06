@@ -85,15 +85,3 @@ export abstract class BaseController {
     };
   }
 }
-
-/*
-TODO: Errors to be handled:
-  ! 400 Bad Request: The solicitation has invalid syntax or parameter.
-  ! 404 Not Found: The requested resource does not exist on the server.
-    - Deleted tasks.
-    - Nonexistent route. 
-     
-  ? 405 Method Not Allowed: The HTTP method used is not supported for the requested resource.  
-    - Try handle this error case. 
-*/
-

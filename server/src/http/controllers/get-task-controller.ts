@@ -4,7 +4,6 @@ import { QueryByFullDate } from "@src/use-cases/query-cases/get-full-date";
 import { QueryByMonth } from "@src/use-cases/query-cases/get-month";
 import { QueryByYear } from "@src/use-cases/query-cases/get-year";
 import { TasksCondition } from "@src/use-cases/query-cases/get-status";
-import { Task } from "@src/entities/task";
 import { TaskViewModel } from "../view-models/task-view-model";
 import { PrismaTaskQueryRepository } from "@src/prisma/repositories/tasks/Prisma-query-repository";
 import { Controller, Get } from "@overnightjs/core";
@@ -63,7 +62,7 @@ export class QueryTask extends BaseController {
       });
       return { get: res.status(200).json(tasks.map(TaskViewModel.toHTTP)) };
     } catch (err) {
-      return logger.error(err);
+      return this.sendCreateUpdateErrorResponse(res, err as Error);
     }
   };
 
@@ -80,7 +79,7 @@ export class QueryTask extends BaseController {
       });
       return { get: res.status(200).json(tasks.map(TaskViewModel.toHTTP)) };
     } catch (err) {
-      return logger.error(err);
+      return this.sendCreateUpdateErrorResponse(res, err as Error);
     }
   };
 
@@ -97,7 +96,7 @@ export class QueryTask extends BaseController {
       );
       return { get: res.status(200).json(tasks.map(TaskViewModel.toHTTP)) };
     } catch (err) {
-      return logger.error(err);
+      return this.sendCreateUpdateErrorResponse(res, err as Error);
     }
   };
 
@@ -114,7 +113,7 @@ export class QueryTask extends BaseController {
       const { tasks } = await overdueTasks.execute();
       return { get: res.status(200).json(tasks.map(TaskViewModel.toHTTP)) };
     } catch (err) {
-      return logger.error(err);
+      return this.sendCreateUpdateErrorResponse(res, err as Error);
     }
   };
 }
