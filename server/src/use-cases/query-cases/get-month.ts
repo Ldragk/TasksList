@@ -1,4 +1,3 @@
-import { Dates } from "@src/helpers/dates";
 import { QueryRepository } from "@src/repositories/get-repository";
 import { GetTasksResponse } from "./get-all";
 
@@ -10,12 +9,10 @@ interface GetTaskRequest {
 export class QueryByMonth {
   constructor(private findRecipientRepository: QueryRepository) {}
 
-  public async execute(date: GetTaskRequest): Promise<GetTasksResponse> {
-    const days: number[] = new Dates().getDays;
+  public async execute(date: GetTaskRequest): Promise<GetTasksResponse> {    
     return {
       tasks: await this.findRecipientRepository.findByMonth(
-        date.month,
-        days,
+        date.month,       
         date.year
       ),
     };

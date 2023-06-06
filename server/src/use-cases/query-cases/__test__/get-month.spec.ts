@@ -1,34 +1,39 @@
 import { describe, it, expect, vi } from "vitest";
 import { LimitDate } from "@src/entities/task-entities/limitDate";
-import { InMemoryQueryRepository } from "@src/repositories/in-memory-repository/in-memory-query-repository";
 import { MakeTask } from "@src/test/factories/task-factory";
 import { QueryByMonth } from "../get-month";
 
 describe("get by month", () => {
-  it("should return all tasks in a month", async () => {
-    const tasksRepository = new InMemoryQueryRepository();
-    const queryByMonth = new QueryByMonth(tasksRepository);
 
+  it("should return all tasks in a year", async () => {
+    const tasksRepositoryMock: any = {
+      create: vi.fn(),
+      findByYear: vi.fn(),
+      findAllTasks: vi.fn(),
+      findByFullDate: vi.fn(),
+      findByMonth: vi.fn(),
+      findByStatus: vi.fn(),
+      findByOverdue: vi.fn(),
+    };
+
+    const queryByMonth = new QueryByMonth(tasksRepositoryMock);
     const task = MakeTask();
     const taskNotGet = MakeTask({ date: new LimitDate("3/23/2024") });
 
-    const called = vi.spyOn(tasksRepository, "create");
+    await tasksRepositoryMock.create(task);
+    await tasksRepositoryMock.create(task);
+    await tasksRepositoryMock.create(taskNotGet);
 
-    await tasksRepository.create(task);
-    await tasksRepository.create(task);
-    await tasksRepository.create(taskNotGet);
+    tasksRepositoryMock.findByMonth.mockResolvedValueOnce([task]);
+    tasksRepositoryMock.findAllTasks.mockResolvedValueOnce([task, task, taskNotGet]);
 
     const { tasks } = await queryByMonth.execute({ month: 2, year: 2024 });
-    
-    expect(tasksRepository.tasks[0].date.value).toEqual(task.date.value);
-    expect(
-      queryByMonth.execute({
-        month: task.date.monthValue,
-        year: task.date.yearValue,
-      })
-    ).toEqual(Promise.resolve([task]));
-    expect(called).toHaveBeenCalledTimes(3);
-    expect(tasksRepository.tasks).toHaveLength(3);
-    expect(tasks).toHaveLength(2);
+
+    expect(tasksRepositoryMock.create).toHaveBeenCalledTimes(3);
+    expect(tasksRepositoryMock.findByMonth).toHaveBeenCalledWith(2, 2024);
+    expect(tasksRepositoryMock.findByMonth).toHaveBeenCalledTimes(1);
+    expect(tasks).toEqual([task]);
+    expect(tasks).toHaveLength(1);
+    await expect(tasksRepositoryMock.findAllTasks()).resolves.toHaveLength(3);    
   });
 });

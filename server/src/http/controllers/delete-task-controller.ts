@@ -9,17 +9,18 @@ import { DeleteTask } from "@src/use-cases/delete-cases/delete-task";
 import { CreateAllTrash } from "@src/use-cases/trash-cases/create-all-trash";
 import { CreateTrash } from "@src/use-cases/trash-cases/create-trash";
 import { TrashViewModel } from "../view-models/trash-view-model";
-import { Request } from "express";
+import { Request, Response } from "express";
 import logger from "@src/logger";
+import { BaseController } from ".";
 
 
 @Controller("tasks")
-export class DeleteTasks {
+export class DeleteTasks extends BaseController {
 
   @Delete("delete/unique/:id")
   async deleteTask(
     req: { params: { id: string } },
-    res: { json: (arg0: TrashViewModel | void) => Promise<Trash> }
+    res: Response
   ) {
     const id: string = req.params.id;
 
@@ -29,25 +30,23 @@ export class DeleteTasks {
     );
     const deleteTask = new DeleteTask(new PrismaDeleteRepository());
 
-    try{
+    try {
       const { createTrash } = await create.execute(id);
-      const { deleteTrash } = await deleteTask.execute(id);
-      
-    return {
-      create: res.json(TrashViewModel.toHTTP(createTrash)),
-      delete: res.json(deleteTrash),
-    };
+      const { deleteTrash } = await deleteTask.execute(id);      
+
+      return {
+        create: res.status(201).json(TrashViewModel.toHTTP(createTrash)),
+        delete: res.status(200).json(deleteTrash),
+      };
     } catch (err) {
-      return logger.error(err);
+      return this.sendCreateUpdateErrorResponse(res, err as Error)
     }
   }
- 
+
   @Delete("delete/all")
   async deletedAllTasks(
     _: Request,
-    res: {     
-      status: (code: number) => { json: (arg0: Trash | void) => Promise<Trash[]> };
-    }
+    res: Response
   ) {
     const create = new CreateAllTrash(
       new PrismaTrashRepository(),
@@ -55,16 +54,16 @@ export class DeleteTasks {
     );
     const deleteAllTasks = new DeleteAllTasks(new PrismaDeleteRepository());
 
-    try{
+    try {
       const { createTrash } = await create.execute();
-      const { deleteTrash } = await deleteAllTasks.execute();
+      const { deleteTrash } = await deleteAllTasks.execute();     
 
-    return {
-      create: res.status(201).json(createTrash),
-      delete: res.status(200).json(deleteTrash),
-    };
+      return {
+        create: res.status(201).json(createTrash),
+        delete: res.status(200).json(deleteTrash)
+      }
     } catch (err) {
-      return logger.error(err);
+      return this.sendCreateUpdateErrorResponse(res, err as Error)
     }
   }
 }

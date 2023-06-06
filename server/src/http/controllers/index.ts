@@ -58,9 +58,9 @@ export abstract class BaseController {
       providedType = match[4];
       expectedType = match[5];
     }
-
-    // ! Don't break line in template literals, because "\n" occurs    
-    const customErrorMessage = `The Argument ${argument} with value ${value} of ${providedType} type, is not valid. Expected type ${expectedType}`;
+     
+    const customErrorMessage =  // ! Don't break line in template literals, because "\n" occurs  
+    `The Argument ${argument} with value ${value} of ${providedType} type, is not valid. Expected type ${expectedType}`;
 
     return {
       code: 400,

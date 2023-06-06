@@ -28,44 +28,41 @@ export class PrismaTaskQueryRepository implements QueryRepository {
   }
 
   async findByMonth(
-    month: number,
-    days: number[],
+    month: number,    
     year: number
   ): Promise<Task[]> {
     const tasks = [];
-    for (let i = 0; i < days.length; i++) {
-      const date = `${month}/${days[i]}/${year}`;
-      const task = await prisma.task.findMany({
-        where: {
-          date: date,
+    const task = await prisma.task.findMany({
+      where: {
+        date: {
+          startsWith: `${month}/${year}`,
         },
-        orderBy: {
-          createdAt: "desc",
-        },
-      });
-      tasks.push(...task);
-    }
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });    
+    tasks.push(...task);
     return tasks.map(PrismaTaskMapper.toDomain);
   }
 
   async findByYear(
-    month: number[],
-    days: number[],
     year: number
   ): Promise<Task[]> {
-    const tasks = [];
-    for (let i = 0; i < days.length; i++) {
-      const date = `${month}/${days[i]}/${year}`;
-      const task = await prisma.task.findMany({
-        where: {
-          date: date,
+    const tasks = [];   
+
+    const task = await prisma.task.findMany({
+      where: {
+        date: {
+          contains: `/${year}`,
         },
-        orderBy: {
-          createdAt: "desc",
-        },
-      });
-      tasks.push(...task);
-    }
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });    
+    tasks.push(...task);
+
     return tasks.map(PrismaTaskMapper.toDomain);
   }
 

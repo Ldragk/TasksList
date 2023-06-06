@@ -8,75 +8,77 @@ import { Task } from "@src/entities/task";
 import { TaskViewModel } from "../view-models/task-view-model";
 import { PrismaTaskQueryRepository } from "@src/prisma/repositories/tasks/Prisma-query-repository";
 import { Controller, Get } from "@overnightjs/core";
-import { Request } from "express";
+import { Request, Response } from "express";
 import logger from "@src/logger";
+import { BaseController } from ".";
 
 
 @Controller("tasks")
-export class QueryTask {
+export class QueryTask extends BaseController {
 
   @Get("all")
   getAllTasks = async (
     _: Request,
-    res: {
-      json: (arg0: TaskViewModel) => Promise<Task>;
-    }
+    res: Response
   ) => {
     const queryAllTasks = new QueryAllTasks(new PrismaTaskQueryRepository());
-    const { tasks } = await queryAllTasks.execute();
-    return { get: res.json(tasks.map(TaskViewModel.toHTTP)) };
+
+    try {
+      const { tasks } = await queryAllTasks.execute();
+      return { get: res.status(200).json(tasks.map(TaskViewModel.toHTTP)) };
+    } catch (err) {
+      return logger.error(err);
+    }
   };
 
   @Get("date/:day/:month/:year")
   getByFullDate = async (
     req: { params: { day: string; month: string; year: string } },
-    res: {
-      json: (arg0: TaskViewModel) => Promise<Task>;
-    }
+    res: Response
   ) => {
     const tasksByFullDate = new QueryByFullDate(
       new PrismaTaskQueryRepository()
     );
 
-    const { tasks } = await tasksByFullDate.execute({
-      date: `${req.params.month}/${req.params.day}/${req.params.year}`,
-    });
-    return { get: res.json(tasks.map(TaskViewModel.toHTTP)) };
+    try {
+      const { tasks } = await tasksByFullDate.execute({
+        date: `${req.params.month}/${req.params.day}/${req.params.year}`,
+      });
+      return { get: res.status(200).json(tasks.map(TaskViewModel.toHTTP)) };
+    } catch (err) {
+      return logger.error(err);
+    }
   };
 
   @Get("month/:month/:year")
   getByMonth = async (
     req: { params: { month: string; year: string } },
-    res: {
-      json: (arg0: TaskViewModel) => Promise<Task>;
-    }
+    res: Response
   ) => {
     const tasksByMonth = new QueryByMonth(new PrismaTaskQueryRepository());
-   try{
-    const { tasks } = await tasksByMonth.execute({
-      month: Number(req.params.month),
-      year: Number(req.params.year),
-    });
-    return { get: res.json(tasks.map(TaskViewModel.toHTTP)) };
-   } catch (err) {
-     return logger.error(err);
-   }
+    try {
+      const { tasks } = await tasksByMonth.execute({
+        month: Number(req.params.month),
+        year: Number(req.params.year),
+      });
+      return { get: res.status(200).json(tasks.map(TaskViewModel.toHTTP)) };
+    } catch (err) {
+      return logger.error(err);
+    }
   };
 
   @Get("year/:year")
   getByYear = async (
     req: { params: { year: string } },
-    res: {
-      json: (arg0: TaskViewModel) => Promise<Task>;
-    }
+    res: Response
   ) => {
     const tasksByYear = new QueryByYear(new PrismaTaskQueryRepository());
-    
-    try{
+
+    try {
       const { tasks } = await tasksByYear.execute({
         year: Number(req.params.year),
       });
-      return { get: res.json(tasks.map(TaskViewModel.toHTTP)) };
+      return { get: res.status(200).json(tasks.map(TaskViewModel.toHTTP)) };
     } catch (err) {
       return logger.error(err);
     }
@@ -85,18 +87,16 @@ export class QueryTask {
   @Get("done/:condition")
   getDoneOrNotTasks = async (
     req: { params: { condition: string } },
-    res: {
-      json: (arg0: TaskViewModel) => Promise<Task>;
-    }
+    res: Response
   ) => {
     const tasksCondition = new TasksCondition(new PrismaTaskQueryRepository());
-   
-    try{
+
+    try {
       const { tasks } = await tasksCondition.execute(
         Number(req.params.condition)
       );
-      return { get: res.json(tasks.map(TaskViewModel.toHTTP)) };
-    } catch (err) { 
+      return { get: res.status(200).json(tasks.map(TaskViewModel.toHTTP)) };
+    } catch (err) {
       return logger.error(err);
     }
   };
@@ -104,17 +104,15 @@ export class QueryTask {
   @Get("delayed")
   getOverdueTasks = async (
     _: Request,
-    res: {
-      json: (arg0: TaskViewModel) => Promise<Task>;
-    }
+    res: Response
   ) => {
     const overdueTasks: OverdueTasks = new OverdueTasks(
       new PrismaTaskQueryRepository()
     );
-    
-    try{
+
+    try {
       const { tasks } = await overdueTasks.execute();
-      return { get: res.json(tasks.map(TaskViewModel.toHTTP)) };
+      return { get: res.status(200).json(tasks.map(TaskViewModel.toHTTP)) };
     } catch (err) {
       return logger.error(err);
     }
