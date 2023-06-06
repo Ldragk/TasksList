@@ -28,20 +28,21 @@ export class PrismaTaskQueryRepository implements QueryRepository {
   }
 
   async findByMonth(
-    month: number,    
+    month: number,
     year: number
   ): Promise<Task[]> {
     const tasks = [];
     const task = await prisma.task.findMany({
       where: {
         date: {
-          startsWith: `${month}/${year}`,
+          startsWith: `${month}/`,
+          endsWith: `/${year}`
         },
       },
       orderBy: {
         createdAt: "desc",
       },
-    });    
+    });
     tasks.push(...task);
     return tasks.map(PrismaTaskMapper.toDomain);
   }
@@ -49,7 +50,7 @@ export class PrismaTaskQueryRepository implements QueryRepository {
   async findByYear(
     year: number
   ): Promise<Task[]> {
-    const tasks = [];   
+    const tasks = [];
 
     const task = await prisma.task.findMany({
       where: {
@@ -60,7 +61,7 @@ export class PrismaTaskQueryRepository implements QueryRepository {
       orderBy: {
         createdAt: "desc",
       },
-    });    
+    });
     tasks.push(...task);
 
     return tasks.map(PrismaTaskMapper.toDomain);
