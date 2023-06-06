@@ -3,8 +3,6 @@ import { LimitDate } from "@src/entities/task-entities/limitDate";
 import { MakeTask } from "@src/test/factories/task-factory";
 import { QueryByYear } from "../get-year";
 import { InMemoryQueryRepository } from "@src/repositories/in-memory-repository/in-memory-query-repository";
-import { QueryByMonth } from "../get-month";
-
 
 describe("get by year", () => {
 
@@ -39,7 +37,7 @@ describe("get by year", () => {
     expect(tasks).toHaveLength(1);
     await expect(tasksRepositoryMock.findAllTasks()).resolves.toHaveLength(3);
   });
-  
+
   it("should return all tasks in the selected year", async () => {
     const tasksRepository = new InMemoryQueryRepository();
     const queryByYear = new QueryByYear(tasksRepository);
@@ -65,5 +63,4 @@ describe("get by year", () => {
     expect(tasksRepository.tasks).toHaveLength(3);
     expect(tasks).toHaveLength(1);
   });
-
 });
