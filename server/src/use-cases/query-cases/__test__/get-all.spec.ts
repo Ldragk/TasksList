@@ -21,4 +21,30 @@ describe("get all", () => {
     expect(getAll.execute()).toEqual(Promise.resolve([task]));
     expect(tasks).toHaveLength(2);
   });
+
+  it("should get all tasks", async () => {
+    const tasksQueryRepositoryMock = {
+      create: vi.fn(),
+      findByYear: vi.fn(),
+      findAllTasks: vi.fn(),
+      findByFullDate: vi.fn(),
+      findByMonth: vi.fn(),
+      findByStatus: vi.fn(),
+      findByOverdue: vi.fn(),
+    };
+
+    const getAll = new QueryAllTasks(tasksQueryRepositoryMock);
+    const task = MakeTask();
+
+    for (let i = 0; i < 10; i++) {
+      await tasksQueryRepositoryMock.create(task);
+    }
+    tasksQueryRepositoryMock.findAllTasks.mockResolvedValue(Array(10).fill(task));
+
+    const { tasks } = await getAll.execute();
+
+    expect(tasksQueryRepositoryMock.create).toHaveBeenCalledTimes(10);
+    expect(tasks[0]).toEqual(task);
+    await expect(tasksQueryRepositoryMock.findAllTasks()).resolves.toHaveLength(10);
+  });
 });

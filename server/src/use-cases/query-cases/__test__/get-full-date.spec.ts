@@ -12,10 +12,10 @@ describe("Get full date", () => {
     const taskNotGet = MakeTask({ date: new LimitDate("02/24/2024") });
 
     const called = vi.spyOn(tasksRepository, "create");
-
-    await tasksRepository.create(task);
-    await tasksRepository.create(task);
-    await tasksRepository.create(task);
+   
+    for(let i = 0; i < 3; i++) {
+      await tasksRepository.create(task);
+    }
     await tasksRepository.create(taskNotGet);
 
     const { tasks } = await queryByFullDate.execute({ date: task.date.value });
@@ -27,5 +27,42 @@ describe("Get full date", () => {
     expect(called).toHaveBeenCalledTimes(4);
     expect(tasksRepository.tasks).toHaveLength(4);
     expect(tasks).toHaveLength(3);
+  });
+
+  it("should return all tasks with parameter date", async () => {
+    const tasksQueryRepositoryMock = {
+      create: vi.fn(),
+      findByYear: vi.fn(),
+      findAllTasks: vi.fn(),
+      findByFullDate: vi.fn(),
+      findByMonth: vi.fn(),
+      findByStatus: vi.fn(),
+      findByOverdue: vi.fn(),
+    };
+
+    const queryByFullDate = new QueryByFullDate(tasksQueryRepositoryMock);
+
+    const task = MakeTask();
+    const taskNotGet = MakeTask({ date: new LimitDate("02/24/2024") });
+
+    for (let i = 0; i < 3; i++) {
+      await tasksQueryRepositoryMock.create(task);
+    }
+    await tasksQueryRepositoryMock.create(taskNotGet);
+
+    tasksQueryRepositoryMock.findByFullDate.mockResolvedValue(Array(3).fill(task));
+
+    const getTasks = Array(3).fill(task);
+    const fullGetTasks = getTasks.concat(taskNotGet);
+    tasksQueryRepositoryMock.findAllTasks.mockResolvedValueOnce(fullGetTasks);
+
+    const { tasks } = await queryByFullDate.execute({date: "02/24/2024"});    
+    
+    expect(tasksQueryRepositoryMock.create).toHaveBeenCalledTimes(4);
+    expect(tasksQueryRepositoryMock.findByFullDate).toHaveBeenCalledWith("02/24/2024")
+    expect(tasksQueryRepositoryMock.findByFullDate).toHaveBeenCalledTimes(1);
+    expect([...tasks]).toEqual([task, task, task]);
+    expect(await tasksQueryRepositoryMock.findByFullDate("02/24/2024")).toHaveLength(3);
+    await expect(tasksQueryRepositoryMock.findAllTasks()).resolves.toHaveLength(4);
   });
 });

@@ -26,7 +26,10 @@ describe("get by year", () => {
     await tasksRepositoryMock.create(taskGet);
 
     tasksRepositoryMock.findByYear.mockResolvedValueOnce([task]);
-    tasksRepositoryMock.findAllTasks.mockResolvedValueOnce([task, task, taskGet]);
+
+    const getTasks = Array(2).fill(task);
+    const fullGetTasks = getTasks.concat(taskGet);
+    tasksRepositoryMock.findAllTasks.mockResolvedValueOnce(fullGetTasks);
 
     const { tasks } = await queryByYear.execute({ year: 2025 });
 
@@ -61,6 +64,7 @@ describe("get by year", () => {
     ).toEqual(Promise.resolve([task]));
     expect(called).toHaveBeenCalledTimes(3);
     expect(tasksRepository.tasks).toHaveLength(3);
+    expect([...tasks]).toEqual([taskGet]);
     expect(tasks).toHaveLength(1);
   });
 });

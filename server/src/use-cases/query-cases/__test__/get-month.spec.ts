@@ -19,24 +19,27 @@ describe("get by month", () => {
 
     const queryByMonth = new QueryByMonth(tasksQueryRepositoryMock);
     const task = MakeTask();
-    const task1 = MakeTask();
     const taskNotGet = MakeTask({ date: new LimitDate("3/23/2024") });
 
-    await tasksQueryRepositoryMock.create(task);
-    await tasksQueryRepositoryMock.create(task1);
+    for (let i = 0; i < 3; i++) {
+      await tasksQueryRepositoryMock.create(task);
+    }
     await tasksQueryRepositoryMock.create(taskNotGet);
 
-    tasksQueryRepositoryMock.findByMonth.mockResolvedValue([task, task1]);
-    tasksQueryRepositoryMock.findAllTasks.mockResolvedValueOnce([task, task, taskNotGet]);
+    tasksQueryRepositoryMock.findByMonth.mockResolvedValue(Array(3).fill(task));
+
+    const getTasks = Array(3).fill(task);
+    const fullGetTasks = getTasks.concat(taskNotGet);
+    tasksQueryRepositoryMock.findAllTasks.mockResolvedValueOnce(fullGetTasks);
 
     const { tasks } = await queryByMonth.execute({ month: 2, year: 2024 });
 
-    expect(tasksQueryRepositoryMock.create).toHaveBeenCalledTimes(3);
+    expect(tasksQueryRepositoryMock.create).toHaveBeenCalledTimes(4);
     expect(tasksQueryRepositoryMock.findByMonth).toHaveBeenCalledWith(2, 2024)
     expect(tasksQueryRepositoryMock.findByMonth).toHaveBeenCalledTimes(1);
-    expect(tasks).toEqual([task, task1]);
-    expect(await tasksQueryRepositoryMock.findByMonth(2, 2024)).toHaveLength(2);
-    await expect(tasksQueryRepositoryMock.findAllTasks()).resolves.toHaveLength(3);
+    expect([...tasks]).toEqual([task, task, task]);
+    expect(await tasksQueryRepositoryMock.findByMonth(2, 2024)).toHaveLength(3);
+    await expect(tasksQueryRepositoryMock.findAllTasks()).resolves.toHaveLength(4);
   });
 
   it("should return all tasks in the selected month", async () => {
