@@ -6,16 +6,20 @@ import { QueryByYear } from "@src/use-cases/query-cases/get-year";
 import { TasksCondition } from "@src/use-cases/query-cases/get-status";
 import { TaskViewModel } from "../view-models/task-view-model";
 import { PrismaTaskQueryRepository } from "@src/prisma/repositories/tasks/Prisma-query-repository";
-import { Controller, Get } from "@overnightjs/core";
+import { Controller, Get, Middleware } from "@overnightjs/core";
 import { Request, Response } from "express";
 import logger from "@src/logger";
 import { BaseController } from ".";
+import { RateLimiter } from "@src/middlewares/rate-limiter";
 
+const manyRequest = new RateLimiter(10).getMiddleware()
+const fewRequest = new RateLimiter(2).getMiddleware()
 
 @Controller("tasks")
 export class QueryTask extends BaseController {
 
   @Get("all")
+  @Middleware(fewRequest)
   getAllTasks = async (
     _: Request,
     res: Response
@@ -31,6 +35,7 @@ export class QueryTask extends BaseController {
   };
 
   @Get("date/:day/:month/:year")
+  @Middleware(manyRequest)
   getByFullDate = async (
     req: { params: { day: string; month: string; year: string } },
     res: Response
@@ -50,6 +55,7 @@ export class QueryTask extends BaseController {
   };
 
   @Get("month/:month/:year")
+  @Middleware(manyRequest)
   getByMonth = async (
     req: { params: { month: string; year: string } },
     res: Response
@@ -67,6 +73,7 @@ export class QueryTask extends BaseController {
   };
 
   @Get("year/:year")
+  @Middleware(manyRequest)
   getByYear = async (
     req: { params: { year: string } },
     res: Response
@@ -84,6 +91,7 @@ export class QueryTask extends BaseController {
   };
 
   @Get("done/:condition")
+  @Middleware(fewRequest)
   getDoneOrNotTasks = async (
     req: { params: { condition: string } },
     res: Response
@@ -101,6 +109,7 @@ export class QueryTask extends BaseController {
   };
 
   @Get("delayed")
+  @Middleware(fewRequest)
   getOverdueTasks = async (
     _: Request,
     res: Response

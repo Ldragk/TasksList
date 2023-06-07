@@ -4,14 +4,19 @@ import { CreateTask } from "@src/use-cases/manage-cases/create";
 import { FullUpdate } from "@src/use-cases/manage-cases/update";
 import { TaskBody } from "../dtos/create-task-body";
 import { TaskViewModel } from "../view-models/task-view-model";
-import { Controller, Patch, Post, Put } from '@overnightjs/core';
+import { Controller, Middleware, Patch, Post, Put } from '@overnightjs/core';
 import { BaseController } from ".";
 import { Response } from "express";
+import { RateLimiter } from "@src/middlewares/rate-limiter";
+
+const manyRequest = new RateLimiter(30).getMiddleware()
+const fewRequest = new RateLimiter(15).getMiddleware()
 
 @Controller('tasks')
 export class ManageTasks extends BaseController {
 
   @Post('create')
+  @Middleware(manyRequest)
   async create(
     req: { body: TaskBody },
     res: Response
@@ -33,6 +38,7 @@ export class ManageTasks extends BaseController {
   }
 
   @Patch('change/:id')
+  @Middleware(fewRequest)
   async updateCondition(
     req: { params: { id: string } },
     res: Response
@@ -49,6 +55,7 @@ export class ManageTasks extends BaseController {
   }
 
   @Put('fullChange/:id')
+  @Middleware(fewRequest)
   async updateTasks(
     req: {
       params: { id: string };
