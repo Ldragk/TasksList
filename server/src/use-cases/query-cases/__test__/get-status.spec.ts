@@ -37,7 +37,6 @@ describe("get by task status", () => {
       findByStatus: vi.fn(),
       findByOverdue: vi.fn(),
     };
-
     const tasksCondition = new TasksCondition(tasksQueryRepositoryMock);
     const trueTask = MakeTask({ done: true });
     const falseTask = MakeTask();
