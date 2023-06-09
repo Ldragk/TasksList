@@ -2,31 +2,50 @@
   "compilerOptions": {
     "target": "ESNext",
     "moduleResolution": "node",
-    "module": "CommonJS", 
-    "lib": ["ESNext"],
+    "module": "CommonJS",
+    "esModuleInterop": true,
+    "lib": [
+      "ESNext"
+    ],
+    "types": ["vitest/globals"],
     "sourceMap": true,
     "outDir": "./build",
     "strict": true,
-    "noImplicitAny": true,    
+    "noImplicitAny": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "noImplicitThis": true,
     "resolveJsonModule": true,
     "alwaysStrict": true,
     "removeComments": true,
-    "noImplicitReturns": true,
-    "esModuleInterop": true,
+    "noImplicitReturns": true,    
     "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,  
+    "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "baseUrl": "./",
     "paths": {
-      "@src/*": ["./src/*"],      
+      "@src/*": [
+        "./src/*"
+      ],
+      "@test/*": [
+        "./test/*"
+      ]
     },
-    "rootDirs": ["./src"],
+    "rootDirs": [
+      "./src",
+      "./test"
+    ],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
-  },  
-  "include": ["./src/**/*.ts", ".src/spec/**/*.ts", "./vitest.config.ts"],
-  "exclude": ["./node_modules/*", "build"]
+  },
+  "include": [
+    "./src/**/*.ts",
+    "./test/**/*.ts",
+    "./vitest.config.ts",
+    "./test/vitest.config.ts"
+  ],
+  "exclude": [
+    "./node_modules/*",
+    "build"
+  ]
 }

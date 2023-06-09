@@ -1,14 +1,24 @@
-import * as path from 'path';
-import { defineConfig } from "vitest/config";
+const { resolve } = require('path');
+const { defineConfig } = require('vitest/config')
+const AutoImport = require('unplugin-auto-import/vite')
 
-
-const files = path.resolve(__dirname, '../..');
-
-export default defineConfig({
+module.exports = defineConfig({
   resolve: {
     alias: {
-      '@src': path.join(__dirname, './src'),
+      '@src': resolve(__dirname, './src'),
+      '@test': resolve(__dirname, './test'),
     },
- }
+  },
+  test: {
+    clearMocks: true,
+    includeSource: ['./src/**/*.{ts}'],
+    globals: true,
+  },
+  plugins: [
+    AutoImport({
+      imports: ['vitest'],
+      dts: true,
+    }),
+  ],
 });
 

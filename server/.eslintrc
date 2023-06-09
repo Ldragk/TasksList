@@ -1,6 +1,6 @@
 {
   "env": {
-    "jest": true
+    "vitest": true
   },
   "root": true,
   "parser": "@typescript-eslint/parser",
@@ -16,7 +16,8 @@
   "settings": {
     "import/resolver": {
       "alias": [
-        ["@src", "./src"]        
+        ["@src", "./src"], 
+        ["@test", "./test"]       
       ]
     }
   }

@@ -17,7 +17,9 @@ describe("Deleted all tasks", () => {
     await deleteRepository.create(task);
 
     expect(deleteRepository.tasks).toHaveLength(3);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { deleteTrash } = await deleteAllTasks.execute();    
+    
     expect(called).toHaveBeenCalledTimes(3);
     expect(deleteRepository.tasks).toHaveLength(0);
   });

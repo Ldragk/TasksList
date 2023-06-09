@@ -1,7 +1,7 @@
 import './util/module-alias';
 import { Server } from "@overnightjs/core";
 import cors from "cors";
-import express from "express";
+import express, { Application } from "express";
 import * as http from 'http';
 import { DeleteTasks } from "./http/controllers/delete-task-controller";
 import { QueryTask } from "./http/controllers/get-task-controller";
@@ -13,7 +13,7 @@ import logger from "./logger";
 import { prisma } from "./prisma/prisma-client";
 
 
-class SetupServer extends Server {
+export class SetupServer extends Server {
     private server?: http.Server;    
   
     constructor(private port = 3333) {
@@ -69,6 +69,10 @@ class SetupServer extends Server {
         }
       }
 
+      public getApp(): Application {
+        return this.app;
+      }
+
       public start(): void {        
         this.app.listen(this.port, () => {
           logger.info('Server listening on port: ' + this.port);
@@ -76,4 +80,3 @@ class SetupServer extends Server {
       }
 }
 
-export default SetupServer;
