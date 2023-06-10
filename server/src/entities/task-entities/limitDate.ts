@@ -22,7 +22,6 @@ export class LimitDate {
   }
 
   private validadeDateLength(date: string[]): boolean {
-
     return (
       date[0].length <= 2 &&
       date[0].length > 0 &&
@@ -38,17 +37,15 @@ export class LimitDate {
   }
 
   constructor(getDate: string) {
-    let arrayDate: string[] = []
     const dateFormat = `Format: Date must be a string and separated by slashes '/', with the following format: month/day/year.`;
-    const dateFormatValidator = /^\d{2}\/\d{2}\/\d{4}$/;
-    if (dateFormatValidator.test(getDate)) {
-      arrayDate = getDate.split("/");
-    } else {
+
+    if (typeof getDate !== "string" || !getDate.includes("/")) {
       throw new Error(`
-      Invalid date format!     
-      ${dateFormat}`);
+        Invalid date!
+        ${dateFormat}`)
     }
 
+    const arrayDate = getDate.split("/");
     const isDateLengthValid = this.validadeDateLength(arrayDate);
 
     if (!isDateLengthValid) {
