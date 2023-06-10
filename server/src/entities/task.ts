@@ -18,7 +18,7 @@ export class Task {
     this.props = {
       ...props,
       done: props.done ?? false,
-      createdAt: props.createdAt ?? new Date(),
+      createdAt: props.createdAt ?? new Date(new Date().setSeconds(0, 0))  
     };
     this._id = id ?? String(new ObjectId());
   }

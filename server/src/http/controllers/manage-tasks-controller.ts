@@ -49,7 +49,7 @@ export class ManageTasks extends BaseController {
       const { task } = await taskStatus.execute(id);
 
       return { task: res.status(200).json(TaskViewModel.toHTTP(task)) };
-    } catch (err) {      
+    } catch (err) {
       return this.sendCreateUpdateErrorResponse(res, err as Error)
     }
   }
