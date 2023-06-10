@@ -1,4 +1,3 @@
-import { describe, it, expect, vi } from "vitest";
 import { InMemoryTrashRepository } from "@src/repositories/in-memory-repository/in-memory-trash-repository";
 import { MakeTrash } from "@src/test/factories/trash-factory";
 import { AllTrash } from "../get-all-trash";

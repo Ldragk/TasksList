@@ -6,7 +6,7 @@
   "scripts": {
     "start": "dotenv -e .env -- ts-node src/index.ts",
     "test:functional": "vitest ./test/functional --config ./test/vitest.config.ts",
-    "test:unit": "vitest",
+    "test:unit": "vitest ./src",
     "lint:fix": "eslint ./src --ext .ts --fix",
     "style:fix": "prettier --write src/**/*.ts"
   },

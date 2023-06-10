@@ -1,6 +1,3 @@
-import { expect } from "vitest";
-import { it, describe } from "vitest";
-
 import { Content } from "../content";
 
 describe("Task content", () => {

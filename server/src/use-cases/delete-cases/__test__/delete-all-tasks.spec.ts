@@ -1,4 +1,3 @@
-import { describe, it, expect, vi } from "vitest";
 import { InMemoryDeleteRepository } from "@src/repositories/in-memory-repository/in-memory-delete-repository";
 import { MakeTask } from "@src/test/factories/task-factory";
 import { DeleteAllTasks } from "../delete-all-tasks";

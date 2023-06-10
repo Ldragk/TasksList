@@ -1,6 +1,4 @@
-import { expect } from "vitest";
 import { Task } from "../task";
-import { it, describe } from "vitest";
 import { Content } from "../task-entities/content";
 import { LimitDate } from "../task-entities/limitDate";
 import { currentYear } from "../task-entities/__test__/limitDate.spec";

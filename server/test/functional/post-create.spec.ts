@@ -53,7 +53,8 @@ describe('Post route Testing', () => {
 
     expect(response.status).toBe(400);
     expect(response.body.cause).toEqual(
-      `The Argument done with value 2 of Int type, is not valid. Expected type Boolean.`);
+      `The Argument done with value 2 of Int type, is not valid. Expected type Boolean.`
+    );
   });
 
 });

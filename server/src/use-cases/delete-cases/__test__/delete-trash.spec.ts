@@ -1,4 +1,3 @@
-import { describe, it, expect, vi } from "vitest";
 import { InMemoryTrashDeleteRepository } from "@src/repositories/in-memory-repository/in-memory-delete-trash-repository";
 import { MakeTrash } from "@src/test/factories/trash-factory";
 import { DeleteTrash } from "../delete-trash";

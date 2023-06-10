@@ -1,4 +1,3 @@
-import { it, describe, expect } from "vitest";
 import { InMemoryManageRepository } from "@src/repositories/in-memory-repository/in-memory-manage-repository";
 import { MakeTask } from "@src/test/factories/task-factory";
 import { FullUpdate } from "../update";

@@ -1,4 +1,3 @@
-import { it, describe, expect } from "vitest";
 import { Task } from "@src/entities/task";
 import { InMemoryManageRepository } from "@src/repositories/in-memory-repository/in-memory-manage-repository";
 import { CreateTask } from "../create";
