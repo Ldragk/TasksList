@@ -71,7 +71,9 @@ export class Task {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  public updated() {}
+  public updated() {
+    this.props.updatedAt = new Date(new Date().setSeconds(0, 0))
+  }
 
   public get updatedAt(): Date | null | undefined {
     return this.props.updatedAt;
