@@ -29,7 +29,12 @@ export class PrismaManageRepository implements ManageRepository {
       where: {
         id: taskUpdate.id,
       },
-      data: taskUpdate,
+      data: {
+        title: taskUpdate.title,
+        content: taskUpdate.content,
+        date: taskUpdate.date,
+        done: taskUpdate.done,
+      },
     });
   }
 
