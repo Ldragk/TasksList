@@ -38,15 +38,23 @@ export class LimitDate {
   }
 
   constructor(getDate: string) {
-    const arrayDate = getDate.split("/");
+    let arrayDate: string[] = []
+    const dateFormat = `Format: Date must be a string and separated by slashes '/', with the following format: month/day/year.`;
+    const dateFormatValidator = /^\d{2}\/\d{2}\/\d{4}$/;
+    if (dateFormatValidator.test(getDate)) {
+      arrayDate = getDate.split("/");
+    } else {
+      throw new Error(`
+      Invalid date format!     
+      ${dateFormat}`);
+    }
+
     const isDateLengthValid = this.validadeDateLength(arrayDate);
 
     if (!isDateLengthValid) {
       const month = arrayDate[0];
       const day = arrayDate[1];
       const year = arrayDate[2];
-
-      const dateFormat = `Format: Date must be a string and separated by slashes '/', with the following format: month/day/year.`;
 
       const errors = [];
 
@@ -69,9 +77,9 @@ export class LimitDate {
         ${errors.join('\n        ')}`); // ! Don't remove the spaces. (8)
       }
     }
-
     this.month = Number(arrayDate[0]);
     this.day = Number(arrayDate[1]);
     this.year = Number(arrayDate[2]);
   }
+
 }
