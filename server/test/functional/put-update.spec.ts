@@ -1,7 +1,6 @@
 import { ObjectId } from "bson";
 
 describe('Put route Testing', () => {
-    const dateFormat = `Format: Date must be a string and separated by slashes '/', with the following format: month/day/year.`;
 
     it('Should return 200 OK', async () => {
         const createTask = {
@@ -81,8 +80,8 @@ describe('Put route Testing', () => {
             .put(`/tasks/fullChange/${response.body.id}`).send(updatedTask);
 
         expect(putResponse.status).toBe(400);
-        expect(putResponse.body.message).toEqual(
-            `Invalid date format! ${dateFormat} - Year must be greater than or equal to the current year and consist of 4 digits.`);
+        expect(putResponse.body.cause).toEqual(
+            'The Argument done with value 2 of Int type, is not valid. Expected type Boolean');
     });
 })
 
