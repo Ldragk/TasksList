@@ -104,7 +104,11 @@ Inicialmente teve o objetivo de consolidar meus conhecimentos de Back-end e Enge
             <tr>             
                  <td colspan="1"></th>   
                  <td colspan="2">Node Config</th>   
-            </tr>                     
+            </tr>      
+            <tr>             
+                 <td colspan="1"></th>   
+                 <td colspan="2">Outras serão adicionadas.</th>   
+            </tr>                    
        </tbody>
 </table>
 
@@ -130,13 +134,11 @@ Logo após concluir a v1.0.0, comecei a aplicar os conhecimentos obtidos com o e
 
 <a href="" title="clique para ver o código da versão 2.1.0">![version](https://img.shields.io/badge/version-2.1.0-black)</a> 
 <br>
-Nesta atualização, estou aplicando parcialmente os conhecimentos que adquiri no projeto <a href="https://github.com/Lucasvmarangoni/Best-Surf" target="_blank">Best-Surf</a>. Estou aprimorando e adicionando testes, aplicando tratamento de erros, status code, logging, cache, graceful shutdown, troca do banco de dados para MongoDB, documentação OpenAPI, automação de fluxo de trabalho e refatoração para performance.
+Nesta atualização, estou aplicando parcialmente os conhecimentos que adquiri no projeto <a href="https://github.com/Lucasvmarangoni/Best-Surf" target="_blank">Best-Surf</a>. Estou aprimorando e adicionando testes, aplicando tratamento de erros, status code, logging, cache, graceful shutdown, troca do banco de dados para MongoDB, documentação OpenAPI, automação de fluxo de trabalho, refatoração e implementação do sistema de usuários.
 
 <br>
 
-<a href="" title="Ainda em planejamento!">![version](https://img.shields.io/badge/version-3.0.0-white)</a> 
-<br>
-A versão 3.0.0 já esta em planejamento. Será aplicado o conhecimento do projeto <a href="https://github.com/Lucasvmarangoni/Best-Surf" target="_blank">Best-Surf</a>, além de outros.
+
 
 
 
