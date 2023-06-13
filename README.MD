@@ -1,4 +1,4 @@
-# EM DESENVOLVIMENTO (v2.1.0)
+# EM DESENVOLVIMENTO (v2.1.0) [Breve atraso para desenvolvimento de uma API para teste de vaga.]
 
 <div align="center">
 <a href="#projeto" target="_blank">
