@@ -1,4 +1,4 @@
-# EM DESENVOLVIMENTO (v2.1.0) [Breve atraso para desenvolvimento de projeto para teste de vaga.]
+# EM DESENVOLVIMENTO (v2.1.0) [Breve atraso/pausa no desenvolvimento.]
 
 <div align="center">
 <a href="#projeto" target="_blank">
