@@ -7,7 +7,9 @@
     "lib": [
       "ESNext"
     ],
-    "types": ["vitest/globals"],
+    "types": [
+      "vitest/globals"
+    ],
     "sourceMap": true,
     "outDir": "./build",
     "strict": true,
@@ -18,7 +20,7 @@
     "resolveJsonModule": true,
     "alwaysStrict": true,
     "removeComments": true,
-    "noImplicitReturns": true,    
+    "noImplicitReturns": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
