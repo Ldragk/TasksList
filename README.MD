@@ -1,4 +1,4 @@
-# EM DESENVOLVIMENTO (v2.1.0) [Breve atraso/pausa no desenvolvimento.]
+# EM DESENVOLVIMENTO (v2.1.0) 
 
 <div align="center">
 <a href="#projeto" target="_blank">
@@ -10,7 +10,6 @@
      <a href="#registro-de-desenvolvimento">
      <img align="center" src="https://img.shields.io/badge/-Registro%20de%20Desenvolvimento-05122A?style=flat&logo=Tecnologias" alt=""/>
      </a>
-
 </div>
 
 <br>
@@ -35,7 +34,6 @@
 </div>
 
 - Esse projeto planejei e desenvolvi do zero sozinho. 
-
 
 O projeto é uma API REST para servir uma aplicação de Lista de tarefas, seguindo o padrão CRUD.
 
