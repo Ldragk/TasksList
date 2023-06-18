@@ -3,21 +3,6 @@ import { ObjectId } from 'bson';
 describe('manage controller Testing', () => {
   const dateFormat = `Format: Date must be a string and separated by slashes '/', with the following format: month/day/year.`;
 
-  afterAll(async () => {
-    const response = await global.testRequest.get('/tasks/all');
-    const createdTasks = response.body;
-
-    if (Array.isArray(createdTasks)) {
-      for (const task of createdTasks) {
-        await global.testRequest.delete(`/tasks/delete/unique/${task.id}`);
-      }
-    } else {
-      Object.values(createdTasks).forEach(async (task: any) => {
-        await global.testRequest.delete(`/tasks/delete/unique/${task.id}`);
-      });
-    }
-  }, 50000);
-
   it('Should return 201 Created when a valid task is submitted.', async () => {
     const createTask = {
       "title": "task title",
@@ -124,7 +109,7 @@ describe('manage controller Testing', () => {
     const createTask = {
       "title": "task title",
       "content": "task content",
-      "date": "01/10/2024",     
+      "date": "01/10/2024",
     };
 
     const updatedTask = {
