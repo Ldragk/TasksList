@@ -34,7 +34,7 @@ export class QueryTask extends BaseController {
     }
   };
 
-  @Get("date/:day/:month/:year")
+  @Get("date/:month/:day/:year")
   @Middleware(manyRequest)
   getByFullDate = async (
     req: { params: { day: string; month: string; year: string } },
@@ -44,9 +44,13 @@ export class QueryTask extends BaseController {
       new PrismaTaskQueryRepository()
     );
 
+    const { month, day, year } = req.params;
+
+    const formattedDate = `${this.removeLeadingZeros(month)}/${this.removeLeadingZeros(day)}/${year}`;
+
     try {
       const { tasks } = await tasksByFullDate.execute({
-        date: `${req.params.month}/${req.params.day}/${req.params.year}`,
+        date: formattedDate,
       });
       return { get: res.status(200).json(tasks.map(TaskViewModel.toHTTP)) };
     } catch (err) {
@@ -61,10 +65,15 @@ export class QueryTask extends BaseController {
     res: Response
   ) => {
     const tasksByMonth = new QueryByMonth(new PrismaTaskQueryRepository());
+    const { month, year } = req.params;
+
+    const formatMonth = this.removeLeadingZeros(month);
+    const formatYear = this.removeLeadingZeros(year);
+
     try {
       const { tasks } = await tasksByMonth.execute({
-        month: Number(req.params.month),
-        year: Number(req.params.year),
+        month: Number(formatMonth),
+        year: Number(formatYear),
       });
       return { get: res.status(200).json(tasks.map(TaskViewModel.toHTTP)) };
     } catch (err) {
@@ -78,7 +87,7 @@ export class QueryTask extends BaseController {
     req: { params: { year: string } },
     res: Response
   ) => {
-    const tasksByYear = new QueryByYear(new PrismaTaskQueryRepository());
+    const tasksByYear = new QueryByYear(new PrismaTaskQueryRepository());   
 
     try {
       const { tasks } = await tasksByYear.execute({
@@ -125,4 +134,8 @@ export class QueryTask extends BaseController {
       return this.sendCreateUpdateErrorResponse(res, err as Error);
     }
   };
+
+  removeLeadingZeros(value: string): string {
+    return value.replace(/^0+/, '');
+  }
 }
