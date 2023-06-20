@@ -1,7 +1,7 @@
-import { Controller, Delete, Get, Middleware } from "@overnightjs/core";
+import { ClassMiddleware, Controller, Delete, Get, Middleware } from "@overnightjs/core";
 import { Trash } from "@src/entities/trash";
-import { PrismaDeleteTrashRepository } from "@src/prisma/repositories/trash/Prisma-delete-trash-repository";
-import { PrismaTrashRepository } from "@src/prisma/repositories/trash/Prisma-trash-repository";
+import { PrismaDeleteTrashRepository } from "@src/prisma/repositories/trash/prisma-delete-trash-repository";
+import { PrismaTrashRepository } from "@src/prisma/repositories/trash/prisma-trash-repository";
 import { DeleteAllTrash } from "@src/use-cases/delete-cases/delete-all-trash";
 import { DeleteTrash } from "@src/use-cases/delete-cases/delete-trash";
 import { AllTrash } from "@src/use-cases/trash-cases/get-all-trash";
@@ -10,11 +10,13 @@ import { Request, Response } from "express";
 import logger from "@src/logger";
 import { BaseController } from ".";
 import { RateLimiter } from "@src/middlewares/rate-limiter";
+import { AuthMiddleware } from "@src/middlewares/auth";
 
 const manyRequest = new RateLimiter(10).getMiddleware()
 const fewRequest = new RateLimiter(2).getMiddleware()
 
 @Controller("trash")
+@ClassMiddleware(AuthMiddleware)
 export class TrashTasks extends BaseController {
 
   @Get("all")

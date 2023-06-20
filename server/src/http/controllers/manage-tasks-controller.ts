@@ -1,18 +1,20 @@
-import { PrismaManageRepository } from "@src/prisma/repositories/tasks/Prisma-manage-repository";
+import { PrismaManageRepository } from "@src/prisma/repositories/tasks/prisma-manage-repository";
 import { TaskStatus } from "@src/use-cases/manage-cases/chance-condition";
 import { CreateTask } from "@src/use-cases/manage-cases/create";
 import { FullUpdate } from "@src/use-cases/manage-cases/update";
 import { TaskBody } from "../dtos/create-task-body";
 import { TaskViewModel } from "../view-models/task-view-model";
-import { Controller, Middleware, Patch, Post, Put } from '@overnightjs/core';
+import { ClassMiddleware, Controller, Middleware, Patch, Post, Put } from '@overnightjs/core';
 import { BaseController } from ".";
 import { Response } from "express";
 import { RateLimiter } from "@src/middlewares/rate-limiter";
+import { AuthMiddleware } from "@src/middlewares/auth";
 
 const manyRequest = new RateLimiter(30).getMiddleware()
 const fewRequest = new RateLimiter(15).getMiddleware()
 
 @Controller('tasks')
+@ClassMiddleware(AuthMiddleware)
 export class ManageTasks extends BaseController {
 
   @Post('create')
