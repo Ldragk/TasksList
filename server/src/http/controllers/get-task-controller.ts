@@ -5,17 +5,19 @@ import { QueryByMonth } from "@src/use-cases/query-cases/get-month";
 import { QueryByYear } from "@src/use-cases/query-cases/get-year";
 import { TasksCondition } from "@src/use-cases/query-cases/get-status";
 import { TaskViewModel } from "../view-models/task-view-model";
-import { PrismaTaskQueryRepository } from "@src/prisma/repositories/tasks/Prisma-query-repository";
-import { Controller, Get, Middleware } from "@overnightjs/core";
+import { PrismaTaskQueryRepository } from "@src/prisma/repositories/tasks/prisma-query-repository";
+import { ClassMiddleware, Controller, Get, Middleware } from "@overnightjs/core";
 import { Request, Response } from "express";
 import logger from "@src/logger";
 import { BaseController } from ".";
 import { RateLimiter } from "@src/middlewares/rate-limiter";
+import { AuthMiddleware } from "@src/middlewares/auth";
 
 const manyRequest = new RateLimiter(10).getMiddleware()
 const fewRequest = new RateLimiter(2).getMiddleware()
 
 @Controller("tasks")
+@ClassMiddleware(AuthMiddleware)
 export class QueryTask extends BaseController {
 
   @Get("all")

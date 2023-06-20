@@ -1,7 +1,7 @@
 import { Trash } from "@src/entities/trash";
 import { prisma } from "@src/prisma/prisma-client";
 import { TrashRepository } from "@src/repositories/trash-repository";
-import { PrismaTrashMapper } from "./Prisma-trash-mapper";
+import { PrismaTrashMapper } from "./prisma-trash-mapper";
 
 export class PrismaTrashRepository implements TrashRepository {
   async create(task: Trash): Promise<void> {

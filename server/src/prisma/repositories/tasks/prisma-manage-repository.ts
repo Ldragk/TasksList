@@ -1,5 +1,5 @@
 import { Task } from "@src/entities/task";
-import { PrismaTaskMapper } from "./Prisma-task-mapper";
+import { PrismaTaskMapper } from "./prisma-task-mapper";
 import { ManageRepository } from "@src/repositories/manage-repository";
 import { prisma } from "@src/prisma/prisma-client";
 

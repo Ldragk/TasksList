@@ -1,8 +1,8 @@
-import { Controller, Delete, Middleware } from "@overnightjs/core";
-import { PrismaDeleteRepository } from "@src/prisma/repositories/tasks/Prisma-delete-repository";
-import { PrismaManageRepository } from "@src/prisma/repositories/tasks/Prisma-manage-repository";
-import { PrismaTaskQueryRepository } from "@src/prisma/repositories/tasks/Prisma-query-repository";
-import { PrismaTrashRepository } from "@src/prisma/repositories/trash/Prisma-trash-repository";
+import { ClassMiddleware, Controller, Delete, Middleware } from "@overnightjs/core";
+import { PrismaDeleteRepository } from "@src/prisma/repositories/tasks/prisma-delete-repository";
+import { PrismaManageRepository } from "@src/prisma/repositories/tasks/prisma-manage-repository";
+import { PrismaTaskQueryRepository } from "@src/prisma/repositories/tasks/prisma-query-repository";
+import { PrismaTrashRepository } from "@src/prisma/repositories/trash/prisma-trash-repository";
 import { DeleteAllTasks } from "@src/use-cases/delete-cases/delete-all-tasks";
 import { DeleteTask } from "@src/use-cases/delete-cases/delete-task";
 import { CreateAllTrash } from "@src/use-cases/trash-cases/create-all-trash";
@@ -11,11 +11,13 @@ import { TrashViewModel } from "../view-models/trash-view-model";
 import { Request, Response } from "express";
 import { BaseController } from ".";
 import { RateLimiter } from "@src/middlewares/rate-limiter";
+import { AuthMiddleware } from "@src/middlewares/auth";
 
 const manyRequest = new RateLimiter(30).getMiddleware()
 const fewRequest = new RateLimiter(3).getMiddleware()
 
 @Controller("tasks")
+@ClassMiddleware(AuthMiddleware)
 export class DeleteTasks extends BaseController {
 
   @Delete("delete/unique/:id")
