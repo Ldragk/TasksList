@@ -137,7 +137,7 @@ validações, DDD, TDD, in memory database, factory pattern, singleton, inversã
 <a href="https://github.com/Lucasvmarangoni/TaskList" title="clique para ver o código da versão 2.1.0">![version](https://img.shields.io/badge/version-2.1.0-black)</a> 
 <br>
 Nesta atualização, estou aprimorando testes, mocks, testes end to end, tratando erros, status code, logging, cache, graceful
-shutdown, troca do banco de dados, documentação OpenAPI, workflow, autenticação com criptografia e refatoração
+shutdown, troca do banco de dados, documentação OpenAPI, workflow, autenticação com criptografia e refatoração.
 
 <br>
 
