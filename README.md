@@ -33,10 +33,10 @@
 
 </div>
 
+O projeto é uma API REST para servir uma aplicação de Lista de tarefas, seguindo o padrão CRUD, com sistema de notificação.
+
 - Projeto planejado e desenvolvi por mim. 
 - Finalidade: aprendizado e portfólio.
-
-O projeto é uma API REST para servir uma aplicação de Lista de tarefas, seguindo o padrão CRUD, com sistema de notificação.
 
 <br>
 
