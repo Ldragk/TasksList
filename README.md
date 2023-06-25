@@ -19,7 +19,7 @@
 # Projeto Lista de Tarefas
 
 
-# (Back-End)
+# (Backend)
 ![version](https://img.shields.io/badge/version-2.0.0-white)
 
 
