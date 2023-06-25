@@ -16,7 +16,7 @@ describe("Get all trash tasks", () => {
       i++;
     }
 
-    const { trash } = await allTrash.execute();
+    const { trash } = await allTrash.execute(trashTask.userId);
 
     expect(called).toHaveBeenCalledTimes(5);
     expect(trashRepository.trash).toHaveLength(5);

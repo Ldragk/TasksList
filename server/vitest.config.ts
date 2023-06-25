@@ -12,7 +12,7 @@ module.exports = defineConfig({
   test: {
     clearMocks: true,
     includeSource: ['./src/**/*.{ts}'],
-    globals: true,
+    globals: true,    
   },
   plugins: [
     AutoImport({

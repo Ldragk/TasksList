@@ -11,7 +11,7 @@
       "vitest/globals"
     ],
     "sourceMap": true,
-    "outDir": "./build",
+    "outDir": "./dist",
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
@@ -48,6 +48,6 @@
   ],
   "exclude": [
     "./node_modules/*",
-    "build"
+    "dist"
   ]
 }

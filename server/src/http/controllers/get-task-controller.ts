@@ -23,13 +23,14 @@ export class QueryTask extends BaseController {
   @Get("all")
   @Middleware(fewRequest)
   getAllTasks = async (
-    _: Request,
+    req: Request,
     res: Response
   ) => {
     const queryAllTasks = new QueryAllTasks(new PrismaTaskQueryRepository());
+    const userId = req.context.userId._id
 
     try {
-      const { tasks } = await queryAllTasks.execute();
+      const { tasks } = await queryAllTasks.execute(userId);
       return { get: res.status(200).json(tasks.map(TaskViewModel.toHTTP)) };
     } catch (err) {
       return logger.error(err);
@@ -39,7 +40,13 @@ export class QueryTask extends BaseController {
   @Get("date/:month/:day/:year")
   @Middleware(manyRequest)
   getByFullDate = async (
-    req: { params: { day: string; month: string; year: string } },
+    req: Request<
+      {
+        day: string;
+        month: string;
+        year: string
+      }
+    >,
     res: Response
   ) => {
     const tasksByFullDate = new QueryByFullDate(
@@ -47,11 +54,11 @@ export class QueryTask extends BaseController {
     );
 
     const { month, day, year } = req.params;
-
+    const userId = req.context.userId._id
     const formattedDate = `${this.removeLeadingZeros(month)}/${this.removeLeadingZeros(day)}/${year}`;
 
     try {
-      const { tasks } = await tasksByFullDate.execute({
+      const { tasks } = await tasksByFullDate.execute(userId, {
         date: formattedDate,
       });
       return { get: res.status(200).json(tasks.map(TaskViewModel.toHTTP)) };
@@ -63,77 +70,84 @@ export class QueryTask extends BaseController {
   @Get("month/:month/:year")
   @Middleware(manyRequest)
   getByMonth = async (
-    req: { params: { month: string; year: string } },
+    req: Request<
+      {
+        month: string;
+        year: string
+      }>,
     res: Response
   ) => {
     const tasksByMonth = new QueryByMonth(new PrismaTaskQueryRepository());
     const { month, year } = req.params;
-
+    const userId = req.context.userId._id
     const formatMonth = this.removeLeadingZeros(month);
     const formatYear = this.removeLeadingZeros(year);
 
     try {
-      const { tasks } = await tasksByMonth.execute({
+      const { tasks } = await tasksByMonth.execute(userId, {
         month: Number(formatMonth),
         year: Number(formatYear),
       });
       return { get: res.status(200).json(tasks.map(TaskViewModel.toHTTP)) };
     } catch (err) {
-      return this.sendCreateUpdateErrorResponse(res, err as Error);
+      return this.errorResponse(res, err as Error);
     }
   };
 
   @Get("year/:year")
   @Middleware(manyRequest)
   getByYear = async (
-    req: { params: { year: string } },
+    req: Request<{ year: string }>,
     res: Response
   ) => {
-    const tasksByYear = new QueryByYear(new PrismaTaskQueryRepository());   
+    const tasksByYear = new QueryByYear(new PrismaTaskQueryRepository());
+    const userId = req.context.userId._id
 
     try {
-      const { tasks } = await tasksByYear.execute({
+      const { tasks } = await tasksByYear.execute(userId, {
         year: Number(req.params.year),
       });
       return { get: res.status(200).json(tasks.map(TaskViewModel.toHTTP)) };
     } catch (err) {
-      return this.sendCreateUpdateErrorResponse(res, err as Error);
+      return this.errorResponse(res, err as Error);
     }
   };
 
   @Get("done/:condition")
   @Middleware(fewRequest)
   getDoneOrNotTasks = async (
-    req: { params: { condition: string } },
+    req: Request<{ condition: string }>,
     res: Response
   ) => {
     const tasksCondition = new TasksCondition(new PrismaTaskQueryRepository());
+    const userId = req.context.userId._id
 
     try {
-      const { tasks } = await tasksCondition.execute(
+      const { tasks } = await tasksCondition.execute(userId,
         Number(req.params.condition)
       );
       return { get: res.status(200).json(tasks.map(TaskViewModel.toHTTP)) };
     } catch (err) {
-      return this.sendCreateUpdateErrorResponse(res, err as Error);
+      return this.errorResponse(res, err as Error);
     }
   };
 
   @Get("delayed")
   @Middleware(fewRequest)
   getOverdueTasks = async (
-    _: Request,
+    req: Request,
     res: Response
   ) => {
     const overdueTasks: OverdueTasks = new OverdueTasks(
       new PrismaTaskQueryRepository()
     );
+    const userId = req.context.userId._id
 
     try {
-      const { tasks } = await overdueTasks.execute();
+      const { tasks } = await overdueTasks.execute(userId);
       return { get: res.status(200).json(tasks.map(TaskViewModel.toHTTP)) };
     } catch (err) {
-      return this.sendCreateUpdateErrorResponse(res, err as Error);
+      return this.errorResponse(res, err as Error);
     }
   };
 

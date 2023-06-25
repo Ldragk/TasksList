@@ -8,9 +8,9 @@ interface IDateType {
 export class QueryByYear {
   constructor(private findRecipientRepository: QueryRepository) { }
 
-  public async execute(date: IDateType): Promise<GetTasksResponse> {
+  public async execute(userId: string, date: IDateType): Promise<GetTasksResponse> {
     return {
-      tasks: await this.findRecipientRepository.findByYear(date.year)
+      tasks: await this.findRecipientRepository.findByYear(userId, date.year)
     };
   }
 }

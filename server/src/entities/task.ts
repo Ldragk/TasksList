@@ -1,6 +1,7 @@
 import { ObjectId } from 'bson';
 import { Content } from './task-entities/content';
 import { LimitDate } from './task-entities/limitDate';
+import { User } from '@prisma/client';
 
 export interface TaskProps {
   title: string;
@@ -9,16 +10,22 @@ export interface TaskProps {
   done?: boolean;
   createdAt?: Date;
   updatedAt?: Date | null;
+  userId: string;
 }
 export class Task {
   private _id: string;
   private props: TaskProps;
 
   constructor(props: TaskProps, id?: string) {
+
+    if (props.title.length >= 1 && props.title.length <= 30) {
+      new Error('Title must be between 1 and 30 characters');
+    }
+
     this.props = {
       ...props,
       done: props.done ?? false,
-      createdAt: props.createdAt ?? new Date(new Date().setSeconds(0, 0))  
+      createdAt: props.createdAt ?? new Date(new Date().setSeconds(0, 0))
     };
     this._id = id ?? String(new ObjectId());
   }
@@ -31,9 +38,7 @@ export class Task {
   }
 
   public set title(title: string) {
-    title.length >= 1 && title.length <= 30
-      ? (this.props.title = title)
-      : new Error('Title must be between 1 and 30 characters');
+    this.props.title = title
   }
 
   get title(): string {
@@ -78,4 +83,13 @@ export class Task {
   public get updatedAt(): Date | null | undefined {
     return this.props.updatedAt;
   }
+
+  public set userId(userId: string) {
+    this.props.userId = userId;
+  }
+
+  public get userId(): string {
+    return this.props.userId;
+  }
+
 }

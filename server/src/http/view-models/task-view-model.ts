@@ -10,6 +10,7 @@ export class TaskViewModel {
       done: task.done,
       createdAt: task.createdAt,
       updatedAt: task.updatedAt,
+      userId: task.userId
     };
   }
 }

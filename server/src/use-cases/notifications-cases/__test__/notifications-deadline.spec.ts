@@ -27,7 +27,9 @@ describe("get by notification in deadline", () => {
     await notificationsRepository.create(task);
     await notificationsRepository.create(taskGet);
 
-    const { notification } = await notificationOfTasksNearTheDeadline.execute({
+    const userId = 'fake-userId'
+
+    const { notification } = await notificationOfTasksNearTheDeadline.execute(userId, {
       notificationsWithinThePeriod: 15,
       type: 0,
     });

@@ -15,9 +15,9 @@ export interface IPromiseType {
 export class TasksCondition {
   public conditionParameter!: ParameterType;
 
-  constructor(private findRecipientRepository: QueryRepository) {}
+  constructor(private findRecipientRepository: QueryRepository) { }
 
-  public async execute(
+  public async execute(userId: string,
     conditionParameter: ParameterType
   ): Promise<GetTasksResponse> {
     this.conditionParameter = conditionParameter;
@@ -25,7 +25,7 @@ export class TasksCondition {
     const condition = this.conditionParameter === 1 ? true : false;
 
     return {
-      tasks: await this.findRecipientRepository.findByStatus(condition),
+      tasks: await this.findRecipientRepository.findByStatus(userId, condition),
     };
   }
 }

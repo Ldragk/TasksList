@@ -8,14 +8,14 @@ interface GetTaskRequest {
 export class QueryByFullDate {
 
   constructor(private findRecipientRepository: QueryRepository) {
-    
+
   }
 
-  async execute(getDate: GetTaskRequest): Promise<GetTasksResponse> {
-    
+  async execute(userId: string, getDate: GetTaskRequest): Promise<GetTasksResponse> {
+
     const { date } = getDate;
     return {
-      tasks: await this.findRecipientRepository.findByFullDate(date),
+      tasks: await this.findRecipientRepository.findByFullDate(userId, date),
     };
   }
 }

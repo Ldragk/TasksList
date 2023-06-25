@@ -10,6 +10,7 @@ export class PrismaTrashMapper {
       date: trash.date,
       done: trash.done,
       deletedAt: trash.deleted(),
+      userId: trash.userId,
     };
   }
 
@@ -22,6 +23,7 @@ export class PrismaTrashMapper {
         done: raw.done,
         createdAt: raw.createdAt,
         deletedAt: raw.deletedAt,
+        userId: raw.userId,
       },
       raw.id
     );

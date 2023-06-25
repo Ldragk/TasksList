@@ -5,6 +5,7 @@ export interface TrashProps {
   done?: boolean;
   createdAt?: Date;
   deletedAt?: Date | null | undefined;
+  userId: string
 }
 
 export class Trash {
@@ -71,5 +72,13 @@ export class Trash {
 
   public get deletedAt(): Date | null | undefined {
     return this.props.deletedAt;
+  }
+
+  public set userId(userId: string) {
+    this.props.userId = userId;
+  }
+
+  public get userId(): string {
+    return this.props.userId;
   }
 }

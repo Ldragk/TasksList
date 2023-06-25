@@ -8,24 +8,25 @@ export class CreateAllTrash {
   constructor(
     private trashRepository: TrashRepository,
     private queryRepository: QueryRepository
-  ) {}
+  ) { }
 
-  async execute(): Promise<CreateTrashResponse> {
+  async execute(userId: string): Promise<CreateTrashResponse> {
     const queryAllTasks = new QueryAllTasks(this.queryRepository);
-    const { tasks } = Object(await queryAllTasks.execute());
+    const { tasks } = Object(await queryAllTasks.execute(userId));
 
     return tasks.map(async (task: Trash) => {
-      const { id, title, content, date, done, createdAt } = task;    
-      
+      const { id, title, content, date, done, createdAt } = task;
+
       const trashBody = new Trash(
         {
           title: title,
-          content: String(content),
-          date: String(date),
+          content: content,
+          date: date,
           done: done,
           createdAt: createdAt,
+          userId: task.userId,
         },
-        String(id)
+        id
       );
 
       return {

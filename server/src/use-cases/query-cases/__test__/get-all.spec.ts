@@ -3,6 +3,7 @@ import { MakeTask } from "@src/test/factories/task-factory";
 import { QueryAllTasks } from "../get-all";
 
 describe("get all", () => {
+
   it("should get all tasks", async () => {
     const tasksRepository = new InMemoryQueryRepository();
     const getAll = new QueryAllTasks(tasksRepository);
@@ -12,12 +13,12 @@ describe("get all", () => {
 
     await tasksRepository.create(task);
     await tasksRepository.create(task);
-    const { tasks } = await getAll.execute();
+    const { tasks } = await getAll.execute(task.userId);
 
     expect(calledTask).toHaveBeenCalledTimes(2);
     expect(tasksRepository.tasks).toHaveLength(2);
     expect(tasksRepository.tasks).toEqual([task, task]);
-    expect(getAll.execute()).toEqual(Promise.resolve([task]));
+    expect(getAll.execute(task.userId)).toEqual(Promise.resolve([task]));
     expect(tasks).toHaveLength(2);
   });
 
@@ -40,7 +41,7 @@ describe("get all", () => {
     }
     tasksQueryRepositoryMock.findAllTasks.mockResolvedValue(Array(10).fill(task));
 
-    const { tasks } = await getAll.execute();
+    const { tasks } = await getAll.execute(task.userId);
 
     expect(tasksQueryRepositoryMock.create).toHaveBeenCalledTimes(10);
     expect(tasks[0]).toEqual(task);

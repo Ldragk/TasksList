@@ -30,10 +30,10 @@ describe("get by year", () => {
     const fullGetTasks = getTasks.concat(taskGet);
     tasksRepositoryMock.findAllTasks.mockResolvedValueOnce(fullGetTasks);
 
-    const { tasks } = await queryByYear.execute({ year: 2025 });
+    const { tasks } = await queryByYear.execute(task.userId, { year: 2025 });
 
     expect(tasksRepositoryMock.create).toHaveBeenCalledTimes(3);
-    expect(tasksRepositoryMock.findByYear).toHaveBeenCalledWith(2025);
+    expect(tasksRepositoryMock.findByYear).toHaveBeenCalledWith(task.userId, 2025);
     expect(tasksRepositoryMock.findByYear).toHaveBeenCalledTimes(1);
     expect(tasks).toEqual([task]);
     expect(tasks).toHaveLength(1);
@@ -53,11 +53,11 @@ describe("get by year", () => {
     await tasksRepository.create(task);
     await tasksRepository.create(taskGet);
 
-    const { tasks } = await queryByYear.execute({ year: 2025 });
+    const { tasks } = await queryByYear.execute(task.userId, { year: 2025 });
 
     expect(tasksRepository.tasks[2].date.value).toEqual(taskGet.date.value);
     expect(
-      queryByYear.execute({
+      queryByYear.execute(task.userId, {
         year: task.date.yearValue,
       })
     ).toEqual(Promise.resolve([task]));

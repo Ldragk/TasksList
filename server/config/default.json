@@ -1,9 +1,13 @@
 {
     "App": {
-        "port": 3333,       
+        "port": 3333,
         "logger": {
             "enabled": true,
             "level": "trace"
+        },
+        "auth": {
+            "key": "some-key",
+            "tokenExpiresIn": "20000000"
         }
     }
 }

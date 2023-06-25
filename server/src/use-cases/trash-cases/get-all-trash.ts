@@ -6,9 +6,9 @@ interface GetTrashResponse {
 }
 
 export class AllTrash {
-  constructor(private trashRepository: TrashRepository) {}
+  constructor(private trashRepository: TrashRepository) { }
 
-  async execute(): Promise<GetTrashResponse> {
-    return { trash: await this.trashRepository.findAllTrash() };
+  async execute(userId: string): Promise<GetTrashResponse> {
+    return { trash: await this.trashRepository.findAllTrash(userId) };
   }
 }

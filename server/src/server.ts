@@ -11,6 +11,7 @@ import { TrashTasks } from "./http/controllers/trash-controller";
 import expressPino from 'express-pino-logger';
 import logger from "./logger";
 import { prisma } from "./prisma/prisma-client";
+import { UserController } from './http/controllers/user-controller';
 
 export class SetupServer extends Server {
   private server?: http.Server;
@@ -41,12 +42,14 @@ export class SetupServer extends Server {
     const notificationsController = new Notifications();
     const deleteTaskController = new DeleteTasks();
     const trashController = new TrashTasks();
+    const userController = new UserController();
     this.addControllers([
       manageTasksController,
       queryTaskController,
       notificationsController,
       deleteTaskController,
       trashController,
+      userController
     ]);
   }
 

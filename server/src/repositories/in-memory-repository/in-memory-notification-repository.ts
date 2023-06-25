@@ -6,7 +6,7 @@ export class InMemoryNotificationRepository
   extends InMemoryManageRepository
   implements NotificationRepository
 {
-  async findNotifications(done: boolean): Promise<Notification[]> {
+  async findNotifications(userId:string, done: boolean): Promise<Notification[]> {
     const tasks = this.tasks.filter((task) => task.done === done);
 
     return tasks.map((task) => {

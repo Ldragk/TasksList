@@ -10,6 +10,7 @@ export function MakeTrash(overrides: Override = {}) {
       date: "02/23/2024",
       done: true,
       createdAt: new Date("02/23/2023"),
+      userId: "fake-userId",
       ...overrides,
     },
     "6f1da3d96ccf4e6b8332da98"

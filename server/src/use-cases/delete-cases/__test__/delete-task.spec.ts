@@ -11,13 +11,13 @@ describe("Deleted tasks", () => {
 
     const called = vi.spyOn(deleteRepository, "create");
 
-    for (let i = 0; i < 3; ) {
+    for (let i = 0; i < 3;) {
       await deleteRepository.create(task);
       i++
     }
 
     expect(deleteRepository.tasks).toHaveLength(3);
-    const { deleteTrash } = await deleteTask.execute(
+    const { deleteTrash } = await deleteTask.execute(task.userId,
       deleteRepository.tasks[0].id
     );
     expect(called).toHaveBeenCalledTimes(3);

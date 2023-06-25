@@ -15,8 +15,11 @@ export class PrismaTrashRepository implements TrashRepository {
     });
   }
 
-  async findAllTrash(): Promise<Trash[]> {
+  async findAllTrash(userId: string): Promise<Trash[]> {
     const allTrash = prisma.deletedTask.findMany({
+      where: {
+        userId,
+      },
       orderBy: {
         createdAt: "desc",
       },

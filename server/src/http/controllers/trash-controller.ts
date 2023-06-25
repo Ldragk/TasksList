@@ -22,15 +22,15 @@ export class TrashTasks extends BaseController {
   @Get("all")
   @Middleware(fewRequest)
   async findAllTrashTasks(
-    _: Request,
+    req: Request,
     res: {
       json: (arg0: TrashViewModel) => Promise<Trash[]>;
     }
   ) {
     const allTrash = new AllTrash(new PrismaTrashRepository());
-    
+    const userId = req.context.userId._id
     try{
-      const { trash } = await allTrash.execute();
+      const { trash } = await allTrash.execute(userId);
       return { get: res.json(trash.map(TrashViewModel.toHTTP)) };
     } catch (err) {
       return logger.error(err);
@@ -50,7 +50,7 @@ export class TrashTasks extends BaseController {
       const { deleteTrash } = await deleted.execute(id);
       return { delete: res.json(deleteTrash) };
     } catch (err) {
-      return this.sendCreateUpdateErrorResponse(res, err as Error);
+      return this.errorResponse(res, err as Error);
     }
   }
 
@@ -68,7 +68,7 @@ export class TrashTasks extends BaseController {
       const { deleteTrash } = await deleteAllTrash.execute();
       return { delete: res.json(deleteTrash) };
     } catch (err) {
-      return this.sendCreateUpdateErrorResponse(res, err as Error);
+      return this.errorResponse(res, err as Error);
     }
   }
 }

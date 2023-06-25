@@ -23,10 +23,11 @@ export class DeleteTasks extends BaseController {
   @Delete("delete/unique/:id")
   @Middleware(manyRequest)
   async deleteTask(
-    req: { params: { id: string } },
+    req: Request<{ id: string }>,
     res: Response
   ) {
     const id: string = req.params.id;
+    const userId = req.context.userId._id
 
     const create = new CreateTrash(
       new PrismaTrashRepository(),
@@ -35,22 +36,22 @@ export class DeleteTasks extends BaseController {
     const deleteTask = new DeleteTask(new PrismaDeleteRepository());
 
     try {
-      const { createTrash } = await create.execute(id);
-      const { deleteTrash } = await deleteTask.execute(id);      
+      const { createTrash } = await create.execute(userId, id);
+      const { deleteTrash } = await deleteTask.execute(userId, id);
 
       return {
         create: res.status(201).json(TrashViewModel.toHTTP(createTrash)),
         delete: res.status(200).json(deleteTrash),
       };
     } catch (err) {
-      return this.sendCreateUpdateErrorResponse(res, err as Error)
+      return this.errorResponse(res, err as Error)
     }
   }
 
   @Delete("delete/all")
   @Middleware(fewRequest)
   async deletedAllTasks(
-    _: Request,
+    req: Request,
     res: Response
   ) {
     const create = new CreateAllTrash(
@@ -58,17 +59,18 @@ export class DeleteTasks extends BaseController {
       new PrismaTaskQueryRepository()
     );
     const deleteAllTasks = new DeleteAllTasks(new PrismaDeleteRepository());
+    const userId = req.context.userId._id
 
     try {
-      const { createTrash } = await create.execute();
-      const { deleteTrash } = await deleteAllTasks.execute();     
+      const { createTrash } = await create.execute(userId);
+      const { deleteTrash } = await deleteAllTasks.execute(userId);
 
       return {
         create: res.status(201).json(createTrash),
         delete: res.status(200).json(deleteTrash)
       }
     } catch (err) {
-      return this.sendCreateUpdateErrorResponse(res, err as Error)
+      return this.errorResponse(res, err as Error)
     }
   }
 }

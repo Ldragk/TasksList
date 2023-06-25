@@ -4,6 +4,9 @@ import { MakeTask } from "@src/test/factories/task-factory";
 import { CreateTrash } from "../create-trash";
 
 describe("Create deleted tasks", () => {
+
+  const userId = "fake-userId"
+
   it("should create deleted tasks", async () => {
     const taskRepository = new InMemoryManageRepository();
     const trashRepository = new InMemoryTrashRepository();
@@ -14,13 +17,13 @@ describe("Create deleted tasks", () => {
     const calledTask = vi.spyOn(taskRepository, "create");
     const calledTrash = vi.spyOn(trashRepository, "create");
 
-    for (let i = 0; i < 3; ) {
+    for (let i = 0; i < 3;) {
       await taskRepository.create(task);
       i++;
     }
 
-    const id = taskRepository.tasks[0].id;    
-    const { createTrash } = await create.execute(id);
+    const id = taskRepository.tasks[0].id;
+    const { createTrash } = await create.execute(userId, id);
 
     expect(calledTask).toHaveBeenCalledTimes(3);
     expect(calledTrash).toHaveBeenCalledTimes(1);

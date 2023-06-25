@@ -9,11 +9,11 @@ export class InMemoryQueryRepository
     return this.tasks;
   }
 
-  async findByFullDate(date: string): Promise<Task[]> {
+  async findByFullDate(userId: string, date: string): Promise<Task[]> {
     return this.tasks.filter((task) => task.date.value === date);
   }
 
-  async findByMonth(month: number, year: number): Promise<Task[]> {
+  async findByMonth(userId: string, month: number, year: number): Promise<Task[]> {
     const tasksMonth: Task[] = [];
     this.tasks.forEach((task: Task) => {
       if (task.date.value.includes(`${month}/`) && task.date.value.includes(`/${year}`)) {
@@ -24,7 +24,7 @@ export class InMemoryQueryRepository
     return tasksMonth;
   }
 
-  async findByYear(year: number): Promise<Task[]> {
+  async findByYear(userId: string, year: number): Promise<Task[]> {
     const tasksYear: Task[] = [];
 
     this.tasks.forEach((task: Task) => {
@@ -36,11 +36,11 @@ export class InMemoryQueryRepository
     return tasksYear;
   }
 
-  async findByStatus(condition: boolean): Promise<Task[]> {
+  async findByStatus(userId: string, condition: boolean): Promise<Task[]> {
     return this.tasks.filter((task) => task.done === condition);
   }
 
-  async findByOverdue(condition: boolean): Promise<Task[]> {
+  async findByOverdue(userId: string, condition: boolean): Promise<Task[]> {
     return this.tasks.filter((task) => task.done === condition);
   }
 }

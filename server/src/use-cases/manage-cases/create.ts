@@ -8,6 +8,7 @@ interface CreateTaskRequest {
   content: string;
   date: string;
   done?: boolean;
+  userId: string;
 }
 
 interface CreateTaskResponse {
@@ -15,15 +16,16 @@ interface CreateTaskResponse {
 }
 
 export class CreateTask {
-  constructor(private manageRepository: ManageRepository) {}
+  constructor(private manageRepository: ManageRepository) { }
 
   async execute(props: CreateTaskRequest): Promise<CreateTaskResponse> {
-    const { title, content, date, done } = props;
+    const { title, content, date, done, userId } = props;
     const task = new Task({
       title: title,
       content: new Content(content),
       date: new LimitDate(date),
       done,
+      userId
     });
 
     await this.manageRepository.create(task);

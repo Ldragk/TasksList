@@ -12,6 +12,7 @@ export class PrismaTaskMapper {
       date: task.date.value,
       done: task.done,
       createdAt: task.createdAt,
+      userId: task.userId,      
     };
   }
 
@@ -24,6 +25,7 @@ export class PrismaTaskMapper {
         done: raw.done,
         createdAt: raw.createdAt,
         updatedAt: raw.updatedAt,
+        userId: raw.userId
       },
       raw.id
     );

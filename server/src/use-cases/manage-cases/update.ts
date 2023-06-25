@@ -19,9 +19,10 @@ export class FullUpdate {
 
   async execute(
     taskId: string,
+    userId: string,
     body: EditTaskRequest
   ): Promise<EditTaskResponse> {
-    const task: Task = await this.manageRepository.findeById(taskId);
+    const task: Task = await this.manageRepository.findeById(taskId, userId);
 
     const { title, content, date, done } = body;
 
@@ -31,7 +32,7 @@ export class FullUpdate {
     task.done = done ?? task.done;
     task.updated();
 
-    await this.manageRepository.save(task);
+    await this.manageRepository.save(task, userId);
     return { task: task };
   }
 }

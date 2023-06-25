@@ -3,6 +3,7 @@ import { MakeTask } from "@src/test/factories/task-factory";
 import { TasksCondition } from "../get-status";
 
 describe("get by task status", () => {
+
   it("should return all tasks in a parameter true or false", async () => {
     const tasksRepository = new InMemoryQueryRepository();
     const tasksCondition = new TasksCondition(tasksRepository);
@@ -17,12 +18,12 @@ describe("get by task status", () => {
     }
     await tasksRepository.create(falseTask);
 
-    const { tasks } = await tasksCondition.execute(1);
+    const { tasks } = await tasksCondition.execute(trueTask.userId, 1);    
 
     expect(tasksRepository.tasks[0].date.value).toEqual(trueTask.date.value);
-    expect(tasksCondition.execute(1)).toEqual(Promise.resolve([trueTask]));
+    expect(tasksCondition.execute(trueTask.userId, 1)).toEqual(Promise.resolve([trueTask]));
     expect(called).toHaveBeenCalledTimes(3);
-    expect(tasksRepository.tasks).toHaveLength(3);
+    expect(tasksRepository.tasks).toHaveLength(3); 
     expect(tasks).toHaveLength(2);
   });
 
@@ -51,13 +52,13 @@ describe("get by task status", () => {
     const fullGetTasks = getTasks.concat(trueTask);
     tasksQueryRepositoryMock.findAllTasks.mockResolvedValueOnce(fullGetTasks);
 
-    const { tasks } = await tasksCondition.execute(0);
+    const { tasks } = await tasksCondition.execute(falseTask.userId, 0);
 
     expect(tasksQueryRepositoryMock.create).toHaveBeenCalledTimes(4);
-    expect(tasksQueryRepositoryMock.findByStatus).toHaveBeenCalledWith(false)
+    expect(tasksQueryRepositoryMock.findByStatus).toHaveBeenCalledWith(falseTask.userId, false)
     expect(tasksQueryRepositoryMock.findByStatus).toHaveBeenCalledTimes(1);
     expect([...tasks]).toEqual([falseTask, falseTask, falseTask]);
     expect(await tasksQueryRepositoryMock.findByStatus()).toHaveLength(3);
-    await expect(tasksQueryRepositoryMock.findAllTasks()).resolves.toHaveLength(4);
-  })
+    await expect(tasksQueryRepositoryMock.findAllTasks()).resolves.toHaveLength(4); 
+  }) 
 });

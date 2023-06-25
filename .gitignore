@@ -4,6 +4,6 @@ Notas.MD
 .vscode/
 registros-v2.md
 .env
-
-
+server/dist
+server/node_modules
 server/src/util/performance-now.ts

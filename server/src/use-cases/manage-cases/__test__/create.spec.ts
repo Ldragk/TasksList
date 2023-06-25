@@ -13,6 +13,7 @@ describe("Create Task Use Case", () => {
       content: "content",
       date: "02/23/2024",
       done: false,
+      userId: "fake-id",
     });
     expect(tasksRepository.tasks).toHaveLength(1);
     expect(tasksRepository.tasks[0]).toEqual(task);
@@ -30,13 +31,14 @@ describe("Create Task Use Case", () => {
           content: "content",
           date: "02/23/2022",
           done: false,
+          userId: "fake-id",
         }).then(resolve).catch(reject);
       })
     ).rejects.toThrow(new Error(`
         Invalid date format!       
         ${dateFormat}     
-        - Year must be greater than or equal to the current year and consist of 4 digits.`));  
-    expect(tasksRepository.tasks).toHaveLength(0); 
+        - Year must be greater than or equal to the current year and consist of 4 digits.`));
+    expect(tasksRepository.tasks).toHaveLength(0);
   });
 
   it("should not be able to create a task with invalid date in year length", async () => {
@@ -50,13 +52,14 @@ describe("Create Task Use Case", () => {
           content: "content",
           date: "02/23/202",
           done: false,
+          userId: "fake-id",
         }).then(resolve).catch(reject);
       })
     ).rejects.toThrow(new Error(`
         Invalid date format!       
         ${dateFormat}     
-        - Year must be greater than or equal to the current year and consist of 4 digits.`));  
-    expect(tasksRepository.tasks).toHaveLength(0); 
+        - Year must be greater than or equal to the current year and consist of 4 digits.`));
+    expect(tasksRepository.tasks).toHaveLength(0);
   });
 
   it("should not be able to create a task with invalid date in month", async () => {
@@ -70,13 +73,14 @@ describe("Create Task Use Case", () => {
           content: "content",
           date: "13/23/2024",
           done: false,
+          userId: "fake-id",
         }).then(resolve).catch(reject);
       })
     ).rejects.toThrow(new Error(`
         Invalid date format!       
         ${dateFormat}     
-        - Month must be between 1 and 12.`));  
-    expect(tasksRepository.tasks).toHaveLength(0); 
+        - Month must be between 1 and 12.`));
+    expect(tasksRepository.tasks).toHaveLength(0);
   });
 
   it("should not be able to create a task with invalid date in day", async () => {
@@ -90,13 +94,14 @@ describe("Create Task Use Case", () => {
           content: "content",
           date: "11/32/2024",
           done: false,
+          userId: "fake-id",
         }).then(resolve).catch(reject);
       })
     ).rejects.toThrow(new Error(`
         Invalid date format!       
         ${dateFormat}     
-        - Day must be between 1 and the last day of the respective month.`));  
-    expect(tasksRepository.tasks).toHaveLength(0); 
+        - Day must be between 1 and the last day of the respective month.`));
+    expect(tasksRepository.tasks).toHaveLength(0);
   });
 
   it("should not be able to create a task with invalid date in month and year", async () => {
@@ -110,14 +115,15 @@ describe("Create Task Use Case", () => {
           content: "content",
           date: "13/23/2022",
           done: false,
+          userId: "fake-id",
         }).then(resolve).catch(reject);
       })
     ).rejects.toThrow(new Error(`
         Invalid date format!       
         ${dateFormat}     
         - Month must be between 1 and 12.
-        - Year must be greater than or equal to the current year and consist of 4 digits.`));  
-    expect(tasksRepository.tasks).toHaveLength(0); 
+        - Year must be greater than or equal to the current year and consist of 4 digits.`));
+    expect(tasksRepository.tasks).toHaveLength(0);
   });
 
   it("should not be able to create a task with invalid date in month, day and year", async () => {
@@ -131,6 +137,7 @@ describe("Create Task Use Case", () => {
           content: "content",
           date: "13/32/2022",
           done: false,
+          userId: "fake-id",
         }).then(resolve).catch(reject);
       })
     ).rejects.toThrow(new Error(`
@@ -138,8 +145,8 @@ describe("Create Task Use Case", () => {
         ${dateFormat}     
         - Month must be between 1 and 12.
         - Day must be between 1 and the last day of the respective month.
-        - Year must be greater than or equal to the current year and consist of 4 digits.`));  
-    expect(tasksRepository.tasks).toHaveLength(0); 
+        - Year must be greater than or equal to the current year and consist of 4 digits.`));
+    expect(tasksRepository.tasks).toHaveLength(0);
   });
 });
 

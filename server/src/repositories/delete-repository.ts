@@ -1,4 +1,4 @@
 export abstract class DeleteRepository {
-  abstract delete(id: string): Promise<void>;
-  abstract deleteAll(): Promise<void>;
+  abstract delete(userId: string, id: string): Promise<void>;
+  abstract deleteAll(userId: string): Promise<void>;
 }

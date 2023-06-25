@@ -8,7 +8,7 @@ describe("Change condition Task Use Case", () => {
     const task = MakeTask();
     const taskStatus = new TaskStatus(tasksRepository);
     await tasksRepository.create(task);
-    await taskStatus.execute(tasksRepository.tasks[0].id);
+    await taskStatus.execute(tasksRepository.tasks[0].id, task.userId);
 
     expect(tasksRepository.tasks[0].done).toBe(true);
   });
@@ -18,7 +18,7 @@ describe("Change condition Task Use Case", () => {
     const taskStatus = new TaskStatus(tasksRepository);
 
     expect(async () => {
-      return await taskStatus.execute("fake-notification-id");
+      return await taskStatus.execute("fake-notification-id", "fake-user-id");
     }).rejects.toThrowError();
   });
 });

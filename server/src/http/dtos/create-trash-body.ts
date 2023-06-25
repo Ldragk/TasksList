@@ -5,5 +5,6 @@ export class TrashBody {
   done?: boolean;
   createdAt?: Date;
   deletedAt?: Date;
-  id?: string;
+  id?: string;  
+  userId?: string;
 }

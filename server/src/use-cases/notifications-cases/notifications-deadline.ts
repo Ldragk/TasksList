@@ -13,28 +13,27 @@ interface NotificationResponse {
 }
 
 export class NotificationOfTasksNearTheDeadline {
-  constructor(private notificationRepository: NotificationRepository) {}
+  constructor(private notificationRepository: NotificationRepository) { }
 
-  async execute({
+  async execute(userId: string, {
     notificationsWithinThePeriod,
     type,
   }: IParamsNotifications): Promise<NotificationResponse> {
-    return await this.notificationType({
+    return await this.notificationType(userId, {
       notificationsWithinThePeriod,
       type,
     });
   }
 
-  private async notificationType({
+  private async notificationType(userId: string, {
     notificationsWithinThePeriod,
     type,
   }: IParamsNotifications): Promise<NotificationResponse> {
     const tasks: Notification[] =
-      await this.notificationRepository.findNotifications(false);
+      await this.notificationRepository.findNotifications(userId, false);
 
-    const todayDate = `${
-      new Date().getMonth() + 1
-    }/${new Date().getDate()}/${new Date().getFullYear()}`;
+    const todayDate = `${new Date().getMonth() + 1
+      }/${new Date().getDate()}/${new Date().getFullYear()}`;
 
     if (type === 1) {
       return {
@@ -52,12 +51,12 @@ export class NotificationOfTasksNearTheDeadline {
       notification: tasks.filter(
         (task: Notification) =>
           new Date(task.date) <=
-            new Date(
-              convertExcessDaysAtTheTurnOfTheMonth(
-                numberOfDaysInTheMonth(todayDate),
-                notificationsWithinThePeriod
-              )
-            ) && new Date(task.date) >= new Date(todayDate)
+          new Date(
+            convertExcessDaysAtTheTurnOfTheMonth(
+              numberOfDaysInTheMonth(todayDate),
+              notificationsWithinThePeriod
+            )
+          ) && new Date(task.date) >= new Date(todayDate)
       ),
     };
   }

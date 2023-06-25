@@ -7,8 +7,8 @@ export interface DeletedTaskResponse {
 }
 
 export class DeleteTask {
-  constructor(private deleteRepository: DeleteRepository) {}
-  async execute(id: string): Promise<DeletedTaskResponse> {
-    return { deleteTrash: await this.deleteRepository.delete(id) };
+  constructor(private deleteRepository: DeleteRepository) { }
+  async execute(userId: string, id: string): Promise<DeletedTaskResponse> {
+    return { deleteTrash: await this.deleteRepository.delete(userId, id) };
   }
 }

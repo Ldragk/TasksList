@@ -14,7 +14,11 @@ describe("update", () => {
       date: "3/25/2025",
       done: true,
     };
-    await update.execute(tasksRepository.tasks[0].id, taskUpdate);
+
+    const id = tasksRepository.tasks[0].id
+    const userId = tasksRepository.tasks[0].userId
+
+    await update.execute(id, userId, taskUpdate);
     expect(tasksRepository.tasks[0].title).toEqual(taskUpdate.title);
     expect(tasksRepository.tasks[0].content.value).toEqual(taskUpdate.content);
     expect(tasksRepository.tasks[0].date.value).toEqual(taskUpdate.date);
@@ -33,7 +37,7 @@ describe("update", () => {
     };
 
     expect(async () => {
-      return await update.execute("fake-notification-id", taskUpdate);
-    }).rejects.toThrowError();
+      return await update.execute("fake-notification-id", "fake-notification-userId", taskUpdate);
+    }).rejects.toThrowError(); 
   });
-});
+}); 

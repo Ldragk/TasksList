@@ -6,15 +6,15 @@ interface EditTaskResponse {
 }
 
 export class TaskStatus {
-  constructor(private manageRepository: ManageRepository) {}
+  constructor(private manageRepository: ManageRepository) { }
 
-  async execute(taskId: string): Promise<EditTaskResponse> {
-    const task = await this.manageRepository.findeById(taskId);
+  async execute(taskId: string, userId: string): Promise<EditTaskResponse> {
+    const task = await this.manageRepository.findeById(taskId, userId);
 
     task.done === false ? (task.done = true) : (task.done = false);
     task.updated();
 
-    await this.manageRepository.saveCondition(task);
+    await this.manageRepository.saveCondition(task, userId);
     return { task: task };
   }
 }

@@ -19,7 +19,7 @@ describe("Create all deleted tasks", () => {
       i++;
     }    
 
-    const { createTrash } = await create.execute();    
+    const { createTrash } = await create.execute(task.userId);    
 
     expect(calledTask).toHaveBeenCalledTimes(3);
     expect(calledTrash).toHaveBeenCalledTimes(3);

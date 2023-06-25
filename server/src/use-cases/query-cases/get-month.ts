@@ -7,12 +7,13 @@ interface GetTaskRequest {
 }
 
 export class QueryByMonth {
-  constructor(private findRecipientRepository: QueryRepository) {}
+  constructor(private findRecipientRepository: QueryRepository) { }
 
-  public async execute(date: GetTaskRequest): Promise<GetTasksResponse> {    
+  public async execute(userId: string, date: GetTaskRequest): Promise<GetTasksResponse> {
     return {
       tasks: await this.findRecipientRepository.findByMonth(
-        date.month,       
+        userId,
+        date.month,
         date.year
       ),
     };

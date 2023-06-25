@@ -4,9 +4,10 @@ import { NotificationRepository } from "@src/repositories/notification-repositor
 import { prisma } from "@src/prisma/prisma-client";
 
 export class PrismaNotificationsRepository implements NotificationRepository {
-  async findNotifications(done: boolean): Promise<Notification[]> {
+  async findNotifications(userId: string, done: boolean): Promise<Notification[]> {
     const taskNotification = await prisma.task.findMany({
       where: {
+        userId: userId,
         done: done,
       },
     });
