@@ -124,19 +124,19 @@ Inicialmente teve o objetivo de consolidar meus conhecimentos de Back-end e Enge
 
 <a href="" title="Não possui link da versão 1.0.0">![version](https://img.shields.io/badge/version-1.0.0-white)</a> 
 <br>
-O projeto teve seu desenvolvimento iniciado de acordo com o aprendizado do evento <a href="https://github.com/Lucasvmarangoni/NLW-Ignite-2022" target="_blank">NLW ESpots Ignite</a> da RocketSeat, ou seja, um back-end simples e básico.
-
+O projeto teve seu desenvolvimento iniciado com um back-end simples e básico.
 <br>
-
+<br>
 <a href="https://github.com/Lucasvmarangoni/TaskList/tree/2690efd2b1ca82fe52ce211c912a0f021fd8d8eb" title="clique para ver o código da versão 2.0.0">![version](https://img.shields.io/badge/version-2.0.0-white)</a> 
 <br>
-Logo após concluir a v1.0.0, comecei a aplicar os conhecimentos obtidos com o evento <a href="https://github.com/Lucasvmarangoni/notifications-service" target="_blank">Ignite Lab 04 - Notification Service</a> da RocketSeat. Apliquei testes unitários, validações, DDD, TDD, in memory database, factory pattern, singleton, inversão de dependência e princípios SOLID.
-
+O projeto passou a ser uma API REST, CRUD, com sistema de notificação, desenvolvida com Node.js, Express e Typescript, aplicando testes unitários,
+validações, DDD, TDD, in memory database, factory pattern, singleton, inversão de dependência e princípios SOLID.
 <br>
-
-<a href="" title="clique para ver o código da versão 2.1.0">![version](https://img.shields.io/badge/version-2.1.0-black)</a> 
 <br>
-Nesta atualização, estou aplicando parcialmente os conhecimentos que adquiri no projeto <a href="https://github.com/Lucasvmarangoni/Best-Surf" target="_blank">Best-Surf</a>. Estou aprimorando e adicionando testes, aplicando tratamento de erros, status code, logging, cache, graceful shutdown, troca do banco de dados para MongoDB, documentação OpenAPI, automação de fluxo de trabalho, autenticação com criptografia e refatoração.
+<a href="https://github.com/Lucasvmarangoni/TaskList" title="clique para ver o código da versão 2.1.0">![version](https://img.shields.io/badge/version-2.1.0-black)</a> 
+<br>
+Nesta atualização, estou aprimorando testes, mocks, testes end to end, tratando erros, status code, logging, cache, graceful
+shutdown, troca do banco de dados, documentação OpenAPI, workflow, autenticação com criptografia e refatoração
 
 <br>
 
