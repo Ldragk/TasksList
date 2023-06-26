@@ -3,7 +3,6 @@ import { prisma } from '@src/prisma/prisma-client';
 import AuthService from '@src/use-cases/auth';
 import { PrismaUserRepository } from '@src/prisma/repositories/users/prisma-user-repository';
 
-
 describe('manage controller Testing', () => {
     const defaultUser = {
         name: 'John Doe',
@@ -27,11 +26,10 @@ describe('manage controller Testing', () => {
         });
     });
 
-    afterAll(async () => {   
+    afterAll(async () => {
         await prisma.task.deleteMany({})
         await prisma.user.deleteMany({});
     });
-    
 
     const dateFormat = `Format: Date must be a string and separated by slashes '/', with the following format: month/day/year.`;
 
