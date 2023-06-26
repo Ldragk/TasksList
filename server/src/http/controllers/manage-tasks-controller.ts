@@ -10,15 +10,15 @@ import { RateLimiter } from "@src/middlewares/rate-limiter";
 import { AuthMiddleware } from "@src/middlewares/auth";
 import { Request, Response } from 'express';
 
-const manyRequest = new RateLimiter(30).getMiddleware()
-const fewRequest = new RateLimiter(15).getMiddleware()
+const manyRequest = 30
+const fewRequest = 15
 
 @Controller('tasks')
 @ClassMiddleware(AuthMiddleware)
 export class ManageTasks extends BaseController {
 
   @Post('create')
-  @Middleware(manyRequest)
+  @Middleware(new RateLimiter(manyRequest).getMiddleware())
   async create(
     req: Request,
     res: Response
@@ -39,7 +39,7 @@ export class ManageTasks extends BaseController {
   }
 
   @Patch('change/:id')
-  @Middleware(fewRequest)
+  @Middleware(new RateLimiter(fewRequest).getMiddleware())
   async updateCondition(
     req: Request<{
       id: string;
@@ -59,7 +59,7 @@ export class ManageTasks extends BaseController {
   }
 
   @Put('fullChange/:id')
-  @Middleware(fewRequest)
+  @Middleware(new RateLimiter(fewRequest).getMiddleware())
   async updateTasks(
     req: Request<{
       id: string;

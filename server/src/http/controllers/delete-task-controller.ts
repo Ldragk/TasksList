@@ -13,15 +13,15 @@ import { BaseController } from ".";
 import { RateLimiter } from "@src/middlewares/rate-limiter";
 import { AuthMiddleware } from "@src/middlewares/auth";
 
-const manyRequest = new RateLimiter(30).getMiddleware()
-const fewRequest = new RateLimiter(3).getMiddleware()
+const manyRequest = 30
+const fewRequest = 3
 
 @Controller("tasks")
 @ClassMiddleware(AuthMiddleware)
 export class DeleteTasks extends BaseController {
 
   @Delete("delete/unique/:id")
-  @Middleware(manyRequest)
+  @Middleware(new RateLimiter(manyRequest).getMiddleware())
   async deleteTask(
     req: Request<{ id: string }>,
     res: Response
@@ -49,7 +49,7 @@ export class DeleteTasks extends BaseController {
   }
 
   @Delete("delete/all")
-  @Middleware(fewRequest)
+  @Middleware(new RateLimiter(fewRequest).getMiddleware())
   async deletedAllTasks(
     req: Request,
     res: Response

@@ -13,15 +13,15 @@ import { BaseController } from ".";
 import { RateLimiter } from "@src/middlewares/rate-limiter";
 import { AuthMiddleware } from "@src/middlewares/auth";
 
-const manyRequest = new RateLimiter(10).getMiddleware()
-const fewRequest = new RateLimiter(2).getMiddleware()
+const manyRequest = 10
+const fewRequest = 2
 
 @Controller("tasks")
 @ClassMiddleware(AuthMiddleware)
 export class QueryTask extends BaseController {
 
   @Get("all")
-  @Middleware(fewRequest)
+  @Middleware(new RateLimiter(fewRequest).getMiddleware())
   getAllTasks = async (
     req: Request,
     res: Response
@@ -38,7 +38,7 @@ export class QueryTask extends BaseController {
   };
 
   @Get("date/:month/:day/:year")
-  @Middleware(manyRequest)
+  @Middleware(new RateLimiter(manyRequest).getMiddleware())
   getByFullDate = async (
     req: Request<
       {
@@ -68,7 +68,7 @@ export class QueryTask extends BaseController {
   };
 
   @Get("month/:month/:year")
-  @Middleware(manyRequest)
+  @Middleware(new RateLimiter(manyRequest).getMiddleware())
   getByMonth = async (
     req: Request<
       {
@@ -95,7 +95,7 @@ export class QueryTask extends BaseController {
   };
 
   @Get("year/:year")
-  @Middleware(manyRequest)
+  @Middleware(new RateLimiter(manyRequest).getMiddleware())
   getByYear = async (
     req: Request<{ year: string }>,
     res: Response
@@ -114,7 +114,7 @@ export class QueryTask extends BaseController {
   };
 
   @Get("done/:condition")
-  @Middleware(fewRequest)
+  @Middleware(new RateLimiter(2).getMiddleware())
   getDoneOrNotTasks = async (
     req: Request<{ condition: string }>,
     res: Response
@@ -132,8 +132,8 @@ export class QueryTask extends BaseController {
     }
   };
 
-  @Get("delayed")
-  @Middleware(fewRequest)
+  @Get("overdue")
+  @Middleware(new RateLimiter(fewRequest).getMiddleware())
   getOverdueTasks = async (
     req: Request,
     res: Response

@@ -12,15 +12,15 @@ import { BaseController } from ".";
 import { RateLimiter } from "@src/middlewares/rate-limiter";
 import { AuthMiddleware } from "@src/middlewares/auth";
 
-const manyRequest = new RateLimiter(10).getMiddleware()
-const fewRequest = new RateLimiter(2).getMiddleware()
+const manyRequest = 10
+const fewRequest = 2
 
 @Controller("trash")
 @ClassMiddleware(AuthMiddleware)
 export class TrashTasks extends BaseController {
 
   @Get("all")
-  @Middleware(fewRequest)
+  @Middleware(new RateLimiter(fewRequest).getMiddleware())
   async findAllTrashTasks(
     req: Request,
     res: {
@@ -29,7 +29,7 @@ export class TrashTasks extends BaseController {
   ) {
     const allTrash = new AllTrash(new PrismaTrashRepository());
     const userId = req.context.userId._id
-    try{
+    try {
       const { trash } = await allTrash.execute(userId);
       return { get: res.json(trash.map(TrashViewModel.toHTTP)) };
     } catch (err) {
@@ -38,15 +38,15 @@ export class TrashTasks extends BaseController {
   }
 
   @Delete(":id/delete")
-  @Middleware(manyRequest)
+  @Middleware(new RateLimiter(manyRequest).getMiddleware())
   async deletedTrashTask(
     req: { params: { id: string } },
     res: Response
   ) {
     const id: string = req.params.id;
     const deleted = new DeleteTrash(new PrismaDeleteTrashRepository());
-   
-    try{
+
+    try {
       const { deleteTrash } = await deleted.execute(id);
       return { delete: res.json(deleteTrash) };
     } catch (err) {
@@ -55,7 +55,7 @@ export class TrashTasks extends BaseController {
   }
 
   @Delete("delete/all")
-  @Middleware(manyRequest)
+  @Middleware(new RateLimiter(manyRequest).getMiddleware())
   async deletedAllTrashTasks(
     _: Request,
     res: Response
@@ -63,8 +63,8 @@ export class TrashTasks extends BaseController {
     const deleteAllTrash = new DeleteAllTrash(
       new PrismaDeleteTrashRepository()
     );
-   
-    try{
+
+    try {
       const { deleteTrash } = await deleteAllTrash.execute();
       return { delete: res.json(deleteTrash) };
     } catch (err) {

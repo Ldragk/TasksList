@@ -7,14 +7,14 @@ import { BaseController } from ".";
 import { RateLimiter } from "@src/middlewares/rate-limiter";
 import { AuthMiddleware } from "@src/middlewares/auth";
 
-const manyRequest = new RateLimiter(5).getMiddleware()
+const manyRequest = 5
 
 @Controller("tasks")
 @ClassMiddleware(AuthMiddleware)
 export class Notifications extends BaseController {
 
   @Get("notifications/:daysOfDelay/:type")
-  @Middleware(manyRequest)
+  @Middleware(new RateLimiter(manyRequest).getMiddleware())
   notificationOfTasksNearTheDeadline = async (
     req: Request<{ daysOfDelay: string; type: string }>,
     res: Response
