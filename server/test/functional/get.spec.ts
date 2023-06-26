@@ -58,12 +58,6 @@ describe('get controller testing', () => {
         await Promise.all(createTaskPromises);
     });
 
-    beforeEach(async () => {
-        // await prisma.task.deleteMany({})
-        // await prisma.user.deleteMany({});
-
-    });
-
     afterAll(async () => {
         await prisma.task.deleteMany({})
         await prisma.user.deleteMany({});
@@ -161,5 +155,6 @@ describe('get controller testing', () => {
             expect(response.status).toBe(200);
             expect(response.body).toHaveLength(2);
         });
-    });
+
+    });    
 });
