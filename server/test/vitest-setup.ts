@@ -1,6 +1,5 @@
 import { SetupServer } from '@src/server';
 import supertest from 'supertest';
-import { prisma } from './prisma/prisma-client';
 
 let server: SetupServer;
 beforeAll(async () => {
