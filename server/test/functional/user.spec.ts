@@ -1,21 +1,20 @@
-import AuthService from '@src/use-cases/auth';
 import { prisma } from '@src/prisma/prisma-client';
-import { PrismaUserRepository } from '@src/prisma/repositories/users/prisma-user-repository';
-
+import AuthService from '@src/use-cases/auth';
 
 const user = prisma.user;
 
 describe('Users functional tests', () => {
 
-
     beforeEach(async () => {
         await prisma.task.deleteMany({})
+        await prisma.deletedTask.deleteMany({});
         await prisma.user.deleteMany({});
     });
 
     afterAll(async () => {
         await prisma.task.deleteMany({})
-        await prisma.user.deleteMany({});
+        await prisma.deletedTask.deleteMany({});
+        await prisma.user.deleteMany({});;
     });
 
     describe('When creating a new user', () => {
@@ -196,8 +195,8 @@ describe('Users functional tests', () => {
             });
 
             const { body, status } = await global.testRequest
-            .get('/users/delete')
-            .set('x-access-token', token);
+                .get('/users/delete')
+                .set('x-access-token', token);
 
         })
     })

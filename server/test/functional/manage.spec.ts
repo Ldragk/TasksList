@@ -13,7 +13,8 @@ describe('manage controller Testing', () => {
 
     beforeEach(async () => {
         await prisma.task.deleteMany({})
-        await prisma.user.deleteMany({});
+        await prisma.deletedTask.deleteMany({});
+        await prisma.user.deleteMany({});;
 
         const prismaUserRepository = new PrismaUserRepository();
         const user = await global.testRequest.post('/users').send(defaultUser);
@@ -28,7 +29,8 @@ describe('manage controller Testing', () => {
 
     afterAll(async () => {
         await prisma.task.deleteMany({})
-        await prisma.user.deleteMany({});
+        await prisma.deletedTask.deleteMany({});
+        await prisma.user.deleteMany({});;
     });
 
     const dateFormat = `Format: Date must be a string and separated by slashes '/', with the following format: month/day/year.`;

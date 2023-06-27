@@ -54,13 +54,13 @@ describe('get controller testing', () => {
             });
             createTaskPromises.push(body);
         }
-
         await Promise.all(createTaskPromises);
     });
 
     afterAll(async () => {
         await prisma.task.deleteMany({})
-        await prisma.user.deleteMany({});
+        await prisma.deletedTask.deleteMany({});
+        await prisma.user.deleteMany({});;
     });
 
     describe('get all tasks', () => {
@@ -139,7 +139,7 @@ describe('get controller testing', () => {
 
     });
 
-    describe('get tasks by done', async () => {        
+    describe('get tasks by done', async () => {
 
         it('Should returned not done tasks', async () => {
             const response = await global.testRequest.get('/tasks/done/0').set('x-access-token', token);
@@ -156,5 +156,5 @@ describe('get controller testing', () => {
             expect(response.body).toHaveLength(2);
         });
 
-    });    
+    });
 });
