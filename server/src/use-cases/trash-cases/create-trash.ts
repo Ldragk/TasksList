@@ -15,7 +15,7 @@ export class CreateTrash {
   ) { }
 
   async execute(userId: string, taskId: string): Promise<CreateTrashResponse> {
-    const task: Task = await this.manageRepository.findeById(taskId, userId);
+    const task: Task = await this.manageRepository.findById(taskId, userId);
 
     if (!task) {
       throw new Error("Access denied");
@@ -24,9 +24,9 @@ export class CreateTrash {
 
     const trash: Trash = new Trash(
       {
-        title: String(title),
-        content: content.value,
-        date: date.value,
+        title: title,
+        content: content,
+        date: date,
         done: done,
         createdAt: createdAt,
         userId: task.userId,
