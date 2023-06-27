@@ -56,8 +56,7 @@ export class UserController extends BaseController {
         }
     }
 
-
-    @Delete('delete/:email')
+    @Delete('delete')
     @Middleware(AuthMiddleware)
     public async delete(
         req: Request,
