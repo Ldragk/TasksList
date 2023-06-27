@@ -1,5 +1,6 @@
 import { DeletedTask as RawTrash } from "@prisma/client";
 import { Trash } from "@src/entities/trash";
+import { LimitDate } from "@src/entities/task-entities/limitDate";
 
 export class PrismaTrashMapper {
   static toPrisma(trash: Trash) {
@@ -7,7 +8,7 @@ export class PrismaTrashMapper {
       id: trash.id,
       title: trash.title,
       content: trash.content,
-      date: trash.date,
+      date: trash.date.value,
       done: trash.done,
       deletedAt: trash.deleted(),
       userId: trash.userId,
@@ -19,7 +20,7 @@ export class PrismaTrashMapper {
       {
         title: raw.title,
         content: raw.content,
-        date: raw.date,
+        date: new LimitDate(raw.date),
         done: raw.done,
         createdAt: raw.createdAt,
         deletedAt: raw.deletedAt,

@@ -20,7 +20,7 @@ describe("update", () => {
 
     await update.execute(id, userId, taskUpdate);
     expect(tasksRepository.tasks[0].title).toEqual(taskUpdate.title);
-    expect(tasksRepository.tasks[0].content.value).toEqual(taskUpdate.content);
+    expect(tasksRepository.tasks[0].content).toEqual(taskUpdate.content);
     expect(tasksRepository.tasks[0].date.value).toEqual(taskUpdate.date);
     expect(tasksRepository.tasks[0].done).toEqual(taskUpdate.done);
   });

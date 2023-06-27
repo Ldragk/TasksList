@@ -1,5 +1,4 @@
 import { Task } from "@src/entities/task";
-import { Content } from "@src/entities/task-entities/content";
 import { LimitDate } from "@src/entities/task-entities/limitDate";
 import { ManageRepository } from "@src/repositories/manage-repository";
 
@@ -15,24 +14,28 @@ interface EditTaskResponse {
 }
 
 export class FullUpdate {
-  constructor(private manageRepository: ManageRepository) {}
+  constructor(private manageRepository: ManageRepository) { }
 
   async execute(
     taskId: string,
     userId: string,
     body: EditTaskRequest
   ): Promise<EditTaskResponse> {
-    const task: Task = await this.manageRepository.findeById(taskId, userId);
+    const task: Task = await this.manageRepository.findById(taskId, userId);
+    const { title, content, date, done } = body;    
 
-    const { title, content, date, done } = body;
-
-    task.title = title ?? task.title;
-    task.content = new Content(content) ?? task.content;
-    task.date = new LimitDate(date) ?? task.date;
-    task.done = done ?? task.done;
     task.updated();
+    const taskUpdated = new Task({
+      title: title || task.title,
+      content: content ?? task.content,
+      date: new LimitDate(date) ?? task.date,
+      done: done ?? task.done,
+      createdAt: task.createdAt,
+      updatedAt: task.updatedAt,
+      userId: task.userId,
+    }, task.id);    
 
-    await this.manageRepository.save(task, userId);
-    return { task: task };
+    await this.manageRepository.save(taskUpdated, userId);
+    return { task: taskUpdated };
   }
 }

@@ -1,5 +1,4 @@
 import { Task } from "../task";
-import { Content } from "../task-entities/content";
 import { LimitDate } from "../task-entities/limitDate";
 import { currentYear } from "../task-entities/__test__/limitDate.spec";
 
@@ -11,11 +10,12 @@ describe("task", () => {
       () =>
         new Task({
           title: "Task 1",
-          content: new Content("Content 1"),
+          content: "Content 1",
           date: new LimitDate(`02/28/${currentYear}`),
           done: true,
           createdAt: new Date(),
           updatedAt: undefined,
+          userId: expect.any(String),
         })
     ).toBeTruthy();
   });
@@ -25,10 +25,11 @@ describe("task", () => {
       () =>
         new Task({
           title: "",
-          content: new Content("asdf"),
+          content: "asdf",
           date: new LimitDate(`02/29/2022`),
           createdAt: new Date(Date.now() - 1),
           updatedAt: new Date(),
+          userId: expect.any(String),
         })
     ).toThrowError();
   });

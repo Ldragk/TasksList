@@ -1,7 +1,10 @@
+import { LimitDate } from './task-entities/limitDate';
+
+
 export interface TrashProps {
   title: string;
   content: string;
-  date: string;
+  date: LimitDate;
   done?: boolean;
   createdAt?: Date;
   deletedAt?: Date | null | undefined;
@@ -40,11 +43,11 @@ export class Trash {
     return this.props.content;
   }
 
-  public set date(date: string) {
+  public set date(date: LimitDate) {
     this.props.date = date;
   }
 
-  public get date(): string {
+  public get date(): LimitDate {
     return this.props.date;
   }
 

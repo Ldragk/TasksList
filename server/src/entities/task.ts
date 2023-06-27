@@ -1,11 +1,9 @@
 import { ObjectId } from 'bson';
-import { Content } from './task-entities/content';
 import { LimitDate } from './task-entities/limitDate';
-import { User } from '@prisma/client';
 
 export interface TaskProps {
   title: string;
-  content: Content;
+  content: string;
   date: LimitDate;
   done?: boolean;
   createdAt?: Date;
@@ -18,9 +16,12 @@ export class Task {
 
   constructor(props: TaskProps, id?: string) {
 
-    if (props.title.length >= 1 && props.title.length <= 30) {
-      new Error('Title must be between 1 and 30 characters');
+    if (props.title.length < 1 || props.title.length > 30) {
+      throw new Error('Title must be between 1 and 30 characters');
     }
+    if (props.content.length < 5 || props.content.length > 250) {
+      throw new Error('Content must be between 5 and 250 characters');
+    }   
 
     this.props = {
       ...props,
@@ -45,11 +46,11 @@ export class Task {
     return this.props.title;
   }
 
-  public set content(content: Content) {
+  public set content(content: string) {
     this.props.content = content;
   }
 
-  public get content(): Content {
+  public get content(): string {
     return this.props.content;
   }
 

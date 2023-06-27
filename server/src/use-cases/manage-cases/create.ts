@@ -1,5 +1,4 @@
 import { Task } from "@src/entities/task";
-import { Content } from "@src/entities/task-entities/content";
 import { LimitDate } from "@src/entities/task-entities/limitDate";
 import { ManageRepository } from "@src/repositories/manage-repository";
 
@@ -22,7 +21,7 @@ export class CreateTask {
     const { title, content, date, done, userId } = props;
     const task = new Task({
       title: title,
-      content: new Content(content),
+      content: content,
       date: new LimitDate(date),
       done,
       userId
