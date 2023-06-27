@@ -51,7 +51,7 @@ export class PrismaManageRepository implements ManageRepository {
     }
   }
 
-  async findeById(taskId: string, userId: string): Promise<Task> {
+  async findById(taskId: string, userId: string): Promise<Task> {
 
     const task = await prisma.task.findUniqueOrThrow({
       where: {

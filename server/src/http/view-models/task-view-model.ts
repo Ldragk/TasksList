@@ -2,15 +2,16 @@ import { Task } from "@src/entities/task";
 
 export class TaskViewModel {
   static toHTTP(task: Task) {
+    const{ id, title, content, date, done, createdAt, updatedAt, userId } = task;
     return {
-      id: task.id,
-      title: task.title,
-      content: task.content.value,
-      date: task.date,
-      done: task.done,
-      createdAt: task.createdAt,
-      updatedAt: task.updatedAt,
-      userId: task.userId
+      id,
+      title,
+      content,
+      date,
+      done,
+      createdAt,
+      updatedAt,
+      userId
     };
   }
 }

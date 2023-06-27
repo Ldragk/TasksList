@@ -9,7 +9,7 @@ export class TaskStatus {
   constructor(private manageRepository: ManageRepository) { }
 
   async execute(taskId: string, userId: string): Promise<EditTaskResponse> {
-    const task = await this.manageRepository.findeById(taskId, userId);
+    const task = await this.manageRepository.findById(taskId, userId);
 
     task.done === false ? (task.done = true) : (task.done = false);
     task.updated();

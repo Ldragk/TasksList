@@ -2,14 +2,16 @@ import { Trash } from "@src/entities/trash";
 
 export class TrashViewModel {
   static toHTTP(trash: Trash) {
+    const { id, title, content, date, done, createdAt, deletedAt, userId } = trash;
     return {
-      id: trash.id,
-      title: trash.title,
-      content: trash.content,
-      date: trash.date,
-      done: trash.done,
-      createdAt: trash.createdAt,
-      deletedAt: trash.deletedAt,
+      id,
+      title,
+      content,
+      date,
+      done,
+      createdAt,
+      deletedAt,
+      userId
     };
   }
 }

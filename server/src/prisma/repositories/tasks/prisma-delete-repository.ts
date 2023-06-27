@@ -4,7 +4,7 @@ import { PrismaManageRepository } from "./prisma-manage-repository";
 
 export class PrismaDeleteRepository implements DeleteRepository {
   async delete(userId: string, id: string): Promise<void> {
-    const task = await new PrismaManageRepository().findeById(id, userId);
+    const task = await new PrismaManageRepository().findById(id, userId);
 
     if (task) {
       await prisma.task.delete({
