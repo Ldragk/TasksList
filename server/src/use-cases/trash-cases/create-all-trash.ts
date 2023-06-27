@@ -1,8 +1,9 @@
 import { Trash } from "@src/entities/trash";
 import { QueryRepository } from "@src/repositories/get-repository";
 import { TrashRepository } from "@src/repositories/trash-repository";
-import { QueryAllTasks } from "../query-cases/get-all";
 import { CreateTrashResponse } from "./create-trash";
+import { Task } from "@src/entities/task";
+import { LimitDate } from "@src/entities/task-entities/limitDate";
 
 export class CreateAllTrash {
   constructor(
@@ -11,17 +12,16 @@ export class CreateAllTrash {
   ) { }
 
   async execute(userId: string): Promise<CreateTrashResponse> {
-    const queryAllTasks = new QueryAllTasks(this.queryRepository);
-    const { tasks } = Object(await queryAllTasks.execute(userId));
+    const tasks = await this.queryRepository.findAllTasks(userId);  
 
-    return tasks.map(async (task: Trash) => {
+    return Object(tasks).map(async (task: Task) => {
       const { id, title, content, date, done, createdAt } = task;
 
       const trashBody = new Trash(
         {
           title: title,
           content: content,
-          date: date,
+          date: new LimitDate(date.value),
           done: done,
           createdAt: createdAt,
           userId: task.userId,
