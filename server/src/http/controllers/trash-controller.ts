@@ -11,6 +11,7 @@ import logger from "@src/logger";
 import { BaseController } from ".";
 import { RateLimiter } from "@src/middlewares/rate-limiter";
 import { AuthMiddleware } from "@src/middlewares/auth";
+import NodeCache from 'node-cache';
 
 const manyRequest = 10
 const fewRequest = 2
@@ -18,19 +19,29 @@ const fewRequest = 2
 @Controller("trash")
 @ClassMiddleware(AuthMiddleware)
 export class TrashTasks extends BaseController {
+  private cache = new NodeCache();
 
   @Get("all")
-  @Middleware(new RateLimiter(fewRequest).getMiddleware())
+  @Middleware(new RateLimiter(fewRequest + 2).getMiddleware())
   async findAllTrashTasks(
     req: Request,
-    res: {
-      json: (arg0: TrashViewModel) => Promise<Trash[]>;
-    }
+    res: Response
   ) {
+    const cacheKey = 'allTasks';
+    const cachedTrash = this.cache.get(cacheKey);
+
+    if (cachedTrash) {
+      return res.status(200).json(cachedTrash);
+    }
+
     const allTrash = new AllTrash(new PrismaTrashRepository());
     const userId = req.context.userId._id
     try {
       const { trash } = await allTrash.execute(userId);
+      const tasksData = trash.map(TrashViewModel.toHTTP);
+
+      this.cache.set(cacheKey, tasksData);
+
       return { get: res.json(trash.map(TrashViewModel.toHTTP)) };
     } catch (err) {
       return logger.error(err);
