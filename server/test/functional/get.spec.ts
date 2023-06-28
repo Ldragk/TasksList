@@ -1,7 +1,6 @@
 import { prisma } from "@src/prisma/prisma-client";
 import { PrismaUserRepository } from "@src/prisma/repositories/users/prisma-user-repository";
 import AuthService from "@src/use-cases/auth";
-import { describe } from "vitest";
 
 describe('get controller testing', () => {
     const createTask = {
