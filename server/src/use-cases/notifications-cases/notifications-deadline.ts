@@ -19,6 +19,10 @@ export class NotificationOfTasksNearTheDeadline {
     notificationsWithinThePeriod,
     type,
   }: IParamsNotifications): Promise<NotificationResponse> {
+
+    if (notificationsWithinThePeriod > 25) {
+      throw new Error('The maximum number of days in advance is 25 days');
+    }
     return await this.notificationType(userId, {
       notificationsWithinThePeriod,
       type,
@@ -29,6 +33,7 @@ export class NotificationOfTasksNearTheDeadline {
     notificationsWithinThePeriod,
     type,
   }: IParamsNotifications): Promise<NotificationResponse> {
+
     const tasks: Notification[] =
       await this.notificationRepository.findNotifications(userId, false);
 
@@ -46,7 +51,6 @@ export class NotificationOfTasksNearTheDeadline {
         ),
       };
     }
-
     return {
       notification: tasks.filter(
         (task: Notification) =>
