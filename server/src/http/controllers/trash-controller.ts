@@ -11,7 +11,6 @@ import logger from "@src/logger";
 import { BaseController } from ".";
 import { RateLimiter } from "@src/middlewares/rate-limiter";
 import { AuthMiddleware } from "@src/middlewares/auth";
-import NodeCache from 'node-cache';
 
 const manyRequest = 10
 const fewRequest = 2
@@ -19,7 +18,6 @@ const fewRequest = 2
 @Controller("trash")
 @ClassMiddleware(AuthMiddleware)
 export class TrashTasks extends BaseController {
-  private cache = new NodeCache();
 
   @Get("all")
   @Middleware(new RateLimiter(fewRequest + 2).getMiddleware())
@@ -27,8 +25,7 @@ export class TrashTasks extends BaseController {
     req: Request,
     res: Response
   ) {
-    const cacheKey = 'allTasks';
-    const cachedTrash = this.cache.get(cacheKey);
+    const cachedTrash = this.cache.get(this.trashCacheKey);
 
     if (cachedTrash) {
       return res.status(200).json(cachedTrash);
@@ -38,9 +35,9 @@ export class TrashTasks extends BaseController {
     const userId = req.context.userId._id
     try {
       const { trash } = await allTrash.execute(userId);
-      const tasksData = trash.map(TrashViewModel.toHTTP);
+      const trashData = trash.map(TrashViewModel.toHTTP);
 
-      this.cache.set(cacheKey, tasksData);
+      this.cache.set(this.trashCacheKey, trashData);
 
       return { get: res.json(trash.map(TrashViewModel.toHTTP)) };
     } catch (err) {
@@ -51,14 +48,17 @@ export class TrashTasks extends BaseController {
   @Delete(":id/delete")
   @Middleware(new RateLimiter(manyRequest).getMiddleware())
   async deletedTrashTask(
-    req: { params: { id: string } },
+    req: Request,
     res: Response
   ) {
+    const userId = req.context.userId._id
     const id: string = req.params.id;
     const deleted = new DeleteTrash(new PrismaDeleteTrashRepository());
 
     try {
-      const { deleteTrash } = await deleted.execute(id);
+      const { deleteTrash } = await deleted.execute(userId, id);
+      this.cache.del(this.taskCacheKey);
+
       return { delete: res.json(deleteTrash) };
     } catch (err) {
       return this.errorResponse(res, err as Error);
@@ -68,15 +68,18 @@ export class TrashTasks extends BaseController {
   @Delete("delete/all")
   @Middleware(new RateLimiter(manyRequest).getMiddleware())
   async deletedAllTrashTasks(
-    _: Request,
+    req: Request,
     res: Response
   ) {
+    const userId = req.context.userId._id
     const deleteAllTrash = new DeleteAllTrash(
       new PrismaDeleteTrashRepository()
     );
 
     try {
-      const { deleteTrash } = await deleteAllTrash.execute();
+      const { deleteTrash } = await deleteAllTrash.execute(userId);
+      this.cache.del(this.taskCacheKey);
+
       return { delete: res.json(deleteTrash) };
     } catch (err) {
       return this.errorResponse(res, err as Error);

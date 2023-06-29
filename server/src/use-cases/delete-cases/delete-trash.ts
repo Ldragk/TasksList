@@ -5,8 +5,8 @@ interface DeleteTrashResponse {
 }
 
 export class DeleteTrash {
-  constructor(private deleteTrashRepository: DeleteRepository) {}
-  async execute(id: string): Promise<DeleteTrashResponse> {
-    return { deleteTrash: await this.deleteTrashRepository.delete(id) };
+  constructor(private deleteTrashRepository: DeleteRepository) { }
+  async execute(userId: string, id: string): Promise<DeleteTrashResponse> {
+    return { deleteTrash: await this.deleteTrashRepository.delete(userId, id) };
   }
 }
