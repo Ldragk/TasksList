@@ -39,6 +39,8 @@ export class DeleteTasks extends BaseController {
       const { createTrash } = await create.execute(userId, id);
       const { deleteTrash } = await deleteTask.execute(userId, id);
 
+      this.cache.del(this.taskCacheKey);
+
       return {
         create: res.status(201).json(TrashViewModel.toHTTP(createTrash)),
         delete: res.status(200).json(deleteTrash),
@@ -64,6 +66,8 @@ export class DeleteTasks extends BaseController {
     try {
       const { createTrash } = await create.execute(userId);
       const { deleteTrash } = await deleteAllTasks.execute(userId);
+
+      this.cache.del(this.taskCacheKey);
 
       return {
         create: res.status(201).json(createTrash),

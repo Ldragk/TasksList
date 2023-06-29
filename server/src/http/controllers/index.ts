@@ -2,8 +2,12 @@ import { Prisma } from '@prisma/client';
 import logger from '@src/logger';
 import ApiErr, { APIError } from '@src/util/err/api-err';
 import { Response } from 'express';
+import NodeCache from 'node-cache';
 
 export abstract class BaseController {
+  protected cache = new NodeCache();
+  protected taskCacheKey = 'allTasks';
+  protected trashCacheKey = 'allTrash'
 
   protected errorResponse(
     res: Response,

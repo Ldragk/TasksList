@@ -24,13 +24,14 @@ export class ManageTasks extends BaseController {
     res: Response
   ) {
     const createTask = new CreateTask(new PrismaManageRepository());
-    const userId = req.context.userId._id   
-    
+    const userId = req.context.userId._id
+
     try {
       const { task } = await createTask.execute({
         ...req.body,
         ...{ userId: userId },
       });
+      this.cache.del(this.taskCacheKey);
 
       return { task: res.status(201).json(TaskViewModel.toHTTP(task)) };
     } catch (err) {
@@ -52,6 +53,7 @@ export class ManageTasks extends BaseController {
     try {
       const { task } = await taskStatus.execute(id, userId);
 
+      this.cache.emit('invalidate', this.taskCacheKey);
       return { task: res.status(200).json(TaskViewModel.toHTTP(task)) };
     } catch (err) {
       return this.errorResponse(res, err as Error)
@@ -79,6 +81,8 @@ export class ManageTasks extends BaseController {
         date,
         done,
       });
+      this.cache.emit('invalidate', this.taskCacheKey);
+
       return { task: res.status(200).json(TaskViewModel.toHTTP(task)) };
     } catch (err) {
       return this.errorResponse(res, err as Error)

@@ -12,7 +12,6 @@ import logger from "@src/logger";
 import { BaseController } from ".";
 import { RateLimiter } from "@src/middlewares/rate-limiter";
 import { AuthMiddleware } from "@src/middlewares/auth";
-import NodeCache from 'node-cache';
 
 const manyRequest = 10
 const fewRequest = 2
@@ -20,7 +19,6 @@ const fewRequest = 2
 @Controller("tasks")
 @ClassMiddleware(AuthMiddleware)
 export class QueryTask extends BaseController {
-  private cache = new NodeCache();
 
   @Get("all")
   @Middleware(new RateLimiter(fewRequest + 2).getMiddleware())
@@ -28,10 +26,9 @@ export class QueryTask extends BaseController {
     req: Request,
     res: Response
   ) => {
-    const cacheKey = 'allTasks'; 
-    const cachedTasks = this.cache.get(cacheKey); 
+    const cachedTasks = this.cache.get(this.taskCacheKey);
 
-    if (cachedTasks) {     
+    if (cachedTasks) {
       return res.status(200).json(cachedTasks);
     }
 
@@ -41,8 +38,8 @@ export class QueryTask extends BaseController {
     try {
       const { tasks } = await queryAllTasks.execute(userId);
       const tasksData = tasks.map(TaskViewModel.toHTTP);
-      
-      this.cache.set(cacheKey, tasksData);
+
+      this.cache.set(this.taskCacheKey, tasksData);
 
       return res.status(200).json(tasksData);
     } catch (err) {
