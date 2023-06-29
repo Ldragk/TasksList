@@ -42,7 +42,7 @@ O projeto é uma API REST para servir uma aplicação de Lista de tarefas, segui
 
 ### Objetivo 
 
-Inicialmente teve o objetivo de consolidar meus conhecimentos de Back-end e Engenharia de Software, além de praticar a utilização de Node.js com Express e Prisma Studio. O objetivo agora é continuar utilizando esse projeto para praticar, aprimorando-o com as novas habilidades, tecnologias e ferramentas que adquiro desenvolvendo outros projetos de eventos ou cursos.
+Inicialmente teve o objetivo de consolidar meus conhecimentos de Back-end e Engenharia de Software, além de praticar a utilização de Node.js com Express e Prisma Studio. O objetivo agora é continuar utilizando esse projeto para praticar, aprimorando-o com as novas habilidades, tecnologias e ferramentas que adquiro.
 
 <br>
 
