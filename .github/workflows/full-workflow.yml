@@ -1,0 +1,47 @@
+name: Complete workflow
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up environment variables
+        working-directory: server
+        run: |
+          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env
+          cat .env
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Show IP Address
+        run: echo ${{ steps.job_id.outputs.ip_address }}        
+
+      - name: Install dependencies
+        working-directory: server
+        run: npm install
+
+      - name: Run unit tests
+        working-directory: server
+        run: npm run test:unit
+
+      - name: Run functional tests
+        working-directory: server
+        run: npm run test:functional
