@@ -184,6 +184,7 @@ describe('manage controller Testing', () => {
                 },
                 done: true,
                 createdAt: new Date(new Date().setSeconds(0, 0)).toISOString(),
+                updatedAt: new Date(new Date().setSeconds(0, 0)).toISOString(),
                 userId: expect.any(String),
             }));
         })
