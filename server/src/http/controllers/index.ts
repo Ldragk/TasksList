@@ -8,6 +8,7 @@ export abstract class BaseController {
   protected cache = new NodeCache();
   protected taskCacheKey = 'allTasks';
   protected trashCacheKey = 'allTrash'
+  protected userCacheKey = 'me'
 
   protected errorResponse(
     res: Response,

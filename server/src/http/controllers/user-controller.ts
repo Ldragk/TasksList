@@ -9,10 +9,11 @@ import { Authenticate } from '@src/use-cases/user-cases/authenticate';
 import { Me } from '@src/use-cases/user-cases/me';
 import { DeleteUser } from '@src/use-cases/user-cases/delete';
 import { UpdateUser } from '@src/use-cases/user-cases/update';
+import { RateLimiter } from '@src/middlewares/rate-limiter';
 
 @Controller('users')
 export class UserController extends BaseController {
- 
+
     @Post('')
     public async create(req: Request, res: Response) {
         try {
@@ -28,7 +29,7 @@ export class UserController extends BaseController {
             return this.errorResponse(res, err as Error)
         }
     }
-  
+
     @Post('authenticate')
     public async authenticate(
         req: Request,
@@ -43,20 +44,29 @@ export class UserController extends BaseController {
             return this.userErrorResponse(err as Error, res)
         }
     }
-  
+
     @Get('me')
     @Middleware(AuthMiddleware)
+    @Middleware(new RateLimiter(3).getMiddleware())
     public async me(req: Request, res: Response) {
         const me = new Me(new PrismaUserRepository())
 
+        const cachedTasks = this.cache.get(this.userCacheKey);
+
+        if (cachedTasks) {
+            return res.status(200).json(cachedTasks);
+        }
+
         try {
-            const { user } = await me.execute(req);
+            const { user } = await me.execute(req);            
+            this.cache.set(this.userCacheKey, UserViewModel.toHTTP(user));
+
             return { user: res.status(200).json(UserViewModel.toHTTP(user)) }
         } catch (err) {
             return this.userErrorResponse(err as Error, res)
         }
     }
-   
+
     @Delete('delete')
     @Middleware(AuthMiddleware)
     public async delete(
@@ -67,6 +77,8 @@ export class UserController extends BaseController {
 
         try {
             const { user } = await deleteUser.execute(req);
+            this.cache.del(this.userCacheKey);
+            
             return res.status(200).json({
                 message: `User ${user.name} deleted successfully!`,
                 user: user
@@ -84,16 +96,11 @@ export class UserController extends BaseController {
 
         try {
             const { user } = await updateUser.execute(userId, req.body)
+            this.cache.emit('invalidate', this.userCacheKey);
+            
             return res.status(200).json(UserViewModel.toHTTP(user))
         } catch (err) {
             return this.userErrorResponse(err as Error, res)
         }
-    }
-
-    @Get('all')
-    public async all(req: Request, res: Response) {
-        const repo = new PrismaUserRepository()
-        const users = await repo.findAllUsers()
-        return res.status(200).json(users.map(UserViewModel.toHTTP));
-    }
+    }    
 }

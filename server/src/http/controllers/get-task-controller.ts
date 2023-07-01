@@ -124,7 +124,7 @@ export class QueryTask extends BaseController {
   };
 
   @Get("done/:condition")
-  @Middleware(new RateLimiter(2).getMiddleware())
+  @Middleware(new RateLimiter(fewRequest).getMiddleware())
   getDoneOrNotTasks = async (
     req: Request<{ condition: string }>,
     res: Response
