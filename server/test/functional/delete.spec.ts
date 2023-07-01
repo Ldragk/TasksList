@@ -46,14 +46,14 @@ describe('delete task', () => {
             const createTaskPromises = [];
 
             for (let i = 0; i < numberOfTasksToBeCreated; i++) {
-                const { body } = await global.testRequest.post('/tasks/create').set('x-access-token', token).send(createTask);
+                const { body } = await global.testRequest.post('/tasks/create').set('x-access-token', token).send(createTask)
                 createTaskPromises.push(body);
             }
             await Promise.all(createTaskPromises);
 
             const response = await global.testRequest.delete(`/tasks/delete/unique/${createTaskPromises[0].id}`).set('x-access-token', token);
             const taskDB = await prisma.task.findMany()
-            const trashDB = await prisma.deletedTask.findMany()   
+            const trashDB = await prisma.deletedTask.findMany()
 
             expect(response.status).toBe(201);
             expect(taskDB).toHaveLength(2);
@@ -64,14 +64,15 @@ describe('delete task', () => {
             const createTaskPromises = [];
 
             for (let i = 0; i < numberOfTasksToBeCreated; i++) {
-                const { body } = await global.testRequest.post('/tasks/create').set('x-access-token', token).send(createTask);
+                const { body } = await global.testRequest.post('/tasks/create').set('x-access-token', token).send(createTask)
+                .then(response => response.body);
                 createTaskPromises.push(body);
             }
             await Promise.all(createTaskPromises);
 
             const response = await global.testRequest.delete('/tasks/delete/unique/invalid-id').set('x-access-token', token);
             const taskDB = await prisma.task.findMany()
-            const trashDB = await prisma.deletedTask.findMany()   
+            const trashDB = await prisma.deletedTask.findMany()
 
             expect(response.status).toBe(404);
             expect(taskDB).toHaveLength(3);
@@ -93,18 +94,17 @@ describe('delete task', () => {
             const createTaskPromises = [];
 
             for (let i = 0; i < numberOfTasksToBeCreated; i++) {
-                const { body } = await global.testRequest.post('/tasks/create').set('x-access-token', token).send(createTask);
-                createTaskPromises.push(body);               
+                const { body } = await global.testRequest.post('/tasks/create').set('x-access-token', token).send(createTask).then(response => response.body);
+                createTaskPromises.push(body);
             }
-            await Promise.all(createTaskPromises);
-           
-            
-            const response = await global.testRequest.delete('/tasks/delete/all').set('x-access-token', token);
+            await Promise.allSettled(createTaskPromises);
+
+            const { status } = await global.testRequest.delete('/tasks/delete/all').set('x-access-token', token);
 
             const taskDB = await prisma.task.findMany()
-            const trashDB = await prisma.deletedTask.findMany()   
+            const trashDB = await prisma.deletedTask.findMany()
 
-            expect(response.status).toBe(201);
+            expect(status).toBe(201);
             expect(taskDB).toHaveLength(0);
             expect(trashDB).toHaveLength(3);
         })

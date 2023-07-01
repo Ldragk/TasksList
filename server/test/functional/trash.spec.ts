@@ -1,5 +1,6 @@
 import { prisma } from "@src/prisma/prisma-client";
 import { PrismaUserRepository } from "@src/prisma/repositories/users/prisma-user-repository";
+import { MakeTask } from "@src/test/factories/task-factory";
 import AuthService from "@src/use-cases/auth";
 
 describe('Trash route', () => {
@@ -50,16 +51,16 @@ describe('Trash route', () => {
             const createTaskPromises = [];
 
             for (let i = 0; i < numberOfTasksToBeCreated; i++) {
-                const { body } = await global.testRequest.post('/tasks/create').set('x-access-token', token).send(createTask);
+                const { body } = await global.testRequest.post('/tasks/create').set('x-access-token', token).send(createTask).then(response => response.body);
                 createTaskPromises.push(body);
             }
-            await Promise.all(createTaskPromises);
+            await Promise.allSettled(createTaskPromises);
 
             await global.testRequest.delete('/tasks/delete/all').set('x-access-token', token);
-            const response = await global.testRequest.get('/trash/all').set('x-access-token', token);
+            const { body, status } = await global.testRequest.get('/trash/all').set('x-access-token', token);
 
-            expect(response.status).toBe(200);
-            expect(response.body).toHaveLength(2);
+            expect(status).toBe(200);
+            expect(body).toHaveLength(2);
         });
     })
 
@@ -71,10 +72,10 @@ describe('Trash route', () => {
             const createTaskPromises = [];
 
             for (let i = 0; i < numberOfTasksToBeCreated; i++) {
-                const { body } = await global.testRequest.post('/tasks/create').set('x-access-token', token).send(createTask);
+                const { body } = await global.testRequest.post('/tasks/create').set('x-access-token', token).send(createTask).then(response => response.body);
                 createTaskPromises.push(body);
             }
-            await Promise.all(createTaskPromises);
+            await Promise.allSettled(createTaskPromises);
 
             await global.testRequest.delete('/tasks/delete/all').set('x-access-token', token);
             const beforeGetAll = await prisma.deletedTask.findMany({});
