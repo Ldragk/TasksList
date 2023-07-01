@@ -17,7 +17,8 @@ export class CreateUser {
     constructor(private userRepository: UserRepository) { }
 
     async execute(props: CreateUserRequest): Promise<CreateUserResponse> {
-        let { email, password, name } = props;
+        const { email, name } = props;
+        let { password } = props;
 
         const passwordValidation = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W).+$/;
 
