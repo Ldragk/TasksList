@@ -1,0 +1,126 @@
+openapi: "3.1.0"
+info:
+  version: "1.0.0"
+  title: "User controller"
+tags:
+  - name: Users
+    description: User controller
+
+paths:
+  /users:
+    post:
+      summary: New user create
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas/task.schema.yml/#/components/schemas/UserRequest"
+      responses:
+        201:
+          description: Task created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/task.schema.yml/#/components/schemas/UserResponse"
+      x-handler: create      
+      x-controller: user-controller.ts      
+
+  /users/authenticate:
+    post:
+      summary: authenticate user.
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas/task.schema.yml/#/components/schemas/UserAuthenticate"
+      responses:
+        200:
+          description: user authenticated.
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/task.schema.yml/#/components/schemas/UserAuthenticateResponse"
+      x-handler: authenticate
+      x-controller: user-controller.ts   
+
+  /users/me:
+    get:
+      summary: me user info.
+      tags:
+        - Users
+      requestBody:
+        required: false
+      responses:
+        200:
+          description: user info.
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/task.schema.yml/#/components/schemas/UserResponse"
+      x-handler: me      
+      x-middleware:
+        - RateLimiter(3).getMiddleware()      
+        - Middleware(AuthMiddleware)
+      x-middleware-description: 
+        - |
+          This route applies a rate limiter middleware to control the number of requests allowed in a certain period of time.
+          It allows a maximum of 3 requests per hour.   
+        - |
+          This route applies a authentication middleware to control the user authentication.
+          It allows access only to authenticated user.          
+      x-controller: user-controller.ts
+      x-cache:
+      enabled: true
+      description: |
+        This route is cacheable. Responses are cached to improve performance.
+        The cache remains valid until explicitly cleared. Once cleared, the cache will be refreshed with new data.
+  
+  /users/delete:
+    delete:
+      summary: delete me user.
+      tags:
+        - Users
+      requestBody:
+        required: false
+      responses:
+        200:
+          description: delete user.
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/task.schema.yml/#/components/schemas/UserResponse"
+      x-handler: delete      
+      x-controller: user-controller.ts
+
+  /users/update:
+    put:
+      summary: update me user.
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas/task.schema.yml/#/components/schemas/UserRequest"
+      responses:
+        200:
+          description: update user.
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/task.schema.yml/#/components/schemas/UserResponse"
+      x-handler: update      
+      x-controller: user-controller.ts
+      x-cache-invalidation:
+      description: |
+        This route triggers the cache invalidation for the corresponding user data.
+      example:
+        code: |
+          this.cache.emit('invalidate', this.userCacheKey)
