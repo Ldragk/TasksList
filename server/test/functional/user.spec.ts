@@ -198,7 +198,42 @@ describe('Users functional tests', () => {
                 .get('/users/delete')
                 .set('x-access-token', token);
 
+            expect(status).toBe(200);
+            expect(body).toMatchObject(JSON.parse(JSON.stringify(user.body)));
+
         })
     })
+
+    describe('When update a user', () => {
+
+        it('should update a user', async () => {
+
+            const newUser = {
+                name: 'John Doe',
+                email: 'john@mail.com',
+                password: '1aS@3$4%sF',
+            };
+            const user = await global.testRequest.post('/users').send(newUser);
+
+            const { id, ...others } = user.body
+
+            const token = AuthService.generateToken({
+                _id: id,
+                ...others
+            });
+
+            const updatedUser = {
+                name: 'John Doe update',
+                email: 'john-update@mail.com',
+                password: 'axS@2@6%sX',
+            };
+
+            const { body, status } = await global.testRequest.put('/users/update').set('x-access-token', token).send(updatedUser);
+
+            expect(status).toBe(200);
+            expect(body).toMatchObject(JSON.parse(JSON.stringify(user.body)));
+        })
+    })
+
 
 });

@@ -3,8 +3,6 @@ import { prisma } from "@src/prisma/prisma-client";
 import { UserRepository } from "@src/repositories/user-repository";
 import { PrismaUserMapper } from "./prisma-user-mapper";
 
-//TODO criar rota para alterar dados do usuário.
-
 export class PrismaUserRepository implements UserRepository {
 
     async create(user: User): Promise<void> {
@@ -22,25 +20,23 @@ export class PrismaUserRepository implements UserRepository {
         ]);
     }
 
-    async findByEmail(email: string): Promise<User | undefined> {
-        const user = await prisma.user.findUnique({
+    async findByEmail(email: string): Promise<User> {
+        const user = await prisma.user.findUniqueOrThrow({
             where: {
                 email: email,
             },
-        });
-        if (!user) return undefined;
+        });        
         return PrismaUserMapper.toDomain(user);
     }
 
-    async findById(id: string): Promise<User | undefined> {
-        const user = await prisma.user.findUnique({
+    async findById(id: string): Promise<User> {
+        const user = await prisma.user.findUniqueOrThrow({
             where: {
                 id: id,
             },
         });
-        if (!user) return undefined;
         return PrismaUserMapper.toDomain(user);
-    }
+    }    
 
     async delete(id: string): Promise<void> {
 
@@ -63,13 +59,27 @@ export class PrismaUserRepository implements UserRepository {
         });
     }
 
+    async update(id: string, user: User): Promise<void> {
+        const updateUser = PrismaUserMapper.toPrisma(user);
+        const { email, password, name } = updateUser
+        await prisma.user.update({
+            where: {
+                id: id,
+            },
+            data: {
+                email,
+                password,
+                name,
+            }
+        });
+    }
+
     async findAllUsers(): Promise<User[]> {
         const users = prisma.user.findMany({
             orderBy: {
                 createdAt: "desc",
             },
         });
-
         return (await users).map((user) => PrismaUserMapper.toDomain(user));
     }
 }

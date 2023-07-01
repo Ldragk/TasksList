@@ -110,7 +110,7 @@ export abstract class BaseController {
 
   protected userErrorResponse(err: Error, res: Response): void {
     logger.error(err);
-    if (err.message === 'User not found!') {
+    if (err.message === 'No User found') {
       this.sendErrorResponse(res, {
         code: 404,
         message: 'User not found!',

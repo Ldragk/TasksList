@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Middleware, Post } from '@overnightjs/core';
+import { Controller, Delete, Get, Middleware, Post, Put } from '@overnightjs/core';
 import { Request, Response } from 'express';
 import { BaseController } from '.';
 import { AuthMiddleware } from '@src/middlewares/auth';
@@ -8,10 +8,11 @@ import { UserViewModel } from '../view-models/user-view-model';
 import { Authenticate } from '@src/use-cases/user-cases/authenticate';
 import { Me } from '@src/use-cases/user-cases/me';
 import { DeleteUser } from '@src/use-cases/user-cases/delete';
+import { UpdateUser } from '@src/use-cases/user-cases/update';
 
 @Controller('users')
 export class UserController extends BaseController {
-
+ 
     @Post('')
     public async create(req: Request, res: Response) {
         try {
@@ -27,7 +28,7 @@ export class UserController extends BaseController {
             return this.errorResponse(res, err as Error)
         }
     }
-
+  
     @Post('authenticate')
     public async authenticate(
         req: Request,
@@ -42,7 +43,7 @@ export class UserController extends BaseController {
             return this.userErrorResponse(err as Error, res)
         }
     }
-
+  
     @Get('me')
     @Middleware(AuthMiddleware)
     public async me(req: Request, res: Response) {
@@ -55,7 +56,7 @@ export class UserController extends BaseController {
             return this.userErrorResponse(err as Error, res)
         }
     }
-
+   
     @Delete('delete')
     @Middleware(AuthMiddleware)
     public async delete(
@@ -66,9 +67,24 @@ export class UserController extends BaseController {
 
         try {
             const { user } = await deleteUser.execute(req);
-            return res.status(200).json({ 
+            return res.status(200).json({
                 message: `User ${user.name} deleted successfully!`,
-                user: user })
+                user: user
+            })
+        } catch (err) {
+            return this.userErrorResponse(err as Error, res)
+        }
+    }
+
+    @Put('update')
+    @Middleware(AuthMiddleware)
+    public async update(req: Request, res: Response) {
+        const userId = req.context.userId._id
+        const updateUser = new UpdateUser(new PrismaUserRepository())
+
+        try {
+            const { user } = await updateUser.execute(userId, req.body)
+            return res.status(200).json(UserViewModel.toHTTP(user))
         } catch (err) {
             return this.userErrorResponse(err as Error, res)
         }

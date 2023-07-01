@@ -9,11 +9,7 @@ export class Authenticate {
     async execute(req: Request) {
 
         const { email, password } = req.body;
-        const user = await this.userRepository.findByEmail(email);
-
-        if (!user) {
-            throw new Error('User not found!');
-        }
+        const user = await this.userRepository.findByEmail(email);       
 
         if (!(await AuthService.comparePassword(password, String(user.password)))) {
             throw new Error('Invalid password!');

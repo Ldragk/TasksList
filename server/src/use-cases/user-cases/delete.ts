@@ -11,10 +11,7 @@ export class DeleteUser {
 
         if (userId !== user?.id) {
             throw new Error("Access denied");
-        }
-        if (!user) {
-            throw new Error('User not found!');
-        }
+        }        
 
         await this.userRepository.delete(user.id);
         return { user: user };

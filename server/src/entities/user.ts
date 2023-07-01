@@ -7,6 +7,7 @@ export interface UserProps {
     password: string;
     name: string;
     createdAt?: Date;
+    updatedAt?: Date | null;
     tasks?: Task[];
     trash?: Trash[];
 }
@@ -70,6 +71,14 @@ export class User {
 
     public get createdAt(): Date | undefined {
         return this.props.createdAt;
+    }
+
+    public updated() {
+        this.props.updatedAt = new Date(new Date().setSeconds(0, 0))
+    }
+
+    public get updatedAt(): Date | undefined | null {
+        return this.props.updatedAt;
     }
 
     public set tasks(tasks: Task[] | undefined) {

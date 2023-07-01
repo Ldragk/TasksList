@@ -11,6 +11,7 @@ describe('create user', () => {
             findByEmail: vi.fn(),
             findById: vi.fn(),
             delete: vi.fn(),
+            update: vi.fn(),
             findAllUsers: vi.fn(),
         };
 
@@ -34,6 +35,7 @@ describe('create user', () => {
             findByEmail: vi.fn(),
             findById: vi.fn(),
             delete: vi.fn(),
+            update: vi.fn(),
             findAllUsers: vi.fn(),
         };
 
@@ -53,6 +55,7 @@ describe('create user', () => {
             findByEmail: vi.fn(),
             findById: vi.fn(),
             delete: vi.fn(),
+            update: vi.fn(),
             findAllUsers: vi.fn(),
         };
 
