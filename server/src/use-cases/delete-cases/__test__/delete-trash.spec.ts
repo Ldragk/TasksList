@@ -17,7 +17,7 @@ describe("Deleted trash", () => {
     }
 
     expect(deleteRepository.trash).toHaveLength(3);
-    const { deleteTrash } = await trashDelete.execute(
+    const { deleteTrash } = await trashDelete.execute(deleteRepository.trash[0].userId,
       deleteRepository.trash[0].id
     );
     expect(called).toHaveBeenCalledTimes(3);

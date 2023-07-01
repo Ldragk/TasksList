@@ -8,7 +8,10 @@ export class InMemoryTrashRepository implements TrashRepository {
     this.trash.push(trash);
   }
 
-  async findAllTrash(): Promise<Trash[]> {
-    return this.trash;
+  async findAllTrash(userId: string): Promise<Trash[]> {
+    const trash = this.trash.filter(trash => {
+      return trash.userId === userId 
+    })   
+    return trash
   }
 }

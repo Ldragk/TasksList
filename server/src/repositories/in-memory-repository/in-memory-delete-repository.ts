@@ -13,10 +13,14 @@ export class InMemoryDeleteRepository
     if (!task) {
       throw new Error("Task not found");
     }
-    this.tasks.splice(this.tasks.indexOf(task), 1);
+    if (userId === task.userId) {
+      this.tasks.splice(this.tasks.indexOf(task), 1);
+    }
   }
 
-  async deleteAll(): Promise<void> {
-    this.tasks = [];
+  async deleteAll(userId: string): Promise<void> {
+    this.tasks = this.tasks.filter(tasks => {
+      tasks.userId !== userId
+    })
   }
 }

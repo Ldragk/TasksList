@@ -14,11 +14,12 @@ describe("Deleted all trash", () => {
     for (let i = 0; i < 3; ) {
       await deleteRepository.create(Trash);
       i++;
-    }
-
+    }    
+    
     expect(deleteRepository.trash).toHaveLength(3);
-    const { deleteTrash } = await trashDelete.execute();
+    const { deleteTrash } = await trashDelete.execute(Trash.userId);
     expect(called).toHaveBeenCalledTimes(3);
-    expect(deleteRepository.trash).toHaveLength(0);
+    expect(await deleteRepository.findAllTrash(Trash.userId)).toHaveLength(0);
   });
 });
+

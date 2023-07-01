@@ -3,7 +3,7 @@ import { MakeTrash } from "@src/test/factories/trash-factory";
 import { AllTrash } from "../get-all-trash";
 
 describe("Get all trash tasks", () => {
-  it("should return all trash tasks", async () => {   
+  it("should return all trash tasks", async () => {
     const trashRepository = new InMemoryTrashRepository();
 
     const allTrash = new AllTrash(trashRepository);
@@ -11,7 +11,7 @@ describe("Get all trash tasks", () => {
     const trashTask = MakeTrash();
     const called = vi.spyOn(trashRepository, "create");
 
-    for (let i = 0; i < 5; ) {
+    for (let i = 0; i < 5;) {
       await trashRepository.create(trashTask);
       i++;
     }
