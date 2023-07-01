@@ -1,5 +1,6 @@
 import { prisma } from '@src/prisma/prisma-client';
 import AuthService from '@src/use-cases/auth';
+import exp from 'constants';
 
 const user = prisma.user;
 
@@ -195,11 +196,11 @@ describe('Users functional tests', () => {
             });
 
             const { body, status } = await global.testRequest
-                .get('/users/delete')
+                .delete('/users/delete')
                 .set('x-access-token', token);
 
             expect(status).toBe(200);
-            expect(body).toMatchObject(JSON.parse(JSON.stringify(user.body)));
+            expect(body).toMatchObject(JSON.parse(JSON.stringify({"message": "User John Doe deleted successfully!"}, user.body)));
 
         })
     })
@@ -231,7 +232,12 @@ describe('Users functional tests', () => {
             const { body, status } = await global.testRequest.put('/users/update').set('x-access-token', token).send(updatedUser);
 
             expect(status).toBe(200);
-            expect(body).toMatchObject(JSON.parse(JSON.stringify(user.body)));
+            expect(body).toMatchObject({
+                email: 'john-update@mail.com',
+                password: expect.any(String),
+                name: 'John Doe update',
+            });
+
         })
     })
 
