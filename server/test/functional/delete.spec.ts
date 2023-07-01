@@ -94,10 +94,11 @@ describe('delete task', () => {
 
             for (let i = 0; i < numberOfTasksToBeCreated; i++) {
                 const { body } = await global.testRequest.post('/tasks/create').set('x-access-token', token).send(createTask);
-                createTaskPromises.push(body);
+                createTaskPromises.push(body);               
             }
             await Promise.all(createTaskPromises);
-
+           
+            
             const response = await global.testRequest.delete('/tasks/delete/all').set('x-access-token', token);
 
             const taskDB = await prisma.task.findMany()
