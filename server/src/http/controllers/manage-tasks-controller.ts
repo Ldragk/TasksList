@@ -11,7 +11,7 @@ import { AuthMiddleware } from "@src/middlewares/auth";
 import { Request, Response } from 'express';
 
 const manyRequest = 30
-const fewRequest = 15
+const fewRequest = 10
 
 @Controller('tasks')
 @ClassMiddleware(AuthMiddleware)
