@@ -3,24 +3,28 @@ info:
   version: "1.0.0"
   title: "Get tasks controller"
 tags:
-  - name: Tasks
+  - name: QueryTasks
     description: Get tasks controller
 
 paths:
   /tasks/all:
+    get:
+      summary: Query all tasks
+      tags:
+        - QueryTasks
     responses:
       200:
         description: OK
         content:
           application/json:
             schema:
-              type: array
+              type: object[]
               items:
                 $ref: "./schemas/task.schema.yml/#/components/schemas/TaskResponse"
     x-handler: queryAllTasks
     x-middleware:
       - RateLimiter(manyRequest).getMiddleware()
-      - Middleware(AuthMiddleware)
+      - ClassMiddleware(AuthMiddleware)
     x-middleware-description:
       - |
         This route applies a rate limiter middleware to control the number of requests allowed in a certain period of time.
@@ -36,6 +40,10 @@ paths:
         The cache remains valid until explicitly cleared. Once cleared, the cache will be refreshed with new data.
 
   /tasks/date/{month}/{day}/{year}:
+    get:
+      summary: Query tasks by full data
+      tags:
+        - QueryTasks
     parameters:
       - in: path
         name: month
@@ -63,13 +71,13 @@ paths:
         content:
           application/json:
             schema:
-              type: array
+              type: object[]
               items:
                 $ref: "./schemas/task.schema.yml/#/components/schemas/TaskResponse"
     x-handler: getByFullDate
     x-middleware:
       - RateLimiter(manyRequest).getMiddleware()
-      - Middleware(AuthMiddleware)
+      - ClassMiddleware(AuthMiddleware)
     x-middleware-description:
       - |
         This route applies a rate limiter middleware to control the number of requests allowed in a certain period of time.
@@ -80,6 +88,10 @@ paths:
     x-controller: get-task-controller.ts
 
   /tasks/month/{month}/{year}:
+    get:
+      summary: Query tasks by month
+      tags:
+        - QueryTasks
     parameters:
       - in: path
         name: month
@@ -101,13 +113,13 @@ paths:
         content:
           application/json:
             schema:
-              type: array
+              type: object[]
               items:
                 $ref: "./schemas/task.schema.yml/#/components/schemas/TaskResponse"
     x-handler: getByMonth
     x-middleware:
       - RateLimiter(manyRequest).getMiddleware()
-      - Middleware(AuthMiddleware)
+      - ClassMiddleware(AuthMiddleware)
     x-middleware-description:
       - |
         This route applies a rate limiter middleware to control the number of requests allowed in a certain period of time.
@@ -118,6 +130,10 @@ paths:
     x-controller: get-task-controller.ts
 
   /tasks/year/{year}:
+    get:
+      summary: Query tasks by year
+      tags:
+        - QueryTasks
     parameters:
       - in: path
         name: year
@@ -139,7 +155,7 @@ paths:
     x-handler: getByYear
     x-middleware:
       - RateLimiter(manyRequest).getMiddleware()
-      - Middleware(AuthMiddleware)
+      - ClassMiddleware(AuthMiddleware)
     x-middleware-description:
       - |
         This route applies a rate limiter middleware to control the number of requests allowed in a certain period of time.
@@ -150,6 +166,10 @@ paths:
     x-controller: get-task-controller.ts
 
   /tasks/done/{condition}:
+    get:
+      summary: Query tasks by done condition
+      tags:
+        - QueryTasks
     parameters:
       - in: path
         name: condition
@@ -163,13 +183,13 @@ paths:
         content:
           application/json:
             schema:
-              type: object
+              type: object[]
               items:
                 $ref: "./schemas/task.schema.yml/#/components/schemas/TaskResponse"
     x-handler: getDoneOrNotTasks
     x-middleware:
       - RateLimiter(fewRequest).getMiddleware()
-      - Middleware(AuthMiddleware)
+      - ClassMiddleware(AuthMiddleware)
     x-middleware-description:
       - |
         This route applies a rate limiter middleware to control the number of requests allowed in a certain period of time.
@@ -179,7 +199,7 @@ paths:
         It allows access only to authenticated user.
     x-controller: get-task-controller.ts
 
-  /overdue:
+  tasks/overdue:
   get:
     summary: Get overdue tasks
     tags:
@@ -189,13 +209,15 @@ paths:
         description: OK
         content:
           application/json:
+            type: object[]
             schema:
-              $ref: "./schemas/task.schema.yml/#/components/schemas/TaskResponse"
+              items:
+                $ref: "./schemas/task.schema.yml/#/components/schemas/TaskResponse"
     x-handler: getOverdueTasks
     x-middleware:
       - RateLimiter(fewRequest).getMiddleware()
-      - Middleware(AuthMiddleware)
-    x-middleware-description: 
+      - ClassMiddleware(AuthMiddleware)
+    x-middleware-description:
       - |
         This route applies a rate limiter middleware to control the number of requests allowed in a certain period of time.
         It allows a maximum of 2 requests per hour.

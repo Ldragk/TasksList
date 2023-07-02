@@ -1,0 +1,40 @@
+TrashResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: objectId
+          example: 649cbbd89d3260b449ddb5e9
+        title:
+          type: string
+          example: teste title
+        content:
+          type: string
+          example: task content
+        date:
+          type: object
+          properties:
+            month:
+              type: integer
+              example: 9
+            day:
+              type: integer
+              example: 17
+            year:
+              type: integer
+              example: 2023
+        done:
+          type: boolean
+          example: false
+        createdAt:
+          type: string
+          format: date-time
+          example: 2023-06-28T23:01:00.000Z
+        deletedAt:
+          type: string
+          format: date-time
+          example: 2023-07-28T23:01:00.000Z
+        userId:
+          type: string
+          format: uuid
+          example: 649cbbc39d3260b449ddb5e6

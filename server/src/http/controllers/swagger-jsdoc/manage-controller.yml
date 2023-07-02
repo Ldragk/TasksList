@@ -3,7 +3,7 @@ info:
   version: "1.0.0"
   title: "Manage tasks controller"
 tags:
-  - name: Tasks
+  - name: ManageTasks
     description: Manage tasks controller
 
 paths:
@@ -11,7 +11,7 @@ paths:
     post:
       summary: New task create
       tags:
-        - Tasks
+        - ManageTasks
       requestBody:
         required: true
         content:
@@ -42,7 +42,7 @@ paths:
     patch:
       summary: Change task status.
       tags:
-        - Tasks
+        - ManageTasks
       parameters:
         - in: path
           name: id
@@ -80,7 +80,7 @@ paths:
     put:
       summary: New task create
       tags:
-        - Tasks
+        - ManageTasks
       parameters:
         - in: path
           name: id
