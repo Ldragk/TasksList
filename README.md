@@ -1,5 +1,3 @@
-# EM DESENVOLVIMENTO (v2.1.0) 
-
 <div align="center">
 <a href="#projeto" target="_blank">
     <img align="center" src="https://img.shields.io/badge/-Projeto-05122A?style=flat&logo=Projeto" alt=""/>
@@ -20,7 +18,7 @@
 
 
 # (Backend)
-![version](https://img.shields.io/badge/version-2.0.0-white)
+![version](https://img.shields.io/badge/version-2.1.0-white)
 
 
 </div>
@@ -36,7 +34,7 @@
 O projeto é uma API REST para servir uma aplicação de Lista de tarefas, seguindo o padrão CRUD, com sistema de notificação.
 
 - Projeto planejado e desenvolvi por mim. 
-- Finalidade: aprendizado e portfólio.
+- Finalidade: aprendizado, prática e portfólio.
 
 <br>
 
@@ -90,7 +88,11 @@ Inicialmente teve o objetivo de consolidar meus conhecimentos de Back-end e Enge
                  <td colspan="2">SQLite &#8594; MongoDB</th>   
             </tr>                             
                  <td colspan="1"></th>   
-                 <td colspan="2">Express Open API</th>   
+                 <td colspan="2">Swagger-ui express</th>   
+            </tr>     
+             </tr>                             
+                 <td colspan="1"></th>   
+                 <td colspan="2">Express openapi validator</th>   
             </tr>     
             <tr>             
                  <td colspan="1"></th>   
