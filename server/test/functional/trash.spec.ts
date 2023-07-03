@@ -51,16 +51,18 @@ describe('Trash route', () => {
             const createTaskPromises = [];
 
             for (let i = 0; i < numberOfTasksToBeCreated; i++) {
-                const { body } = await global.testRequest.post('/tasks/create').set('x-access-token', token).send(createTask).then(response => response.body);
+                const { body } = await global.testRequest.post('/tasks/create').set('x-access-token', token).send(createTask)
                 createTaskPromises.push(body);
             }
             await Promise.allSettled(createTaskPromises);
 
-            await global.testRequest.delete('/tasks/delete/all').set('x-access-token', token);
-            const { body, status } = await global.testRequest.get('/trash/all').set('x-access-token', token);
+            if (createTaskPromises.length === 2) {
+                await global.testRequest.delete('/tasks/delete/all').set('x-access-token', token);
+                const { body, status } = await global.testRequest.get('/trash/all').set('x-access-token', token);
 
-            expect(status).toBe(200);
-            expect(body).toHaveLength(2);
+                expect(status).toBe(200);
+                expect(body).toHaveLength(2);
+            }
         });
     })
 
@@ -70,21 +72,25 @@ describe('Trash route', () => {
 
             const numberOfTasksToBeCreated: number = 2
             const createTaskPromises = [];
+            let beforeGetAll, afterGetAll;
 
             for (let i = 0; i < numberOfTasksToBeCreated; i++) {
-                const { body } = await global.testRequest.post('/tasks/create').set('x-access-token', token).send(createTask).then(response => response.body);
+                const { body } = await global.testRequest.post('/tasks/create').set('x-access-token', token).send(createTask)
                 createTaskPromises.push(body);
             }
-            await Promise.allSettled(createTaskPromises);
+            await Promise.all(createTaskPromises);
 
-            await global.testRequest.delete('/tasks/delete/all').set('x-access-token', token);
-            const beforeGetAll = await prisma.deletedTask.findMany({});
-            const response = await global.testRequest.delete('/trash/delete/all').set('x-access-token', token);
-            const afterGetAll = await prisma.deletedTask.findMany({});
+            if (createTaskPromises.length === 2) {
+                await global.testRequest.delete('/tasks/delete/all').set('x-access-token', token);
+                beforeGetAll = await prisma.deletedTask.findMany({});
+                const { status } = await global.testRequest.delete('/trash/delete/all').set('x-access-token', token).then((res) => res);
+                afterGetAll = await prisma.deletedTask.findMany({});
+                
+                expect(status).toBe(200);
+                expect(beforeGetAll).toHaveLength(2);
+                expect(afterGetAll).toHaveLength(0);
+            }
 
-            expect(response.status).toBe(200);
-            expect(beforeGetAll).toHaveLength(2);
-            expect(afterGetAll).toHaveLength(0);
         })
     })
 });

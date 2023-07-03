@@ -50,14 +50,16 @@ describe('delete task', () => {
                 createTaskPromises.push(body);
             }
             await Promise.all(createTaskPromises);
+            
+            if (createTaskPromises.length === 3) {
+                const response = await global.testRequest.delete(`/tasks/delete/unique/${createTaskPromises[0].id}`).set('x-access-token', token);
+                const taskDB = await prisma.task.findMany()
+                const trashDB = await prisma.deletedTask.findMany()
 
-            const response = await global.testRequest.delete(`/tasks/delete/unique/${createTaskPromises[0].id}`).set('x-access-token', token);
-            const taskDB = await prisma.task.findMany()
-            const trashDB = await prisma.deletedTask.findMany()
-
-            expect(response.status).toBe(201);
-            expect(taskDB).toHaveLength(2);
-            expect(trashDB).toHaveLength(1);
+                expect(response.status).toBe(201);
+                expect(taskDB).toHaveLength(2);
+                expect(trashDB).toHaveLength(1);
+            }
         });
 
         it('should return not found task when invalid id', async () => {
@@ -65,24 +67,25 @@ describe('delete task', () => {
 
             for (let i = 0; i < numberOfTasksToBeCreated; i++) {
                 const { body } = await global.testRequest.post('/tasks/create').set('x-access-token', token).send(createTask)
-                .then(response => response.body);
                 createTaskPromises.push(body);
             }
             await Promise.all(createTaskPromises);
 
-            const response = await global.testRequest.delete('/tasks/delete/unique/invalid-id').set('x-access-token', token);
-            const taskDB = await prisma.task.findMany()
-            const trashDB = await prisma.deletedTask.findMany()
+            if (createTaskPromises.length === 3) {
+                const response = await global.testRequest.delete('/tasks/delete/unique/invalid-id').set('x-access-token', token);
+                const taskDB = await prisma.task.findMany()
+                const trashDB = await prisma.deletedTask.findMany()
 
-            expect(response.status).toBe(404);
-            expect(taskDB).toHaveLength(3);
-            expect(trashDB).toHaveLength(0);
-            expect(response.body.error).toEqual(
-                'Not Found');
-            expect(response.body.cause).toEqual(
-                'Invalid id. Task not found.');
-            expect(response.body.message).toEqual(
-                'The id should be in the ObjectID format. If the format is correct, there is no task with the requested id.');
+                expect(response.status).toBe(404);
+                expect(taskDB).toHaveLength(3);
+                expect(trashDB).toHaveLength(0);
+                expect(response.body.error).toEqual(
+                    'Not Found');
+                expect(response.body.cause).toEqual(
+                    'Invalid id. Task not found.');
+                expect(response.body.message).toEqual(
+                    'The id should be in the ObjectID format. If the format is correct, there is no task with the requested id.');
+            }
         });
 
     });
@@ -94,19 +97,20 @@ describe('delete task', () => {
             const createTaskPromises = [];
 
             for (let i = 0; i < numberOfTasksToBeCreated; i++) {
-                const { body } = await global.testRequest.post('/tasks/create').set('x-access-token', token).send(createTask).then(response => response.body);
+                const { body } = await global.testRequest.post('/tasks/create').set('x-access-token', token).send(createTask)
                 createTaskPromises.push(body);
             }
             await Promise.allSettled(createTaskPromises);
 
-            const { status } = await global.testRequest.delete('/tasks/delete/all').set('x-access-token', token);
+            if (createTaskPromises.length === 3) {
+                const { status } = await global.testRequest.delete('/tasks/delete/all').set('x-access-token', token);
+                const taskDB = await prisma.task.findMany()
+                const trashDB = await prisma.deletedTask.findMany()
 
-            const taskDB = await prisma.task.findMany()
-            const trashDB = await prisma.deletedTask.findMany()
-
-            expect(status).toBe(201);
-            expect(taskDB).toHaveLength(0);
-            expect(trashDB).toHaveLength(3);
+                expect(status).toBe(201);
+                expect(taskDB).toHaveLength(0);
+                expect(trashDB).toHaveLength(3);
+            }
         })
     })
 
