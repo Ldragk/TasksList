@@ -1,37 +1,64 @@
-import swaggerJsdoc from "swagger-jsdoc";
+import manageController from './http/controllers/docs/manage-controller.json';
+import getController from './http/controllers/docs/get-controller.json';
+import deleteController from './http/controllers/docs/delete-controller.json';
+import trashController from './http/controllers/docs/trash-controller.json';
+import notificationsController from './http/controllers/docs/notifications-controller.json';
+import userController from './http/controllers/docs/user-controller.json';
+import notification from './http/controllers/docs/schemas/notification.json';
+import task from './http/controllers/docs/schemas/task.json';
+import trash from './http/controllers/docs/schemas/trash.json';
+import user from './http/controllers/docs/schemas/user.json';
+import { OpenAPIV3 } from 'express-openapi-validator/dist/framework/types';
 
-const swaggerDefinition = {
+
+const docs = {
+    openapi: '3.0.0',
     info: {
-        title: "Task-List",
-        version: "2.1.0",
-        description: "The task list API"
+        title: 'TaskList API Documentation',
+        version: '2.1.0',
     },
-    securityDefinitions: {
-        xAccessToken: {
-            type: "user-auth",
-            name: "x-access-token",
-            in: "header"
+    paths: {
+        ...deleteController,
+        ...getController,
+        ...manageController,
+        ...notificationsController,
+        ...trashController,
+        ...userController,
+    },
+    components: {
+        schemas: {
+            ...notification,
+            ...task,
+            ...trash,
+            ...user
         }
     },
-    security: [
+    tags: [
         {
-            xAccessToken: []
+            "name": "Trash",
+            "description": "Trash tasks controller"
+        },
+        {
+            "name": "Users",
+            "description": "User controller"
+        },
+        {
+            "name": "Notifications",
+            "description": "Notifications tasks controller"
+        },
+        {
+            "name": "ManageTasks",
+            "description": "Manage tasks controller"
+        },
+        {
+            "name": "QueryTasks",
+            "description": "Get tasks controller"
+        },
+        {
+            "name": "DeleteTasks",
+            "description": "Delete tasks controller"
         }
-    ]
+    ],
 };
 
-const options = {
-    swaggerDefinition,
-    apis: ["./src/http/controllers/open-api/*.yml"],    
-    transform: (swaggerDoc: { paths: { [x: string]: { security: never[]; }; }; }, file: string | string[]) => {       
-        if (file.includes("createUser.ts") || file.includes("authenticate.ts")) {          
-            swaggerDoc.paths["/user"].security = [];
-            swaggerDoc.paths["/user/authenticate"].security = [];
-        }
-        return swaggerDoc;
-    }
-};
-
-const swaggerSpec = swaggerJsdoc(options);
-
-export default swaggerSpec;
+export default docs as unknown as OpenAPIV3.Document;

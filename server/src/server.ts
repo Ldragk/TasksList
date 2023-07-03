@@ -12,6 +12,11 @@ import expressPino from 'express-pino-logger';
 import logger from "./logger";
 import { prisma } from "./prisma/prisma-client";
 import { UserController } from './http/controllers/user-controller';
+import swaggerUi from 'swagger-ui-express';
+import * as OpenApiValidator from 'express-openapi-validator';
+import { apiErrorValidator } from './middlewares/api-error-validator';
+import { OpenAPIV3 } from 'express-openapi-validator/dist/framework/types';
+import docs from './swagger';
 
 export class SetupServer extends Server {
   private server?: http.Server;
@@ -22,7 +27,9 @@ export class SetupServer extends Server {
 
   public async init(): Promise<void> {
     this.setupExpress()
+    await this.docsSetup();
     await this.databaseSetup();
+    this.setupErrorHandles()
   }
 
   private setupExpress(): void {
@@ -34,6 +41,10 @@ export class SetupServer extends Server {
         origin: '*',
       })
     );
+  }
+
+  private setupErrorHandles(): void {
+    this.app.use(apiErrorValidator);
   }
 
   private setupControllers(): void {
@@ -69,6 +80,16 @@ export class SetupServer extends Server {
         });
       });
     }
+  }
+
+  private async docsSetup(): Promise<void> {
+    this.app.use('/docs', swaggerUi.serve, swaggerUi.setup(docs));
+    this.app.use(OpenApiValidator.middleware({
+      apiSpec: docs as OpenAPIV3.Document,
+      validateRequests: true,
+      validateResponses: true,
+      unknownFormats: ['jwt', 'objectId']
+    }));
   }
 
   public getApp(): Application {

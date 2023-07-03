@@ -1,0 +1,20 @@
+{
+  "NotificationResponse": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "type": "string",
+        "example": "task title"
+      },
+      "date": {
+        "type": "string",
+        "example": "03/23/2024"
+      },
+      "id": {
+        "type": "ObjectId",
+        "example": "649a81074b08acc47d5c7a89",
+        "description": "task id"
+      }
+    }
+  }
+}

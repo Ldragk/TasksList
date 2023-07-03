@@ -1,0 +1,163 @@
+{
+  "/trash/all": {
+    "get": {
+      "summary": "Query all trash tasks.",
+      "tags": [
+        "Trash"
+      ],
+      "parameters": [
+        {
+          "name": "x-access-token",
+          "in": "header",
+          "description": "Auth token",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "jwt",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiX2lkIjoiNjQ5ZTg1Y2U1ODliYjZkOGUxYjM0YjM4IiwicHJvcHMiOnsiZW1haWwiOiJqb2huQG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkd0tXbFBGN1hYbk8xY3BqRzB2TWVudU9mVlBEMjBZNW5aOWVTcHZOczFrdTFIeUR6VHNiQmkiLCJuYW1lIjoiam9obiIsImNyZWF0ZWRBdCI6IjIwMjMtMDYtMzBUMDc6MzU6MDAuMDAwWiJ9fSwiaWF0IjoxNjg4MTEwNTQ4LCJleHAiOjE2ODgxMzA1NDh9.4PXhzinT0GNKS0fdRzXVw3jwsoWRiS8szWlm84IYi4I"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "items": {
+                  "$ref": "#/components/schemas/TrashResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-handler": "findAllTrashTasks",
+      "x-middleware": [
+        "RateLimiter(fewRequest).getMiddleware()",
+        "ClassMiddleware(AuthMiddleware)"
+      ],
+      "x-middleware-description": [
+        "This route applies a rate limiter middleware to control the number of requests allowed in a certain period of time.\nIt allows a maximum of 4 requests per hour.\n",
+        "This route applies an authentication middleware to control the access to the route.\nIt allows access only to authenticated user.\n"
+      ],
+      "x-cache-deleted": {
+        "description": "This route triggers the cache deleted for the corresponding user data.\n",
+        "example": {
+          "code": "this.cache.del(this.taskCacheKey);\n"
+        }
+      },
+      "x-cache": {
+        "enabled": true,
+        "description": "This route is cacheable. Responses are cached to improve performance.\nThe cache remains valid until explicitly cleared. Once cleared, the cache will be refreshed with new data.\n"
+      },
+      "x-controller": "trash-controller.ts"
+    }
+  },
+  "/trash/{id}/delete": {
+    "delete": {
+      "summary": "Delete unique trash task by id.",
+      "tags": [
+        "Trash"
+      ],
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "Trash task id",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "example": "609e85ce589bb6d8e1b34b38"
+          }
+        },
+        {
+          "name": "x-access-token",
+          "in": "header",
+          "description": "Auth token",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "jwt",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiX2lkIjoiNjQ5ZTg1Y2U1ODliYjZkOGUxYjM0YjM4IiwicHJvcHMiOnsiZW1haWwiOiJqb2huQG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkd0tXbFBGN1hYbk8xY3BqRzB2TWVudU9mVlBEMjBZNW5aOWVTcHZOczFrdTFIeUR6VHNiQmkiLCJuYW1lIjoiam9obiIsImNyZWF0ZWRBdCI6IjIwMjMtMDYtMzBUMDc6MzU6MDAuMDAwWiJ9fSwiaWF0IjoxNjg4MTEwNTQ4LCJleHAiOjE2ODgxMzA1NDh9.4PXhzinT0GNKS0fdRzXVw3jwsoWRiS8szWlm84IYi4I"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "items": {
+                  "$ref": "#/components/schemas/TrashResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-handler": "deletedTrashTask",
+      "x-middleware": [
+        "RateLimiter(manyRequest).getMiddleware()",
+        "ClassMiddleware(AuthMiddleware)"
+      ],
+      "x-middleware-description": [
+        "This route applies a rate limiter middleware to control the number of requests allowed in a certain period of time.\nIt allows a maximum of 10 requests per hour.\n",
+        "This route applies an authentication middleware to control the access to the route.\nIt allows access only to authenticated user.\n"
+      ],
+      "x-cache-deleted": {
+        "description": "This route triggers the cache deleted for the corresponding user data.\n",
+        "example": {
+          "code": "this.cache.del(this.taskCacheKey);\n"
+        }
+      },
+      "x-controller": "trash-controller.ts"
+    }
+  },
+  "/trash/delete/all": {
+    "delete": {
+      "summary": "Delete all trash task.",
+      "tags": [
+        "Trash"
+      ],
+      "parameters": [
+        {
+          "name": "x-access-token",
+          "in": "header",
+          "description": "Auth token",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "jwt",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiX2lkIjoiNjQ5ZTg1Y2U1ODliYjZkOGUxYjM0YjM4IiwicHJvcHMiOnsiZW1haWwiOiJqb2huQG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkd0tXbFBGN1hYbk8xY3BqRzB2TWVudU9mVlBEMjBZNW5aOWVTcHZOczFrdTFIeUR6VHNiQmkiLCJuYW1lIjoiam9obiIsImNyZWF0ZWRBdCI6IjIwMjMtMDYtMzBUMDc6MzU6MDAuMDAwWiJ9fSwiaWF0IjoxNjg4MTEwNTQ4LCJleHAiOjE2ODgxMzA1NDh9.4PXhzinT0GNKS0fdRzXVw3jwsoWRiS8szWlm84IYi4I"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {}
+        }
+      },
+      "x-handler": "deletedAllTrashTasks",
+      "x-middleware": [
+        "RateLimiter(manyRequest).getMiddleware()",
+        "ClassMiddleware(AuthMiddleware)"
+      ],
+      "x-middleware-description": [
+        "This route applies a rate limiter middleware to control the number of requests allowed in a certain period of time.\nIt allows a maximum of 10 requests per hour.\n",
+        "This route applies an authentication middleware to control the access to the route.\nIt allows access only to authenticated user.\n"
+      ],
+      "x-cache-deleted": {
+        "description": "This route triggers the cache deleted for the corresponding user data.\n",
+        "example": {
+          "code": "this.cache.del(this.taskCacheKey);\n"
+        }
+      },
+      "x-controller": "trash-controller.ts"
+    }
+  }
+}

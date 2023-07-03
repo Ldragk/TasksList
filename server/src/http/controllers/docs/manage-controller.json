@@ -1,0 +1,177 @@
+{
+    "/tasks/create": {
+      "post": {
+        "summary": "New task create",
+        "tags": [
+          "ManageTasks"
+        ],
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "description": "Auth token",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "jwt",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiX2lkIjoiNjQ5ZTg1Y2U1ODliYjZkOGUxYjM0YjM4IiwicHJvcHMiOnsiZW1haWwiOiJqb2huQG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkd0tXbFBGN1hYbk8xY3BqRzB2TWVudU9mVlBEMjBZNW5aOWVTcHZOczFrdTFIeUR6VHNiQmkiLCJuYW1lIjoiam9obiIsImNyZWF0ZWRBdCI6IjIwMjMtMDYtMzBUMDc6MzU6MDAuMDAwWiJ9fSwiaWF0IjoxNjg4MTEwNTQ4LCJleHAiOjE2ODgxMzA1NDh9.4PXhzinT0GNKS0fdRzXVw3jwsoWRiS8szWlm84IYi4I"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TaskCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Task created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-handler": "create",
+        "x-middleware": [
+          "RateLimiter(manyRequest).getMiddleware()",
+          "ClassMiddleware(AuthMiddleware)"
+        ],
+        "x-middleware-description": [
+          "This route applies a rate limiter middleware to control the number of requests allowed in a certain period of time.\nIt allows a maximum of 30 requests per hour.\n",
+          "This route applies an authentication middleware to control the access to the route.\nIt allows access only to authenticated user.\n"
+        ],
+        "x-controller": "manage-task-controller.ts"
+      }
+    },
+    "/tasks/change/{id}": {
+      "patch": {
+        "summary": "Change task status.",
+        "tags": [
+          "ManageTasks"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The task id."
+          },
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "description": "Auth token",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "jwt",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiX2lkIjoiNjQ5ZTg1Y2U1ODliYjZkOGUxYjM0YjM4IiwicHJvcHMiOnsiZW1haWwiOiJqb2huQG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkd0tXbFBGN1hYbk8xY3BqRzB2TWVudU9mVlBEMjBZNW5aOWVTcHZOczFrdTFIeUR6VHNiQmkiLCJuYW1lIjoiam9obiIsImNyZWF0ZWRBdCI6IjIwMjMtMDYtMzBUMDc6MzU6MDAuMDAwWiJ9fSwiaWF0IjoxNjg4MTEwNTQ4LCJleHAiOjE2ODgxMzA1NDh9.4PXhzinT0GNKS0fdRzXVw3jwsoWRiS8szWlm84IYi4I"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status of the task changed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-handler": "updateCondition",
+        "x-middleware": [
+          "RateLimiter(fewRequest).getMiddleware()",
+          "ClassMiddleware(AuthMiddleware)"
+        ],
+        "x-middleware-description": [
+          "This route applies a rate limiter middleware to control the number of requests allowed in a certain period of time.\nIt allows a maximum of 10 requests per hour.\n",
+          "This route applies an authentication middleware to control the access to the route.\nIt allows access only to authenticated user.\n"
+        ],
+        "x-cache-invalidation": null,
+        "description": "This route triggers the cache invalidation for the corresponding user data.\n",
+        "example": {
+          "code": "this.cache.emit('invalidate', this.taskCacheKey)\n"
+        },
+        "x-controller": "manage-task-controller.ts"
+      }
+    },
+    "/tasks/fullChange/{id}": {
+      "put": {
+        "summary": "New task create",
+        "tags": [
+          "ManageTasks"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The task id."
+          },
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "description": "Auth token",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "jwt",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiX2lkIjoiNjQ5ZTg1Y2U1ODliYjZkOGUxYjM0YjM4IiwicHJvcHMiOnsiZW1haWwiOiJqb2huQG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkd0tXbFBGN1hYbk8xY3BqRzB2TWVudU9mVlBEMjBZNW5aOWVTcHZOczFrdTFIeUR6VHNiQmkiLCJuYW1lIjoiam9obiIsImNyZWF0ZWRBdCI6IjIwMjMtMDYtMzBUMDc6MzU6MDAuMDAwWiJ9fSwiaWF0IjoxNjg4MTEwNTQ4LCJleHAiOjE2ODgxMzA1NDh9.4PXhzinT0GNKS0fdRzXVw3jwsoWRiS8szWlm84IYi4I"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "$ref": "#/components/schemas/TaskCreate"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The task was updated with the defined changes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-handler": "updateCondition",
+        "x-middleware": [
+          "RateLimiter(fewRequest).getMiddleware()",
+          "ClassMiddleware(AuthMiddleware)"
+        ],
+        "x-middleware-description": [
+          "This route applies a rate limiter middleware to control the number of requests allowed in a certain period of time.\nIt allows a maximum of 10 requests per hour.\n",
+          "This route applies an authentication middleware to control the access to the route.\nIt allows access only to authenticated user.\n"
+        ],
+        "x-cache-invalidation": null,
+        "description": "This route triggers the cache invalidation for the corresponding user data.\n",
+        "example": {
+          "code": "this.cache.emit('invalidate', this.taskCacheKey)\n"
+        },
+        "x-controller": "manage-task-controller.ts"
+      }
+    }
+  }

@@ -1,0 +1,80 @@
+{
+  "UserRequest": {
+    "type": "object",
+    "properties": {
+      "email": {
+        "type": "string",
+        "format": "email",
+        "example": "john@mail.com",
+        "pattern": "/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/",
+        "description": "The user email should follow a valid email format."
+      },
+      "password": {
+        "type": "string",
+        "example": "1aS@3$%4%sFas",
+        "pattern": "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*\\W).+$/",
+        "minLength": 8,
+        "description": "User password (minimum of 8 characters, at least one uppercase letter, one lowercase letter, one digit, and one special character)."
+      },
+      "name": {
+        "type": "string",
+        "example": "John",
+        "description": "User name."
+      }
+    }
+  },
+  "UserResponse": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "format": "objectId",
+        "example": "649cbbc39d3260b449ddb5e6"
+      },
+      "email": {
+        "type": "string",
+        "format": "email",
+        "example": "john@mail.com"
+      },
+      "password": {
+        "type": "string",
+        "example": "$2b$10$ZVITD7Ek1P7DvxJ6qHq9We3gGgBI9c8HkPRSmcjaTThb.871u7csm"
+      },
+      "name": {
+        "type": "string",
+        "example": "john"
+      },
+      "createdAt": {
+        "type": "string",
+        "format": "date-time",
+        "example": "2023-06-28T23:01:00.000Z"
+      }
+    }
+  },
+  "UserAuthenticate": {
+    "type": "object",
+    "properties": {
+      "email": {
+        "type": "string",
+        "format": "email",
+        "example": "john@mail.com",
+        "description": "Same email used to create user."
+      },
+      "password": {
+        "type": "string",
+        "example": "1aS@3$%4%sFas",
+        "description": "Same password used to create user."
+      }
+    }
+  },
+  "UserAuthenticateResponse": {
+    "type": "object",
+    "properties": {
+      "token": {
+        "type": "string",
+        "format": "jwt",
+        "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiX2lkIjoiNjQ5ZTg1Y2U1ODliYjZkOGUxYjM0YjM4IiwicHJvcHMiOnsiZW1haWwiOiJqb2huQG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkd0tXbFBGN1hYbk8xY3BqRzB2TWVudU9mVlBEMjBZNW5aOWVTcHZOczFrdTFIeUR6VHNiQmkiLCJuYW1lIjoiam9obiIsImNyZWF0ZWRBdCI6IjIwMjMtMDYtMzBUMDc6MzU6MDAuMDAwWiJ9fSwiaWF0IjoxNjg4MTEwNTQ4LCJleHAiOjE2ODgxMzA1NDh9.4PXhzinT0GNKS0fdRzXVw3jwsoWRiS8szWlm84IYi4I"
+      }
+    }
+  }
+}

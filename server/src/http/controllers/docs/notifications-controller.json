@@ -1,0 +1,56 @@
+{
+  "tasks/notifications/{daysOfDelay}/{type}": {
+    "get": {
+      "summary": "Query tasks by expiration date for notification",
+      "tags": [
+        "Notifications"
+      ],
+      "parameters": [
+        {
+          "in": "path",
+          "name": "daysOfDelay",
+          "schema": {
+            "type": "string"
+          },
+          "required": true,
+          "description": "The period you want to search for notifications",
+          "maximum": 25
+        },
+        {
+          "in": "path",
+          "name": "type",
+          "schema": {
+            "type": "string"
+          },
+          "required": false,
+          "description": "The type of notification search. If '1', return all tasks from today to the determined period; otherwise, return only tasks for the exact date."
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object[]",
+                "items": {
+                  "$ref": "./schemas/notification.schema.yml/#/components/schemas/NotificationResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-handler": "notificationOfTasksNearTheDeadline",
+      "x-middleware": [
+        "RateLimiter(manyRequest).getMiddleware()",
+        "ClassMiddleware(AuthMiddleware)"
+      ],
+      "x-middleware-description": [
+        "This route applies a rate limiter middleware to control the number of requests allowed in a certain period of time.\nIt allows a maximum of 5 requests per hour.\n",
+        "This route applies an authentication middleware to control the access to the route.\nIt allows access only to authenticated user.\n"
+      ],
+      "x-controller": "notifications-task-controller.ts"
+    }
+  }
+}
