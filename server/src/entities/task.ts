@@ -15,18 +15,17 @@ export class Task {
   private props: TaskProps;
 
   constructor(props: TaskProps, id?: string) {
-
     if (props.title.length < 1 || props.title.length > 30) {
       throw new Error('Title must be between 1 and 30 characters');
     }
     if (props.content.length < 5 || props.content.length > 250) {
       throw new Error('Content must be between 5 and 250 characters');
-    }   
+    }
 
     this.props = {
       ...props,
       done: props.done ?? false,
-      createdAt: props.createdAt ?? new Date(new Date().setSeconds(0, 0))
+      createdAt: props.createdAt ?? new Date(new Date().setSeconds(0, 0)),
     };
     this._id = id ?? String(new ObjectId());
   }
@@ -39,7 +38,7 @@ export class Task {
   }
 
   public set title(title: string) {
-    this.props.title = title
+    this.props.title = title;
   }
 
   get title(): string {
@@ -78,7 +77,7 @@ export class Task {
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   public updated() {
-    this.props.updatedAt = new Date(new Date().setSeconds(0, 0))
+    this.props.updatedAt = new Date(new Date().setSeconds(0, 0));
   }
 
   public get updatedAt(): Date | null | undefined {
@@ -92,5 +91,4 @@ export class Task {
   public get userId(): string {
     return this.props.userId;
   }
-
 }

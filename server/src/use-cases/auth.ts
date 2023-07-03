@@ -10,7 +10,6 @@ export interface JwtToken {
 }
 
 export default class AuthService {
-
   public static async hashPassword(
     password: string,
     salt = 10
@@ -29,8 +28,7 @@ export default class AuthService {
     const key: string = config.get('App.auth.key');
     const tokenExpiresIn: string = config.get('App.auth.tokenExpiresIn');
 
-    return jwt.sign({ sub },
-      key, { expiresIn: tokenExpiresIn });
+    return jwt.sign({ sub }, key, { expiresIn: tokenExpiresIn });
   }
 
   public static decodeToken(token: string): JwtToken {

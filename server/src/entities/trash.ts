@@ -1,6 +1,5 @@
 import { LimitDate } from './task-entities/limitDate';
 
-
 export interface TrashProps {
   title: string;
   content: string;
@@ -8,7 +7,7 @@ export interface TrashProps {
   done?: boolean;
   createdAt?: Date;
   deletedAt?: Date | null | undefined;
-  userId: string
+  userId: string;
 }
 
 export class Trash {
