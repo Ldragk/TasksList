@@ -87,6 +87,10 @@ Inicialmente teve o objetivo de consolidar meus conhecimentos de Back-end e Enge
                  <td colspan="1">Class-validator</th>   
                  <td colspan="2">SQLite &#8594; MongoDB</th>   
             </tr>                             
+            <tr>             
+                 <td colspan="1"></th>   
+                 <td colspan="2">MongoDB Atlas</th>   
+            </tr>    
                  <td colspan="1"></th>   
                  <td colspan="2">Swagger-ui express</th>   
             </tr>     
