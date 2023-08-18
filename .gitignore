@@ -7,3 +7,4 @@ registros-v2.md
 server/dist
 server/node_modules
 server/src/util/performance-now.ts
+notes.md
