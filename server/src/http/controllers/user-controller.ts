@@ -51,15 +51,15 @@ export class UserController extends BaseController {
     public async me(req: Request, res: Response) {
         const me = new Me(new PrismaUserRepository())
 
-        const cachedTasks = this.cache.get(this.userCacheKey);
+        // const cachedTasks = this.cache.get(this.userCacheKey);
 
-        if (cachedTasks) {
-            return res.status(200).json(cachedTasks);
-        }
+        // if (cachedTasks) {
+        //     return res.status(200).json(cachedTasks);
+        // }
 
         try {
             const { user } = await me.execute(req);            
-            this.cache.set(this.userCacheKey, UserViewModel.toHTTP(user));
+            // this.cache.set(this.userCacheKey, UserViewModel.toHTTP(user));
 
             return { user: res.status(200).json(UserViewModel.toHTTP(user)) }
         } catch (err) {
@@ -77,7 +77,7 @@ export class UserController extends BaseController {
 
         try {
             const { user } = await deleteUser.execute(req);
-            this.cache.del(this.userCacheKey);
+            // this.cache.del(this.userCacheKey);
             
             return res.status(200).json({
                 message: `User ${user.name} deleted successfully!`,
@@ -96,7 +96,7 @@ export class UserController extends BaseController {
 
         try {
             const { user } = await updateUser.execute(userId, req.body)
-            this.cache.emit('invalidate', this.userCacheKey);
+            // this.cache.emit('invalidate', this.userCacheKey);
             
             return res.status(200).json(UserViewModel.toHTTP(user))
         } catch (err) {

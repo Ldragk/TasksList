@@ -20,17 +20,20 @@ const fewRequest = 2
 @ClassMiddleware(AuthMiddleware)
 export class QueryTask extends BaseController {
 
+  constructor() {
+    super();
+  }
+
   @Get("all")
   @Middleware(new RateLimiter(fewRequest + 2).getMiddleware())
   getAllTasks = async (
     req: Request,
     res: Response
   ) => {
-    const cachedTasks = this.cache.get(this.taskCacheKey);
-
-    if (cachedTasks) {
-      return res.status(200).json(cachedTasks);
-    }
+    // const cachedTasks = this.cache.get(this.taskCacheKey);    
+    // if (cachedTasks) {
+    //   return res.status(200).json(cachedTasks);
+    // }
 
     const queryAllTasks = new QueryAllTasks(new PrismaTaskQueryRepository());
     const userId = req.context.userId._id;
@@ -39,7 +42,7 @@ export class QueryTask extends BaseController {
       const { tasks } = await queryAllTasks.execute(userId);
       const tasksData = tasks.map(TaskViewModel.toHTTP);
 
-      this.cache.set(this.taskCacheKey, tasksData);
+      // this.cache.set(this.taskCacheKey, tasksData);
 
       return res.status(200).json(tasksData);
     } catch (err) {
