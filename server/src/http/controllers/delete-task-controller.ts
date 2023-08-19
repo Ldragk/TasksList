@@ -67,7 +67,7 @@ export class DeleteTasks extends BaseController {
       const { createTrash } = await create.execute(userId);
       const { deleteTrash } = await deleteAllTasks.execute(userId);
 
-      this.cache.del(this.taskCacheKey);
+      // this.cache.del(this.taskCacheKey);
 
       return {
         create: res.status(201).json(createTrash),

@@ -5,13 +5,13 @@ import { Response } from 'express';
 import NodeCache from 'node-cache';
 
 export abstract class BaseController {
-  protected cache = new NodeCache({
-    stdTTL: 60 * 60 * 48, 
-    checkperiod: 5, 
-    useClones: false 
-  });
-  protected taskCacheKey = 'allTasks';
-  protected trashCacheKey = 'allTrash'
+  // protected cache = new NodeCache({
+  //   stdTTL: 60 * 60 * 48, 
+  //   checkperiod: 5, 
+  //   useClones: false 
+  // });
+  // protected taskCacheKey = 'allTasks';
+  // protected trashCacheKey = 'allTrash'
   // protected userCacheKey = 'me'
 
   protected errorResponse(
