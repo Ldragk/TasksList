@@ -56,8 +56,18 @@ Inicialmente teve o objetivo de consolidar meus conhecimentos de Back-end e Enge
 
 
 ### Database
-     É necessário criar um cluster no MongoDB Atlas ou configurar um banco de dados mongoDB para o prisma studio. A url deve ser colocada em uma variável de ambiente no arquivo .env nomeada de DATABASE_URL.
-          - Recomendo criar o cluster no Atlas, pois será muito mais rápido e fácil.
+É necessário criar um cluster no MongoDB Atlas ou configurar um banco de dados mongoDB para o prisma studio. A url deve ser colocada em uma variável de ambiente no arquivo .env nomeada de DATABASE_URL.
+- Recomendo criar o cluster no Atlas, pois será muito mais rápido e fácil.
+
+### ‼️ Aviso
+
+➜ O projeto esta com problema no sistema de caching. 
+
+O cache não esta sendo atualizado em tempo de execução, portanto é necessário encerrar e executar a aplicação para que seja atualizado. 
+Dessa forma, se já existem 3 tasks no cache da rota get all e mais uma é criada, será necessário reiniciar a aplicação. 
+
+➜ Por esse motivo comentei o código referente ao sistema de caching, até que eu possa resolver da melhor forma.
+
 
 
 <div align="center">
