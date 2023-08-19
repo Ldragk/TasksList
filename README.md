@@ -64,7 +64,7 @@ Inicialmente teve o objetivo de consolidar meus conhecimentos de Back-end e Enge
 ➜ O projeto esta com problema no sistema de caching. 
 
 O cache não esta sendo atualizado em tempo de execução, portanto é necessário encerrar e executar a aplicação para que seja atualizado. 
-Dessa forma, se já existem 3 tasks no cache da rota get all e mais uma é criada, será necessário reiniciar a aplicação. 
+Dessa forma, se já existem 3 tasks no cache da rota get all, ao criar mais tasks, será necessário reiniciar a aplicação para que elas apareçam na response da rota get all. 
 
 ➜ Por esse motivo comentei o código referente ao sistema de caching, até que eu possa resolver da melhor forma.
 
