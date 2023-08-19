@@ -5,6 +5,10 @@
   <a href="#tecnologias">
      <img align="center" src="https://img.shields.io/badge/-Tecnologias-05122A?style=flat&logo=Tecnologias" alt=""/>
   </a>  
+  </a>  
+     <a href="#instalação">
+     <img align="center" src="https://img.shields.io/badge/-Instalação-05122A?style=flat&logo=Tecnologias" alt=""/>
+     </a>
      <a href="#registro-de-desenvolvimento">
      <img align="center" src="https://img.shields.io/badge/-Registro%20de%20Desenvolvimento-05122A?style=flat&logo=Tecnologias" alt=""/>
      </a>
@@ -43,6 +47,18 @@ O projeto é uma API REST para servir uma aplicação de Lista de tarefas, segui
 Inicialmente teve o objetivo de consolidar meus conhecimentos de Back-end e Engenharia de Software, além de praticar a utilização de Node.js com Express e Prisma Studio. O objetivo agora é continuar utilizando esse projeto para praticar, aprimorando-o com as novas habilidades, tecnologias e ferramentas que adquiro.
 
 <br>
+
+
+
+## Instalação
+
+     npm i
+
+
+### Database
+     É necessário criar um cluster no MongoDB Atlas ou configurar um banco de dados mongoDB para o prisma studio. A url deve ser colocada em uma variável de ambiente no arquivo .env nomeada de DATABASE_URL.
+          - Recomendo criar o cluster no Atlas, pois será muito mais rápido e fácil.
+
 
 <div align="center">
 
