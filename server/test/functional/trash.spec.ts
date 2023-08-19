@@ -50,46 +50,73 @@ describe('Trash route', () => {
             const numberOfTasksToBeCreated: number = 2
             const createTaskPromises = [];
 
+            let trashBody, trashStatus;
+
             for (let i = 0; i < numberOfTasksToBeCreated; i++) {
                 const { body } = await global.testRequest.post('/tasks/create').set('x-access-token', token).send(createTask)
                 createTaskPromises.push(body);
             }
             await Promise.all(createTaskPromises);
 
-            if (createTaskPromises.length === 2) {
-                await global.testRequest.delete('/tasks/delete/all').set('x-access-token', token);
+            while (createTaskPromises.length !== 2) {
+                await new Promise(resolve => setTimeout(resolve, 100));
             }
-            const { body, status } = await global.testRequest.get('/trash/all').set('x-access-token', token);
 
-            expect(status).toBe(200);
-            expect(body).toHaveLength(2);
+            if (createTaskPromises.length === 2) {
+                const { status } = await global.testRequest.delete('/tasks/delete/all').set('x-access-token', token);
 
+                if (status === 201) {
+                    const { body, status } = await global.testRequest.get('/trash/all').set('x-access-token', token);
+                    trashStatus = status
+                    trashBody = body
+                }
+            }
+            expect(trashStatus).toBe(200);
+            expect(trashBody).toHaveLength(2);
         });
     })
 
     describe('Delete all trash', () => {
 
+        // async function waitForCondition(condition: () => boolean): Promise<void> {
+        //     while (!condition()) {
+        //         await new Promise(resolve => setTimeout(resolve, 1000));
+        //     }
+        // }
+
         it('Should returned 200 OK and delete all trash', async () => {
 
             const numberOfTasksToBeCreated: number = 2
-            const createTaskPromises = [];
-            let beforeGetAll, afterGetAll;
+            const createTaskPromises: Promise<any>[] = [];
+            let
+                beforeGetAll,
+                afterGetAll,
+                deleteTaskResponse,
+                deleteTaskResponseStatus,
+                delStatus;
 
             for (let i = 0; i < numberOfTasksToBeCreated; i++) {
                 const { body } = await global.testRequest.post('/tasks/create').set('x-access-token', token).send(createTask)
                 createTaskPromises.push(body);
             }
-            await Promise.all(createTaskPromises);
+            await Promise.all(createTaskPromises);            
 
-            if (createTaskPromises.length === 2) {
-                await global.testRequest.delete('/tasks/delete/all').set('x-access-token', token);               
+            while (createTaskPromises.length !== 2) {
+                await new Promise(resolve => setTimeout(resolve, 100));
             }
 
-            beforeGetAll = await prisma.deletedTask.findMany({});
-            const { status } = await global.testRequest.delete('/trash/delete/all').set('x-access-token', token).then((res) => res);
-            afterGetAll = await prisma.deletedTask.findMany({});
+            if (createTaskPromises.length === 2) {
+                const { status } = await global.testRequest.delete('/tasks/delete/all').set('x-access-token', token);
 
-            expect(status).toBe(200);
+                beforeGetAll = await prisma.deletedTask.findMany({});
+
+                if (status === 201) {
+                    const { status } = await global.testRequest.delete('/trash/delete/all').set('x-access-token', token).then((res) => res);
+                    delStatus = status
+                    afterGetAll = await prisma.deletedTask.findMany({});
+                }
+            }
+            expect(delStatus).toBe(200);
             expect(beforeGetAll).toHaveLength(2);
             expect(afterGetAll).toHaveLength(0);
         })
