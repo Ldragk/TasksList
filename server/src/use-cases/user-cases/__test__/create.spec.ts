@@ -14,18 +14,30 @@ describe('create user', () => {
             update: vi.fn(),
             findAllUsers: vi.fn(),
         };
+        let response, user;
 
         const create = new CreateUser(userRepositoryMock);
         const called = vi.spyOn(userRepositoryMock, 'create');
 
         for (let i = 0; i < 3; i++) {
-            const user = MakeUser();
-            await create.execute(user);
+            user = MakeUser();
+            response = await create.execute(user);
+        };
+
+        const userResponse = {
+            user: {
+                id: expect.any(String),
+                name: user?.name,
+                email: user?.email,
+                createdAt: expect.any(Date),
+            }
         };
 
         expect(called).toHaveBeenCalledTimes(3);
         expect(userRepositoryMock.create).toHaveBeenCalledTimes(3);
         expect(userRepositoryMock.create).toHaveBeenCalledWith(expect.any(User));
+        expect(response).toEqual(userResponse);
+
     })
 
     it('Should be an error due to an invalid password.', async () => {
