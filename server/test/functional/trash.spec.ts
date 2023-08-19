@@ -54,15 +54,16 @@ describe('Trash route', () => {
                 const { body } = await global.testRequest.post('/tasks/create').set('x-access-token', token).send(createTask)
                 createTaskPromises.push(body);
             }
-            await Promise.allSettled(createTaskPromises);
+            await Promise.all(createTaskPromises);
 
             if (createTaskPromises.length === 2) {
                 await global.testRequest.delete('/tasks/delete/all').set('x-access-token', token);
-                const { body, status } = await global.testRequest.get('/trash/all').set('x-access-token', token);
-
-                expect(status).toBe(200);
-                expect(body).toHaveLength(2);
             }
+            const { body, status } = await global.testRequest.get('/trash/all').set('x-access-token', token);
+
+            expect(status).toBe(200);
+            expect(body).toHaveLength(2);
+
         });
     })
 
@@ -81,16 +82,16 @@ describe('Trash route', () => {
             await Promise.all(createTaskPromises);
 
             if (createTaskPromises.length === 2) {
-                await global.testRequest.delete('/tasks/delete/all').set('x-access-token', token);
-                beforeGetAll = await prisma.deletedTask.findMany({});
-                const { status } = await global.testRequest.delete('/trash/delete/all').set('x-access-token', token).then((res) => res);
-                afterGetAll = await prisma.deletedTask.findMany({});
-                
-                expect(status).toBe(200);
-                expect(beforeGetAll).toHaveLength(2);
-                expect(afterGetAll).toHaveLength(0);
+                await global.testRequest.delete('/tasks/delete/all').set('x-access-token', token);               
             }
 
+            beforeGetAll = await prisma.deletedTask.findMany({});
+            const { status } = await global.testRequest.delete('/trash/delete/all').set('x-access-token', token).then((res) => res);
+            afterGetAll = await prisma.deletedTask.findMany({});
+
+            expect(status).toBe(200);
+            expect(beforeGetAll).toHaveLength(2);
+            expect(afterGetAll).toHaveLength(0);
         })
     })
 });
