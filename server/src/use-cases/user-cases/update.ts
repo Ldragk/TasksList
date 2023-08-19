@@ -1,4 +1,4 @@
-import { User } from "@src/entities/user";
+import { User, UserProps } from "@src/entities/user";
 import { UserRepository } from "@src/repositories/user-repository";
 import AuthService from "../auth";
 
@@ -8,8 +8,11 @@ interface EditUserRequest {
     name: string;
 }
 
-interface EditUserResponse {
-    user: User;
+interface ResponseBody extends Omit<User, 'password' | 'updated'> {
+}
+
+export interface UpdatedUserResponse {
+    user: ResponseBody;
 }
 
 export class UpdateUser {
@@ -18,12 +21,12 @@ export class UpdateUser {
     async execute(
         id: string,
         body: EditUserRequest
-    ): Promise<EditUserResponse> {
+    ): Promise<UpdatedUserResponse> {
 
         const user: User = await this.userRepository.findById(id);
         const { email, name } = body;
-        let { password } = body;        
-        
+        let { password } = body;
+
         const passwordValidation = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W).+$/;
         if (password.length < 8 || !passwordValidation.test(password)) {
             throw new Error(
@@ -43,6 +46,24 @@ export class UpdateUser {
         }, user.id);
 
         await this.userRepository.update(id, userUpdated);
-        return { user: userUpdated };
+
+        const response = this.removePassword(userUpdated)
+
+        return { user: response };
+    }
+
+    removePassword(userUpdated: User): Omit<User, 'password' | 'updated'> {
+        const { id, email, name, createdAt, updatedAt, tasks, trash } = userUpdated;
+
+        const userWithoutPassword = {
+            id,
+            email,
+            name,
+            createdAt,
+            updatedAt,
+            tasks,
+            trash
+        }
+        return userWithoutPassword
     }
 }

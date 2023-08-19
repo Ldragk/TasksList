@@ -1,4 +1,4 @@
-import { User } from "@src/entities/user";
+import { User, UserProps } from "@src/entities/user";
 import { UserRepository } from "@src/repositories/user-repository";
 import AuthService from "../auth";
 
@@ -9,8 +9,14 @@ interface CreateUserRequest {
     name: string;
 }
 
+interface ResponseBody {
+    id: string;
+    email: string;
+    name: string;
+}
+
 interface CreateUserResponse {
-    user: User;
+    user: ResponseBody;
 }
 
 export class CreateUser {
@@ -20,24 +26,49 @@ export class CreateUser {
         const { email, name } = props;
         let { password } = props;
 
-        const passwordValidation = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W).+$/;
+        this.passwordValidation(password)
 
-        if (password.length < 8 || !passwordValidation.test(password)) {
-            throw new Error(
-                'The password format is invalid! It must contain at least one lowercase letter, one uppercase letter, one digit, one symbol, and have a minimum length of 10 characters.');
-        }
+        password = await this.hashPassword(password)
 
-        if (password) {
-            const hashedPassword = await AuthService.hashPassword(password);
-            password = hashedPassword;
-        }
-        const user = new User({
+        let user = new User({
             email: email,
             password: password,
             name: name
         });
         await this.userRepository.create(user);
 
-        return { user: user };
+        const response = this.removePassword(user)
+
+
+        return { user: response };
+    }
+
+    passwordValidation(password: string) {
+        const passwordValidation = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W).+$/;
+        if (password.length < 8 || !passwordValidation.test(password)) {
+            throw new Error(
+                'The password format is invalid! It must contain at least one lowercase letter, one uppercase letter, one digit, one symbol, and have a minimum length of 10 characters.');
+        }
+    }
+
+    async hashPassword(password: string): Promise<string> {
+        if (password) {
+            const hashedPassword = await AuthService.hashPassword(password);
+            password = hashedPassword;
+        }
+        return password
+    }
+
+    removePassword(user: User): ResponseBody {
+
+        const { id, email, name, createdAt } = user;
+
+        const userWithoutPassword = {
+            id,
+            email,
+            name,
+            createdAt
+        }
+        return userWithoutPassword
     }
 }

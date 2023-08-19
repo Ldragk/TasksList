@@ -24,7 +24,7 @@ export class UserController extends BaseController {
                 password,
                 name
             });
-            return { user: res.status(201).json(UserViewModel.toHTTP(user)) }
+            return { user: res.status(201).json(user) }
         } catch (err) {
             return this.errorResponse(res, err as Error)
         }
