@@ -12,6 +12,7 @@ module.exports = defineConfig({
   test: {
     clearMocks: true,
     includeSource: ['./src/**/*.{ts}'],
+    testEnvironment: 'node',
     globals: true,    
   },
   plugins: [
