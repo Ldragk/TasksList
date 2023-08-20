@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import config from 'config';
 import { prisma } from '@src/prisma/prisma-client';
+import { secrets } from '../../configuration';
 
 const User = prisma.user;
 
@@ -25,14 +26,16 @@ export default class AuthService {
   }
 
   public static generateToken(sub: object): string {
-    const key: string = config.get('App.auth.key');
+    const key: string = secrets.jwt; 
+    console.log(secrets.jwt);
+    
     const tokenExpiresIn: string = config.get('App.auth.tokenExpiresIn');
 
     return jwt.sign({ sub }, key, { expiresIn: tokenExpiresIn });
   }
 
   public static decodeToken(token: string): JwtToken {
-    const key: string = config.get('App.auth.key');
+    const key: string = secrets.jwt;
     return jwt.verify(token, key) as JwtToken;
   }
 }
