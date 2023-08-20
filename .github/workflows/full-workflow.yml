@@ -24,7 +24,8 @@ jobs:
         working-directory: server
         run: |
           echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env
-          cat .env
+          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
+          cat .env      
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
@@ -40,12 +41,7 @@ jobs:
 
       - name: Run unit tests
         working-directory: server
-        run: npm run test:unit
-
-      - name: Set up environment variables
-        run: |
-          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
-          cat .env     
+        run: npm run test:unit     
 
       - name: Run functional tests
         working-directory: server        
