@@ -34,7 +34,7 @@
               "schema": {
                 "type": "object[]",
                 "items": {
-                  "$ref": "./schemas/notification.json/#/components/schemas/NotificationResponse"
+                  "$ref": "#/components/schemas/NotificationResponse"
                 }
               }
             }
