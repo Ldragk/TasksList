@@ -15,7 +15,6 @@ import { UserController } from './http/controllers/user-controller';
 import swaggerUi from 'swagger-ui-express';
 import * as OpenApiValidator from 'express-openapi-validator';
 import { apiErrorValidator } from './middlewares/api-error-validator';
-import { OpenAPIV3 } from 'express-openapi-validator/dist/framework/types';
 import docs from './swagger';
 
 export class SetupServer extends Server {
@@ -85,10 +84,11 @@ export class SetupServer extends Server {
   private async docsSetup(): Promise<void> {
     this.app.use('/docs', swaggerUi.serve, swaggerUi.setup(docs));
     this.app.use(OpenApiValidator.middleware({
-      apiSpec: docs as OpenAPIV3.Document,
+      apiSpec: JSON.stringify(docs),
       validateRequests: true,
       validateResponses: true,
-      unknownFormats: ['jwt', 'objectId']
+      unknownFormats: ['jwt', 'objectId'],
+      validateFormats: false
     }));
   }
 
