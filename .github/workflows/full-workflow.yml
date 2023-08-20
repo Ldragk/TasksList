@@ -42,6 +42,11 @@ jobs:
         working-directory: server
         run: npm run test:unit
 
+      - name: Set up environment variables
+        run: |
+          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
+          cat .env     
+
       - name: Run functional tests
-        working-directory: server
+        working-directory: server        
         run: npm run test:functional
