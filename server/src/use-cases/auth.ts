@@ -26,9 +26,7 @@ export default class AuthService {
   }
 
   public static generateToken(sub: object): string {
-    const key: string = secrets.jwt; 
-    console.log(secrets.jwt);
-    
+    const key: string = secrets.jwt;         
     const tokenExpiresIn: string = config.get('App.auth.tokenExpiresIn');
 
     return jwt.sign({ sub }, key, { expiresIn: tokenExpiresIn });
