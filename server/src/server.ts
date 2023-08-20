@@ -84,11 +84,10 @@ export class SetupServer extends Server {
   private async docsSetup(): Promise<void> {
     this.app.use('/docs', swaggerUi.serve, swaggerUi.setup(docs));
     this.app.use(OpenApiValidator.middleware({
-      apiSpec: JSON.stringify(docs),
+      apiSpec: docs,
       validateRequests: true,
       validateResponses: true,
-      unknownFormats: ['jwt', 'objectId'],
-      validateFormats: false
+      unknownFormats: ['jwt', 'objectId'],      
     }));
   }
 

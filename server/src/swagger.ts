@@ -61,4 +61,4 @@ const docs = {
     ],
 };
 
-export default docs as unknown as OpenAPIV3.Document;
+export default JSON.stringify(docs) as unknown as OpenAPIV3.Document;
