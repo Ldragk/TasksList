@@ -80,7 +80,7 @@ export class TrashTasks extends BaseController {
 
     try {
       const { deleteTrash } = await deleteAllTrash.execute(userId);
-      this.cache.set(this.taskCacheKey, []);
+      this.cache.set(this.trashCacheKey, []);
 
       return { delete: res.json(deleteTrash) };
     } catch (err) {
