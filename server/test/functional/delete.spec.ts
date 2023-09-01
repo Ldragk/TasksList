@@ -105,13 +105,13 @@ describe('delete task', () => {
         it('should deleted all tasks', async () => {
 
             const createTaskPromises = [];
-            let response,                
+            let response,
                 taskDB,
                 trashDB,
                 status
 
             for (let i = 0; i < numberOfTasksToBeCreated; i++) {
-                const { body } = await global.testRequest.post('/tasks/create').set('x-access-token', token).send(createTask)               
+                const { body } = await global.testRequest.post('/tasks/create').set('x-access-token', token).send(createTask)
                 createTaskPromises.push(body);
             }
             await Promise.all(createTaskPromises);
@@ -122,10 +122,14 @@ describe('delete task', () => {
 
             if (createTaskPromises.length === 3) {
                 response = await global.testRequest.delete('/tasks/delete/all').set('x-access-token', token);
-                status = response.status                
+                status = response.status
+
+                if (status = 201) {
+                    taskDB = await prisma.task.findMany()
+                    trashDB = await prisma.deletedTask.findMany()
+                }
             }
-            taskDB = await prisma.task.findMany()
-            trashDB = await prisma.deletedTask.findMany()
+
 
             expect(status).toBe(201);
             expect(taskDB).toHaveLength(0);

@@ -1,6 +1,5 @@
 import { prisma } from '@src/prisma/prisma-client';
 import AuthService from '@src/use-cases/auth';
-import exp from 'constants';
 
 const user = prisma.user;
 
