@@ -40,7 +40,7 @@ export class DeleteTasks extends BaseController {
       const { createTrash } = await create.execute(userId, id);
       const { deleteTrash } = await deleteTask.execute(userId, id);
 
-      const cachedTasksWithoutTheDeleted = this.cache.find<Task>(this.taskCacheKey, id);      
+      const cachedTasksWithoutTheDeleted = this.cache.find<Task>(this.taskCacheKey, id);
       this.cache.set<Task[] | Task>(this.taskCacheKey, cachedTasksWithoutTheDeleted as Task[] | Task);
 
       return {
@@ -66,10 +66,18 @@ export class DeleteTasks extends BaseController {
     const userId = req.context.userId._id
 
     try {
-      const { ...createTrash } = await create.execute(userId);
+      const { createTrash } = await create.execute(userId);
       const { deleteTrash } = await deleteAllTasks.execute(userId);
 
-      this.cache.flushAll();  
+
+      const t = []
+      t.push(createTrash)      
+      const createTrashResults = await Promise.all(t);      
+      const allCreateTrashResolved = createTrashResults.every(result => result);
+
+      if (allCreateTrashResolved) {
+        this.cache.set(this.taskCacheKey, []);
+      }
 
       return {
         create: res.status(201).json(createTrash),

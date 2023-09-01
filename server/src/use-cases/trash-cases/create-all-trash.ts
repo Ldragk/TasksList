@@ -27,10 +27,11 @@ export class CreateAllTrash {
           userId: task.userId,
         },
         id
-      );
+      );      
+      await this.trashRepository.create(trashBody)
 
       return {
-        createTrash: await this.trashRepository.create(trashBody),
+        createTrash: trashBody,
       };
     });
   }

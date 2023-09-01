@@ -39,7 +39,7 @@ export class TrashTasks extends BaseController {
 
       this.cache.set(this.trashCacheKey, trashData);
 
-      return { get: res.json(trash.map(TrashViewModel.toHTTP)) };
+      return { get: res.json(trashData) };
     } catch (err) {
       return logger.error(err);
     }
@@ -80,7 +80,7 @@ export class TrashTasks extends BaseController {
 
     try {
       const { deleteTrash } = await deleteAllTrash.execute(userId);
-      this.cache.flushAll();
+      this.cache.set(this.taskCacheKey, []);
 
       return { delete: res.json(deleteTrash) };
     } catch (err) {
