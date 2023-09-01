@@ -59,10 +59,11 @@ export class UserController extends BaseController {
         }
 
         try {
-            const { user } = await me.execute(req);            
-            this.cache.set<User>(this.userCacheKey, user as User);
+            const { user } = await me.execute(req);
+            const userToHttp = UserViewModel.toHTTP(user)            
+            this.cache.set<User>(this.userCacheKey, userToHttp as User);
 
-            return { user: res.status(200).json(UserViewModel.toHTTP(user)) }
+            return { user: res.status(200).json(userToHttp) }
         } catch (err) {
             return this.userErrorResponse(err as Error, res)
         }
@@ -78,7 +79,7 @@ export class UserController extends BaseController {
 
         try {
             const { user } = await deleteUser.execute(req);
-            this.cache.flushAll();
+            this.cache.set(this.userCacheKey, []);
             
             return res.status(200).json({
                 message: `User ${user.name} deleted successfully!`,
@@ -96,10 +97,11 @@ export class UserController extends BaseController {
         const updateUser = new UpdateUser(new PrismaUserRepository())
 
         try {
-            const { user } = await updateUser.execute(userId, req.body)            
-            this.cache.set<User>(this.userCacheKey, user as User);
+            const { user } = await updateUser.execute(userId, req.body)   
+            const userToHttp = UserViewModel.toHTTP(user)            
+            this.cache.set<User>(this.userCacheKey, userToHttp as User);
             
-            return res.status(200).json(UserViewModel.toHTTP(user))
+            return res.status(200).json(userToHttp)
         } catch (err) {
             return this.userErrorResponse(err as Error, res)
         }
