@@ -2,17 +2,16 @@ import { Prisma } from '@prisma/client';
 import logger from '@src/logger';
 import ApiErr, { APIError } from '@src/util/err/api-err';
 import { Response } from 'express';
-import NodeCache from 'node-cache';
-
+import Cache from '@src/util/cache'
 export abstract class BaseController {
-  // protected cache = new NodeCache({
-  //   stdTTL: 60 * 60 * 48, 
-  //   checkperiod: 5, 
-  //   useClones: false 
-  // });
-  // protected taskCacheKey = 'allTasks';
-  // protected trashCacheKey = 'allTrash'
-  // protected userCacheKey = 'me'
+
+  protected taskCacheKey = 'allTasks';
+  protected trashCacheKey = 'allTrash'
+  protected userCacheKey = 'me'
+
+  constructor(
+    protected cache = Cache
+  ) { }
 
   protected errorResponse(
     res: Response,

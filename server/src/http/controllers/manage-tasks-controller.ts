@@ -9,6 +9,8 @@ import { BaseController } from ".";
 import { RateLimiter } from "@src/middlewares/rate-limiter";
 import { AuthMiddleware } from "@src/middlewares/auth";
 import { Request, Response } from 'express';
+import NodeCache from "node-cache";
+import { Task } from "@src/entities/task";
 
 const manyRequest = 30
 const fewRequest = 10
@@ -31,9 +33,11 @@ export class ManageTasks extends BaseController {
         ...req.body,
         ...{ userId: userId },
       });
-      // this.cache.del(this.taskCacheKey);
+      const cachedTasks = this.cache.get<Task[]>(this.taskCacheKey);           
+      cachedTasks?.push(TaskViewModel.toHTTP(task) as Task)      
+      this.cache.set<Task[] | Task>(this.taskCacheKey, cachedTasks as Task[]);
 
-      return { task: res.status(201).json(TaskViewModel.toHTTP(task)) };
+      return { task: res.status(201).json(TaskViewModel.toHTTP(task)) }
     } catch (err) {
       return this.errorResponse(res, err as Error);
     }
@@ -52,8 +56,10 @@ export class ManageTasks extends BaseController {
     const userId = req.context.userId._id
     try {
       const { task } = await taskStatus.execute(id, userId);
+      const cachedTasks = this.cache.find<Task>(this.taskCacheKey, id);      
+      cachedTasks?.push(TaskViewModel.toHTTP(task) as Task)
+      this.cache.set<Task[] | Task>(this.taskCacheKey, cachedTasks as Task[]);
 
-      // this.cache.emit('invalidate', this.taskCacheKey);
       return { task: res.status(200).json(TaskViewModel.toHTTP(task)) };
     } catch (err) {
       return this.errorResponse(res, err as Error)
@@ -81,7 +87,9 @@ export class ManageTasks extends BaseController {
         date,
         done,
       });
-      // this.cache.emit('invalidate', this.taskCacheKey);
+      const cachedTasks = this.cache.find<Task>(this.taskCacheKey, id);      
+      cachedTasks?.push(TaskViewModel.toHTTP(task) as Task)
+      this.cache.set<Task[] | Task>(this.taskCacheKey, cachedTasks as Task[]);
 
       return { task: res.status(200).json(TaskViewModel.toHTTP(task)) };
     } catch (err) {

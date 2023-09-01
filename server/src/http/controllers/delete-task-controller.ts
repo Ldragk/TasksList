@@ -12,6 +12,7 @@ import { Request, Response } from "express";
 import { BaseController } from ".";
 import { RateLimiter } from "@src/middlewares/rate-limiter";
 import { AuthMiddleware } from "@src/middlewares/auth";
+import { Task } from "@src/entities/task";
 
 const manyRequest = 30
 const fewRequest = 3
@@ -39,7 +40,8 @@ export class DeleteTasks extends BaseController {
       const { createTrash } = await create.execute(userId, id);
       const { deleteTrash } = await deleteTask.execute(userId, id);
 
-      // this.cache.del(this.taskCacheKey);
+      const cachedTasksWithoutTheDeleted = this.cache.find<Task>(this.taskCacheKey, id);      
+      this.cache.set<Task[] | Task>(this.taskCacheKey, cachedTasksWithoutTheDeleted as Task[] | Task);
 
       return {
         create: res.status(201).json(TrashViewModel.toHTTP(createTrash)),
@@ -64,10 +66,10 @@ export class DeleteTasks extends BaseController {
     const userId = req.context.userId._id
 
     try {
-      const { createTrash } = await create.execute(userId);
+      const { ...createTrash } = await create.execute(userId);
       const { deleteTrash } = await deleteAllTasks.execute(userId);
 
-      // this.cache.del(this.taskCacheKey);
+      this.cache.flushAll();  
 
       return {
         create: res.status(201).json(createTrash),
