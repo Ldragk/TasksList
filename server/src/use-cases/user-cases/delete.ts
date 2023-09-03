@@ -2,9 +2,13 @@ import { User } from "@src/entities/user";
 import { UserRepository } from "@src/repositories/user-repository";
 import { Request } from "express";
 import { UpdatedUserResponse } from "./update";
+import Cache from "@src/util/cache";
+import { CacheService } from "../cache-service";
 
-export class DeleteUser {
-    constructor(private userRepository: UserRepository) { }
+export class DeleteUser extends CacheService{
+    constructor(private userRepository: UserRepository) {
+        super()
+     }
 
     async execute(req: Request): Promise<UpdatedUserResponse> {
 
@@ -14,11 +18,10 @@ export class DeleteUser {
         if (userId !== user?.id) {
             throw new Error("Access denied");
         }        
-
         await this.userRepository.delete(user.id);
-
         const response = this.removePassword(user)
 
+        this.cache.del(`user:${userId}`);
         return { user: response };
     }
 

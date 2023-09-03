@@ -124,12 +124,11 @@ describe('delete task', () => {
                 response = await global.testRequest.delete('/tasks/delete/all').set('x-access-token', token);
                 status = response.status
 
-                if (status = 201) {
+                if (response.body = 3) {
                     taskDB = await prisma.task.findMany()
                     trashDB = await prisma.deletedTask.findMany()
                 }
             }
-
 
             expect(status).toBe(201);
             expect(taskDB).toHaveLength(0);

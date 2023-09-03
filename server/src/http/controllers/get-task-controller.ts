@@ -30,21 +30,12 @@ export class QueryTask extends BaseController {
     req: Request,
     res: Response
   ) => {
-
-    const cachedTasks = this.cache.get(this.taskCacheKey);
-
-    if (cachedTasks) {
-      return res.status(200).json(cachedTasks);
-    }
-
     const queryAllTasks = new QueryAllTasks(new PrismaTaskQueryRepository());
     const userId = req.context.userId._id;
 
     try {
       const { tasks } = await queryAllTasks.execute(userId);
       const tasksData = tasks.map(TaskViewModel.toHTTP);
-
-      this.cache.set(this.taskCacheKey, tasksData);
 
       return res.status(200).json(tasksData);
     } catch (err) {

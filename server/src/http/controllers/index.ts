@@ -3,15 +3,9 @@ import logger from '@src/logger';
 import ApiErr, { APIError } from '@src/util/err/api-err';
 import { Response } from 'express';
 import Cache from '@src/util/cache'
-export abstract class BaseController {
+export abstract class BaseController {  
 
-  protected taskCacheKey = 'allTasks';
-  protected trashCacheKey = 'allTrash'
-  protected userCacheKey = 'me'
 
-  constructor(
-    protected cache = Cache
-  ) { }
 
   protected errorResponse(
     res: Response,

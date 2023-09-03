@@ -1,26 +1,48 @@
+import { isArray } from 'class-validator';
 import NodeCache from 'node-cache';
 
 interface HasId {
-    id: any;
+    id?: string;
+    userId?: string
 }
 
 class Cache {
     constructor(protected cacheService = new NodeCache()) { }
 
-    public set<T>(key: string, value: T, ttl = 3600): boolean {
-        return this.cacheService.set(key, value, ttl);
+    public set<T extends HasId>(key: string, value: T | T[], userId: string, ttl = 3600): boolean {
+        const cached = value
+        let authzValue
+
+        if (isArray(cached)) {
+            authzValue = cached.filter((cache: T) => {
+                return cache.userId === userId
+            })
+        }
+        return this.cacheService.set(key, authzValue, ttl);
     }
 
-    public get<T>(key: string): T | undefined {
-        return this.cacheService.get<T>(key);
+    public get<T extends HasId>(key: string, userId: string): T[] | undefined {
+        const cached = this.cacheService.get<T>(key)
+        let authz
+
+        if (isArray(cached)) {
+            authz = cached.filter((cache: T) => {
+                return cache.userId === userId
+            })
+        }
+        return authz
     }
 
     public flushAll(): void {
         return this.cacheService.flushAll();
     }
 
-    public find<T extends HasId>(key: string, id: any): T[] | undefined {
-        const cached = this.get<T[]>(key);
+    public del(key: string){
+        return this.cacheService.del(key)
+    }
+
+    public find<T extends HasId>(key: string, id: string, userId: string): T[] | undefined {
+        const cached = this.get<T>(key, userId);
         if (cached) {
             const cacheWhereDifferentId = cached.filter((cache: T) => { return cache.id !== id })
             return cacheWhereDifferentId;

@@ -41,10 +41,11 @@ describe("get all", () => {
     }
     tasksQueryRepositoryMock.findAllTasks.mockResolvedValue(Array(10).fill(task));
 
-    const { tasks } = await getAll.execute(task.userId);
+    const { tasks } = await getAll.execute(task.userId);  
+    
 
     expect(tasksQueryRepositoryMock.create).toHaveBeenCalledTimes(10);
-    expect(tasks[0]).toEqual(task);
+    expect(tasks[0]).toEqual({...task, _id: expect.any(String)});
     await expect(tasksQueryRepositoryMock.findAllTasks()).resolves.toHaveLength(10);
   });
 });

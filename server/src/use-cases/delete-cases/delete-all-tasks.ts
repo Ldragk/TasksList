@@ -1,10 +1,15 @@
 import { DeleteRepository } from "@src/repositories/delete-repository";
 import { DeletedTaskResponse } from "./delete-task";
+import { CacheService } from "../cache-service";
 
-export class DeleteAllTasks {
-  constructor(private deleteRepository: DeleteRepository) { }
+export class DeleteAllTasks extends CacheService {
+  constructor(private deleteRepository: DeleteRepository) {
+    super()
+  }
 
   async execute(userId: string): Promise<DeletedTaskResponse> {
-    return { deleteTrash: await this.deleteRepository.deleteAll(userId) };
+    const deletedTasks = await this.deleteRepository.deleteAll(userId)
+    this.cache.del(`task:${userId}`)
+    return { deleteTrash: deletedTasks };
   }
 }

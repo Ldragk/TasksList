@@ -31,11 +31,8 @@ export class ManageTasks extends BaseController {
     try {
       const { task } = await createTask.execute({
         ...req.body,
-        ...{ userId: userId },
+        ...{ userId: userId }
       });
-      const cachedTasks = this.cache.get<Task[]>(this.taskCacheKey);           
-      cachedTasks?.push(TaskViewModel.toHTTP(task) as Task)      
-      this.cache.set<Task[] | Task>(this.taskCacheKey, cachedTasks as Task[]);
 
       return { task: res.status(201).json(TaskViewModel.toHTTP(task)) }
     } catch (err) {
@@ -56,9 +53,6 @@ export class ManageTasks extends BaseController {
     const userId = req.context.userId._id
     try {
       const { task } = await taskStatus.execute(id, userId);
-      const cachedTasks = this.cache.find<Task>(this.taskCacheKey, id);      
-      cachedTasks?.push(TaskViewModel.toHTTP(task) as Task)
-      this.cache.set<Task[] | Task>(this.taskCacheKey, cachedTasks as Task[]);
 
       return { task: res.status(200).json(TaskViewModel.toHTTP(task)) };
     } catch (err) {
@@ -87,9 +81,6 @@ export class ManageTasks extends BaseController {
         date,
         done,
       });
-      const cachedTasks = this.cache.find<Task>(this.taskCacheKey, id);      
-      cachedTasks?.push(TaskViewModel.toHTTP(task) as Task)
-      this.cache.set<Task[] | Task>(this.taskCacheKey, cachedTasks as Task[]);
 
       return { task: res.status(200).json(TaskViewModel.toHTTP(task)) };
     } catch (err) {

@@ -33,7 +33,7 @@ export class CreateTrash {
       },
       id
     );
-    await this.trashRepository.create(trash);
+    await this.trashRepository.create(trash);    
     return { createTrash: trash };
-  }
+  }  
 }

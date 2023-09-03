@@ -25,19 +25,11 @@ export class TrashTasks extends BaseController {
     req: Request,
     res: Response
   ) {
-    const cachedTrash = this.cache.get(this.trashCacheKey);
-
-    if (cachedTrash) {
-      return res.status(200).json(cachedTrash);
-    }
-
     const allTrash = new AllTrash(new PrismaTrashRepository());
     const userId = req.context.userId._id
     try {
       const { trash } = await allTrash.execute(userId);
-      const trashData = trash.map(TrashViewModel.toHTTP);
-
-      this.cache.set(this.trashCacheKey, trashData);
+      const trashData = trash.map(TrashViewModel.toHTTP);    
 
       return { get: res.json(trashData) };
     } catch (err) {
@@ -56,10 +48,7 @@ export class TrashTasks extends BaseController {
     const deleted = new DeleteTrash(new PrismaDeleteTrashRepository());
 
     try {
-      const { deleteTrash } = await deleted.execute(userId, id);
-      
-      const cachedTrashWithoutTheDeleted = this.cache.find<Trash>(this.trashCacheKey, id);      
-      this.cache.set<Trash[] | Trash>(this.trashCacheKey, cachedTrashWithoutTheDeleted as Trash[] | Trash);
+      const { deleteTrash } = await deleted.execute(userId, id);     
 
       return { delete: res.json(deleteTrash) };
     } catch (err) {
@@ -79,8 +68,7 @@ export class TrashTasks extends BaseController {
     );
 
     try {
-      const { deleteTrash } = await deleteAllTrash.execute(userId);
-      this.cache.set(this.trashCacheKey, []);
+      const { deleteTrash } = await deleteAllTrash.execute(userId);      
 
       return { delete: res.json(deleteTrash) };
     } catch (err) {

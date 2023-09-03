@@ -1,6 +1,8 @@
 import { User, UserProps } from "@src/entities/user";
 import { UserRepository } from "@src/repositories/user-repository";
 import AuthService from "../auth";
+import Cache from "@src/util/cache";
+import { CacheService } from "../cache-service";
 
 interface EditUserRequest {
     email: string;
@@ -15,15 +17,17 @@ export interface UpdatedUserResponse {
     user: ResponseBody;
 }
 
-export class UpdateUser {
-    constructor(private userRepository: UserRepository) { }
+export class UpdateUser extends CacheService{
+    constructor(private userRepository: UserRepository) {
+        super()
+     }
 
     async execute(
-        id: string,
-        body: EditUserRequest
+        userId: string,
+        body: EditUserRequest        
     ): Promise<UpdatedUserResponse> {
 
-        const user: User = await this.userRepository.findById(id);
+        const user: User = await this.userRepository.findById(userId);
         const { email, name } = body;
         let { password } = body;
 
@@ -45,9 +49,10 @@ export class UpdateUser {
             updatedAt: user.updatedAt,
         }, user.id);
 
-        await this.userRepository.update(id, userUpdated);
+        await this.userRepository.update(userId, userUpdated);
 
         const response = this.removePassword(userUpdated)
+        this.cache.set<User>(`user:${userId}`, response as User, userId);
 
         return { user: response };
     }

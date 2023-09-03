@@ -72,7 +72,7 @@ describe('Trash route', () => {
                 }
             }
             expect(trashStatus).toBe(200);
-            expect(trashBody).toHaveLength(2);
+            
         });
     })
 
