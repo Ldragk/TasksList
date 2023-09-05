@@ -2,6 +2,7 @@
   "/tasks/all": {
     "get": {
       "summary": "Query all tasks",
+      "description": "**Rate-limiter:** This route applies a rate limiter middleware to control the number of requests allowed in a certain period of time.\nIt allows a maximum of 6 requests per hour.\n\n**Authenticated:** This route applies an authentication middleware to control the access to the route.\nIt allows access only to authenticated user.\n\n**Cache:** This route is cacheable. Responses are cached to improve performance.\nThe cache remains valid until explicitly cleared. Once cleared, the cache will be refreshed with new data.\n",
       "tags": [
         "QueryTasks"
       ],
@@ -24,34 +25,18 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object[]",
-                "items": {
-                  "$ref": "#/components/schemas/TaskResponse"
-                }
+                "$ref": "#/components/schemas/TaskResponse"
               }
             }
           }
         }
-      },
-      "x-handler": "queryAllTasks",
-      "x-middleware": [
-        "RateLimiter(manyRequest).getMiddleware()",
-        "Middleware(AuthMiddleware)"
-      ],
-      "x-middleware-description": [
-        "This route applies a rate limiter middleware to control the number of requests allowed in a certain period of time.\nIt allows a maximum of 4 requests per hour.\n",
-        "This route applies an authentication middleware to control the access to the route.\nIt allows access only to authenticated user.\n"
-      ],
-      "x-controller": "get-task-controller.ts",
-      "x-cache": {
-        "enabled": true,
-        "description": "This route is cacheable. Responses are cached to improve performance.\nThe cache remains valid until explicitly cleared. Once cleared, the cache will be refreshed with new data.\n"
       }
     }
   },
   "/tasks/date/{month}/{day}/{year}": {
     "get": {
       "summary": "Query tasks by full data",
+      "description": "**Rate-limiter:** This route applies a rate limiter middleware to control the number of requests allowed in a certain period of time.\nIt allows a maximum of 10 requests per hour.\n\n**Authenticated:** This route applies an authentication middleware to control the access to the route.\nIt allows access only to authenticated user.\n",
       "tags": [
         "QueryTasks"
       ],
@@ -104,30 +89,18 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object[]",
-                "items": {
-                  "$ref": "#/components/schemas/TaskResponse"
-                }
+                "$ref": "#/components/schemas/TaskResponse"
               }
             }
           }
         }
-      },
-      "x-handler": "getByFullDate",
-      "x-middleware": [
-        "RateLimiter(manyRequest).getMiddleware()",
-        "Middleware(AuthMiddleware)"
-      ],
-      "x-middleware-description": [
-        "This route applies a rate limiter middleware to control the number of requests allowed in a certain period of time.\nIt allows a maximum of 10 requests per hour.\n",
-        "This route applies an authentication middleware to control the access to the route.\nIt allows access only to authenticated user.\n"
-      ],
-      "x-controller": "get-task-controller.ts"
+      }
     }
   },
   "/tasks/month/{month}/{year}": {
     "get": {
       "summary": "Query tasks by month",
+      "description": "**Rate-limiter:** This route applies a rate limiter middleware to control the number of requests allowed in a certain period of time.\nIt allows a maximum of 10 requests per hour.\n\n**Authenticated:** This route applies an authentication middleware to control the access to the route.\nIt allows access only to authenticated user.\n",
       "tags": [
         "QueryTasks"
       ],
@@ -171,30 +144,18 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object[]",
-                "items": {
-                  "$ref": "#/components/schemas/TaskResponse"
-                }
+                "$ref": "#/components/schemas/TaskResponse"
               }
             }
           }
         }
-      },
-      "x-handler": "getByMonth",
-      "x-middleware": [
-        "RateLimiter(manyRequest).getMiddleware()",
-        "Middleware(AuthMiddleware)"
-      ],
-      "x-middleware-description": [
-        "This route applies a rate limiter middleware to control the number of requests allowed in a certain period of time.\nIt allows a maximum of 10 requests per hour.\n",
-        "This route applies an authentication middleware to control the access to the route.\nIt allows access only to authenticated user.\n"
-      ],
-      "x-controller": "get-task-controller.ts"
+      }
     }
   },
   "/tasks/year/{year}": {
     "get": {
       "summary": "Query tasks by year",
+      "description": "**Rate-limiter:** This route applies a rate limiter middleware to control the number of requests allowed in a certain period of time.\nIt allows a maximum of 10 requests per hour.\n\n**Authenticated:** This route applies an authentication middleware to control the access to the route.\nIt allows access only to authenticated user.\n",
       "tags": [
         "QueryTasks"
       ],
@@ -230,29 +191,18 @@
             "application/json": {
               "schema": {
                 "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/TaskResponse"
-                }
+                "$ref": "#/components/schemas/TaskResponse"
               }
             }
           }
         }
-      },
-      "x-handler": "getByYear",
-      "x-middleware": [
-        "RateLimiter(manyRequest).getMiddleware()",
-        "Middleware(AuthMiddleware)"
-      ],
-      "x-middleware-description": [
-        "This route applies a rate limiter middleware to control the number of requests allowed in a certain period of time.\nIt allows a maximum of 10 requests per hour.\n",
-        "This route applies an authentication middleware to control the access to the route.\nIt allows access only to authenticated user.\n"
-      ],
-      "x-controller": "get-task-controller.ts"
+      }
     }
   },
   "/tasks/done/{condition}": {
     "get": {
       "summary": "Query tasks by done condition",
+      "description": "**Rate-limiter:** This route applies a rate limiter middleware to control the number of requests allowed in a certain period of time.\nIt allows a maximum of 2 requests per hour.\n\n**Authenticated:** This route applies an authentication middleware to control the access to the route.\nIt allows access only to authenticated user.\n",
       "tags": [
         "QueryTasks"
       ],
@@ -284,32 +234,20 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object[]",
-                "items": {
-                  "$ref": "#/components/schemas/TaskResponse"
-                }
+                "$ref": "#/components/schemas/TaskResponse"
               }
             }
           }
         }
-      },
-      "x-handler": "getDoneOrNotTasks",
-      "x-middleware": [
-        "RateLimiter(fewRequest).getMiddleware()",
-        "Middleware(AuthMiddleware)"
-      ],
-      "x-middleware-description": [
-        "This route applies a rate limiter middleware to control the number of requests allowed in a certain period of time.\nIt allows a maximum of 2 requests per hour.\n",
-        "This route applies an authentication middleware to control the access to the route.\nIt allows access only to authenticated user.\n"
-      ],
-      "x-controller": "get-task-controller.ts"
+      }
     }
   },
   "task/overdue": {
     "get": {
       "summary": "Get overdue tasks",
+      "description": "**Rate-limiter:** This route applies a rate limiter middleware to control the number of requests allowed in a certain period of time.\nIt allows a maximum of 2 requests per hour.\n\n**Authenticated:** This route applies an authentication middleware to control the access to the route.\nIt allows access only to authenticated user.\n",
       "tags": [
-        "Overdue Tasks"
+        "QueryTasks"
       ],
       "parameters": [
         {
@@ -329,26 +267,13 @@
           "description": "OK",
           "content": {
             "application/json": {
-              "type": "object[]",
               "schema": {
-                "items": {
-                  "$ref": "#/components/schemas/TaskResponse"
-                }
+                "$ref": "#/components/schemas/TaskResponse"
               }
             }
           }
         }
-      },
-      "x-handler": "getOverdueTasks",
-      "x-middleware": [
-        "RateLimiter(fewRequest).getMiddleware()",
-        "Middleware(AuthMiddleware)"
-      ],
-      "x-middleware-description": [
-        "This route applies a rate limiter middleware to control the number of requests allowed in a certain period of time.\nIt allows a maximum of 2 requests per hour.\n",
-        "This route applies an authentication middleware to control the access to the route.\nIt allows access only to authenticated user.\n"
-      ],
-      "x-controller": "get-task-controller.ts"
+      }
     }
   }
 }

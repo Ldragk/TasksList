@@ -2,6 +2,7 @@
   "tasks/notifications/{daysOfDelay}/{type}": {
     "get": {
       "summary": "Query tasks by expiration date for notification",
+      "description": "**Rate-limiter:** This route applies a rate limiter middleware to control the number of requests allowed in a certain period of time.\nIt allows a maximum of 5 requests per hour.\n\n**Authenticated:** This route applies an authentication middleware to control the access to the route.\nIt allows access only to authenticated user.\n",
       "tags": [
         "Notifications"
       ],
@@ -32,25 +33,12 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object[]",
-                "items": {
-                  "$ref": "#/components/schemas/NotificationResponse"
-                }
+                "$ref": "#/components/schemas/NotificationResponse"
               }
             }
           }
         }
-      },
-      "x-handler": "notificationOfTasksNearTheDeadline",
-      "x-middleware": [
-        "RateLimiter(manyRequest).getMiddleware()",
-        "ClassMiddleware(AuthMiddleware)"
-      ],
-      "x-middleware-description": [
-        "This route applies a rate limiter middleware to control the number of requests allowed in a certain period of time.\nIt allows a maximum of 5 requests per hour.\n",
-        "This route applies an authentication middleware to control the access to the route.\nIt allows access only to authenticated user.\n"
-      ],
-      "x-controller": "notifications-task-controller.ts"
+      }  
     }
   }
 }

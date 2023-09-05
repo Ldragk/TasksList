@@ -2,6 +2,7 @@
   "/tasks/delete/unique/{id}": {
     "delete": {
       "summary": "Delete task by id",
+      "description": "**Rate-limiter:** This route applies a rate limiter middleware to control the number of requests allowed in a certain period of time.\nIt allows a maximum of 30 requests per hour.\n\n**Authenticated:** This route applies an authentication middleware to control the access to the route.\nIt allows access only to authenticated user.\n",
       "tags": [
         "DeleteTasks"
       ],
@@ -23,30 +24,18 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "items": {
-                  "$ref": "#/components/schemas/TaskResponse"
-                }
+                "$ref": "#/components/schemas/TaskResponse"
               }
             }
           }
         }
-      },
-      "x-handler": "deleteTask",
-      "x-middleware": [
-        "RateLimiter(manyRequest).getMiddleware()",
-        "ClassMiddleware(AuthMiddleware)"
-      ],
-      "x-middleware-description": [
-        "This route applies a rate limiter middleware to control the number of requests allowed in a certain period of time.\nIt allows a maximum of 30 requests per hour.\n",
-        "This route applies an authentication middleware to control the access to the route.\nIt allows access only to authenticated user.\n"
-      ],
-      "x-controller": "delete-task-controller.ts"
+      }   
     }
   },
   "/tasks/delete/all": {
     "delete": {
       "summary": "Delete all task.",
+      "description": "**Rate-limiter:** This route applies a rate limiter middleware to control the number of requests allowed in a certain period of time.\nIt allows a maximum of 30 requests per hour.\n\n**Authenticated:** This route applies an authentication middleware to control the access to the route.\nIt allows access only to authenticated user.\n",
       "tags": [
         "DeleteTasks"
       ],
@@ -55,17 +44,7 @@
           "description": "Created (200 Ok (Deleted) and 201 Created are the same tasks in the trash database)",
           "content": {}
         }
-      },
-      "x-handler": "deletedAllTasks",
-      "x-middleware": [
-        "RateLimiter(fewRequest).getMiddleware()",
-        "ClassMiddleware(AuthMiddleware)"
-      ],
-      "x-middleware-description": [
-        "This route applies a rate limiter middleware to control the number of requests allowed in a certain period of time.\nIt allows a maximum of 30 requests per hour.\n",
-        "This route applies an authentication middleware to control the access to the route.\nIt allows access only to authenticated user.\n"
-      ],
-      "x-controller": "delete-task-controller.ts"
+      } 
     }
   }
 }

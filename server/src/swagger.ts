@@ -9,13 +9,15 @@ import task from './http/controllers/docs/schemas/task.json';
 import trash from './http/controllers/docs/schemas/trash.json';
 import user from './http/controllers/docs/schemas/user.json';
 import { OpenAPIV3 } from 'express-openapi-validator/dist/framework/types';
+import { JsonObject } from 'swagger-ui-express';
 
 
-const docs = {
+
+const docs: JsonObject = {
     openapi: '3.0.0',
     info: {
-        title: 'TaskList API Documentation',
-        version: '2.1.0',
+        "title": 'TaskList API Documentation',
+        "version": '2.1.0',
     },
     paths: {
         ...deleteController,
@@ -35,16 +37,8 @@ const docs = {
     },
     tags: [
         {
-            "name": "Trash",
-            "description": "Trash tasks controller"
-        },
-        {
             "name": "Users",
             "description": "User controller"
-        },
-        {
-            "name": "Notifications",
-            "description": "Notifications tasks controller"
         },
         {
             "name": "ManageTasks",
@@ -55,10 +49,19 @@ const docs = {
             "description": "Get tasks controller"
         },
         {
+            "name": "Notifications",
+            "description": "Notifications tasks controller"
+        },
+
+        {
             "name": "DeleteTasks",
             "description": "Delete tasks controller"
-        }
+        },
+        {
+            "name": "Trash",
+            "description": "Trash tasks controller"
+        },
     ],
 };
 
-export default JSON.stringify(docs) as unknown as OpenAPIV3.Document;
+export default docs as unknown as OpenAPIV3.Document;
