@@ -115,6 +115,8 @@ describe('delete task', () => {
                 createTaskPromises.push(body);
             }
             await Promise.all(createTaskPromises);
+            console.log(createTaskPromises);
+            
 
             while (createTaskPromises.length !== 3) {
                 await new Promise(resolve => setTimeout(resolve, 100));
@@ -124,12 +126,13 @@ describe('delete task', () => {
                 response = await global.testRequest.delete('/tasks/delete/all').set('x-access-token', token);
                 status = response.status
 
-                if (response.body = 3) {
+                if (status === 201) {
                     taskDB = await prisma.task.findMany()
                     trashDB = await prisma.deletedTask.findMany()
                 }
             }
-
+            console.log(trashDB);
+            
             expect(status).toBe(201);
             expect(taskDB).toHaveLength(0);
             expect(trashDB).toHaveLength(3);
