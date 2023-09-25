@@ -38,8 +38,8 @@ export class CreateTask extends CacheService{
   }
 
   cached(value: Task, userId: string) {
-    const cachedTasks = this.cache.get<Task>(`task:${userId}`, userId);
-    cachedTasks?.push(value)    
+    const cachedTasks = this.cache.get<Task>(`task:${userId}`, userId) || [];
+    cachedTasks.push(value)    
     this.cache.set<Task>(`task:${userId}`, cachedTasks as Task[], userId);
   }
 }

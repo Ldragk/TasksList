@@ -46,8 +46,8 @@ export class FullUpdate extends CacheService{
   }
 
   cached(value: Task, id: string, userId: string) {
-    const cachedTasks = this.cache.find<Task>(`task:${userId}`, id, userId);
-    cachedTasks?.push(value)
+    const cachedTasks = this.cache.find<Task>(`task:${userId}`, id, userId) || [];
+    cachedTasks.push(value)
     this.cache.set<Task>(`task:${userId}`, cachedTasks as Task[], userId);
   }
 }
